@@ -267,3 +267,5 @@ main .hero .wrap .hero-art{height:calc(100% + var(--hero-space));margin-bottom:c
 @media(max-width:700px){main .hero .wrap .hero-art{grid-column:7/span 6;grid-row:2/span 2}.hero-art img{object-position:right bottom}}
 
 .booking .booking-copy{& h2{display:grid;gap:var(--s2)}& .booking-bottom{grid-column:1;grid-row:3;align-self:end;display:grid;gap:var(--s2)}& .booking-subtitle{grid-row:auto}& .booking-cta{position:static;justify-self:start;color:var(--ink);font-size:var(--type-body);font-weight:600;text-decoration:underline;text-underline-offset:4px}}
+
+.button,.site-header .header-grid>.button,.menu-toggle,.booking .booking-copy .booking-cta{font-size:var(--type-body,16px);line-height:var(--leading-body,26px)}
