@@ -372,3 +372,8 @@ body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-te
 .booking-cta .type-arrow{font-size:1.4em}
 @media(max-width:900px){.site-header .button .type-arrow{display:none}}
 .people .person .specializations{padding-left:1em;& li::marker{content:"·  ";font-family:var(--font-main);font-size:1em}}
+
+/* Komponent hero-intro: tytuł + zdanie z odnośnikami do wszystkich sekcji. */
+.hero-intro{grid-column:1/span 9;grid-row:1;z-index:2}
+.hero-links{max-width:48ch;margin-top:var(--s3);font-size:var(--type-body);line-height:var(--leading-body);color:var(--ink);text-wrap:pretty;& a{text-decoration-thickness:1px;text-underline-offset:.2em}}
+@media(max-width:700px){.hero-intro{grid-column:1/-1}.hero-links{max-width:40ch}}
