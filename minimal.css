@@ -195,3 +195,5 @@ h1 .hero-title .heading-roman{font-size:calc(0.6em * var(--roman-heading-scale))
 .sample-photo{position:relative;display:grid;overflow:hidden;min-height:var(--s7);aspect-ratio:var(--phi);margin:0;& img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}& figcaption{position:relative;align-self:end;padding:var(--s2);font-size:var(--type-body);line-height:var(--leading-body);color:var(--ink);background:color-mix(in srgb,var(--surface) 90%,transparent);z-index:1}}
 
 .clinic-gallery .photo-small:nth-child(2) img{object-position:center 72%}
+
+.about .about-logo{width:100%;height:auto;aspect-ratio:1.62;color:var(--ink);justify-self:start}
