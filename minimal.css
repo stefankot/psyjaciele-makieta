@@ -136,7 +136,7 @@ body{font-weight:500}.hero-subtitle,.heading>:is(p,h3),.placeholder figcaption s
 @media(max-width:700px){.booking-copy .booking-subtitle{grid-column:1/-1;grid-row:2}.booking-copy>.buttons{grid-row:3}.booking-art{grid-row:4}}
 
 /* Klasyczna typografia: wersaliki rozświetlone, kursywa bez rozstrzelania. */
-:root{--tracking-caps:.08em;--reading-measure:60ch}
+:root{--tracking-caps:.18em;--reading-measure:60ch}
 body{letter-spacing:normal;font-kerning:normal;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:lining-nums}
 :is(.site-header .site-nav,.about-label,.kicker,.header-label,.person figure+p,.quote cite,.site-header .menu-toggle,.small-caps){letter-spacing:var(--tracking-caps)}
 .small-caps{font-variant-caps:small-caps}
