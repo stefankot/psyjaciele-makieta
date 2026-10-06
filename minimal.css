@@ -218,3 +218,7 @@ main :is(.team .drawing,.contact-art){grid-column:1/span 6}
 
 .founder-hover{position:absolute;top:0;bottom:0;width:50%;z-index:2;display:grid;align-items:end;padding:0 var(--s2) 25%;font-size:13px;line-height:21px;color:var(--ink);&>span{opacity:0;padding:var(--s1);background:var(--surface);text-align:center;transition:opacity .15s}&:hover>span{opacity:1}}
 .founder-left{left:0}.founder-right{right:0}
+
+/* Przyciski pełne, zgodne z lokalną paletą. */
+.button,.site-header .menu-toggle{background:var(--ink);color:var(--surface,var(--paper));border-color:var(--ink);&:hover{background:color-mix(in srgb,var(--ink) 88%,var(--surface,var(--paper)));color:var(--surface,var(--paper))}}
+.site-header .menu-toggle{--surface:var(--paper)}
