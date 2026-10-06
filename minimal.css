@@ -146,3 +146,6 @@ p{max-width:var(--reading-measure);text-wrap:pretty;orphans:3;widows:3;hyphens:m
 :is(p,cite,figcaption,.opening-hours){font-variant-numeric:lining-nums}
 .opening-hours dd,.header-hours dd{font-variant-numeric:lining-nums tabular-nums}
 strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness:1px}.button{letter-spacing:normal;text-transform:none}
+
+.equipment-grid{grid-template-rows:auto auto;row-gap:var(--content-gap);&>div{grid-row:span 2;grid-template-rows:subgrid;row-gap:var(--content-gap)}& h3{min-height:0;align-self:start}& p{align-self:start}}
+@media(max-width:700px){.equipment-grid{row-gap:var(--content-gap)}.equipment-grid>div+div{margin-top:var(--content-gap)}}
