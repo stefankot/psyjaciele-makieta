@@ -139,7 +139,7 @@ body{font-weight:500}.hero-subtitle,.heading>:is(p,h3),.placeholder figcaption s
 :root{--tracking-caps:.18em;--reading-measure:60ch}
 body{letter-spacing:normal;font-kerning:normal;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:lining-nums}
 :is(.site-header .site-nav,.about-label,.kicker,.header-label,.person figure+p,.quote cite,.site-header .menu-toggle,.small-caps){letter-spacing:var(--tracking-caps)}
-.small-caps{font-variant-caps:small-caps}
+.small-caps{font-variant-caps:all-small-caps;font-weight:600;letter-spacing:var(--tracking-caps);text-transform:uppercase}
 :is(h1,h2,h3,h4,h5,h6){text-wrap:balance;orphans:2;widows:2}
 :is(h1,h2,h3,h4,h5,h6) em{letter-spacing:normal;font-variant-ligatures:common-ligatures contextual}
 p{max-width:var(--reading-measure);text-wrap:pretty;orphans:3;widows:3;hyphens:manual;overflow-wrap:break-word}
@@ -197,3 +197,6 @@ h1{--roman-heading-scale:var(--roman-h1-scale)}
 .clinic-gallery .photo-small:nth-child(2) img{object-position:center 72%}
 
 .about .about-logo{width:100%;height:auto;aspect-ratio:1.62;color:var(--ink);justify-self:start}
+
+.people .person-role.small-caps{font-size:13px;line-height:21px;font-weight:600;text-transform:uppercase}
+.person-name{display:grid;gap:var(--s1);margin:0;font-size:var(--type-h4);line-height:1.24;font-weight:600;letter-spacing:var(--tracking-caps);& em{font-family:var(--font-emphasis);font-size:34px;line-height:1.15;font-style:normal;font-weight:400;letter-spacing:0;text-transform:none}& span{text-transform:uppercase;overflow-wrap:anywhere}}
