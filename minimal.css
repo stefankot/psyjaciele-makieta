@@ -183,3 +183,5 @@ strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness
 :is(h1,h2) .heading-roman{font-family:var(--font-main);font-weight:900;font-size:calc(1em * var(--roman-heading-scale));text-transform:uppercase;letter-spacing:var(--tracking-caps);line-height:1.08;font-style:normal}
 .team .drawing{grid-column:1/span 6}.team .heading>p{grid-column:9/span 4}
 @media(max-width:700px){.team .drawing{grid-column:1/span 6;grid-row:3}.team .heading>p{grid-column:1/-1;grid-row:2}}
+
+.about .portrait-circle{background:transparent;clip-path:none;mask:var(--blob) center/contain no-repeat}
