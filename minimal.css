@@ -111,3 +111,5 @@ footer{&>.wrap{column-gap:var(--gap);row-gap:var(--group-gap)}& .foot-links>div{
 
 .clinic .section-heading .clinic-illustration{grid-column:7/span 6;justify-self:end;width:100%}
 @media(max-width:700px){.clinic .section-heading .clinic-illustration{grid-column:4/span 9}}
+
+.button{ text-transform:none;letter-spacing:normal}
