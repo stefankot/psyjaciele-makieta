@@ -45,7 +45,7 @@ figure.section-illustration:not(.hero-art){display:grid;place-items:center}.sect
 .button{background:transparent;color:var(--ink)}.button:hover{background:color-mix(in srgb,var(--ink) 8%,transparent);color:var(--ink)}.bento [data-palette="forest"]{--surface:color-mix(in srgb,#4faa72 25%,#f0eade);--ink:#0e433a;--small-ink:color-mix(in srgb,var(--ink) calc(100% - clamp(0%,var(--text-shift),20%)),black)}
 .bento .tile{--ink:#0e433a;--small-ink:color-mix(in srgb,var(--ink) calc(100% - clamp(0%,var(--text-shift),20%)),black)}
 :root{--text-shift:10%}.menu-toggle{color:var(--ink)}
-.reviews{& .heading>h2{grid-column:1/span 8;grid-row:1}& .review-source{grid-column:9/span 4;grid-row:1;display:grid;gap:var(--s3);align-content:start;& .icon{width:144px;height:21px}& p{max-width:34ch;line-height:1.6}}& .drawing{grid-column:5/span 8;grid-row:2;justify-self:end;width:100%}}
+.reviews{& .heading>h2{grid-column:1/span 6;grid-row:1}& .review-source{grid-column:1/span 6;grid-row:2;display:grid;gap:var(--s3);align-content:start;& .icon{width:144px;height:21px}& p{max-width:34ch;line-height:1.6}}& .drawing{grid-column:7/span 6;grid-row:1/span 2;align-self:start;justify-self:end;width:100%}}
 @media(max-width:700px){.reviews{& .heading>h2{grid-column:1/-1}& .review-source{grid-column:1/span 11;grid-row:2}& .drawing{grid-column:2/span 11;grid-row:3}}}
 
 /* Jednolite role kolorów w każdej palecie. */
