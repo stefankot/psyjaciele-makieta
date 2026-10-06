@@ -163,3 +163,9 @@ strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness
 @media(prefers-reduced-motion:reduce){.portrait-blob,.people .person .portrait-blob img{transform:none}}
 
 .portrait-blob{width:92%;height:92%;justify-self:center;align-self:center}.people .person .portrait-blob img{height:72%}
+
+/* Paleta bento pobrana z referencji użytkownika. */
+[data-palette="bento-base"]{--surface:#d0e8d2;--ink:#00332a;--accent:#008755;--small-ink:#00332a}
+.bento .tile[data-palette="bento-dark"]{--surface:#00332a;--ink:#e6fbe8;--accent:#9af457;--small-ink:#e6fbe8}
+.bento .tile[data-palette="bento-mint"]{--surface:#e6fbe8;--ink:#00332a;--accent:#008755;--small-ink:#00332a}
+.bento .tile[data-palette="bento-green"]{--surface:#008755;--ink:#e6fbe8;--accent:#9af457;--small-ink:#e6fbe8}
