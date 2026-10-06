@@ -128,3 +128,5 @@ body{font-family:var(--font-main);font-synthesis:none}
 @media(max-width:700px){.contact-hours{grid-column:1/-1;padding-block:var(--s3);& h3{grid-column:2/span 10}& .opening-hours{grid-column:2/span 10;&>div:first-child{grid-column:1/span 4}&>div:last-child{grid-column:7/span 4}& dd{font-size:var(--type-h2)}}}}
 
 body{font-weight:500}.hero-subtitle,.heading>:is(p,h3),.placeholder figcaption span{font-weight:500}
+
+[data-palette="orange-soft"]{--surface:color-mix(in srgb,#f0eade 85%,#f96e46);--ink:#0e433a;--accent:#b8d6ee;--small-ink:color-mix(in srgb,var(--ink) 90%,black)}
