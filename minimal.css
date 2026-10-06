@@ -309,3 +309,6 @@ main .poster-grid .poster-art{grid-column:7/span 6;grid-row:1;align-self:stretch
    WARIANTY: hero, founders, mirrored-intro, split-booking, site-header, site-footer. */
 
 .section-stack>:is(.arrival-details,.after-hours,.button){grid-column:auto;grid-row:auto}
+
+/* Komponent: founder-tooltip — białe tło i szary tekst. */
+.founder-hover>span{background:#fff;color:#595959}
