@@ -185,3 +185,5 @@ strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness
 @media(max-width:700px){.team .drawing{grid-column:1/span 6;grid-row:3}.team .heading>p{grid-column:1/-1;grid-row:2}}
 
 .about .portrait-circle{background:transparent;clip-path:none;mask:var(--blob) center/contain no-repeat}
+
+.about .portrait-circle img{width:85%;height:85%;place-self:center}
