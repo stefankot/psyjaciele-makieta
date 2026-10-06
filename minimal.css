@@ -318,3 +318,6 @@ main .poster-grid .poster-art{grid-column:7/span 6;grid-row:1;align-self:stretch
 
 /* detail-columns: przygotowanie — sześć punktów w dwóch rzędach po trzy. */
 .preparation .detail-columns{row-gap:var(--s5)}
+
+/* Komponent quote: podpis autora kursywą Rialto. */
+.quote cite{font:400 26px/1.25 var(--font-emphasis);letter-spacing:0;text-transform:none;& em{font:inherit}}
