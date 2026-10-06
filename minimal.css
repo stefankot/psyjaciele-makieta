@@ -299,7 +299,7 @@ main .poster-grid .poster-art{grid-column:7/span 6;grid-row:1;align-self:stretch
 .reviews .review-source{display:grid;gap:var(--s3);& .icon{width:144px;height:21px;justify-self:start;mask-position:left center}}
 .clinic .poster-heading h2{max-width:100%}
 .arrival .section-stack>.button{justify-self:start}
-.section-stack>.after-hours{max-width:58ch}
+.section-stack>.after-hours{max-width:none;display:grid;gap:var(--s4)}
 @media(max-width:700px){.poster-grid{row-gap:var(--s5)}.poster-copy{grid-column:1/-1;min-height:0;gap:var(--s5)}main .poster-grid .poster-art{grid-column:4/span 6;grid-row:2;aspect-ratio:var(--art-ratio,1.6);height:auto}.arrival .poster-grid .poster-art{grid-row:1}.arrival .poster-copy{grid-row:2}}
 
 /* KOMPONENTY: service-card (.tile), person-card (.person), quote (.quote).
@@ -325,3 +325,7 @@ main .poster-grid .poster-art{grid-column:7/span 6;grid-row:1;align-self:stretch
 /* Globalna waga tekstu prostego; kursywa Rialto pozostaje regularna. */
 :root{--weight-text:700}
 body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-text)!important}
+
+/* Komponent emergency-clinics: 3 × 4 kolumny; na telefonie jedna kolumna. */
+.emergency-clinics{display:grid;grid-template-columns:var(--cols);grid-template-rows:repeat(5,auto);gap:var(--s3) var(--gap);& article{grid-column:span 4;grid-row:span 5;display:grid;grid-template-rows:subgrid;align-content:start;gap:var(--s3);min-width:0}& h4{margin:var(--s1) 0 0;font-size:var(--type-h3,26px);line-height:1.2}& .clinic-links{display:grid;gap:var(--s1);align-content:end}}
+@media(max-width:700px){.emergency-clinics{row-gap:var(--s5);& article{grid-column:1/-1;grid-row:auto;grid-template-rows:auto}}}
