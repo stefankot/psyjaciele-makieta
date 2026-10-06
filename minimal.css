@@ -45,8 +45,6 @@ figure.section-illustration:not(.hero-art){display:grid;place-items:center}.sect
 .button{background:transparent;color:var(--ink)}.button:hover{background:color-mix(in srgb,var(--ink) 8%,transparent);color:var(--ink)}.bento [data-palette="forest"]{--surface:color-mix(in srgb,#4faa72 25%,#f0eade);--ink:#0e433a;--small-ink:color-mix(in srgb,var(--ink) calc(100% - clamp(0%,var(--text-shift),20%)),black)}
 .bento .tile{--ink:#0e433a;--small-ink:color-mix(in srgb,var(--ink) calc(100% - clamp(0%,var(--text-shift),20%)),black)}
 :root{--text-shift:10%}.menu-toggle{color:var(--ink)}
-.reviews{& .heading>h2{grid-column:1/span 6;grid-row:1}& .review-source{grid-column:1/span 6;grid-row:2;display:grid;gap:var(--s3);align-content:start;& .icon{width:144px;height:21px}& p{max-width:34ch;line-height:1.6}}& .drawing{grid-column:7/span 6;grid-row:1/span 2;align-self:start;justify-self:end;width:100%}}
-@media(max-width:700px){.reviews{& .heading>h2{grid-column:1/-1}& .review-source{grid-column:1/span 11;grid-row:2}& .drawing{grid-column:2/span 11;grid-row:3}}}
 
 /* Jednolite role kolorów w każdej palecie. */
 [data-palette]{background:var(--surface);color:var(--ink);& :is(h1,h2,h3,.art,.icon){color:var(--ink)}& :is(p,cite,figcaption,dt,dd,td,address,.kicker,.about-label,.about-names){color:var(--small-ink,var(--ink))}& :is(.portrait-circle,.halo-dot,.placeholder,.geometric-shape){background:var(--accent)}& .bento .tile::before{background:var(--accent)}& svg :is(circle,ellipse,rect,polygon){fill:var(--accent)}& .person figure+p+p{color:var(--ink)}}
@@ -242,7 +240,6 @@ main :is(.team .drawing,.contact-art){grid-column:1/span 6}
 
 
 
-@media(min-width:701px){.services .wrap>.grid{grid-template-rows:auto;align-items:stretch}.services .heading{grid-column:1/span 6;grid-row:1;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr;gap:var(--s3)}.services .heading>h2{grid-column:1;grid-row:1}.services .heading>p{grid-column:1;grid-row:2;align-self:end;max-width:34ch}.services .drawing{grid-row:1;align-self:stretch}}
 
 /* Karty zespołu w rytmie kart usług. */
 .people{row-gap:var(--gap);align-items:stretch;& .person{--surface:#fff;--ink:#00332a;--small-ink:var(--ink);--accent:#ff9676;grid-column:span 4;min-width:0;width:100%;min-height:600px;padding:var(--s3);background:var(--surface);color:var(--ink);grid-template-rows:128px minmax(0,1fr) 104px;gap:var(--s3);align-content:stretch;&:last-child{grid-column:span 4}& header{display:grid;align-content:start;gap:var(--s2);text-align:center}& .person-role{color:var(--ink)}& .person-name{gap:var(--s1);& em{font-size:var(--type-h3)}& span{overflow-wrap:anywhere}}& figure{width:min(100%,277px);max-width:none;place-self:start center;aspect-ratio:1;margin:0;transform:translateY(calc(-1 * var(--s2)))}& .portrait-blob{width:100%;height:100%;position:relative;isolation:isolate;background:none;mask:none;transform:none;&::before{content:"";position:absolute;inset:18% 4% 0;background:var(--accent);mask:var(--blob) center/contain no-repeat;transform:rotate(var(--blob-angle,0deg));z-index:-1}& img{width:100%;height:100%;object-fit:contain;object-position:center bottom;transform:none;mask-image:var(--blob),linear-gradient(#000 0 0);mask-size:92% 82%,100% 48%;mask-position:center bottom,center top;mask-repeat:no-repeat}}& .specializations{margin:0;padding:0;list-style:none;font-size:var(--type-body);line-height:var(--leading-body);align-self:end;color:var(--ink)}}}
@@ -280,13 +277,8 @@ main .hero .wrap .hero-art{height:calc(100% + var(--hero-space));margin-bottom:c
 .hero-title{display:grid;gap:var(--mixed-title-gap)}
 @media(max-width:700px){:root{--mixed-title-size:clamp(20px,5vw,34px)}}
 
-@media(min-width:701px){.reviews>.wrap>.grid:not(.quotes){align-items:stretch}.reviews .heading{grid-column:1/span 6;grid-row:1;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr;min-height:var(--poster-intro-height);gap:var(--s6);&>h2{grid-column:1;grid-row:1}& .review-source{grid-column:1;grid-row:2;align-self:end}}.reviews .drawing.section-illustration{grid-row:1;align-self:stretch;aspect-ratio:auto;height:100%}}
-@media(max-width:700px){.reviews>.wrap>.grid:not(.quotes){row-gap:var(--s5)}}
 
 :root{--poster-intro-height:calc(var(--s7) * 3 + var(--s6))}
-.arrival-intro{display:grid;gap:var(--s3);& .kicker{margin:0}& h2{margin:0}&>p{margin:0}}
-@media(min-width:701px){.arrival .arrival-grid{align-items:stretch}.arrival-intro{grid-column:1/span 6;grid-row:1;grid-template-rows:auto auto 1fr;min-height:var(--poster-intro-height);&>p{align-self:end}}.arrival .travel-art.section-illustration{grid-row:1;align-self:stretch;aspect-ratio:auto;height:100%}.arrival .arrival-details{grid-row:2}.arrival-copy>.button{grid-row:3;align-self:start}}
-@media(max-width:700px){.arrival-intro{grid-column:1/-1;grid-row:2;gap:var(--s4);&>p{margin-top:var(--s4)}}.arrival .arrival-details{grid-row:3}.arrival-copy>.button{grid-row:4}}
 
 .about-copy h2>em{white-space:nowrap;width:max-content}
 @media(min-width:701px){.about{--founder-label-height:calc(var(--mixed-title-size) * var(--mixed-roman-scale) * 1.12 * 3);--founder-copy-gap:var(--s5)}.about :is(.about-copy,.about-note){grid-template-rows:var(--founder-label-height) auto;gap:var(--founder-copy-gap);align-content:start}.about-copy h2:has(.heading-roman):has(em){display:contents}.about-copy .heading-roman{grid-row:1;align-self:end}.about-copy h2>em{grid-row:2;align-self:start}.about .about-logo{grid-row:1;align-self:end;aspect-ratio:437.19/210}.about-note>p{grid-row:2;align-self:start}}
@@ -294,3 +286,26 @@ main .hero .wrap .hero-art{height:calc(100% + var(--hero-space));margin-bottom:c
 :root{--paragraph-size:var(--type-body);--paragraph-leading:var(--leading-body)}
 .booking .booking-copy{--paragraph-size:var(--type-h4);--paragraph-leading:1.4}
 @media(max-width:700px){.booking .booking-copy{--paragraph-size:var(--type-body);--paragraph-leading:1.6}}
+
+/* LAYOUT: poster-grid. Usługi, Nasze miejsce, Rekomendacje, Przed wizytą, Nagłe przypadki.
+   Jedna struktura: poster-copy > poster-heading + poster-bottom, następnie poster-art. */
+.section-stack{display:grid;gap:var(--group-gap,var(--s5))}
+.poster-grid{display:grid;grid-template-columns:var(--cols);gap:var(--gap);align-items:stretch}
+.poster-copy{grid-column:1/span 6;display:grid;grid-template-rows:auto 1fr;min-height:var(--poster-intro-height);gap:var(--s6);min-width:0}
+.poster-heading,.poster-bottom{display:grid;gap:var(--s3);min-width:0}
+.poster-heading{align-content:start;& .kicker{margin:0}}
+.poster-bottom{align-self:end;& p{max-width:34ch}& .button{justify-self:start}}
+main .poster-grid .poster-art{grid-column:7/span 6;grid-row:1;align-self:stretch;aspect-ratio:auto;height:100%;width:100%}
+.reviews .review-source{display:grid;gap:var(--s3);& .icon{width:144px;height:21px;justify-self:start;mask-position:left center}}
+.clinic .poster-heading h2{max-width:100%}
+.arrival .section-stack>.button{justify-self:start}
+.section-stack>.after-hours{max-width:58ch}
+@media(max-width:700px){.poster-grid{row-gap:var(--s5)}.poster-copy{grid-column:1/-1;min-height:0;gap:var(--s5)}main .poster-grid .poster-art{grid-column:4/span 6;grid-row:2;aspect-ratio:var(--art-ratio,1.6);height:auto}.arrival .poster-grid .poster-art{grid-row:1}.arrival .poster-copy{grid-row:2}}
+
+/* KOMPONENTY: service-card (.tile), person-card (.person), quote (.quote).
+   Wszystkie używają wspólnej 12-kolumnowej siatki i zmiennych odstępów.
+   LAYOUT: detail-columns (.equipment-grid, .arrival-details, .contact-columns).
+   KOMPONENTY: section-illustration, button/booking-cta, mixed-heading, pet-dot.
+   WARIANTY: hero, founders, mirrored-intro, split-booking, site-header, site-footer. */
+
+.section-stack>:is(.arrival-details,.after-hours,.button){grid-column:auto;grid-row:auto}
