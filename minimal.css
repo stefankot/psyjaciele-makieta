@@ -279,3 +279,6 @@ main .hero .wrap .hero-art{height:calc(100% + var(--hero-space));margin-bottom:c
 :is(h1,h2):has(.heading-roman):has(em){font-size:var(--mixed-title-size);font-weight:500;line-height:1.08;letter-spacing:-.025em;text-wrap:initial;display:grid;gap:var(--mixed-title-gap);& .heading-roman{font-size:calc(var(--mixed-title-size) * var(--mixed-roman-scale));font-weight:900;letter-spacing:var(--tracking-caps);line-height:1.12}& em{font-size:calc(var(--mixed-title-size) * var(--rialto-scale));font-weight:400;letter-spacing:-.025em;line-height:1.02}}
 .hero-title{display:grid;gap:var(--mixed-title-gap)}
 @media(max-width:700px){:root{--mixed-title-size:clamp(20px,5vw,34px)}}
+
+@media(min-width:701px){.reviews>.wrap>.grid:not(.quotes){align-items:stretch}.reviews .heading{grid-column:1/span 6;grid-row:1;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr;min-height:calc(var(--s7) * 3 + var(--s6));gap:var(--s6);&>h2{grid-column:1;grid-row:1}& .review-source{grid-column:1;grid-row:2;align-self:end}}.reviews .drawing.section-illustration{grid-row:1;align-self:stretch;aspect-ratio:auto;height:100%}}
+@media(max-width:700px){.reviews>.wrap>.grid:not(.quotes){row-gap:var(--s5)}}
