@@ -272,6 +272,7 @@ main .hero .wrap .hero-art{height:calc(100% + var(--hero-space));margin-bottom:c
 .team{--surface:#f4f4f4}
 
 [data-palette="salmon"]{--surface:#ff9676;--ink:#fff;--accent:#fff;--small-ink:var(--ink)}
+[data-palette="cream-salmon"]{--surface:#faf5ea;--ink:#ff9676;--accent:var(--ink);--small-ink:var(--ink)}
 :root{--mixed-title-size:clamp(34px,3.5vw,48px);--mixed-roman-scale:.476;--mixed-title-gap:var(--s2)}
 :is(h1,h2):has(.heading-roman):has(em){font-size:var(--mixed-title-size);font-weight:500;line-height:1.08;letter-spacing:-.025em;text-wrap:initial;display:grid;gap:var(--mixed-title-gap);& .heading-roman{font-size:calc(var(--mixed-title-size) * var(--mixed-roman-scale));font-weight:900;letter-spacing:var(--tracking-caps);line-height:1.12}& em{font-size:calc(var(--mixed-title-size) * var(--rialto-scale));font-weight:400;letter-spacing:-.025em;line-height:1.02}}
 .hero-title{display:grid;gap:var(--mixed-title-gap)}
