@@ -315,3 +315,6 @@ main .poster-grid .poster-art{grid-column:7/span 6;grid-row:1;align-self:stretch
 
 /* Layout: poster-grid — ilustracja optycznie przy dolnej krawędzi. */
 .poster-grid .poster-art .art{mask-position:center bottom;align-self:end}
+
+/* detail-columns: przygotowanie — sześć punktów w dwóch rzędach po trzy. */
+.preparation .detail-columns{row-gap:var(--s5)}
