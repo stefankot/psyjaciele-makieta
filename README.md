@@ -30,7 +30,7 @@ Podstrony usług, zespołu i polityki prywatności są wcześniejszymi statyczny
 
 ## Stan makiety
 
-Hero mieści się w 96% wysokości okna. Każda sekcja ma ilustrację, a układ korzysta ze wspólnej siatki i zmiennych CSS. Animacje nagłówków, kafli i ilustracji reagujące na scroll są wyłączone. Zachowano animację aureoli założycielek oraz odtwarzanie ilustracji hero. Animowana ilustracja hero ładuje się dopiero w widocznym obszarze i odtwarza się raz.
+Hero mieści się w 96% wysokości okna. Sekcje mają ilustracje (z wyjątkiem sekcji założycielek), a układ korzysta ze wspólnej siatki i zmiennych CSS. Animacje nagłówków, kafli i ilustracji reagujące na scroll są wyłączone. Zachowano animację aureoli założycielek oraz odtwarzanie ilustracji hero. Animowana ilustracja hero ładuje się dopiero w widocznym obszarze i odtwarza się raz.
 
 Makieta zawiera teksty robocze i miejsca na przyszłe zdjęcia. Strona główna ma `noindex,follow`; przed publikacją jako docelowej witryny trzeba potwierdzić aktualność treści biznesowych i zmienić ustawienie indeksowania. GitHub Pages udostępnia podgląd makiety i nie zmienia WordPressa.
 
