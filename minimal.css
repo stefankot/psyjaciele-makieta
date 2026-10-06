@@ -76,3 +76,24 @@ footer{& :is(p,li,a,ul,.credit){font-size:var(--type-body);line-height:var(--lea
 .site-header{& :is(.site-nav,.header-location,.header-hours dl,.header-email,.header-label,.menu-toggle,.header-grid>.button){font-size:13px;line-height:21px}& .header-phone{font-size:16px;line-height:26px}}
 @media(max-width:1000px) and (min-width:701px){.site-header{& .site-nav{grid-template-columns:1fr 1fr 1fr 1.5fr 1fr;gap:var(--s1)}& .site-nav a{white-space:normal}}}
 @media(max-width:700px){.site-header{& .header-grid>.button{font-size:13px}& .header-phone{font-size:13px;line-height:21px}& .site-nav{font-size:16px;line-height:26px}}}
+
+/* Wspólne role odstępów: kolumny, bloki, treść i sekcje. */
+:root{--section-space:var(--s7);--gap:var(--s4);--row-gap:var(--s5);--intro-gap:var(--s4);--content-gap:var(--s3);--group-gap:var(--s5);--label-gap:var(--s2)}
+main>section:not(.hero)>.wrap,footer>.wrap{padding-top:0}
+:is(.grid,.clinic-gallery,.equipment-grid,.arrival-grid,.emergency-grid,.section-heading,.bento){column-gap:var(--gap)}
+:is(.arrival-grid,.emergency-grid,.contact>.wrap.grid,.about>.wrap.grid){row-gap:var(--row-gap)}
+:is(.services,.team,.reviews)>.wrap>.grid,.clinic .section-heading{row-gap:var(--intro-gap)}
+:is(.people,.quotes,.equipment-grid){row-gap:var(--group-gap)}
+:is(.team,.reviews,.clinic)>.wrap{gap:var(--group-gap)}
+.services .wrap>.grid{margin-bottom:var(--group-gap)}
+.flow{gap:var(--content-gap);align-content:start;&>*{margin-block:0}}
+:is(.about-copy,.about-note,.review-source,.arrival-details,.arrival-details>div,.after-hours,.equipment-grid>div){gap:var(--content-gap)}
+:is(.about-note,.arrival-details,.equipment-grid>div) p{margin:0}
+:is(.person,.placeholder figcaption){gap:var(--label-gap)}
+.person p,.person figure{margin:0}.quote blockquote{padding-top:var(--content-gap)}.quote cite{margin-top:var(--content-gap)}
+.arrival-media{gap:var(--group-gap)}.clinic-gallery{margin-bottom:var(--group-gap)}
+.contact-hours{gap:var(--s4)}.contact-hours .opening-hours{gap:var(--s4)}
+.contact-details h3:not(:first-child){margin-top:var(--content-gap)}
+footer{&>.wrap{column-gap:var(--gap);row-gap:var(--group-gap)}& .foot-links>div{display:grid;gap:var(--content-gap);align-content:start}& .foot-links nav{margin:0}& .foot-brand p{margin-top:var(--content-gap)}& ul{margin:0;padding:0;gap:var(--label-gap)}& .credit{margin-top:0}}
+@media(max-width:1000px){:root{--section-space:var(--s6);--gap:var(--s3)}}
+@media(max-width:700px){:root{--gap:var(--s2);--row-gap:var(--s4);--intro-gap:var(--s3);--group-gap:var(--s4)}.contact-hours{grid-column:1/-1}.site-header .header-grid{column-gap:var(--s1)}}
