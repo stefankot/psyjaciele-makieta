@@ -161,3 +161,5 @@ strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness
 .people .person .portrait-blob img{width:90%;height:84%;object-fit:contain;object-position:center bottom;justify-self:center;align-self:center;transform:rotate(calc(-1 * var(--blob-angle,0deg)));filter:none}
 .person figure:focus-within{outline:2px solid var(--ink);outline-offset:var(--s1)}
 @media(prefers-reduced-motion:reduce){.portrait-blob,.people .person .portrait-blob img{transform:none}}
+
+.portrait-blob{width:92%;height:92%;justify-self:center;align-self:center}.people .person .portrait-blob img{height:72%}
