@@ -363,10 +363,9 @@ body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-te
 /* Krótki tytuł może optycznie wyjść poza kolumny swojego bloku. */
 .contact-copy h2{width:max-content;max-width:none;white-space:nowrap;& em{white-space:inherit}}
 
-/* Komponent type-detail: znaki Satoshi; dekoracyjne, pomijane przez czytniki. */
-.type-arrow,.type-asterisk{font-family:var(--font-main);font-style:normal;letter-spacing:0;line-height:1;font-variant-caps:normal;text-transform:none;display:inline-block;vertical-align:baseline}
+/* Komponent type-detail: strzałki Satoshi; dekoracyjne, pomijane przez czytniki. */
+.type-arrow{font-family:var(--font-main);font-style:normal;letter-spacing:0;line-height:1;font-variant-caps:normal;text-transform:none;display:inline-block;vertical-align:baseline}
 .type-arrow{--weight-text:600;font-weight:600;font-size:1.3em;margin-left:.25em;white-space:nowrap}
-.type-asterisk{font-size:26px;vertical-align:-.22em;margin-right:8px}
 .button .type-arrow{margin-left:0}
 .bento .tile h3{padding-right:34px;& .type-arrow{position:absolute;top:var(--s3);right:var(--s3);font-size:30px;margin:0}}
 .site-header .site-nav a{display:grid;grid-template-columns:1fr auto;align-items:center;gap:13px;& .type-arrow{font-size:26px;margin:0}}
