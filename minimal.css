@@ -227,3 +227,5 @@ main :is(.team .drawing,.contact-art){grid-column:1/span 6}
 .about-copy h2{display:grid;gap:var(--s1);&>br{display:none}& .heading-roman{display:block}}
 :is(h1,h2){max-width:var(--title-width,100%)}
 @media(max-width:700px){.clinic .section-heading>h2{grid-column:1/-1}.clinic .section-heading .clinic-illustration{grid-row:4}}
+
+.about-copy .founders-intro{font:500 var(--type-body,16px)/26px var(--font-main);letter-spacing:0;color:var(--small-ink);margin-bottom:var(--s2)}
