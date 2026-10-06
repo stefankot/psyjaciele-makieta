@@ -237,3 +237,6 @@ main :is(.team .drawing,.contact-art){grid-column:1/span 6}
 @media(max-width:700px){.clinic-intro{grid-column:1/-1;gap:var(--s3);& p{margin-top:var(--s4)}}.clinic .section-heading .clinic-illustration{grid-row:2}}
 
 @media(max-width:700px){.clinic .equipment-grid{grid-template-rows:none;row-gap:var(--s4);&>div{grid-column:1/-1;grid-row:auto;grid-template-rows:auto auto;gap:var(--s2);margin-top:0}}}
+
+.about>.wrap.grid{container-type:inline-size;align-items:start;padding-top:var(--s6)}.about :is(.about-copy,.about-note){align-self:start;margin-top:calc((100cqw - var(--gap))/4 + var(--s4));z-index:2}.about .about-photo{align-self:start;z-index:0}.about .portrait-halo{z-index:0;clip-path:polygon(-150% -150%,250% -150%,250% 54%,-150% 54%)}.about .portrait-circle{z-index:1}
+@media(max-width:700px){.about :is(.about-copy,.about-note){margin-top:0}.about .about-photo{margin-top:var(--s7)}}
