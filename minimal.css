@@ -242,3 +242,5 @@ main :is(.team .drawing,.contact-art){grid-column:1/span 6}
 @media(max-width:700px){.about :is(.about-copy,.about-note){margin-top:0;align-self:start;align-content:start}.about .about-photo{margin-top:var(--s7)}}
 
 .about-copy h2 .heading-roman{font-size:calc(var(--type-h4) * var(--roman-size-factor));text-wrap:initial}
+
+@media(min-width:701px){.services .drawing{grid-row:1/span 2;align-self:start}.services .heading>h2{grid-column:1/span 6}}
