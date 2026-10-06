@@ -2,6 +2,12 @@
 
 Aktualna makieta strony głównej Przychodni Weterynaryjnej Psyjaciele. HTML, CSS i JavaScript oraz lokalne ilustracje, zdjęcia i fonty. Repozytorium nie jest połączone z publikacją produkcyjnej strony WordPress.
 
+## Podgląd online
+
+Makieta jest opublikowana przez GitHub Pages: https://stefankot.github.io/psyjaciele-makieta/
+
+Repozytorium jest publiczne. Zmiany wysłane do gałęzi `main` automatycznie aktualizują podgląd.
+
 ## Uruchomienie
 
 W katalogu repozytorium:
@@ -26,6 +32,6 @@ Podstrony usług, zespołu i polityki prywatności są wcześniejszymi statyczny
 
 Hero mieści się w 96% wysokości okna. Każda sekcja ma ilustrację, a układ korzysta ze wspólnej siatki i zmiennych CSS. Nagłówki i kafle mają animacje wejścia; ilustracje reagują na scroll. Przy ograniczeniu ruchu nowe animacje są wyłączane. Animowana ilustracja hero ładuje się dopiero w widocznym obszarze i odtwarza się raz.
 
-Makieta zawiera teksty robocze i miejsca na przyszłe zdjęcia. Strona główna ma `noindex,follow`; przed ewentualną publikacją trzeba potwierdzić aktualność treści biznesowych i zmienić ustawienie indeksowania. Samo umieszczenie kodu na GitHub nie publikuje witryny ani nie zmienia WordPressa.
+Makieta zawiera teksty robocze i miejsca na przyszłe zdjęcia. Strona główna ma `noindex,follow`; przed publikacją jako docelowej witryny trzeba potwierdzić aktualność treści biznesowych i zmienić ustawienie indeksowania. GitHub Pages udostępnia podgląd makiety i nie zmienia WordPressa.
 
 Prawa do zdjęć, ilustracji, fontów i bibliotek pozostają przy ich właścicielach. Nagłówki licencyjne bibliotek zachowano w plikach.
