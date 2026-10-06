@@ -110,7 +110,7 @@ footer{&>.wrap{column-gap:var(--gap);row-gap:var(--group-gap)}& .foot-links>div{
 @media(max-width:700px){.clinic-gallery{& .photo-large{grid-column:1/-1;grid-row:1;aspect-ratio:var(--phi)}& .photo-small{grid-column:1/span 6;grid-row:2;aspect-ratio:1}& .photo-small:last-child{grid-column:7/span 6;grid-row:2;aspect-ratio:1}& .placeholder{padding:var(--s2);min-height:var(--s7)}& figcaption{gap:var(--s1)}& figcaption span{line-height:21px}}}
 
 .clinic .section-heading .clinic-illustration{grid-column:7/span 6;justify-self:end;width:100%}
-@media(max-width:700px){.clinic .section-heading .clinic-illustration{grid-column:4/span 9}}
+@media(max-width:700px){.clinic .section-heading .clinic-illustration{grid-column:4/span 6}}
 
 .button{ text-transform:none;letter-spacing:normal}
 
@@ -205,3 +205,13 @@ h1{--roman-heading-scale:var(--roman-h1-scale)}
 
 /* Palety tonalne: jeden kolor przewodni, kontrast jasnością. */
 :root{--ink:#51472f}
+
+/* Ilustracje: wspólny moduł sześciu z dwunastu kolumn. */
+main .wrap .section-illustration{grid-column:7/span 6;width:100%}
+main :is(.team .drawing,.contact-art){grid-column:1/span 6}
+.section-illustration .art{width:100%;height:100%}
+.arrival-media{display:contents}
+.arrival .travel-art{grid-row:3}
+.arrival-details{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:var(--cols);gap:var(--gap);&>div{grid-column:span 4;display:grid;gap:var(--s2);align-content:start}& h3{margin:0}& p{max-width:34ch}}
+.arrival-copy>.button{grid-row:5;grid-column:1/span 6}
+@media(max-width:700px){main .wrap .section-illustration{grid-column:4/span 6}main .team .drawing{grid-column:1/span 6}.arrival .travel-art{grid-row:4}.arrival-details{grid-row:5;row-gap:var(--s4);&>div{grid-column:1/-1}}.arrival-copy>.button{grid-row:6;grid-column:1/-1}}
