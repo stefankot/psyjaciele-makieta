@@ -215,3 +215,6 @@ main :is(.team .drawing,.contact-art){grid-column:1/span 6}
 .arrival-details{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:var(--cols);gap:var(--gap);&>div{grid-column:span 4;display:grid;gap:var(--s2);align-content:start}& h3{margin:0}& p{max-width:34ch}}
 .arrival-copy>.button{grid-row:5;grid-column:1/span 6}
 @media(max-width:700px){main .wrap .section-illustration{grid-column:4/span 6}main .team .drawing{grid-column:1/span 6}.arrival .travel-art{grid-row:4}.arrival-details{grid-row:5;row-gap:var(--s4);&>div{grid-column:1/-1}}.arrival-copy>.button{grid-row:6;grid-column:1/-1}}
+
+.founder-hover{position:absolute;top:0;bottom:0;width:50%;z-index:2;display:grid;align-items:end;padding:0 var(--s2) 25%;font-size:13px;line-height:21px;color:var(--ink);&>span{opacity:0;padding:var(--s1);background:var(--surface);text-align:center;transition:opacity .15s}&:hover>span{opacity:1}}
+.founder-left{left:0}.founder-right{right:0}
