@@ -66,3 +66,6 @@ main p,:is(.about-copy,.about-note,.heading,.section-heading,.bento .tile,.bento
 .person figure+p+p{font-size:var(--type-h4);line-height:1.24}.about-note>p{font-size:var(--type-body);line-height:var(--leading-body)}
 footer h2{font-size:var(--type-h4);line-height:1.24}footer p,main td{font-size:var(--type-body);line-height:var(--leading-body)}
 @media(max-width:700px){:root{--type-h1:55px;--type-h2:34px;--type-h3:21px}.hero-copy h1{font-size:clamp(34px,min(10.5vw,7svh),var(--type-h1))}.hero-subtitle{font-size:var(--type-h4)}}
+
+.contact-hours{padding:var(--s4);background:var(--accent);align-content:start;gap:var(--s4);& h3{font-size:var(--type-h4);color:var(--ink)}& .opening-hours{display:grid;gap:var(--s4);margin:0;&>div{display:grid;gap:var(--s1)}& dt{font-size:var(--type-h4);font-weight:600;color:var(--ink)}& dd{margin:0;font-size:var(--type-h2);line-height:1;letter-spacing:-.045em;font-weight:650;color:var(--ink)}}}
+@media(max-width:700px){.contact-hours{grid-column:1/-1;padding:var(--s3);& .opening-hours{grid-template-columns:1fr 1fr;gap:var(--s3);& dd{font-size:55px}}}}
