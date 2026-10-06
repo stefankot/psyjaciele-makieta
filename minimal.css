@@ -157,7 +157,7 @@ strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness
 
 .people .person figure{aspect-ratio:1;align-items:center}
 .portrait-blob{width:100%;height:100%;display:grid;place-items:center;background:var(--accent);mask:var(--blob) center/contain no-repeat;transform:rotate(var(--blob-angle,0deg));&>a{display:grid;place-items:center;width:100%;height:100%}}
-.people .person .portrait-blob img{width:90%;height:84%;object-fit:contain;object-position:center bottom;justify-self:center;align-self:center;transform:rotate(calc(-1 * var(--blob-angle,0deg)));filter:none}
+.people .person .portrait-blob img{width:90%;height:84%;object-fit:contain;object-position:center bottom;justify-self:center;align-self:center;transform:rotate(calc(-1 * var(--blob-angle,0deg)));filter:grayscale(1)}
 .person figure:focus-within{outline:2px solid var(--ink);outline-offset:var(--s1)}
 @media(prefers-reduced-motion:reduce){.portrait-blob,.people .person .portrait-blob img{transform:none}}
 
