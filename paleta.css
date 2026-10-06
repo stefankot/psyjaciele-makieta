@@ -1,0 +1,101 @@
+/* Pary barw odczytane z feministartcoalition.org, 6.10.2026.
+   Dziesięć sekcji ma dziesięć różnych teł z CSS i płaskich pól ilustracji FAC. */
+:root {
+ --fac-paper:#faf5ea; --fac-ink:#0e433a; --fac-dark:#0e443a;
+ --fac-green:#4faa72; --fac-footer:#4fab72; --fac-pink:#fea4bd;
+ --fac-cream:#faf4e8; --fac-hero-cream:#f0eade; --fac-light:#fdfbf6;
+ --fac-orange:#f96e46; --fac-blue:#1f7dcb; --fac-sky:#b8d6ee; --fac-peach:#ff9676; --fac-warm:#f0eade;
+ --wp--preset--color--base:var(--fac-paper);
+ --wp--preset--color--base-2:var(--fac-cream);
+ --wp--preset--color--contrast:var(--fac-ink);
+ --wp--preset--color--contrast-2:var(--fac-ink);
+ --wp--preset--color--contrast-3:var(--fac-ink);
+ --wp--preset--color--accent:var(--fac-pink);
+ --wp--preset--color--accent-2:var(--fac-pink);
+ --wp--preset--color--accent-3:var(--fac-dark);
+ --wp--preset--color--accent-4:var(--fac-pink);
+ --wp--preset--color--accent-5:var(--fac-green);
+ --surface:var(--fac-paper); --ink:var(--fac-ink); --heading:var(--ink);
+ --button-surface:var(--ink); --button-ink:var(--surface);
+ --art-filter:url(#fac-pair-paper);
+}
+.mockup.page-home {background:var(--surface);color:var(--ink);}
+.mockup.page-home .home-hero-band {
+ --surface:var(--fac-orange); --ink:var(--fac-hero-cream);
+ --art-filter:url(#fac-pair-orange);
+}
+.mockup.page-home :is(.section-about,footer) {
+ --surface:var(--fac-green); --ink:var(--fac-ink);
+ --art-filter:url(#fac-pair-green);
+}
+.mockup.page-home .section-services {
+ --surface:var(--fac-pink); --ink:var(--fac-ink);
+ --art-filter:url(#fac-pair-pink);
+}
+.mockup.page-home .section-team {
+ --surface:var(--fac-dark); --ink:var(--fac-cream);
+ --heading:var(--fac-pink); --button-surface:var(--fac-pink); --button-ink:var(--fac-dark);
+ --art-filter:url(#fac-pair-dark);
+}
+.mockup.page-home .section-clinic {
+ --surface:var(--fac-sky); --ink:var(--fac-ink);
+ --art-filter:url(#fac-pair-sky);
+}
+.mockup.page-home .section-reviews {
+ --surface:var(--fac-blue); --ink:var(--fac-hero-cream);
+ --art-filter:url(#fac-pair-blue);
+}
+.mockup.page-home .section-contact {
+ --surface:var(--fac-paper); --ink:var(--fac-ink);
+ --art-filter:url(#fac-pair-paper);
+}
+/* Definicje zależne od pary są obliczane w każdej sekcji, bez starych kolorów WP. */
+.mockup.page-home :is(header,footer,.home-hero-band,.layout-section) {
+ --heading:var(--ink); --button-surface:var(--ink); --button-ink:var(--surface);
+ background:var(--surface)!important; color:var(--ink)!important;
+}
+.mockup.page-home .section-team {
+ --heading:var(--fac-pink); --button-surface:var(--fac-pink); --button-ink:var(--fac-dark);
+}
+.mockup.page-home footer {--surface:var(--fac-footer);}
+.mockup.page-home :is(header,footer,.home-hero-band,.layout-section) :is(h1,h2,h3,h4,h5,p,a,li,td,th,strong,em,mark,cite,span,figcaption,.icon-container,.has-text-color,.has-inline-color) {color:var(--ink)!important;}
+.mockup.page-home .layout-section.section-team :is(h2,h2 *,h3,h3 *) {color:var(--heading)!important;}
+.mockup.page-home :is(header,footer,.layout-section) :is([style*="border"],.after-hours,.equipment-grid > div,blockquote) {border-color:var(--ink)!important;}
+.mockup.page-home footer > .wp-block-group,
+.mockup.page-home .section-reviews blockquote {background:var(--surface)!important;}
+.mockup.page-home :is(header,footer,.layout-section) :is(a.wp-block-button__link,a.new-button,button:not(.wp-block-navigation__responsive-container-open):not(.wp-block-navigation__responsive-container-close)) {
+ background:var(--button-surface)!important;color:var(--button-ink)!important;
+ border:2px solid var(--button-surface)!important;
+}
+.mockup.page-home :is(header,footer,.layout-section) :is(a.wp-block-button__link,a.new-button):hover {
+ background:var(--surface)!important;color:var(--ink)!important;border-color:var(--ink)!important;
+}
+.mockup.page-home :is(a,button):focus-visible {outline:3px solid currentColor;outline-offset:5px;}
+.mockup.page-home .media-placeholder {
+ background:var(--surface)!important;color:var(--ink)!important;border-color:var(--ink)!important;
+}
+.mockup.page-home .fac-art {filter:var(--art-filter)!important;}
+.mockup.page-home .icon-container svg {color:var(--ink)!important;}
+.mockup.page-home .section-services .icon-container {
+ display:flex;align-items:center;justify-content:center;min-width:var(--space-9);min-height:var(--space-9);
+}
+.mockup.page-home .section-services .icon-container::before {content:none;}
+.mockup.page-home .section-services .icon-container svg {width:100%;max-height:none;}
+.mockup.page-home .wp-block-navigation__responsive-container.is-menu-open {background:var(--fac-paper)!important;color:var(--fac-ink)!important;}
+/* Hero to jedno pełne pole barwne obejmujące napis oraz animację. */
+.mockup.page-home .home-hero-band {width:100%;max-width:none;margin:0!important;}
+.mockup.page-home .section-hero {
+ width:100%;max-width:none;padding-inline:var(--page-gutter)!important;
+ padding-block:var(--section-gap) 0!important;
+}
+.mockup.page-home .section-hero h1 {max-width:var(--layout-width);margin-inline:auto!important;}
+.mockup.page-home .home-hero-band > figure {
+ margin:0!important;padding:var(--section-gap) var(--page-gutter) 0;box-sizing:border-box;
+}
+
+.mockup.page-home .section-booking {--surface:var(--fac-peach);--ink:var(--fac-ink);--art-filter:url(#fac-pair-peach);}
+.mockup.page-home .section-arrival {--surface:var(--fac-warm);--ink:var(--fac-ink);--art-filter:url(#fac-pair-warm);}
+.mockup.page-home .section-emergency {--surface:var(--fac-light);--ink:var(--fac-ink);--art-filter:url(#fac-pair-light);}
+/* Gwiazdki opinii i znaki cytowania należą do tej samej pary kolorów. */
+.mockup.page-home .section-reviews :is(svg,svg *,blockquote::before) {color:var(--ink)!important;}
+.mockup.page-home .section-reviews svg [class] {fill:var(--ink)!important;}

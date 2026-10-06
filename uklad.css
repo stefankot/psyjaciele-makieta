@@ -1,0 +1,169 @@
+/* Wspólny system odstępów. Ilustracje, tekst i paleta pozostają bez zmian. */
+:root {
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --layout-width: 1120px;
+  --reading-width: 760px;
+  --page-gutter: clamp(var(--space-5), 6vw, var(--space-8));
+  --section-space: var(--space-9);
+  --section-gap: var(--space-7);
+  --column-gap: var(--space-7);
+  --flow-space: var(--space-5);
+  --card-space: var(--space-5);
+  --wp--preset--spacing--10: var(--space-3);
+  --wp--preset--spacing--20: var(--space-4);
+  --wp--preset--spacing--30: var(--space-5);
+  --wp--preset--spacing--40: var(--space-6);
+  --wp--preset--spacing--50: var(--space-8);
+  --wp--preset--spacing--60: var(--space-9);
+  --wp--preset--spacing--70: var(--space-9);
+  --wp--preset--spacing--80: var(--space-9);
+  --wp--style--global--wide-size: var(--layout-width);
+  --wp--style--global--content-size: var(--reading-width);
+  --wp--style--root--padding-left: var(--page-gutter);
+  --wp--style--root--padding-right: var(--page-gutter);
+  --wp--style--block-gap: var(--flow-space);
+}
+.mockup main > .entry-content { padding-inline: 0; }
+.mockup .layout-section {
+  box-sizing: border-box;
+  margin-block: var(--space-0) !important;
+  padding-block: var(--section-space) !important;
+  padding-inline: var(--page-gutter) !important;
+}
+.mockup .layout-section > .alignwide,
+.mockup header > .alignwide,
+.mockup footer .alignwide {
+  width: 100%;
+  max-width: var(--layout-width);
+  margin-inline: auto !important;
+}
+.mockup .layout-section > .alignfull {
+  margin-inline: var(--space-0) !important;
+}
+.mockup .wp-block-columns {
+  column-gap: var(--column-gap) !important;
+  row-gap: var(--section-gap) !important;
+}
+.mockup .wp-block-column { min-width: 0; }
+.mockup .is-layout-flow > * + *,
+.mockup .is-layout-constrained > * + * {
+  margin-block-start: var(--flow-space);
+}
+.mockup .layout-section > .wp-block-columns + .wp-block-columns {
+  margin-block-start: var(--section-gap) !important;
+}
+.mockup .layout-spacer,
+.mockup .section-team > .wp-block-spacer,
+.mockup .section-booking .wp-block-spacer { display: none; }
+.mockup .section-hero {
+  padding-block: var(--section-gap) var(--space-0) !important;
+}
+.mockup .section-hero + figure {
+  margin-block: var(--section-gap) var(--space-0) !important;
+  padding-inline: var(--page-gutter);
+}
+.mockup .section-services > figure,
+.mockup .section-reviews > figure {
+  margin-block: var(--space-0) var(--section-gap) !important;
+}
+.mockup .section-team > .wp-block-columns:empty,
+.mockup .section-team > .wp-block-columns:not(:has(h2,h3,p,img)) { display: none; }
+.mockup .team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: var(--section-gap) var(--column-gap) !important;
+  margin-block-start: var(--section-gap) !important;
+}
+.mockup .team-grid > * { margin: var(--space-0) !important; }
+.mockup .team-grid figure {
+  max-width: 100%;
+  margin-inline: auto !important;
+  margin-block: var(--space-0) var(--card-space) !important;
+}
+.mockup .team-grid figure img { max-width: 100%; }
+.mockup .section-booking {
+  min-height: 0 !important;
+  text-align: center;
+}
+.mockup .section-booking > * { max-width: var(--reading-width); }
+.mockup .section-booking figure { margin-block: var(--space-0) var(--section-gap) !important; }
+.mockup .section-contact > .wp-block-columns:first-child {
+  margin-block-end: var(--section-gap);
+}
+.mockup .section-contact h3 { margin-block-start: var(--space-6) !important; }
+.mockup #indywidualna-wycena { margin-block: var(--space-6); }
+.mockup .section-contact .wp-block-table { margin: var(--space-0); }
+.mockup .page-services #wiecej { padding-block: var(--section-space); }
+.mockup.page-services .layout-section:first-child { padding-block-start: var(--section-gap) !important; }
+.mockup.page-team .layout-section:not(.alignfull) {
+  max-width: var(--layout-width);
+  margin-inline: auto;
+}
+.mockup footer > .wp-block-group {
+  padding-block: var(--section-space) !important;
+  padding-inline: var(--page-gutter) !important;
+}
+.mockup footer .wp-block-columns { gap: var(--column-gap) !important; }
+.mockup .wp-block-button__link {
+  padding-block: var(--space-3);
+  padding-inline: var(--space-5);
+}
+@media (max-width: 900px) {
+  :root {
+    --section-space: var(--space-8);
+    --section-gap: var(--space-6);
+    --column-gap: var(--space-6);
+  }
+  .mockup .team-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+}
+@media (max-width: 600px) {
+  :root {
+    --page-gutter: var(--space-5);
+    --section-space: var(--space-8);
+    --section-gap: var(--space-6);
+    --column-gap: var(--space-5);
+    --flow-space: var(--space-4);
+  }
+  .mockup .team-grid { grid-template-columns: minmax(0,1fr) !important; }
+  .mockup .section-hero { padding-block-start: var(--space-6) !important; }
+  .mockup .section-contact > .wp-block-columns:first-child .wp-block-column:empty { display: none; }
+  .mockup .layout-section .wp-block-image { max-width: 100%; }
+  .mockup .section-booking figure { max-width: 100%; }
+}
+/* Pełne tła sekcji nie mogą dziedziczyć ujemnych marginesów edytora. */
+.mockup main > .entry-content > .layout-section.alignfull {
+  width: 100%;
+  max-width: none;
+  margin-inline: var(--space-0) !important;
+}
+.mockup .section-hero {
+  width: calc(100% - var(--page-gutter) * 2);
+  max-width: var(--layout-width);
+  padding-inline: var(--space-0) !important;
+}
+.mockup .section-hero h1 { max-width: var(--reading-width); }
+.mockup .layout-section > .alignfull {
+  padding-inline: var(--space-0) !important;
+  width: 100%;
+}
+.mockup .section-services > .wp-block-spacer { display: none; }
+.mockup .section-services > .alignfull { margin-block-start: var(--section-gap) !important; }
+.mockup .section-contact > .wp-block-columns:last-child { align-items: flex-start !important; }
+.mockup .section-contact > .wp-block-columns:last-child > .wp-block-column { align-self: flex-start !important; }
+.mockup header > .wp-block-group { padding-inline: var(--page-gutter) !important; }
+.mockup header > .wp-block-group > .alignwide { max-width: var(--layout-width); margin-inline: auto !important; }
+.mockup .is-layout-grid { gap: var(--section-gap) var(--column-gap) !important; }
+.mockup .wp-block-buttons { gap: var(--space-4) !important; }
+.mockup .wp-block-navigation__container { gap: var(--space-5) !important; }
+:root { --card-title-space: 2lh; --card-icon-space: var(--space-9); }
+.mockup .section-services .wp-block-column > .wp-block-heading { min-block-size: var(--card-title-space); }
+.mockup .section-services .wp-block-column > .wp-block-image { min-block-size: var(--card-icon-space); }

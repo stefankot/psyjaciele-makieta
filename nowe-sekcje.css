@@ -1,0 +1,45 @@
+/* Nowe sekcje strony głównej; wspólne tokeny odstępów i palety. */
+:root {--media-radius:var(--space-6);--placeholder-border:2px;}
+.new-section-inner {max-width:var(--layout-width);margin-inline:auto;}
+.new-section-heading {max-width:var(--reading-width);margin-bottom:var(--section-gap);}
+.new-kicker {display:block;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:var(--space-4);}
+.new-section h2 {font-family:var(--wp--preset--font-family--heading,inherit);font-size:clamp(2rem,4vw,3.25rem);line-height:1.15;margin:0 0 var(--space-5);}
+.new-section h3 {font-size:1.25rem;line-height:1.3;margin:0 0 var(--space-4);}
+.new-section p {font-size:1rem;line-height:1.6;margin:0 0 var(--space-5);}
+.new-section :is(.clinic-gallery,.equipment-grid,.arrival-grid,.emergency-grid) {display:grid;gap:var(--column-gap);}
+.clinic-gallery {grid-template-columns:1.4fr 1fr;grid-template-rows:repeat(2,minmax(160px,1fr));margin-bottom:var(--section-gap);}
+.photo-large {grid-row:span 2;min-height:420px;}
+.media-placeholder {margin:0;padding:var(--space-6);min-width:0;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-5);text-align:center;background:var(--fac-pink);color:var(--fac-ink);border-radius:var(--media-radius);border:var(--placeholder-border) dashed currentColor;}
+.photo-small {background:var(--fac-green);min-height:190px;}
+.placeholder-symbol {display:block;width:var(--shape-size);height:var(--shape-size);background:currentColor;mask:url('assets/shapes/shape-16.svg') center / contain no-repeat;}
+.photo-small .placeholder-symbol {width:var(--space-8);height:var(--space-8);mask-image:url('assets/shapes/shape-23.svg');}
+.media-placeholder figcaption {font-weight:600;font-size:1rem;line-height:1.4;}
+.media-placeholder figcaption span {display:block;font-size:.85rem;font-weight:400;margin-top:var(--space-2);}
+.equipment-grid {grid-template-columns:repeat(3,minmax(0,1fr));}
+.equipment-grid > div {border-top:1px solid currentColor;padding-top:var(--space-5);}
+.mockup .section-arrival {--surface:var(--fac-green);--ink:var(--fac-ink);}
+.arrival-grid {grid-template-columns:1fr 1fr;align-items:start;}
+.arrival-details {margin-block:var(--section-gap);}
+.arrival-details > div + div {margin-top:var(--space-6);}
+.arrival-media {display:grid;gap:var(--space-5);}
+.entrance-placeholder {min-height:360px;background:var(--fac-paper);}
+.illustration-placeholder {min-height:240px;background:var(--fac-pink);}
+.entrance-placeholder .placeholder-symbol {mask-image:url('assets/shapes/shape-35.svg');}
+.new-button {display:inline-flex;gap:var(--space-4);padding:var(--space-4) var(--space-5);border-radius:var(--space-2);background:var(--fac-dark);color:var(--fac-cream)!important;text-decoration:none;font-weight:600;line-height:1.4;}
+.mockup .new-section a.new-button {color:var(--fac-cream)!important;}
+.new-button:hover {text-decoration:underline;}
+.mockup .section-emergency {--surface:var(--fac-dark);--ink:var(--fac-cream);}
+.emergency-grid {grid-template-columns:1fr 1fr;}
+.after-hours {border-left:1px solid var(--fac-cream);padding-left:var(--column-gap);}
+.emergency-illustration {min-height:190px;background:var(--fac-pink);margin-top:var(--space-6);}
+.emergency-illustration .placeholder-symbol {width:var(--space-8);height:var(--space-8);mask-image:url('assets/shapes/shape-14.svg');}
+.mockup .section-emergency .new-button {background:var(--fac-pink);color:var(--fac-dark)!important;}
+.draft-copy {font-style:italic;}
+@media(max-width:700px){
+ .clinic-gallery,.equipment-grid,.arrival-grid,.emergency-grid {grid-template-columns:minmax(0,1fr)!important;}
+ .clinic-gallery {grid-template-rows:auto;}
+ .photo-large {grid-row:auto;min-height:300px;}
+ .after-hours {border-left:0;border-top:1px solid var(--fac-cream);padding-left:0;padding-top:var(--section-gap);}
+ .media-placeholder {padding:var(--space-5);}
+}
+.new-section h2 {font-family:var(--wp--preset--font-family--rialto-script);font-weight:400;}

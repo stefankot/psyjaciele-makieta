@@ -1,0 +1,21 @@
+/* Wspólna geometria elementów strony głównej. */
+:root {
+  --corner-radius: 0px;
+  --media-radius: var(--corner-radius);
+}
+
+.mockup.page-home *,
+.mockup.page-home *::before,
+.mockup.page-home *::after {
+  border-radius: var(--corner-radius) !important;
+}
+
+/* Prostokątne zdjęcia bez dekoracyjnych masek i wycięć. */
+.mockup.page-home .wp-block-image,
+.mockup.page-home .wp-block-image a,
+.mockup.page-home .wp-block-image img {
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
+  mask: none !important;
+  -webkit-mask: none !important;
+}

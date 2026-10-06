@@ -1,0 +1,4 @@
+/* Jednolita neutralna monochromatyczna prezentacja fotografii. */
+.mockup .studio-photo {filter:grayscale(1)!important;image-rendering:auto;}
+.mockup .section-about .studio-photo {max-width:100%;height:auto;}
+.mockup .team-grid .studio-photo {width:100%;height:auto!important;aspect-ratio:3/4;object-fit:cover;}
