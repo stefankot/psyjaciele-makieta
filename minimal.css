@@ -312,3 +312,6 @@ main .poster-grid .poster-art{grid-column:7/span 6;grid-row:1;align-self:stretch
 
 /* Komponent: founder-tooltip — białe tło i szary tekst. */
 .founder-hover>span{background:#fff;color:#595959}
+
+/* Layout: poster-grid — ilustracja optycznie przy dolnej krawędzi. */
+.poster-grid .poster-art .art{mask-position:center bottom;align-self:end}
