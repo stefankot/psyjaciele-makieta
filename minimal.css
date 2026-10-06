@@ -130,3 +130,7 @@ body{font-family:var(--font-main);font-synthesis:none}
 body{font-weight:500}.hero-subtitle,.heading>:is(p,h3),.placeholder figcaption span{font-weight:500}
 
 [data-palette="orange-soft"]{--surface:color-mix(in srgb,#f0eade 85%,#f96e46);--ink:#0e433a;--accent:#b8d6ee;--small-ink:color-mix(in srgb,var(--ink) 90%,black)}
+
+.booking-copy .booking-subtitle{grid-column:1/span 4;grid-row:2;font-family:var(--font-main);font-size:var(--type-h3);font-weight:500;line-height:1.24;letter-spacing:-.025em;max-width:24ch;margin:0}
+.booking-copy>.buttons{grid-row:3}.booking-art{grid-row:2/span 2}
+@media(max-width:700px){.booking-copy .booking-subtitle{grid-column:1/-1;grid-row:2}.booking-copy>.buttons{grid-row:3}.booking-art{grid-row:4}}
