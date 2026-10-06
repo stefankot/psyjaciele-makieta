@@ -50,3 +50,5 @@ figure.section-illustration:not(.hero-art){display:grid;place-items:center}.sect
 
 /* Jednolite role kolorów w każdej palecie. */
 [data-palette]{background:var(--surface);color:var(--ink);& :is(h1,h2,h3,.art,.icon){color:var(--ink)}& :is(p,cite,figcaption,dt,dd,td,address,.kicker,.about-label,.about-names){color:var(--small-ink,var(--ink))}& :is(.portrait-circle,.halo-dot,.placeholder,.geometric-shape){background:var(--accent)}& .bento .tile::before{background:var(--accent)}& svg :is(circle,ellipse,rect,polygon){fill:var(--accent)}& .person figure+p+p{color:var(--ink)}}
+
+.reviews .review-source .icon{justify-self:start;mask-position:left center}
