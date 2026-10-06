@@ -169,3 +169,7 @@ strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness
 .bento .tile[data-palette="bento-dark"]{--surface:#00332a;--ink:#e6fbe8;--accent:#9af457;--small-ink:#e6fbe8}
 .bento .tile[data-palette="bento-mint"]{--surface:#e6fbe8;--ink:#00332a;--accent:#008755;--small-ink:#00332a}
 .bento .tile[data-palette="bento-green"]{--surface:#008755;--ink:#e6fbe8;--accent:#9af457;--small-ink:#e6fbe8}
+
+/* Rekomendacje: trzy równe kolumny wspólnej siatki. */
+.quotes>.quote{grid-column:span 4}
+@media(max-width:700px){.quotes>.quote{grid-column:1/-1}}
