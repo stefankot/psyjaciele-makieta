@@ -381,8 +381,8 @@ body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-te
 @media(max-width:700px){.hero-intro{grid-column:1/-1}.hero-links{max-width:40ch}}
 
 /* ════════════════════════════════════════════════════════════════════
-   PALETA — wariant 2: Mieszkanie
-   Ultramaryna, brzoskwinia, szałwia i pomarańcz — z wnętrz w załącznikach 1 i 2.
+   PALETA — kompozycja 5: Zielone ściany
+   Najdłuższa sekcja (usługi) na zielonej ścianie z szałwiowymi kartami; zieleń także w zaproszeniu i nagłych przypadkach.
    Role w każdej sekcji:
      --surface    tło sekcji
      --ink        tekst główny, tytuły, rysunki, przyciski
@@ -394,31 +394,27 @@ body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-te
 /* Nagłówek */
 .site-header.site-header{--surface:#124e2c;--ink:#fbd9c6;--small-ink:#ffffff;--accent:#f6b08f}
 /* Hero */
-.hero{--surface:#2233b0;--ink:#fbd9c6;--small-ink:#ffffff;--accent:#1a2890}
+.hero{--surface:#f0764a;--ink:#0b3a20;--small-ink:#072a16;--accent:#f8b393}
 /* Założycielki */
-.about{--surface:#f6b08f;--ink:#2233b0;--small-ink:#141c66;--accent:#fbd9c6}
+.about{--surface:#fbd9c6;--ink:#124e2c;--small-ink:#0b3a20;--accent:#f6b08f}
 /* Usługi */
-.services{--surface:#a9c296;--ink:#124e2c;--small-ink:#0b3a20;--accent:#cfdcc3}
+.services{--surface:#124e2c;--ink:#cfdcc3;--small-ink:#ffffff;--accent:#1d6a3e}
+.services .bento .tile{--surface:#a9c296;--ink:#124e2c;--small-ink:#0b3a20;--accent:#cfdcc3}
 /* Zespół */
-.team{--surface:#f0764a;--ink:#141c66;--small-ink:#0c1147;--accent:#f8b393}
+.team{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6}
 /* Przychodnia i sprzęt */
-.clinic{--surface:#f7f3ee;--ink:#2233b0;--small-ink:#141c66;--accent:#fbd9c6}
+.clinic{--surface:#2233b0;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#1a2890}
 /* Rekomendacje */
 .reviews{--surface:#cfdcc3;--ink:#124e2c;--small-ink:#0b3a20;--accent:#a9c296}
 /* Zaproszenie */
-.booking{--surface:#2233b0;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#f0764a}
+.booking{--surface:#124e2c;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#f0764a}
 /* Przed wizytą */
-.arrival.preparation{--surface:#fbd9c6;--ink:#124e2c;--small-ink:#0b3a20;--accent:#f6b08f}
+.arrival.preparation{--surface:#f7f3ee;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6}
 /* Jak do nas trafić */
-.arrival:not(.preparation){--surface:#f7f3ee;--ink:#2233b0;--small-ink:#141c66;--accent:#fbd9c6}
+.arrival:not(.preparation){--surface:#a9c296;--ink:#124e2c;--small-ink:#0b3a20;--accent:#cfdcc3}
 /* Nagłe przypadki */
-.emergency{--surface:#f0764a;--ink:#141c66;--small-ink:#0c1147;--accent:#f8b393}
+.emergency{--surface:#124e2c;--ink:#f8b393;--small-ink:#fbd9c6;--accent:#1d6a3e}
 /* Kontakt */
-.contact{--surface:#f6b08f;--ink:#2233b0;--small-ink:#141c66;--accent:#fbd9c6}
+.contact{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6}
 /* Stopka */
-footer{--surface:#124e2c;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#1d6a3e}
-/* Rysunek w hero: filtr SVG w HTML ma na stałe #124e2c, więc na ciemnym tle rysunek
-   dostaje kolor --ink przez mieszanie warstw (bez zmian w HTML). Kolor jest dokładny,
-   gdy --ink jest jaśniejszy od --surface w każdym kanale RGB. */
-.hero .hero-art{isolation:isolate;background:var(--ink);mix-blend-mode:lighten}
-.hero .hero-art img{background:#fff;filter:invert(1) grayscale(1) contrast(1.6);mix-blend-mode:darken}
+footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
