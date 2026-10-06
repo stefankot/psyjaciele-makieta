@@ -268,7 +268,7 @@ main .hero .wrap .hero-art{height:calc(100% + var(--hero-space));margin-bottom:c
 
 .booking .booking-copy{& .booking-bottom{grid-column:1;grid-row:3;align-self:end;display:grid;gap:var(--s2)}& .booking-subtitle{grid-row:auto}& .booking-cta{position:static;justify-self:start;color:var(--ink);font-size:var(--type-body);font-weight:600;text-decoration:underline;text-underline-offset:4px}}
 
-.button,.site-header .header-grid>.button,.menu-toggle,.booking .booking-copy .booking-cta{font-size:var(--type-body,16px);line-height:var(--leading-body,26px)}
+.button,.site-header .header-grid>.button,.menu-toggle,.booking .booking-copy .booking-cta{font-size:var(--paragraph-size,var(--type-body));line-height:var(--paragraph-leading,var(--leading-body));font-weight:500}
 
 .booking .booking-pet:not(.solid){filter:grayscale(1)}
 
@@ -290,3 +290,7 @@ main .hero .wrap .hero-art{height:calc(100% + var(--hero-space));margin-bottom:c
 
 .about-copy h2>em{white-space:nowrap;width:max-content}
 @media(min-width:701px){.about{--founder-label-height:calc(var(--mixed-title-size) * var(--mixed-roman-scale) * 1.12 * 3);--founder-copy-gap:var(--s5)}.about :is(.about-copy,.about-note){grid-template-rows:var(--founder-label-height) auto;gap:var(--founder-copy-gap);align-content:start}.about-copy h2:has(.heading-roman):has(em){display:contents}.about-copy .heading-roman{grid-row:1;align-self:end}.about-copy h2>em{grid-row:2;align-self:start}.about .about-logo{grid-row:1;align-self:end;aspect-ratio:437.19/210}.about-note>p{grid-row:2;align-self:start}}
+
+:root{--paragraph-size:var(--type-body);--paragraph-leading:var(--leading-body)}
+.booking .booking-copy{--paragraph-size:var(--type-h4);--paragraph-leading:1.4}
+@media(max-width:700px){.booking .booking-copy{--paragraph-size:var(--type-body);--paragraph-leading:1.6}}
