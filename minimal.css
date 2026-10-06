@@ -321,3 +321,7 @@ main .poster-grid .poster-art{grid-column:7/span 6;grid-row:1;align-self:stretch
 
 /* Komponent quote: podpis autora kursywą Rialto. */
 .quote cite{font:400 26px/1.25 var(--font-emphasis);letter-spacing:0;text-transform:none;& em{font:inherit}}
+
+/* Globalna waga tekstu prostego; kursywa Rialto pozostaje regularna. */
+:root{--weight-text:700}
+body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-text)!important}
