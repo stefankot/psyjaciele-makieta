@@ -134,3 +134,15 @@ body{font-weight:500}.hero-subtitle,.heading>:is(p,h3),.placeholder figcaption s
 .booking-copy .booking-subtitle{grid-column:1/span 4;grid-row:2;font-family:var(--font-main);font-size:var(--type-h3);font-weight:500;line-height:1.24;letter-spacing:-.025em;max-width:24ch;margin:0}
 .booking-copy>.buttons{grid-row:3}.booking-art{grid-row:2/span 2}
 @media(max-width:700px){.booking-copy .booking-subtitle{grid-column:1/-1;grid-row:2}.booking-copy>.buttons{grid-row:3}.booking-art{grid-row:4}}
+
+/* Klasyczna typografia: wersaliki rozświetlone, kursywa bez rozstrzelania. */
+:root{--tracking-caps:.08em;--reading-measure:60ch}
+body{letter-spacing:normal;font-kerning:normal;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:lining-nums}
+:is(.site-header .site-nav,.about-label,.kicker,.header-label,.person figure+p,.quote cite,.site-header .menu-toggle,.small-caps){letter-spacing:var(--tracking-caps)}
+.small-caps{font-variant-caps:small-caps}
+:is(h1,h2,h3,h4,h5,h6){text-wrap:balance;orphans:2;widows:2}
+:is(h1,h2,h3,h4,h5,h6) em{letter-spacing:normal;font-variant-ligatures:common-ligatures contextual}
+p{max-width:var(--reading-measure);text-wrap:pretty;orphans:3;widows:3;hyphens:manual;overflow-wrap:break-word}
+:is(p,cite,figcaption,.opening-hours){font-variant-numeric:lining-nums}
+.opening-hours dd,.header-hours dd{font-variant-numeric:lining-nums tabular-nums}
+strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness:1px}.button{letter-spacing:normal;text-transform:none}
