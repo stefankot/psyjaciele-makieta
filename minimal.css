@@ -123,3 +123,6 @@ body{font-family:var(--font-main);font-synthesis:none}
 :is(h1,h2,h3,h4,h5,h6){font-family:var(--font-main);font-weight:500}
 :is(.about-copy,.contact-copy) h2{font-weight:500}
 :is(h1,h2,h3,h4,h5,h6) em{font-family:var(--font-emphasis);font-size:calc(1em * var(--rialto-scale));font-weight:400;font-style:normal;line-height:.9;letter-spacing:-.025em}
+
+.contact-hours{grid-column:7/span 6;grid-template-columns:subgrid;padding:var(--s4) 0;column-gap:var(--gap);& h3{grid-column:2/-1}& .opening-hours{grid-column:2/-1;grid-template-columns:subgrid;column-gap:var(--gap);&>div:first-child{grid-column:1/span 2}&>div:last-child{grid-column:4/span 2}}}
+@media(max-width:700px){.contact-hours{grid-column:1/-1;padding-block:var(--s3);& h3{grid-column:2/span 10}& .opening-hours{grid-column:2/span 10;&>div:first-child{grid-column:1/span 4}&>div:last-child{grid-column:7/span 4}& dd{font-size:var(--type-h2)}}}}
