@@ -271,3 +271,5 @@ main .hero .wrap .hero-art{height:calc(100% + var(--hero-space));margin-bottom:c
 .button,.site-header .header-grid>.button,.menu-toggle,.booking .booking-copy .booking-cta{font-size:var(--type-body,16px);line-height:var(--leading-body,26px)}
 
 .booking .booking-pet:not(.solid){filter:grayscale(1)}
+
+.team{--surface:#f4f4f4}
