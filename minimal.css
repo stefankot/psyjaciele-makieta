@@ -113,3 +113,13 @@ footer{&>.wrap{column-gap:var(--gap);row-gap:var(--group-gap)}& .foot-links>div{
 @media(max-width:700px){.clinic .section-heading .clinic-illustration{grid-column:4/span 9}}
 
 .button{ text-transform:none;letter-spacing:normal}
+
+@font-face{font-family:Satoshi;src:url(assets/fonts/Satoshi-Regular.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Satoshi;src:url(assets/fonts/Satoshi-Medium.woff2) format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Satoshi;src:url(assets/fonts/Satoshi-Bold.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:Rialto;src:url(assets/fonts/RialtoScript-Regular.otf) format('opentype');font-weight:400;font-style:normal;font-display:swap}
+:root{--font-main:Satoshi,Arial,sans-serif;--font-emphasis:Rialto,Georgia,serif;--rialto-scale:1.12}
+body{font-family:var(--font-main);font-synthesis:none}
+:is(h1,h2,h3,h4,h5,h6){font-family:var(--font-main);font-weight:500}
+:is(.about-copy,.contact-copy) h2{font-weight:500}
+:is(h1,h2,h3,h4,h5,h6) em{font-family:var(--font-emphasis);font-size:calc(1em * var(--rialto-scale));font-weight:400;font-style:normal;line-height:.9;letter-spacing:-.025em}
