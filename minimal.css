@@ -105,3 +105,6 @@ footer{&>.wrap{column-gap:var(--gap);row-gap:var(--group-gap)}& .foot-links>div{
 @media(max-width:700px){.contact-hours{grid-column:1/-1;grid-row:2}.contact-details{grid-column:1/span 11;grid-row:3}.contact-art{grid-column:2/span 11;grid-row:4}.footer-logo{width:min(100%,300px)}}
 
 .foot-brand p a{font-size:inherit;line-height:inherit}
+
+.clinic-gallery{grid-template-rows:repeat(2,auto);gap:var(--gap);& .photo-large{grid-column:1/span 8;grid-row:1/span 2;aspect-ratio:auto;align-self:stretch}& .photo-small,& .photo-small:last-child{grid-column:9/span 4;aspect-ratio:var(--phi)}& .photo-small{grid-row:1}& .photo-small:last-child{grid-row:2}}
+@media(max-width:700px){.clinic-gallery{& .photo-large{grid-column:1/-1;grid-row:1;aspect-ratio:var(--phi)}& .photo-small{grid-column:1/span 6;grid-row:2;aspect-ratio:1}& .photo-small:last-child{grid-column:7/span 6;grid-row:2;aspect-ratio:1}& .placeholder{padding:var(--s2);min-height:var(--s7)}& figcaption{gap:var(--s1)}& figcaption span{line-height:21px}}}
