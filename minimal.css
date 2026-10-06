@@ -69,3 +69,10 @@ footer h2{font-size:var(--type-h4);line-height:1.24}footer p,main td{font-size:v
 
 .contact-hours{padding:var(--s4);background:var(--accent);align-content:start;gap:var(--s4);& h3{font-size:var(--type-h4);color:var(--ink)}& .opening-hours{display:grid;gap:var(--s4);margin:0;&>div{display:grid;gap:var(--s1)}& dt{font-size:var(--type-h4);font-weight:600;color:var(--ink)}& dd{margin:0;font-size:var(--type-h2);line-height:1;letter-spacing:-.045em;font-weight:650;color:var(--ink)}}}
 @media(max-width:700px){.contact-hours{grid-column:1/-1;padding:var(--s3);& .opening-hours{grid-template-columns:1fr 1fr;gap:var(--s3);& dd{font-size:55px}}}}
+
+:root{--type-small:16px;--leading-small:26px}
+footer{& :is(p,li,a,ul,.credit){font-size:var(--type-body);line-height:var(--leading-body)}& h2{font-size:var(--type-h4);line-height:1.24}& ul{gap:var(--s2)}& .credit{font-size:var(--type-body)}}
+.button{font-size:var(--type-body);line-height:var(--leading-body)}
+.site-header{& :is(.site-nav,.header-location,.header-hours dl,.header-email,.header-label,.menu-toggle,.header-grid>.button){font-size:13px;line-height:21px}& .header-phone{font-size:16px;line-height:26px}}
+@media(max-width:1000px) and (min-width:701px){.site-header{& .site-nav{grid-template-columns:1fr 1fr 1fr 1.5fr 1fr;gap:var(--s1)}& .site-nav a{white-space:normal}}}
+@media(max-width:700px){.site-header{& .header-grid>.button{font-size:13px}& .header-phone{font-size:13px;line-height:21px}& .site-nav{font-size:16px;line-height:26px}}}
