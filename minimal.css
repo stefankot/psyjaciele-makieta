@@ -186,7 +186,7 @@ strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness
 
 .about .portrait-circle{background:transparent;clip-path:none;mask:var(--blob) center/contain no-repeat}
 
-.about .portrait-circle img{width:85%;height:85%;place-self:center}
+.about .portrait-circle img{width:100%;height:100%;object-fit:cover;place-self:center;transform:translateY(8%)}
 
 h1 .hero-title .heading-roman{font-size:calc(0.6em * var(--roman-heading-scale))}
 
