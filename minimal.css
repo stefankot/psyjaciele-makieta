@@ -287,3 +287,6 @@ main .hero .wrap .hero-art{height:calc(100% + var(--hero-space));margin-bottom:c
 .arrival-intro{display:grid;gap:var(--s3);& .kicker{margin:0}& h2{margin:0}&>p{margin:0}}
 @media(min-width:701px){.arrival .arrival-grid{align-items:stretch}.arrival-intro{grid-column:1/span 6;grid-row:1;grid-template-rows:auto auto 1fr;min-height:var(--poster-intro-height);&>p{align-self:end}}.arrival .travel-art.section-illustration{grid-row:1;align-self:stretch;aspect-ratio:auto;height:100%}.arrival .arrival-details{grid-row:2}.arrival-copy>.button{grid-row:3;align-self:start}}
 @media(max-width:700px){.arrival-intro{grid-column:1/-1;grid-row:2;gap:var(--s4);&>p{margin-top:var(--s4)}}.arrival .arrival-details{grid-row:3}.arrival-copy>.button{grid-row:4}}
+
+.about-copy h2>em{white-space:nowrap;width:max-content}
+@media(min-width:701px){.about{--founder-label-height:calc(var(--mixed-title-size) * var(--mixed-roman-scale) * 1.12 * 3);--founder-copy-gap:var(--s5)}.about :is(.about-copy,.about-note){grid-template-rows:var(--founder-label-height) auto;gap:var(--founder-copy-gap);align-content:start}.about-copy h2:has(.heading-roman):has(em){display:contents}.about-copy .heading-roman{grid-row:1;align-self:end}.about-copy h2>em{grid-row:2;align-self:start}.about .about-logo{grid-row:1;align-self:end;aspect-ratio:437.19/210}.about-note>p{grid-row:2;align-self:start}}
