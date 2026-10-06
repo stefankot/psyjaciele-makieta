@@ -52,3 +52,17 @@ figure.section-illustration:not(.hero-art){display:grid;place-items:center}.sect
 [data-palette]{background:var(--surface);color:var(--ink);& :is(h1,h2,h3,.art,.icon){color:var(--ink)}& :is(p,cite,figcaption,dt,dd,td,address,.kicker,.about-label,.about-names){color:var(--small-ink,var(--ink))}& :is(.portrait-circle,.halo-dot,.placeholder,.geometric-shape){background:var(--accent)}& .bento .tile::before{background:var(--accent)}& svg :is(circle,ellipse,rect,polygon){fill:var(--accent)}& .person figure+p+p{color:var(--ink)}}
 
 .reviews .review-source .icon{justify-self:start;mask-position:left center}
+
+/* Skala Fibonacci: 89 / 55 / 34 / 21; dolny próg czytelności 16. */
+:root{--type-h1:89px;--type-h2:55px;--type-h3:34px;--type-h4:21px;--type-h5:16px;--type-h6:16px;--type-body:16px;--leading-body:26px;--type-small:13px;--leading-small:21px}
+body{font-size:var(--type-body);line-height:var(--leading-body)}
+h1{font-size:var(--type-h1);line-height:1.03}h2{font-size:var(--type-h2);line-height:1.08}h3{font-size:var(--type-h3);line-height:1.15}h4{font-size:var(--type-h4);line-height:1.24}h5{font-size:var(--type-h5);line-height:1.625;font-weight:650}h6{font-size:var(--type-h6);line-height:1.625;font-weight:550}
+:is(h3,h4,h5,h6){margin:0;letter-spacing:-.025em;text-wrap:balance}
+.hero-copy h1{font-size:clamp(34px,min(7.8vw,9svh),var(--type-h1))}.hero-subtitle{font-size:var(--type-h3);line-height:1.24}
+:is(.about-copy,.contact-copy) h2{font-size:var(--type-h2);line-height:1.08;font-weight:650}
+main p,:is(.about-copy,.about-note,.heading,.section-heading,.bento .tile,.bento .major,.person,.contact-copy,.contact-details,.arrival-copy,.after-hours,.review-source,.quote) p{font-size:var(--type-body);line-height:var(--leading-body)}
+.bento .tile h3{font-size:var(--type-h4);line-height:1.24}.bento .major h3{font-size:var(--type-h3);line-height:1.15}
+.person figure+p,.about-copy p,.about-label,.about-names,.kicker,.quote cite,.placeholder figcaption,.placeholder figcaption span{font-size:var(--type-small);line-height:var(--leading-small)}
+.person figure+p+p{font-size:var(--type-h4);line-height:1.24}.about-note>p{font-size:var(--type-body);line-height:var(--leading-body)}
+footer h2{font-size:var(--type-h4);line-height:1.24}footer p,main td{font-size:var(--type-body);line-height:var(--leading-body)}
+@media(max-width:700px){:root{--type-h1:55px;--type-h2:34px;--type-h3:21px}.hero-copy h1{font-size:clamp(34px,min(10.5vw,7svh),var(--type-h1))}.hero-subtitle{font-size:var(--type-h4)}}
