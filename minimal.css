@@ -179,9 +179,9 @@ strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness
 @media(max-width:1100px){.site-header{& .brand{grid-column:1/span 3}& .header-grid>.button{grid-column:4/span 6;grid-row:1;min-height:44px;padding:var(--s1)}& .menu-toggle{display:grid;place-items:center;grid-column:10/span 3;grid-row:1;min-height:44px;padding:var(--s1);border:1px solid currentColor;background:transparent}& .site-nav{display:none;grid-column:1/-1;grid-row:2;grid-template-columns:var(--one);gap:0;padding-top:var(--s2);border-top:1px solid currentColor}& .site-nav.is-open{display:grid}& .site-nav a,& .site-nav a:nth-child(4){grid-column:1/-1;grid-row:auto;min-height:44px;padding:var(--s1) 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 15%,transparent)}}}
 
 @font-face{font-family:Satoshi;src:url(assets/fonts/Satoshi-Black.woff2) format('woff2');font-weight:900;font-style:normal;font-display:swap}
-:root{--roman-heading-scale:.68;--roman-h1-scale:.408}
+:root{--roman-heading-scale:.68;--roman-h1-scale:.408;--roman-size-factor:.7}
 h1{--roman-heading-scale:var(--roman-h1-scale)}
-:is(h1,h2) .heading-roman{font-family:var(--font-main);font-weight:900;font-size:calc(1em * var(--roman-heading-scale));text-transform:uppercase;letter-spacing:var(--tracking-caps);line-height:1.08;font-style:normal}
+:is(h1,h2) .heading-roman{font-family:var(--font-main);font-weight:900;font-size:calc(1em * var(--roman-heading-scale) * var(--roman-size-factor));text-transform:uppercase;letter-spacing:var(--tracking-caps);line-height:1.08;font-style:normal}
 .team .drawing{grid-column:1/span 6}.team .heading>p{grid-column:9/span 4}
 @media(max-width:700px){.team .drawing{grid-column:1/span 6;grid-row:3}.team .heading>p{grid-column:1/-1;grid-row:2}}
 
@@ -241,4 +241,4 @@ main :is(.team .drawing,.contact-art){grid-column:1/span 6}
 .about>.wrap.grid{container-type:inline-size;align-items:start;padding-top:var(--s6)}.about :is(.about-copy,.about-note){align-self:start;margin-top:calc((100cqw - var(--gap))/4 + var(--s4));z-index:2}.about .about-photo{align-self:start;z-index:0}.about .portrait-halo{z-index:0;clip-path:polygon(-150% -150%,250% -150%,250% 54%,-150% 54%)}.about .portrait-circle{z-index:1}
 @media(max-width:700px){.about :is(.about-copy,.about-note){margin-top:0}.about .about-photo{margin-top:var(--s7)}}
 
-.about-copy h2 .heading-roman{font-size:var(--type-h4);text-wrap:initial}
+.about-copy h2 .heading-roman{font-size:calc(var(--type-h4) * var(--roman-size-factor));text-wrap:initial}
