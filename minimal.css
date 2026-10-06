@@ -191,3 +191,7 @@ strong,b{font-weight:700}a{text-underline-offset:.18em;text-decoration-thickness
 h1 .hero-title .heading-roman{font-size:calc(0.6em * var(--roman-heading-scale))}
 
 .about .halo-dot{background-image:url(assets/pets-phone-atlas.png);background-size:800% 800%;background-position:var(--pet-x) var(--pet-y);background-repeat:no-repeat}
+
+.sample-photo{position:relative;display:grid;overflow:hidden;min-height:var(--s7);aspect-ratio:var(--phi);margin:0;& img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}& figcaption{position:relative;align-self:end;padding:var(--s2);font-size:var(--type-body);line-height:var(--leading-body);color:var(--ink);background:color-mix(in srgb,var(--surface) 90%,transparent);z-index:1}}
+
+.clinic-gallery .photo-small:nth-child(2) img{object-position:center 72%}
