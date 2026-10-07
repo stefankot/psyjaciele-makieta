@@ -639,3 +639,12 @@ footer .foot-links h2{margin:0}
 .site-header.site-header .brand .icon{width:208.19px;height:100px;transition:width .25s ease,height .25s ease}
 .site-header.site-header.is-scrolling-down .brand .icon{width:133.24px;height:64px}
 @media(prefers-reduced-motion:reduce){.header-backdrop,.site-header.site-header .brand .icon{transition:none}}
+
+/* Hamburger po prawej stronie logo, także w szerokiej nawigacji. */
+.site-header.site-header .header-brand{display:flex;align-items:center;gap:21px;min-width:0}
+.site-header.site-header .header-brand .brand{display:block;flex:none}
+.site-header.site-header .header-brand .menu-toggle{display:grid;flex:none;grid-column:auto;grid-row:auto}
+@media(max-width:600px){
+ .site-header.site-header .header-brand{gap:8px}
+ .site-header.site-header .header-actions>.button{max-width:90px;white-space:normal}
+}
