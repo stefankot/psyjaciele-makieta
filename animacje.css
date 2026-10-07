@@ -1,4 +1,4 @@
-/* Psyjaciele — warstwa ruchu, wersja 3. Wymaga animacje.js (dodaje klasę .motion na <html> i klasy stanów).
+/* Psyjaciele — warstwa ruchu, wersja 4. Wymaga animacje.js (dodaje klasę .motion na <html> i klasy stanów).
    Bez JS i przy prefers-reduced-motion: reduce strona wygląda jak dotąd — nic nie jest ukryte ani poruszone. */
 :root{
   --dur-fast:120ms;--dur-quick:200ms;--dur-base:320ms;--dur-slow:480ms;--dur-slower:640ms;
@@ -18,6 +18,8 @@
 .site-header .header-hours .is-today.is-open.is-closing dt::after{background:linear-gradient(to right,currentColor 50%,transparent 0)}
 /* Gwiazdki wypełnione dokładnie do średniej oceny (szerokości liczy JS z tekstu obok). */
 .reviews .review-source .icon.is-rated{clip-path:inset(0 var(--rating-cut,0px) 0 0)}
+/* Bieżąca sekcja w menu: ta sama kropka co przy godzinach („tu jesteś"). */
+.site-header .site-nav a[aria-current]::after{content:"";display:inline-block;inline-size:.5em;block-size:.5em;margin-inline-start:.5em;border-radius:50%;background:currentColor;vertical-align:.08em}
 /* Strzałka jako osobny klocek: podkreślenie odnośnika nie przechodzi pod strzałką. */
 .type-arrow-glyph{display:inline-block}
 
@@ -92,6 +94,22 @@ html.motion .site-header .site-nav.is-open a:nth-child(5){animation-delay:160ms}
 html.motion :is(a,button):focus-visible{animation:focus-in var(--dur-quick) var(--ease-out)}
 @keyframes focus-in{from{outline-offset:0}}
 
-/* Cienka linia postępu czytania u góry, w tej samej technice co nagłówek. */
-html.motion .scroll-progress{position:fixed;inset:0 0 auto 0;block-size:2px;background:#fff;mix-blend-mode:difference;transform-origin:0 50%;transform:scaleX(var(--progress,0));z-index:101;pointer-events:none}
+/* Kropka bieżącej sekcji pojawia się sprężyście. */
+html.motion .site-header .site-nav a[aria-current]::after{animation:pop var(--dur-base) var(--ease-bounce-soft) both}
+
+/* Linia postępu czytania u góry, w technice nagłówka; przerwy wypadają na granicach sekcji (tło ustawia JS). */
+html.motion .scroll-progress{position:fixed;inset:0 0 auto 0;block-size:2px;background:none;mix-blend-mode:difference;clip-path:inset(0 calc((1 - var(--progress,0)) * 100%) 0 0);z-index:101;pointer-events:none}
+
+/* Głębia: ilustracje sekcji i plamy pod portretami suną odrobinę wolniej niż tekst (wartość --drift w px ustawia JS). */
+html.motion figure.section-illustration{translate:0 calc(var(--drift,0) * 1px)}
+html.motion figure.section-illustration.is-boiling{will-change:translate}
+html.motion .team .people .person .portrait-blob::before{translate:0 calc(var(--drift,0) * 1px)}
+
+/* Ekrany dotykowe: element na wysokości wzroku dostaje stan, który na komputerze daje kursor. */
+html.motion .services .bento .tile.is-near,html.motion .team .people .person.is-near{border-top-color:var(--hover-ink);--rule-hover:100%}
+html.motion .services .bento .tile.is-near :is(h3,a,p.tile-description){color:var(--hover-ink)}
+html.motion .services .bento .tile.is-near img.service-art{filter:url(#service-hover-ink)}
+html.motion .services .bento .tile.is-near img.service-art.is-boiling{animation-name:boil-service-hover;animation-duration:calc(var(--boil-cycle) / 2)}
+html.motion .team .people .person.is-near :is(.person-name,.person-name em,.person-name span,.specializations){color:var(--hover-ink)}
+html.motion .team .people .person.is-near .portrait-blob::before{background:var(--hover-accent)}
 }

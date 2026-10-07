@@ -1,4 +1,4 @@
-/* Psyjaciele — warstwa ruchu, wersja 3 (para z animacje.css). Dołącz po minimal.js.
+/* Psyjaciele — warstwa ruchu, wersja 4 (para z animacje.css). Dołącz po minimal.js.
    API: window.PsyjacieleRuch.enable() / .disable(). */
 (function(){
   var root = document.documentElement;
@@ -59,6 +59,45 @@
       var vb = (svg.match(/viewBox="([^"]+)"/) || [])[1]; var p = vb ? vb.trim().split(/[\s,]+/).map(Number) : null;
       if(p && p[2] > 0 && p[3] > 0) apply(p[2] / p[3]); else throw 0;
     }).catch(function(){ var img = new Image(); img.onload = function(){ apply(img.naturalWidth / img.naturalHeight); }; img.src = url; });
+  }
+
+  /* ── wspólna pętla przewijania: jeden nasłuch, jedna klatka, pomiary tylko po zmianie układu ── */
+  var loop = {fns: [], dirty: true, ticking: false, bound: false};
+  function tick(){ loop.ticking = false; var y = scrollY, vh = innerHeight, d = loop.dirty; loop.dirty = false; loop.fns.slice().forEach(function(f){ f(y, vh, d); }); }
+  function schedule(){ if(!loop.ticking){ loop.ticking = true; requestAnimationFrame(tick); } }
+  function remeasure(){ loop.dirty = true; schedule(); }
+  function onFrame(fn){
+    loop.fns.push(fn);
+    if(!loop.bound){
+      loop.bound = true;
+      addEventListener('scroll', schedule, {passive:true}); addEventListener('resize', remeasure); addEventListener('load', remeasure);
+      if('ResizeObserver' in window) new ResizeObserver(remeasure).observe(document.body);
+    }
+    remeasure();
+    return function(){ var i = loop.fns.indexOf(fn); if(i > -1) loop.fns.splice(i, 1); };
+  }
+  function box(el, y, shift){ var r = el.getBoundingClientRect(); return {top: r.top + y - (shift || 0), h: r.height}; }
+
+  /* Menu wie, gdzie jesteś: pozycja bieżącej sekcji dostaje aria-current (kropka w CSS). Działa też bez ruchu. */
+  function spy(){
+    function kicker(sec){ var k = sec.querySelector('.kicker'); return k ? k.textContent.trim() : ''; }
+    var links = [].slice.call(document.querySelectorAll('.site-header .site-nav a[href^="#"]')), current = null;
+    var groups = links.map(function(a){
+      var t = document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1))), sec = t && t.closest('section'); if(!sec) return [];
+      var list = [sec], k = kicker(sec), n = sec.nextElementSibling;
+      while(k && n && n.matches('section') && kicker(n) === k){ list.push(n); n = n.nextElementSibling; }   // np. „Przed wizytą": przygotowanie + dojazd
+      return list.map(function(el){ return {el: el, top: 0, h: 0}; });
+    });
+    if(!links.length) return;
+    onFrame(function(y, vh, dirty){
+      if(dirty) groups.forEach(function(g){ g.forEach(function(it){ var b = box(it.el, y); it.top = b.top; it.h = b.h; }); });
+      var line = y + vh * .4, now = null;
+      groups.forEach(function(g, i){ g.forEach(function(it){ if(it.top <= line && line < it.top + it.h) now = links[i]; }); });
+      if(now === current) return;
+      if(current) current.removeAttribute('aria-current');
+      if(now) now.setAttribute('aria-current', 'location');
+      current = now;
+    });
   }
 
   /* ── ruch ── */
@@ -155,18 +194,60 @@
     if(hero && 'IntersectionObserver' in window){ var io = new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }); io.observe(hero); observers.push(io); }
     cleanups.push(function(){ clearInterval(timer); clearTimeout(popped); document.removeEventListener('pointerover', over); list.forEach(function(p){ p.classList.remove('is-swapping','is-popped'); }); });
   }
+  /* Linia postępu u góry, z przerwami na granicach sekcji. */
   function progress(){
     var bar = document.createElement('div'); bar.className = 'scroll-progress'; bar.setAttribute('aria-hidden','true'); document.body.appendChild(bar);
-    var ticking = false;
-    function update(){ ticking = false; var max = root.scrollHeight - innerHeight; bar.style.setProperty('--progress', max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0); }
-    function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
-    addEventListener('scroll', onScroll, {passive:true}); addEventListener('resize', onScroll); update();
-    cleanups.push(function(){ removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll); bar.remove(); });
+    var sections = [].slice.call(document.querySelectorAll('main > section, body > footer, footer'));
+    var off = onFrame(function(y, vh, dirty){
+      var total = root.scrollHeight, max = total - vh;
+      if(dirty){
+        var stops = [], last = 0;
+        sections.forEach(function(sec){
+          var p = box(sec, y).top / total * 100; if(p <= .5 || p >= 99.5 || p - last < 1) return;
+          stops.push('#fff ' + (last ? 'calc(' + last.toFixed(3) + '% + 2px)' : '0') + ' calc(' + p.toFixed(3) + '% - 2px)', 'transparent 0 calc(' + p.toFixed(3) + '% + 2px)'); last = p;
+        });
+        stops.push('#fff 0'); bar.style.backgroundImage = 'linear-gradient(to right,' + stops.join(',') + ')';
+      }
+      bar.style.setProperty('--progress', max > 0 ? Math.min(1, y / max).toFixed(4) : 0);
+    });
+    cleanups.push(function(){ off(); bar.remove(); });
+  }
+  /* Ekrany dotykowe nie mają hovera: kafel usługi lub osoba na wysokości 42% okna dostaje ten sam stan co pod kursorem. */
+  function near(){
+    var touch = window.matchMedia('(hover: none)');
+    var items = [].map.call(document.querySelectorAll('.services .bento .tile, .team .people .person'), function(el){ return {el: el, top: 0, h: 0, on: false}; });
+    if(!items.length) return;
+    var off = onFrame(function(y, vh, dirty){
+      if(dirty) items.forEach(function(it){ var b = box(it.el, y); it.top = b.top; it.h = b.h; });
+      var line = y + vh * .42, active = touch.matches;
+      items.forEach(function(it){ var on = active && it.top <= line && line < it.top + it.h; if(on !== it.on){ it.on = on; it.el.classList.toggle('is-near', on); } });
+    });
+    touch.addEventListener('change', remeasure);
+    cleanups.push(function(){ off(); touch.removeEventListener('change', remeasure); items.forEach(function(it){ it.el.classList.remove('is-near'); }); });
+  }
+  /* Głębia: ilustracje sekcji i plamy pod portretami suną odrobinę wolniej niż tekst. „Nagłe przypadki" stoją. */
+  var DRIFT = {art: 12, blob: 8, phone: .5};             // maks. przesunięcie w px; na telefonach × 0,5
+  function drift(){
+    if(saving()) return;
+    var items = [].filter.call(document.querySelectorAll('figure.section-illustration, .team .people .person'), function(el){ return !el.closest('.emergency'); })
+      .map(function(el){ var art = el.matches('figure'); return {el: el, art: art, range: art ? DRIFT.art : DRIFT.blob, top: 0, h: 0, v: 0}; });
+    if(!items.length) return;
+    var off = onFrame(function(y, vh, dirty){
+      if(dirty) items.forEach(function(it){ var b = box(it.el, y, it.art ? it.v : 0); it.top = b.top; it.h = b.h; });
+      var max = Math.max(0, root.scrollHeight - vh), k = small.matches ? DRIFT.phone : 1;
+      items.forEach(function(it){
+        var rest = it.top < vh ? 0 : Math.min(max, it.top + it.h / 2 - vh / 2);      // pozycja przewinięcia, w której element stoi w miejscu z projektu (pierwszy ekran: na samej górze)
+        var v = Math.round(Math.max(-1, Math.min(1, (y - rest) / ((vh + it.h) / 2))) * it.range * k * 2) / 2;
+        if(v !== it.v){ it.v = v; it.el.style.setProperty('--drift', v); }
+      });
+    });
+    small.addEventListener('change', remeasure);
+    cleanups.push(function(){ off(); small.removeEventListener('change', remeasure); items.forEach(function(it){ it.el.style.removeProperty('--drift'); it.v = 0; }); });
   }
 
   function enable(){
     if(enabled || reduce.matches) return; enabled = true;
-    root.classList.add('motion'); boil(); rules(); landing(); pets(); progress();
+    root.classList.add('motion'); boil(); rules(); landing(); pets(); progress(); near(); drift();
   }
   function disable(){
     if(!enabled) return; enabled = false;
@@ -175,7 +256,7 @@
     root.classList.remove('motion');
   }
   function init(){
-    arrows(); openNow(); setInterval(openNow, 60000);
+    arrows(); openNow(); setInterval(openNow, 60000); spy();
     var auto = !root.hasAttribute('data-ruch-off');
     rating(!reduce.matches);
     if(auto) enable();
