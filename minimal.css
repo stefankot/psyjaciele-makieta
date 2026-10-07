@@ -614,7 +614,7 @@ footer .foot-links h2{margin:0}
 /* Hover całej karty zespołu, także gdy kursor znajduje się nad portretem. */
 .team .people .person{transition:border-color .2s ease,color .2s ease}
 .team .people .person :is(.person-name,.specializations){transition:color .2s ease}
-.team .people .person .portrait-blob img{transition:transform .25s ease}
+.team .people .person .portrait-blob img{transform:none;translate:none;transition:none}
 .team .people .person .portrait-blob::before{transition:background-color .2s ease}
 .team .people .person:focus-within{border-top-color:var(--hover-ink)}
 .team .people .person:focus-within :is(.person-name,.person-name em,.person-name span,.specializations){color:var(--hover-ink)}
@@ -623,7 +623,7 @@ footer .foot-links h2{margin:0}
  .team .people .person:hover{border-top-color:var(--hover-ink)}
  .team .people .person:hover :is(.person-name,.person-name em,.person-name span,.specializations){color:var(--hover-ink)}
  .team .people .person:hover .portrait-blob::before{background:var(--hover-accent)}
- .team .people .person:hover .portrait-blob img{transform:translateY(-4px)}
+ .team .people .person:hover .portrait-blob img{transform:none;translate:none}
 }
 @media(prefers-reduced-motion:reduce){.team .people .person,.team .people .person :is(.person-name,.specializations),.team .people .person .portrait-blob img,.team .people .person .portrait-blob::before{transition:none}.team .people .person:hover .portrait-blob img{transform:none}}
 
