@@ -553,14 +553,14 @@ footer .foot-links h2{margin:0}
 @media(max-width:700px){footer .foot-brand{grid-column:1/-1}footer .footer-primary{grid-column:1/span 6}footer .footer-secondary{grid-column:7/span 6}}
 
 /* Usługi: te same wymiary kart, bez wypełnienia; wspólna kreska u góry. */
-.services .bento .tile{position:relative;--surface:#124e2c;--ink:#cfdcc3;--small-ink:#cfdcc3;background:transparent;border:0;border-top:var(--column-rule-width) solid currentColor;padding:var(--column-rule-gap) 0 0}
+.services .bento .tile{position:relative;--surface:#124e2c;--ink:#cfdcc3;--small-ink:#cfdcc3;background:transparent;border:0;border-top:var(--column-rule-width) solid currentColor;padding:var(--column-rule-gap) 0 var(--s4)}
 .services .bento .tile::before{display:none}
 .services .bento .tile img.service-art{width:100%;filter:url(#service-light-ink);mix-blend-mode:normal}
 
 /* Usługa: tytuł i opis nad ilustracją. */
-.services .bento .tile:has(img.service-art){grid-template-rows:auto auto 1fr;gap:var(--s2);align-content:start}
+.services .bento .tile:has(img.service-art){grid-template-rows:auto auto auto;gap:var(--s2);align-content:start}
 .services .bento .tile:has(img.service-art) h3{min-height:0;margin:0}
-.services .bento .tile img.service-art{align-self:end}
+.services .bento .tile img.service-art{align-self:start}
 .services .bento .tile p.tile-description{align-self:start}
 
 /* Hover usług: akcent typograficzny zamiast obrysu całego boksa. */
