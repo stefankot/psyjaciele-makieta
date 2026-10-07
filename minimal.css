@@ -787,3 +787,7 @@ main .button,main .button *{--weight-text:900;font-weight:900!important}
 #onas .halo-dot:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .pet-name-tooltip{position:fixed;z-index:150;padding:8px 13px;background:#fff;color:#595959;font-family:var(--font-main);font-size:14px;line-height:21px;pointer-events:none;white-space:nowrap;box-shadow:0 3px 12px #00000012}
 .pet-name-tooltip[hidden]{display:none}
+
+/* Łagodne nadążanie za przewijaniem; większe pupile pozostają blisko portretu. */
+#onas .halo-dot{transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .2s ease-out}
+@media(prefers-reduced-motion:reduce){#onas .halo-dot{transition:none}}
