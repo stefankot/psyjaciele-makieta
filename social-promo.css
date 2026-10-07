@@ -44,7 +44,7 @@
 #obserwuj-nas .social-promo-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #obserwuj-nas .social-promo-logo{position:absolute;left:50%;top:50%;inset-inline-end:auto;inset-block-end:auto;translate:-50% -50%;width:clamp(220px,25vw,320px);height:auto;aspect-ratio:91.38/92.26;color:var(--ink);z-index:3;pointer-events:none}
 #obserwuj-nas .social-promo-logo svg{display:block;width:100%;height:auto;fill:currentColor;overflow:visible}
-#obserwuj-nas .social-promo-ring{transform-box:view-box;transform-origin:50% 50%;animation:social-promo-simple-spin 30s linear infinite}
+#obserwuj-nas .social-promo-ring{transform-box:view-box;transform-origin:50% 50%;animation:none}
 #obserwuj-nas .social-promo-actions{position:absolute;inset:auto var(--gutter) var(--s5);z-index:4}
 @keyframes social-promo-simple-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @media(max-width:700px){#obserwuj-nas>.social-promo-composition{height:clamp(420px,140vw,600px);min-height:420px}#obserwuj-nas .social-promo-logo{width:160px}#obserwuj-nas .social-promo-actions{inset:auto var(--s2) var(--s4)}}

@@ -12,7 +12,39 @@ p.d.style.transform=`translate(${x}px,${y}px) rotate(${angle+p.turn*u}deg) scale
 function schedulePets(){if(!petsScheduled){petsScheduled=true;requestAnimationFrame(movePets);}}
 window.addEventListener('scroll',schedulePets,{passive:true});window.addEventListener('resize',schedulePets);rm.addEventListener('change',schedulePets);movePets();
 const header=document.querySelector('.site-header'),headerBackdrop=document.querySelector('.header-backdrop');const headerColorSections=[...document.querySelectorAll('main>section,body>footer')],headerHero=document.querySelector('.hero');let scheduled=false,headerLastY=window.scrollY;function updateHeaderColor(y){const info=header.querySelector('.header-info').getBoundingClientRect(),probe=info.top+Math.min(info.height,44)/2;const section=y<=16?headerHero:headerColorSections.find(section=>{const rect=section.getBoundingClientRect();return rect.top<=probe&&rect.bottom>probe;})||headerHero;const palette=getComputedStyle(section),color=palette.getPropertyValue(section===headerHero?'--ink':'--small-ink').trim()||palette.getPropertyValue('--ink').trim();header.style.setProperty('--nav-ink',color);}function updateHeader(){scheduled=false;const y=Math.max(0,window.scrollY),delta=y-headerLastY;header.classList.toggle('is-compact',y>16);headerBackdrop?.classList.toggle('is-active',y>16);updateHeaderColor(y);if(y<=16){header.classList.remove('is-scrolling-down');headerLastY=y;}else if(Math.abs(delta)>3){header.classList.toggle('is-scrolling-down',delta>0);headerLastY=y;}}window.addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateHeader);}},{passive:true});window.addEventListener('resize',()=>updateHeaderColor(Math.max(0,window.scrollY)),{passive:true});updateHeader();const animatedImages=document.querySelectorAll('img[data-animated-src]');if(!rm.matches){function loadAnimation(img){const still=img.src;img.addEventListener('error',()=>{img.src=still;},{once:true});img.loading='lazy';img.fetchPriority='low';img.src=img.dataset.animatedSrc;}if('IntersectionObserver'in window){const animations=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){animations.unobserve(entry.target);loadAnimation(entry.target);}});},{threshold:.12});animatedImages.forEach(img=>animations.observe(img));}else animatedImages.forEach(loadAnimation);}
-const footerRing=document.querySelector('.footer-logo-ring');let ringScheduled=false;function rotateFooterRing(){ringScheduled=false;if(rm.matches)return;const footer=document.querySelector('footer').getBoundingClientRect();footerRing.style.transform=`rotate(${(innerHeight-footer.top)*.18}deg)`;}window.addEventListener('scroll',()=>{if(!ringScheduled){ringScheduled=true;requestAnimationFrame(rotateFooterRing);}},{passive:true});window.addEventListener('resize',rotateFooterRing);rm.addEventListener('change',()=>{footerRing.style.transform='none';rotateFooterRing();});rotateFooterRing();
+// Both logo rings combine a slow continuous turn with the current scroll offset.
+const logoRings=[...document.querySelectorAll('.social-promo-ring,.footer-logo-ring')];
+const visibleLogoRings=new Set(logoRings);
+let logoRingFrame=0,logoRingLastTime=0,logoRingAngle=0;
+function drawLogoRings(){
+ const angle=logoRingAngle+window.scrollY*.12;
+ logoRings.forEach(ring=>{ring.style.transform=rm.matches?'none':`rotate(${angle}deg)`;});
+}
+function animateLogoRings(time){
+ logoRingFrame=0;
+ if(rm.matches||document.hidden||!visibleLogoRings.size){logoRingLastTime=0;return;}
+ if(logoRingLastTime)logoRingAngle=(logoRingAngle+Math.min(time-logoRingLastTime,64)*.002)%360;
+ logoRingLastTime=time;
+ drawLogoRings();
+ logoRingFrame=requestAnimationFrame(animateLogoRings);
+}
+function updateLogoRingMotion(){
+ drawLogoRings();
+ if(rm.matches||document.hidden||!visibleLogoRings.size){
+  cancelAnimationFrame(logoRingFrame);logoRingFrame=0;logoRingLastTime=0;
+ }else if(!logoRingFrame){logoRingFrame=requestAnimationFrame(animateLogoRings);}
+}
+if('IntersectionObserver' in window){
+ const logoRingObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{entry.isIntersecting?visibleLogoRings.add(entry.target):visibleLogoRings.delete(entry.target);});
+  updateLogoRingMotion();
+ });
+ logoRings.forEach(ring=>logoRingObserver.observe(ring));
+}
+window.addEventListener('scroll',updateLogoRingMotion,{passive:true});
+document.addEventListener('visibilitychange',updateLogoRingMotion);
+rm.addEventListener('change',updateLogoRingMotion);
+updateLogoRingMotion();
 
 const portraitBlobs=[...document.querySelectorAll('.portrait-blob')];let blobsScheduled=false;function rotatePortraitBlobs(){blobsScheduled=false;portraitBlobs.forEach((blob,i)=>{const b=blob.parentElement.getBoundingClientRect();const progress=Math.max(-1,Math.min(1,(innerHeight/2-b.top-b.height/2)/(innerHeight/2+b.height/2)));blob.style.setProperty('--blob-angle',`${rm.matches?0:progress*6*(i%2?-1:1)}deg`);});}window.addEventListener('scroll',()=>{if(!blobsScheduled){blobsScheduled=true;requestAnimationFrame(rotatePortraitBlobs);}},{passive:true});window.addEventListener('resize',rotatePortraitBlobs);rm.addEventListener('change',rotatePortraitBlobs);rotatePortraitBlobs();
 
