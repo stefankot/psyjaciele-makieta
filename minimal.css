@@ -466,3 +466,7 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
  .contact .poster-copy{grid-row:1}
  .contact .poster-heading h2{font-size:clamp(28px,8vw,var(--type-h2))}
 }
+
+/* Kontakt: pełny obraz z mieszaniem bieli z kolorem sekcji. */
+.contact .poster-grid{isolation:isolate;background:var(--surface)}
+.contact .contact-illustration{width:100%;height:100%;object-fit:contain;object-position:center top;align-self:start;filter:url(#service-color);mix-blend-mode:multiply}
