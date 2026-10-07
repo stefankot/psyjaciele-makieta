@@ -1,0 +1,30 @@
+/* Psyjaciele — sekcja Zespół, układ 1: Rejestr (7 wierszy).
+   Osie: nazwisko / specjalizacje / portret. Arkusz po minimal.css i animacje.css. */
+:root .team .people .person{--top:.04;--head:.34;--cx:.5}
+:root .team .people .person:has(img[src*="3b64aaacd150"]){--top:.07;--head:.50;--cx:.50}
+:root .team .people .person:has(img[src*="e48db60840a2"]){--top:.09;--head:.35;--cx:.59}
+:root .team .people .person:has(img[src*="557c244c36a9"]){--top:.03;--head:.27;--cx:.49}
+:root .team .people .person:has(img[src*="d9e0817d66ec"]){--top:.05;--head:.30;--cx:.49}
+:root .team .people .person:has(img[src*="5205d4b0e462"]){--top:.03;--head:.33;--cx:.49}
+:root .team .people .person:has(img[src*="a6e997421073"]){--top:.04;--head:.36;--cx:.47}
+:root .team .people .person:has(img[src*="5be50d2b873b"]){--top:.03;--head:.37;--cx:.51}
+:root .team .people .person .portrait-blob::before{content:none}
+:root .team .people .person .portrait-blob img{--z:max(calc(var(--hs) / var(--head)),calc((1 - var(--ht)) / (1 - var(--top))));inset:calc((var(--ht) - var(--top) * var(--z)) * 100%) auto auto 50%;width:auto;height:calc(var(--z) * 100%);max-width:none;max-height:none;translate:calc(var(--cx) * -100%) 0;mask:none;object-fit:fill}
+:root .team .people .person .specializations li{display:block;white-space:normal}
+:root .team .people .person .specializations li+li::before{content:none}
+:root .team .people{row-gap:0}
+:root .team .people .person,:root .team .people .person:last-child{grid-column:1/-1;grid-template-columns:subgrid;grid-template-rows:auto;align-items:center;gap:0 var(--gap);padding:0}
+:root .team .people .person:last-child{border-bottom:var(--column-rule-width) solid currentColor}
+:root .team .people .person>header{grid-column:1/span 4;grid-row:1;padding-block:var(--s3)}
+:root .team .people .person .specializations{grid-column:5/span 4;grid-row:1;align-self:center;padding-block:var(--s3)}
+:root .team .people .person figure{grid-column:9/span 3;grid-row:1;place-self:end start;width:144px;height:136px;aspect-ratio:auto;--hs:.56;--ht:.1}
+:root .team .people .person::after{content:"→";grid-column:12;grid-row:1;justify-self:end;font-size:var(--type-h4);line-height:1;transition:translate .2s ease}
+@media(hover:hover) and (pointer:fine){:root .team .people .person:hover::after{translate:4px 0}}
+@media(prefers-reduced-motion:reduce){:root .team .people .person::after{transition:none}}
+@media(max-width:700px){
+:root .team .people .person,:root .team .people .person:last-child{grid-template-columns:minmax(0,1fr) 112px;column-gap:var(--s3)}
+:root .team .people .person>header{grid-column:1;padding-block:var(--s3) var(--s1);align-self:end}
+:root .team .people .person .specializations{grid-column:1;grid-row:2;padding-block:0 var(--s3);align-self:start}
+:root .team .people .person figure{grid-column:2;grid-row:1/span 2;justify-self:end;width:112px;height:124px}
+:root .team .people .person::after{content:none}
+}
