@@ -13,4 +13,8 @@
 
 /* Paleta identyczna jak w sekcji Zespół. */
 #obserwuj-nas{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6;--follow-left-ink:var(--ink);--follow-right-ink:var(--ink)}
-#obserwuj-nas .follow-photo::after{background:linear-gradient(transparent,#f6b08fe6)}
+#obserwuj-nas .follow-photo::after{content:none;display:none}
+
+/* Pełna głowa pozostaje w kadrze niezależnie od proporcji kolumny. */
+#obserwuj-nas .follow-photo{background:#d4d4d4}
+#obserwuj-nas .follow-photo img{object-fit:contain;object-position:center top;filter:none}

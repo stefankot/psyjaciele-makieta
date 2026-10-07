@@ -1,0 +1,5 @@
+# Portret kota do sekcji Obserwuj nas
+
+Plik: follow-cat-grey-v1.png. Narzędzie: wbudowane image_gen. Referencja: f32ec8880e2b.webp.
+
+Use case: photorealistic-natural. Asset type: website portrait photograph filling the right half of a tall section. Input image is STYLE/COMPOSITION reference only: seated small dog in a seamless studio. Generate a matching photograph with ONE friendly domestic short-haired tabby CAT instead. The cat sits upright with full body and front paws visible, head tilted slightly, looking curiously up toward camera, expressive eyes, detailed natural fur. Grayscale black-and-white photographic rendering, flat very light neutral grey seamless backdrop and floor (#d4d4d4), soft diffused studio light, low-contrast editorial pet portrait like the reference. Tall 2:3 portrait canvas. Entire head, both ear tips and whiskers within frame with generous margin above and on both sides, head centered horizontally. No text, no graphics, no gradient overlay, no collar needed. Cat head must fit within middle 50 percent of image width, to preserve it on narrow screens.

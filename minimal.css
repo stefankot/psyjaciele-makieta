@@ -791,3 +791,7 @@ main .button,main .button *{--weight-text:900;font-weight:900!important}
 /* Łagodne nadążanie za przewijaniem; większe pupile pozostają blisko portretu. */
 #onas .halo-dot{transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .2s ease-out}
 @media(prefers-reduced-motion:reduce){#onas .halo-dot{transition:none}}
+
+/* Oryginalny portret psa również bez obcinania głowy. */
+#zapraszamy .booking-photo{background:#d8d8d8}
+#zapraszamy .booking-photo img{object-fit:contain;object-position:center top}
