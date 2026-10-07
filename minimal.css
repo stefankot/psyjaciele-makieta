@@ -780,3 +780,10 @@ main .button,main .button *{--weight-text:900;font-weight:900!important}
 /* Nazwiska założycielek pozostają tooltipami przy portrecie. */
 #onas .founder-hover:focus-visible{outline:2px solid currentColor;outline-offset:2px}
 #onas .founder-hover:is(:hover,:focus-visible)>span{opacity:1}
+
+/* Większe portrety pupili i tooltip poza obszarem przycinania halo. */
+#onas .halo-dot{width:13%;padding:0;border:0;border-radius:50%;clip-path:none;background:none;pointer-events:auto;cursor:help;overflow:visible}
+#onas .halo-dot::before{content:"";position:absolute;inset:0;border-radius:50%;background:url(assets/pets-phone-atlas.png) var(--pet-x) var(--pet-y)/800% 800% no-repeat}
+#onas .halo-dot:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.pet-name-tooltip{position:fixed;z-index:150;padding:8px 13px;background:#fff;color:#595959;font-family:var(--font-main);font-size:14px;line-height:21px;pointer-events:none;white-space:nowrap;box-shadow:0 3px 12px #00000012}
+.pet-name-tooltip[hidden]{display:none}
