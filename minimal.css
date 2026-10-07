@@ -624,11 +624,18 @@ footer .foot-links h2{margin:0}
 }
 @media(prefers-reduced-motion:reduce){.team .people .person,.team .people .person :is(.person-name,.specializations),.team .people .person .portrait-blob img,.team .people .person .portrait-blob::before{transition:none}.team .people .person:hover .portrait-blob img{transform:none}}
 
-/* Stała rama nawigacji; rozmycie po scrollu i logo zależne od kierunku. */
-.site-header.site-header{mix-blend-mode:normal}
-.site-header.site-header::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:rgb(255 255 255 / .02);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);opacity:0;transition:opacity .25s ease}
-.site-header.site-header.is-compact::before{opacity:1}
-.site-header.site-header .header-grid{mix-blend-mode:difference}
+/* Osobna warstwa rozmycia nie zmienia mieszania napisów i logo. */
+.header-backdrop{
+ position:fixed;inset:0 0 auto;z-index:99;pointer-events:none;
+ height:calc(var(--floating-header-height) + 100px);
+ backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
+ mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgb(0 0 0 / .85) 48%,rgb(0 0 0 / .45) 68%,rgb(0 0 0 / .12) 86%,transparent 100%);
+ -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgb(0 0 0 / .85) 48%,rgb(0 0 0 / .45) 68%,rgb(0 0 0 / .12) 86%,transparent 100%);
+ opacity:0;transition:opacity .25s ease
+}
+.header-backdrop.is-active{opacity:1}
+.site-header.site-header{mix-blend-mode:difference}
+.site-header.site-header .header-grid{mix-blend-mode:normal}
 .site-header.site-header .brand .icon{width:208.19px;height:100px;transition:width .25s ease,height .25s ease}
 .site-header.site-header.is-scrolling-down .brand .icon{width:133.24px;height:64px}
-@media(prefers-reduced-motion:reduce){.site-header.site-header::before,.site-header.site-header .brand .icon{transition:none}}
+@media(prefers-reduced-motion:reduce){.header-backdrop,.site-header.site-header .brand .icon{transition:none}}
