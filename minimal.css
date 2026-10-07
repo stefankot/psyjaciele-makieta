@@ -511,3 +511,8 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 
 /* Hero po usunięciu tytułu i hasła: akapit bez dawnego odstępu pod h1. */
 .hero-intro>.hero-links:first-child{margin-top:0}
+
+/* Hero: większy tekst lany oraz powitanie Rialto. */
+.hero-intro .hero-links{font-size:clamp(22px,2.25vw,30px);max-width:34ch;line-height:1.8}
+.hero-links .hero-greeting{font-family:var(--font-emphasis);font-size:calc(1em * var(--rialto-scale));font-style:normal;font-weight:400;letter-spacing:normal}
+.hero-links .hero-inline-pet{inline-size:1.3em;block-size:1.3em;vertical-align:-.3em}
