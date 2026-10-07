@@ -721,3 +721,24 @@ footer .foot-brand>div>p:first-of-type{font-size:var(--type-h4);line-height:1.4;
 .emergency-guide-source{max-width:none}
 @media(max-width:1000px){.emergency-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.emergency-steps{grid-template-columns:1fr}}
+/* Kopia zaproszenia: social media, centralny znak z obracanym pierścieniem. */
+.follow-section{--follow-left-ink:var(--ink);--follow-right-ink:#124e2c}
+.follow-section>.booking-composition{position:relative}
+.follow-section .booking-copy{padding-bottom:calc(var(--s6) + 48px)}
+.follow-section .booking-copy .booking-subtitle{max-width:32ch}
+.follow-section .booking-subtitle a{color:inherit;text-decoration:none}
+.follow-section .booking-subtitle a:hover{text-decoration:underline;text-underline-offset:.2em}
+.follow-section .booking-photo::before{content:"";position:absolute;inset:65% 0 0;z-index:1;background:linear-gradient(transparent,#fbd9c6d9);pointer-events:none}
+.follow-actions{position:absolute;inset:auto var(--gutter) var(--s5);z-index:4;display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3)}
+.follow-actions .booking-social{color:var(--follow-left-ink)}
+.follow-actions .booking-cta{color:var(--follow-right-ink);font-size:var(--type-h4);font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.follow-logo{position:absolute;left:50%;top:50%;translate:-50% -50%;width:clamp(220px,27vw,340px);aspect-ratio:91.38/92.26;z-index:3;pointer-events:none}
+.follow-logo-half{position:absolute;inset:0}
+.follow-logo-left{color:var(--follow-left-ink);clip-path:inset(0 50% 0 0)}
+.follow-logo-right{color:var(--follow-right-ink);clip-path:inset(0 0 0 50%)}
+.follow-logo-half>span{position:absolute;inset:0;background:currentColor;mask:var(--logo-mask) center/contain no-repeat}
+.follow-logo-ring{--logo-mask:url(assets/min/footer-logo-ring.svg);animation:follow-ring-turn 36s linear infinite}
+.follow-logo-center{--logo-mask:url(assets/min/footer-logo-center.svg)}
+@keyframes follow-ring-turn{to{transform:rotate(360deg)}}
+@media(max-width:700px){.follow-section>.booking-composition{min-height:680px}.follow-section .booking-copy{padding-bottom:130px;padding-right:var(--s2)}.follow-section .booking-copy h2{font-size:clamp(26px,6vw,42px)}.follow-section .booking-copy .booking-subtitle{font-size:16px}.follow-actions{inset:auto var(--s2) var(--s4);align-items:flex-end}.follow-actions .booking-social{flex-direction:column;align-items:flex-start;gap:var(--s1)}.follow-actions .booking-cta{font-size:16px}.follow-logo{width:200px}}
+@media(prefers-reduced-motion:reduce){.follow-logo-ring{animation:none}}
