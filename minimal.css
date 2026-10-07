@@ -321,7 +321,7 @@ main .poster-grid .poster-art{grid-column:7/span 6;grid-row:1;align-self:stretch
 .preparation .detail-columns{row-gap:var(--s5)}
 
 /* Komponent quote: autor jako zwykły paragraf z kursywą, bez kapitalików. */
-.quote .review-author{margin-top:var(--content-gap);letter-spacing:normal;text-transform:none;font-variant-caps:normal;& em{font-family:var(--font-emphasis);font-size:calc(1em * var(--rialto-scale));font-weight:400;font-style:normal;letter-spacing:normal;font-variant-caps:normal;font-variant-ligatures:common-ligatures contextual}}
+.quote .review-author{margin-top:var(--content-gap);font-family:Satoshi,Arial,sans-serif;font-size:var(--type-body);line-height:var(--leading-body);font-style:normal;letter-spacing:normal;text-transform:none;font-variant-caps:normal}
 
 /* Globalna waga tekstu prostego; kursywa Rialto pozostaje regularna. */
 :root{--weight-text:700}
