@@ -651,3 +651,7 @@ footer .foot-links h2{margin:0}
  .site-header.site-header .header-brand{gap:8px}
  .site-header.site-header .header-actions>.button{max-width:90px;white-space:normal}
 }
+
+/* Nawigacja przejmuje rzeczywisty kolor tekstu sekcji pod nią. */
+.site-header.site-header{mix-blend-mode:normal}
+.site-header.site-header:not(.menu-open){--ink:var(--nav-ink,#f6b08f);--small-ink:var(--nav-ink,#f6b08f);color:var(--nav-ink,#f6b08f)}
