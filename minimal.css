@@ -533,3 +533,7 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 .people .person .person-name>:is(em,span){display:block;inline-size:fit-content;max-inline-size:100%;margin-inline:auto;text-align:center}
 /* Kompensacja odstępu po ostatnim znaku przy rozstrzelonych kapitalikach. */
 .people .person .person-role,.people .person .person-name>span{padding-inline-start:var(--tracking-caps)}
+
+/* Tekst hero dzieli dokładnie tę samą zieleń co filtr ilustracji (#0b3a20). */
+.hero .hero-copy .hero-intro .hero-links,
+.hero .hero-copy .hero-intro .hero-links :is(a,em){color:var(--ink)}
