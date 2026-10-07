@@ -63,7 +63,7 @@
 
   /* ── ruch ── */
   var small = window.matchMedia('(max-width: 700px)');
-  var AMP = {big: 2, service: 1.5, phone: .6};          // przesunięcie kreski w px; na telefonach × 0,6
+  var AMP = {big: 4, service: 3, phone: .6};          // przesunięcie kreski w px; na telefonach × 0,6
   function saving(){ var c = navigator.connection; return !!(c && c.saveData); }
   function boilScale(){
     var k = small.matches ? AMP.phone : 1;
