@@ -1,0 +1,68 @@
+/* Obserwuj nas: niezależny układ, bez siatki starego zaproszenia. */
+.social-promo-section{--surface:#124e2c;--ink:#f6b08f;--small-ink:#fbd9c6;--social-promo-left-ink:var(--ink);--social-promo-right-ink:#124e2c;padding:0;background:var(--surface);color:var(--ink)}
+.social-promo-section>.social-promo-composition{position:relative;display:block;width:100%;max-width:none;margin:0;padding:0;block-size:clamp(680px,calc(100svh - var(--floating-header-height)),960px);isolation:isolate}
+.social-promo-composition::before{display:none!important}
+#obserwuj-nas .social-promo-copy{position:absolute;inset:0 50% 0 0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:180px;min-width:0;padding:var(--s6) var(--gutter) 140px;background:var(--surface);color:var(--social-promo-left-ink);box-sizing:border-box}
+#obserwuj-nas .social-promo-copy h2{margin:0;inline-size:auto!important;max-inline-size:100%;font-size:var(--type-h2);line-height:1.08}
+#obserwuj-nas .social-promo-copy h2>*{max-inline-size:100%;overflow-wrap:normal}
+.social-promo-bottom{min-width:0}
+.social-promo-subtitle{margin:0;max-width:28ch;font-size:var(--type-h4);line-height:1.4;font-weight:500}
+.social-promo-subtitle a{color:inherit;text-decoration:none}
+.social-promo-subtitle a:hover{text-decoration:underline;text-underline-offset:.2em}
+#obserwuj-nas .social-promo-photo{position:absolute;inset:0 0 0 50%;margin:0;overflow:hidden;z-index:0}
+#obserwuj-nas .social-promo-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(1) contrast(.92)}
+.social-promo-photo::after{content:"";position:absolute;inset:65% 0 0;background:linear-gradient(transparent,#fbd9c6e6);pointer-events:none}
+#obserwuj-nas .social-promo-actions{position:absolute;inset:auto var(--gutter) var(--s5);z-index:4;display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3)}
+.social-promo-social{display:flex;gap:var(--s3);align-items:baseline;color:var(--social-promo-left-ink);font-size:var(--type-h4);line-height:1.4}
+.social-promo-social a,.social-promo-cta{color:inherit;text-decoration:underline;text-underline-offset:4px;font-weight:500}
+.social-promo-cta{color:var(--social-promo-right-ink);font-size:var(--type-h4);line-height:1.4}
+#obserwuj-nas .social-promo-logo{position:absolute;left:50%;top:50%;translate:-50% -50%;width:clamp(220px,25vw,320px);aspect-ratio:91.38/92.26;z-index:3;pointer-events:none}
+.social-promo-logo-half{position:absolute;inset:0}
+.social-promo-logo-left{color:var(--social-promo-left-ink);clip-path:inset(0 50% 0 0)}
+.social-promo-logo-right{color:var(--social-promo-right-ink);clip-path:inset(0 0 0 50%)}
+.social-promo-logo-half>span{position:absolute;inset:0;background:currentColor;mask:var(--logo-mask) center/contain no-repeat}
+.social-promo-logo-ring{--logo-mask:url(assets/min/footer-logo-ring.svg);animation:social-promo-ring-turn 36s linear infinite}
+.social-promo-logo-center{--logo-mask:url(assets/min/footer-logo-center.svg)}
+@keyframes social-promo-ring-turn{to{transform:rotate(360deg)}}
+@media(max-width:700px){
+ .social-promo-section>.social-promo-composition{block-size:760px}
+ #obserwuj-nas .social-promo-copy{padding:var(--s4) var(--s2) 150px;gap:160px}
+ #obserwuj-nas .social-promo-copy h2{font-size:clamp(26px,6vw,42px)}
+ .social-promo-subtitle{font-size:14px;line-height:1.5}
+ #obserwuj-nas .social-promo-actions{inset:auto var(--s2) var(--s4);align-items:flex-end}
+ .social-promo-social{flex-direction:column;align-items:flex-start;gap:var(--s1);font-size:16px}
+ .social-promo-cta{font-size:16px}
+ #obserwuj-nas .social-promo-logo{width:160px}
+}
+@media(prefers-reduced-motion:reduce){.social-promo-logo-ring{animation:none}}
+
+
+/* Obserwuj nas: dwie kolumny, jeden znak w kolorze tekstu. */
+#obserwuj-nas>.social-promo-composition{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr);height:max(560px,75vw);min-height:560px;block-size:auto;gap:0;padding:0;position:relative;overflow:hidden}
+#obserwuj-nas .social-promo-copy{position:relative;inset:auto;grid-area:1/1;margin:0;width:100%;height:100%;min-height:0;z-index:1}
+#obserwuj-nas .social-promo-photo{position:relative;inset:auto;grid-area:1/2;margin:0;width:100%;height:100%;min-height:0;z-index:0}
+#obserwuj-nas .social-promo-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#obserwuj-nas .social-promo-logo{position:absolute;left:50%;top:50%;inset-inline-end:auto;inset-block-end:auto;translate:-50% -50%;width:clamp(220px,25vw,320px);height:auto;aspect-ratio:91.38/92.26;color:var(--ink);z-index:3;pointer-events:none}
+#obserwuj-nas .social-promo-logo svg{display:block;width:100%;height:auto;fill:currentColor;overflow:visible}
+#obserwuj-nas .social-promo-ring{transform-box:view-box;transform-origin:50% 50%;animation:social-promo-simple-spin 30s linear infinite}
+#obserwuj-nas .social-promo-actions{position:absolute;inset:auto var(--gutter) var(--s5);z-index:4}
+@keyframes social-promo-simple-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@media(max-width:700px){#obserwuj-nas>.social-promo-composition{height:clamp(420px,140vw,600px);min-height:420px}#obserwuj-nas .social-promo-logo{width:160px}#obserwuj-nas .social-promo-actions{inset:auto var(--s2) var(--s4)}}
+@media(prefers-reduced-motion:reduce){#obserwuj-nas .social-promo-ring{animation:none}}
+
+/* Paleta identyczna jak w sekcji Zespół. */
+#obserwuj-nas{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6;--social-promo-left-ink:var(--ink);--social-promo-right-ink:var(--ink)}
+#obserwuj-nas .social-promo-photo::after{content:none;display:none}
+
+/* Cała sekcja 4:3, połowa ze zdjęciem 2:3: obraz wypełnia kolumny bez pasów. */
+#obserwuj-nas .social-promo-photo{background:#d4d4d4}
+#obserwuj-nas .social-promo-photo img{object-fit:cover;object-position:center top;filter:none}
+
+#obserwuj-nas .social-promo-copy{gap:var(--s4);padding-bottom:120px}
+@media(max-width:700px){#obserwuj-nas .social-promo-copy{padding:var(--s4) var(--s2) 90px;gap:var(--s2)}#obserwuj-nas .social-promo-logo{width:80px}#obserwuj-nas .social-promo-subtitle{font-size:14px;line-height:1.4}#obserwuj-nas .social-promo-actions{bottom:var(--s3)}}
+
+/* Własna typografia, niezależna od nagłówków zaproszenia. */
+#obserwuj-nas .social-promo-copy h2{display:grid;justify-items:start;gap:8px;line-height:1.08;text-align:left}
+#obserwuj-nas .social-promo-kicker{font-family:var(--font-main);--weight-text:900;font-weight:900!important;font-size:clamp(16px,1.7vw,24px);line-height:1.12;letter-spacing:var(--tracking-caps);text-transform:uppercase}
+#obserwuj-nas .social-promo-copy h2 em{font-family:var(--font-emphasis);font-style:normal;font-weight:400;font-size:clamp(34px,4.4vw,64px);line-height:1.02;letter-spacing:-.025em}
+@media(max-width:700px){#obserwuj-nas .social-promo-kicker{font-size:14px}#obserwuj-nas .social-promo-copy h2 em{font-size:clamp(24px,6vw,42px)}}
