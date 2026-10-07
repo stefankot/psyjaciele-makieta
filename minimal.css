@@ -519,3 +519,10 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 /* Zerowa wysokość miejsca w linii: większe zdjęcie nie powiększa interlinii. */
 .hero-links .hero-inline-pet{position:relative;inline-size:1.65em;block-size:0;vertical-align:.35em;overflow:visible;background:none;filter:none}
 .hero-links .hero-inline-pet::before{content:"";position:absolute;inset-inline-start:0;top:0;inline-size:100%;aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:url(assets/pets-phone-atlas.png) var(--pet-x) var(--pet-y)/800% 800%;filter:grayscale(1)}
+
+/* Dolny wiersz zaproszenia: CTA po lewej, social media po prawej. */
+.booking .booking-copy .booking-bottom{grid-template-columns:minmax(0,1fr) auto;column-gap:var(--s3);align-items:baseline}
+.booking .booking-bottom .booking-subtitle{grid-column:1/-1}
+.booking .booking-bottom .booking-cta{grid-column:1;grid-row:2}
+.booking .booking-bottom .booking-social{grid-column:2;grid-row:2;justify-self:end;justify-content:flex-end;flex-wrap:wrap}
+@media(max-width:400px){.booking-social{gap:var(--s2)}}
