@@ -10,3 +10,7 @@
 @keyframes follow-simple-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @media(max-width:700px){#obserwuj-nas>.follow-composition{height:988px}#obserwuj-nas .follow-logo{width:160px}#obserwuj-nas .follow-actions{inset:auto var(--s2) var(--s4)}}
 @media(prefers-reduced-motion:reduce){#obserwuj-nas .follow-ring{animation:none}}
+
+/* Paleta identyczna jak w sekcji Zespół. */
+#obserwuj-nas{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6;--follow-left-ink:var(--ink);--follow-right-ink:var(--ink)}
+#obserwuj-nas .follow-photo::after{background:linear-gradient(transparent,#f6b08fe6)}
