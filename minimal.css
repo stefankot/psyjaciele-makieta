@@ -702,3 +702,10 @@ footer .foot-brand>div>p:first-of-type{font-size:var(--type-h4);line-height:1.4;
 .after-hours-panel .emergency-clinics>article>*{border-bottom:0}
 .after-hours-panel .emergency-clinics>article>div:first-child{border-bottom:1px solid currentColor}
 .after-hours-panel>p{inline-size:100%;max-inline-size:none;border-top:1px solid currentColor}
+
+/* Opis nagłówka zajmuje prawą jedną trzecią tabeli. */
+@media(min-width:701px){
+ .after-hours-panel>.poster-heading{padding:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+ .after-hours-panel>.poster-heading>h3{grid-column:1/span 2;padding:var(--s4)}
+ .after-hours-panel>.poster-heading>p{grid-column:3;padding:var(--s4);width:100%;max-width:none}
+}
