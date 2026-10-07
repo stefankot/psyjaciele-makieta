@@ -514,5 +514,5 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 
 /* Hero: większy tekst lany oraz powitanie Rialto. */
 .hero-intro .hero-links{font-size:clamp(22px,2.25vw,30px);max-width:34ch;line-height:1.8}
-.hero-links .hero-greeting{display:block;width:fit-content;margin-bottom:.22em;font-family:var(--font-emphasis);font-size:2em;line-height:1.08;font-style:normal;font-weight:400;letter-spacing:normal}
+.hero-links .hero-greeting{display:block;width:fit-content;margin-bottom:0;font-family:var(--font-emphasis);font-size:2em;line-height:1.08;font-style:normal;font-weight:400;letter-spacing:normal}
 .hero-links .hero-inline-pet{inline-size:1.3em;block-size:1.3em;vertical-align:-.3em}
