@@ -1,0 +1,97 @@
+/* Psyjaciele — warstwa ruchu, wersja 3. Wymaga animacje.js (dodaje klasę .motion na <html> i klasy stanów).
+   Bez JS i przy prefers-reduced-motion: reduce strona wygląda jak dotąd — nic nie jest ukryte ani poruszone. */
+:root{
+  --dur-fast:120ms;--dur-quick:200ms;--dur-base:320ms;--dur-slow:480ms;--dur-slower:640ms;
+  --ease-out:cubic-bezier(.22,1,.36,1);--ease-standard:cubic-bezier(.4,0,.2,1);--ease-bounce-soft:cubic-bezier(.34,1.56,.64,1);
+  --boil-cycle:720ms;      /* 4 klatki kreski, ok. 5,5 klatki na sekundę */
+  --rule-stagger:140ms;
+}
+@property --rule{syntax:'<percentage>';inherits:false;initial-value:100%}
+@property --land{syntax:'<percentage>';inherits:false;initial-value:0%}
+@property --rule-hover{syntax:'<percentage>';inherits:false;initial-value:0%}
+
+/* ── Stałe, bez ruchu ───────────────────────────────────────────── */
+/* Kropka „teraz otwarte / zamknięte" przy dzisiejszych godzinach w nagłówku. */
+.site-header .header-hours .is-today dt::after{content:"";display:inline-block;inline-size:.5em;block-size:.5em;margin-inline-start:.5em;border:1.5px solid currentColor;border-radius:50%;vertical-align:.08em}
+.site-header .header-hours .is-today.is-open dt::after{background:currentColor}
+/* Ostatnia godzina przed zamknięciem: kropka wypełniona w połowie. */
+.site-header .header-hours .is-today.is-open.is-closing dt::after{background:linear-gradient(to right,currentColor 50%,transparent 0)}
+/* Gwiazdki wypełnione dokładnie do średniej oceny (szerokości liczy JS z tekstu obok). */
+.reviews .review-source .icon.is-rated{clip-path:inset(0 var(--rating-cut,0px) 0 0)}
+/* Strzałka jako osobny klocek: podkreślenie odnośnika nie przechodzi pod strzałką. */
+.type-arrow-glyph{display:inline-block}
+
+@media (prefers-reduced-motion:no-preference){
+
+/* Żywa kreska: każda ilustracja drga w pętli jak rysunek animowany klatka po klatce.
+   Klasę .is-boiling JS nadaje tylko ilustracjom widocznym w oknie; faza każdej jest przesunięta. */
+html.motion .is-boiling{animation:boil var(--boil-cycle) steps(1,end) infinite}
+@keyframes boil{0%{filter:url(#boil-1)}25%{filter:url(#boil-2)}50%{filter:url(#boil-3)}75%,100%{filter:url(#boil-4)}}
+/* Ilustracje, które mają już własny filtr koloru lub kreski: filtry łączone w łańcuch. */
+html.motion .emergency figure.section-illustration.is-boiling{animation-name:boil-emergency}
+@keyframes boil-emergency{0%{filter:url(#emergency-fine-line) url(#boil-1)}25%{filter:url(#emergency-fine-line) url(#boil-2)}50%{filter:url(#emergency-fine-line) url(#boil-3)}75%,100%{filter:url(#emergency-fine-line) url(#boil-4)}}
+html.motion img.service-art.is-boiling{animation-name:boil-service}
+@keyframes boil-service{0%{filter:url(#service-light-ink) url(#boil-s1)}25%{filter:url(#service-light-ink) url(#boil-s2)}50%{filter:url(#service-light-ink) url(#boil-s3)}75%,100%{filter:url(#service-light-ink) url(#boil-s4)}}
+/* Najechanie: kolor hover i dwa razy szybsza kreska. */
+html.motion .services .bento .tile:focus-within img.service-art.is-boiling{animation-name:boil-service-hover;animation-duration:calc(var(--boil-cycle) / 2)}
+@media (hover:hover) and (pointer:fine){html.motion .services .bento .tile:hover img.service-art.is-boiling{animation-name:boil-service-hover;animation-duration:calc(var(--boil-cycle) / 2)}}
+@keyframes boil-service-hover{0%{filter:url(#service-hover-ink) url(#boil-s1)}25%{filter:url(#service-hover-ink) url(#boil-s2)}50%{filter:url(#service-hover-ink) url(#boil-s3)}75%,100%{filter:url(#service-hover-ink) url(#boil-s4)}}
+
+/* Linie nad kolumnami rysują się od lewej, kolumna po kolumnie; start, gdy linia jest już wyraźnie w oknie. */
+html.motion .rule-wait{border-top-color:transparent!important;--rule:0%}
+/* !important: skrót border w regułach kart zeruje border-image i ma wyższą specyficzność. */
+html.motion .rule-draw{border-image:linear-gradient(to right,currentColor var(--rule),transparent 0) 1!important;animation:rule-draw 900ms var(--ease-out) both;animation-delay:calc(var(--i,0) * var(--rule-stagger))}
+@keyframes rule-draw{from{--rule:0%}to{--rule:100%}}
+/* Karty usług i zespołu: jedna linia z dwóch warstw — rysowanie (--rule) i kolor hover wjeżdżający od lewej (--rule-hover). */
+html.motion .services .bento .tile,html.motion .team .people .person{border-image:linear-gradient(to right,var(--hover-ink,currentColor) var(--rule-hover),currentColor 0 var(--rule),transparent 0) 1!important}
+html.motion .services .bento .tile{transition:--rule-hover 520ms var(--ease-standard),border-color .2s ease}
+html.motion .team .people .person{transition:--rule-hover 520ms var(--ease-standard),border-color .2s ease,color .2s ease}
+html.motion .services .bento .tile:focus-within,html.motion .team .people .person:focus-within{--rule-hover:100%}
+@media (hover:hover) and (pointer:fine){html.motion .services .bento .tile:hover,html.motion .team .people .person:hover{--rule-hover:100%}}
+
+
+/* Lądowanie: gdy przewijanie do sekcji się zakończy, pod jej tytułem przelatuje kreska. */
+html.motion .is-landed{background:linear-gradient(currentColor,currentColor) left bottom/var(--land) 2px no-repeat;animation:land 1.2s var(--ease-standard) both}
+@keyframes land{0%{--land:0%;background-position:left bottom}45%,60%{--land:100%;background-position:left bottom}61%{--land:100%;background-position:right bottom}100%{--land:0%;background-position:right bottom}}
+
+/* Kropka godzin pojawia się raz, po załadowaniu. */
+html.motion .site-header .header-hours .is-today dt::after{animation:pop var(--dur-base) var(--ease-bounce-soft) .6s both}
+@keyframes pop{from{scale:0}to{scale:1}}
+
+/* Strzałki przesuwają się w swoim kierunku. */
+html.motion .type-arrow-glyph{transition:translate var(--dur-quick) var(--ease-out)}
+html.motion :is(a,button):is(:hover,:focus-visible) .type-arrow-glyph{translate:4px 0}
+html.motion :is(a,button):is(:hover,:focus-visible) .is-diagonal .type-arrow-glyph{translate:3px -3px}
+
+/* Gwiazdki zapalają się jedna po drugiej, potem ostatnia przycina się do oceny. */
+html.motion .reviews .review-source .icon.will-rate{clip-path:inset(0 var(--stars-none,100%) 0 0)}
+html.motion .reviews .review-source .icon.is-rating{animation:rate 1.1s steps(5,start) .45s both}
+@keyframes rate{from{clip-path:inset(0 var(--stars-none) 0 0)}to{clip-path:inset(0 var(--stars-all) 0 0)}}
+html.motion .reviews .review-source .icon.is-rated{transition:clip-path var(--dur-base) var(--ease-out)}
+
+/* Zdjęcia pupili w zdaniu hero: wskakują po kolei przy ładowaniu, potem co kilka sekund zmienia się jedno z nich. */
+html.motion .hero-links .hero-inline-pet:not(.is-popped)::before{animation:pet-pop var(--dur-slow) var(--ease-bounce-soft) both}
+html.motion .hero-links .hero-inline-pet:not(.is-popped):nth-of-type(1)::before{animation-delay:.25s}
+html.motion .hero-links .hero-inline-pet:not(.is-popped):nth-of-type(2)::before{animation-delay:.45s}
+html.motion .hero-links .hero-inline-pet:not(.is-popped):nth-of-type(3)::before{animation-delay:.65s}
+@keyframes pet-pop{from{scale:.2;opacity:0}to{scale:1;opacity:1}}
+html.motion .hero-links .hero-inline-pet.is-swapping::before{animation:pet-swap var(--dur-base) var(--ease-bounce-soft)}
+@keyframes pet-swap{from{scale:.55}to{scale:1}}
+
+/* Menu rozwija się od góry, pozycje wchodzą po kolei. */
+html.motion .site-header .site-nav.is-open{animation:nav-in var(--dur-base) var(--ease-out)}
+@keyframes nav-in{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+html.motion .site-header .site-nav.is-open a{animation:nav-link var(--dur-base) var(--ease-out) both}
+html.motion .site-header .site-nav.is-open a:nth-child(2){animation-delay:40ms}
+html.motion .site-header .site-nav.is-open a:nth-child(3){animation-delay:80ms}
+html.motion .site-header .site-nav.is-open a:nth-child(4){animation-delay:120ms}
+html.motion .site-header .site-nav.is-open a:nth-child(5){animation-delay:160ms}
+@keyframes nav-link{from{opacity:0;translate:0 -6px}to{opacity:1;translate:0 0}}
+
+/* Obrys fokusu odsuwa się od elementu zamiast pojawiać się skokiem. */
+html.motion :is(a,button):focus-visible{animation:focus-in var(--dur-quick) var(--ease-out)}
+@keyframes focus-in{from{outline-offset:0}}
+
+/* Cienka linia postępu czytania u góry, w tej samej technice co nagłówek. */
+html.motion .scroll-progress{position:fixed;inset:0 0 auto 0;block-size:2px;background:#fff;mix-blend-mode:difference;transform-origin:0 50%;transform:scaleX(var(--progress,0));z-index:101;pointer-events:none}
+}
