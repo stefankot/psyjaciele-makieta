@@ -450,12 +450,9 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 .emergency .after-hours{margin-top:var(--group-gap);border-top:var(--column-rule-width) solid currentColor;padding-top:var(--group-gap)}
 
 /* Contact hours: temporary placement below the three contact columns. */
-.contact .contact-hours-row .contact-hours{grid-column:auto;grid-row:auto;grid-template-columns:repeat(6,minmax(0,1fr));padding:var(--s3);& h3{grid-column:1/-1}& .opening-hours{grid-column:1/-1;&>div:first-child{grid-column:1/span 3}&>div:last-child{grid-column:4/span 3}}}
 .contact .section-stack>.contact-columns{grid-column:auto;grid-row:auto;grid-template-columns:var(--cols)}
 @media(max-width:700px){.contact .section-stack>.contact-columns{grid-template-columns:1fr}}
 
-.contact .contact-hours-row .contact-hours{grid-column:1/span 6}
-@media(max-width:700px){.contact .contact-hours-row .contact-hours{grid-column:1/-1}}
 
 /* Wariant poster-grid: kontakt — ilustracja przy górnej krawędzi, tytuł nad nią. */
 .contact .poster-copy{position:relative;z-index:2}
