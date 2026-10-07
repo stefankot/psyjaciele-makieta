@@ -1,0 +1,126 @@
+/* Korekta wydawnicza strony głównej. Ostatnia warstwa po arkuszach komponentów.
+   Stałe osie łamów, wspólne wiersze kart i odstępy oparte na module 8 px. */
+:root{
+ --width:1280px;
+ --gap:32px;
+ --content-gap:16px;
+ --group-gap:64px;
+ --row-gap:64px;
+ --section-space:clamp(64px,8vw,104px);
+ --poster-intro-height:clamp(360px,32vw,440px);
+}
+
+/* Każdy układ kolumnowy używa tej samej szpalty i odstępu. */
+.section-stack{gap:var(--group-gap)}
+.arrival .arrival-details,.arrival-details,.equipment-grid,.preparation .detail-columns,
+.contact .section-stack>.contact-columns{column-gap:var(--gap);row-gap:var(--content-gap)}
+.preparation .detail-columns{row-gap:48px}
+.poster-copy{gap:48px}
+.poster-heading,.poster-bottom{gap:var(--content-gap)}
+main .poster-heading h2{inline-size:100%;max-inline-size:100%;white-space:normal}
+.poster-bottom p{max-inline-size:36ch}
+.poster-grid .poster-art{min-inline-size:0}
+.detail-columns h3,.equipment-grid h3,.contact-columns h3{font-size:26px;line-height:1.2;min-height:0}
+.detail-columns p,.equipment-grid p,.contact-columns p{max-inline-size:38ch;text-wrap:pretty}
+.contact-columns p{overflow-wrap:break-word}
+
+/* Wspólne trzy wiersze w każdym rzędzie usług: tytuł / opis / ilustracja.
+   Subgrid wyrównuje ilustracje mimo różnej długości opisu. */
+.services .bento{row-gap:16px;align-items:stretch}
+.services .bento .tile:nth-child(n){grid-column:auto/span 4;grid-row:span 3}
+.services .bento .tile:has(img.service-art){grid-template-rows:subgrid;gap:16px;padding:24px 0 48px;align-content:stretch}
+.services .bento .tile h3{align-self:start;text-wrap:balance}
+.services .bento .tile p.tile-description{max-inline-size:38ch;text-wrap:pretty}
+.services .bento .tile img.service-art{align-self:start}
+
+/* Cytat i podpis są jedną grupą; podpisy w danym rzędzie mają wspólną linię. */
+.reviews .quote blockquote{padding-top:24px;hanging-punctuation:first last}
+.reviews .quotes>.quote:nth-child(n+4){margin-top:32px}
+
+/* Instrukcje: jednakowe początki akapitów w każdym rzędzie. */
+.emergency-guide{margin-top:0;gap:32px}
+.emergency-steps{grid-template-rows:auto auto;row-gap:16px}
+.emergency-steps>li{display:grid;grid-row:span 2;grid-template-rows:subgrid;padding-top:24px;padding-bottom:24px}
+.emergency-steps h4{margin:0;align-content:start}
+.emergency-steps p{text-wrap:pretty}
+.after-hours-panel>.poster-heading>h3{align-self:center}
+.after-hours-panel .emergency-clinics>article>*{padding-inline:32px}
+.after-hours-panel>p{padding-inline:32px}
+
+/* Pełna sekcja 4:3; fotografia zajmuje sześć kolumn i ma proporcję 2:3.
+   block-size nie może być auto: nadpisywało poprzednią deklarację height. */
+#obserwuj-nas>.social-promo-composition{height:auto;block-size:max(720px,75vw);min-block-size:720px}
+#obserwuj-nas .social-promo-copy{padding-block:64px 128px}
+#obserwuj-nas .social-promo-actions{bottom:48px}
+
+/* Oddech między znakiem, adresem i opisem w stopce. */
+footer .foot-brand{display:grid;align-content:start;gap:32px}
+footer .foot-brand p{margin-top:0}
+footer .foot-links>div{gap:16px}
+footer .footer-team .people{line-height:2}
+/* Obracany prostokąt maski jest szerszy niż sam okrągły znak. */
+footer .footer-logo{overflow:clip}
+
+@media(min-width:701px) and (max-width:1000px){
+ :root{--gap:24px;--group-gap:48px;--row-gap:48px}
+ .services .bento .tile:nth-child(n){grid-column:auto/span 6}
+ .arrival-details>div,.preparation .detail-columns>div,
+ .equipment-grid>div{grid-column:span 6}
+ .contact .section-stack>.contact-columns>.contact-column{grid-column:span 6;grid-row:span 2}
+ .contact .section-stack>.contact-columns>.contact-column:last-child{grid-column:1/-1;max-inline-size:60ch}
+ .reviews .quotes>.quote:nth-child(n){grid-column:span 6}
+ .reviews .quotes>.quote:nth-child(n+3){margin-top:32px}
+ .poster-copy{gap:32px}
+}
+
+@media(max-width:700px){
+ :root{--gap:16px;--group-gap:48px;--row-gap:48px;--gutter:24px;--section-space:64px}
+ .hero{height:auto;max-height:none;min-height:96svh;padding-bottom:32px}
+ .hero>.wrap.grid{height:auto;grid-template-rows:auto auto;align-content:start;row-gap:32px}
+ .hero .hero-intro{grid-column:1/-1;grid-row:1}
+ .hero-intro .hero-links{font-size:22px;line-height:1.7;max-inline-size:34ch}
+ main .hero .wrap .hero-art{grid-column:1/-1;grid-row:2;height:auto;aspect-ratio:847/480;margin:0;align-self:end}
+ .hero-art img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+ .poster-grid{row-gap:32px}
+ .poster-copy,.arrival .poster-copy{grid-column:1/-1;grid-row:1;gap:24px;min-height:0}
+ .poster-bottom{align-self:start}
+ main .poster-grid .poster-art,main .contact .poster-grid .poster-art,
+ .arrival .poster-grid .poster-art{grid-column:1/-1;grid-row:2;height:auto;aspect-ratio:var(--art-ratio,1.6);max-height:360px}
+ .contact-copy h2{max-inline-size:100%;white-space:normal}
+ .services .bento .tile:nth-child(n){grid-column:1/-1;grid-row:auto}
+ .services .bento .tile:has(img.service-art){grid-template-rows:auto auto auto;padding:24px 0 32px}
+ .services .bento{row-gap:24px}
+ .services .bento .tile img.service-art{max-inline-size:440px;justify-self:center}
+ .arrival-details>div,.preparation .detail-columns>div,.equipment-grid>div{grid-column:1/-1}
+ .arrival-details,.equipment-grid,.preparation .detail-columns{row-gap:32px}
+ .detail-columns h3,.equipment-grid h3,.contact-columns h3{font-size:24px}
+ .reviews .quotes>.quote:nth-child(n){grid-column:1/-1;grid-row:auto;margin-top:0;grid-template-rows:auto}
+ .reviews .quote blockquote{grid-template-rows:auto;grid-row:auto;gap:16px}
+ .reviews .quotes{row-gap:32px;grid-template-rows:none}
+ :root .team .people .person .person-name>span{font-size:16px;letter-spacing:.08em;overflow-wrap:break-word}
+ :root .team .people .person .person-name>em{font-size:clamp(21px,6vw,30px)}
+ .emergency-steps{grid-template-columns:1fr;grid-template-rows:none;row-gap:24px}
+ .emergency-steps>li{grid-row:auto;grid-template-rows:auto auto;gap:16px;padding-bottom:0}
+ .after-hours-panel .emergency-clinics>article>*,.after-hours-panel>p{padding-inline:24px}
+ /* Na telefonie dwa bardzo wąskie łamy ucinały głowę kota.
+    Pełny kadr pod tekstem zachowuje tę samą proporcję zdjęcia 2:3. */
+ #obserwuj-nas>.social-promo-composition{block-size:auto;min-block-size:680px;grid-template-columns:1fr;grid-template-rows:auto auto}
+ #obserwuj-nas .social-promo-copy{grid-area:1/1;block-size:360px;min-block-size:360px;padding:32px 24px 56px;gap:48px}
+ #obserwuj-nas .social-promo-photo{grid-area:2/1;aspect-ratio:2/3;height:auto}
+ #obserwuj-nas .social-promo-logo{top:360px}
+ #obserwuj-nas .social-promo-actions{inset-inline:24px;bottom:32px}
+ #obserwuj-nas .social-promo-subtitle{font-size:16px;line-height:1.5}
+ footer .foot-brand{gap:24px}
+ footer .foot-links>div{gap:16px}
+ footer .footer-logo{max-inline-size:260px}
+}
+
+@media(max-width:600px){
+ :root{--floating-header-height:205px}
+ html{scroll-padding-top:216px}
+ .site-header.site-header .header-grid{grid-template-rows:72px auto}
+ .site-header.site-header .header-info>*{font-size:14px;line-height:20px}
+ .site-header.site-header .brand .icon{width:clamp(120px,38.5vw,150px);height:auto;aspect-ratio:208.19/100}
+ .site-header.site-header.is-scrolling-down .brand .icon{width:clamp(100px,30vw,117px);height:auto}
+ .site-header.site-header .header-brand .menu-toggle{margin-top:0}
+}
