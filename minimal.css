@@ -627,7 +627,7 @@ footer .foot-links h2{margin:0}
 /* Osobna warstwa rozmycia nie zmienia mieszania napisów i logo. */
 .header-backdrop{
  position:fixed;inset:0 0 auto;z-index:99;pointer-events:none;
- height:calc(var(--floating-header-height) + 100px);
+ height:calc(var(--floating-header-height) + 24px);
  backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
  mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgb(0 0 0 / .85) 48%,rgb(0 0 0 / .45) 68%,rgb(0 0 0 / .12) 86%,transparent 100%);
  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgb(0 0 0 / .85) 48%,rgb(0 0 0 / .45) 68%,rgb(0 0 0 / .12) 86%,transparent 100%);
