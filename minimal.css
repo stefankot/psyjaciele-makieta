@@ -698,7 +698,6 @@ footer .foot-brand>div>p:first-of-type{font-size:var(--type-h4);line-height:1.4;
 .after-hours-panel>.poster-heading{background:var(--ink);color:var(--surface);border-bottom:1px solid var(--ink)}
 .emergency .after-hours-panel>.poster-heading :is(h3,p){color:var(--surface)}
 .after-hours-panel>.poster-heading>p{max-width:none;text-wrap:pretty}
-.after-hours-panel>.poster-heading>p>span{display:block}
 .after-hours-panel .emergency-clinics>article>*{border-bottom:0}
 .after-hours-panel .emergency-clinics>article>div:first-child{border-bottom:1px solid currentColor}
 .after-hours-panel>p{inline-size:100%;max-inline-size:none;border-top:1px solid currentColor}
@@ -711,7 +710,6 @@ footer .foot-brand>div>p:first-of-type{font-size:var(--type-h4);line-height:1.4;
 }
 
 .after-hours-panel>.poster-heading>p{min-inline-size:0;overflow-wrap:normal}
-.after-hours-panel>.poster-heading>p>span{white-space:normal;text-wrap:pretty}
 
 /* Sześć instrukcji dla opiekuna: wspólny rytm trzech kolumn. */
 .emergency-guide{margin-top:var(--group-gap);display:grid;gap:var(--s4)}
