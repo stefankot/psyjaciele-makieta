@@ -694,11 +694,11 @@ footer .foot-brand>div>p:first-of-type{font-size:var(--type-h4);line-height:1.4;
 }
 
 /* Hierarchia panelu: mocna góra, wypełniony nagłówek, lekkie podziały klinik. */
-.emergency .section-stack>.after-hours-panel{border-inline-width:.5px;border-bottom-width:1px;border-top-width:3px}
-.after-hours-panel>.poster-heading{background:var(--ink);color:var(--surface);border-bottom:2px solid var(--ink)}
+.emergency .section-stack>.after-hours-panel{border-width:1px}
+.after-hours-panel>.poster-heading{background:var(--ink);color:var(--surface);border-bottom:1px solid var(--ink)}
 .emergency .after-hours-panel>.poster-heading :is(h3,p){color:var(--surface)}
 .after-hours-panel>.poster-heading>p{max-width:none;text-wrap:pretty}
 .after-hours-panel>.poster-heading>p>span{display:block}
 .after-hours-panel .emergency-clinics>article>*{border-bottom:0}
-.after-hours-panel .emergency-clinics>article>div:first-child{border-bottom:2px solid currentColor}
+.after-hours-panel .emergency-clinics>article>div:first-child{border-bottom:1px solid currentColor}
 .after-hours-panel>p{inline-size:100%;max-inline-size:none;border-top:1px solid currentColor}
