@@ -448,3 +448,8 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 /* Emergency divider: full 12-column width, equal spacing on both sides. */
 .emergency .section-stack{row-gap:0}
 .emergency .after-hours{margin-top:var(--group-gap);border-top:var(--column-rule-width) solid currentColor;padding-top:var(--group-gap)}
+
+/* Contact intro uses poster-grid; hours remain prominent below the intro copy. */
+.contact .poster-bottom .contact-hours{grid-column:auto;grid-row:auto;grid-template-columns:repeat(6,minmax(0,1fr));padding:var(--s3);& h3{grid-column:1/-1}& .opening-hours{grid-column:1/-1;&>div:first-child{grid-column:1/span 3}&>div:last-child{grid-column:4/span 3}}}
+.contact .section-stack>.contact-columns{grid-column:auto;grid-row:auto;grid-template-columns:var(--cols)}
+@media(max-width:700px){.contact .section-stack>.contact-columns{grid-template-columns:1fr}}
