@@ -448,7 +448,7 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 
 /* Emergency divider: full 12-column width, equal spacing on both sides. */
 .emergency .section-stack{row-gap:0}
-.emergency .after-hours{margin-top:var(--group-gap);border-top:var(--column-rule-width) solid currentColor;padding-top:var(--group-gap)}
+.emergency .after-hours{margin-top:var(--group-gap);border-top:3px solid currentColor;padding-top:var(--group-gap)}
 
 /* Contact hours: temporary placement below the three contact columns. */
 .contact .section-stack>.contact-columns{grid-column:auto;grid-row:auto;grid-template-columns:var(--cols)}
