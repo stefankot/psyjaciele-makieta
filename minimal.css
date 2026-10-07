@@ -556,3 +556,7 @@ footer .foot-links h2{margin:0}
 .services .bento .tile{position:relative;--surface:#124e2c;--ink:#cfdcc3;--small-ink:#cfdcc3;background:transparent;border:0;border-top:var(--column-rule-width) solid currentColor;padding:var(--column-rule-gap) 0 var(--s3)}
 .services .bento .tile::before{display:none}
 .services .bento .tile img.service-art{width:100%;filter:url(#service-light-ink);mix-blend-mode:normal}
+
+/* Usługa: tytuł i opis nad ilustracją. */
+.services .bento .tile:has(img.service-art){grid-template-rows:auto minmax(calc(4 * var(--leading-body)),auto) auto}
+.services .bento .tile p.tile-description{align-self:start}
