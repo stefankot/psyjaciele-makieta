@@ -177,12 +177,8 @@
   function pets(){
     var list = [].slice.call(document.querySelectorAll('.hero-links .hero-inline-pet')); if(!list.length) return;
     var hero = document.querySelector('.hero'), visible = true, turn = 0, timer, popped;
-    function frameOf(p){ return p.dataset.frame; }
     function show(pet, animate){
-      var used = list.map(frameOf), n;
-      do { n = Math.floor(Math.random() * 64); } while(used.indexOf(String(n)) > -1);
-      pet.dataset.frame = n;
-      pet.style.setProperty('--pet-x', (n % 8 * 100 / 7) + '%'); pet.style.setProperty('--pet-y', (Math.floor(n / 8) * 100 / 7) + '%');
+      window.psyPetPhotos.swap(pet);
       if(!animate) return;
       pet.classList.remove('is-swapping'); void pet.offsetWidth; pet.classList.add('is-swapping');
       setTimeout(function(){ pet.classList.remove('is-swapping'); }, 400);

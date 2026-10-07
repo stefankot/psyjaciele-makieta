@@ -187,7 +187,7 @@ h1{--roman-heading-scale:var(--roman-h1-scale)}
 .about .portrait-circle img{width:100%;height:100%;object-fit:cover;place-self:center;transform:translateY(8%);filter:none}
 
 
-.about .halo-dot{background-image:url(assets/pets-phone-atlas.png);background-size:800% 800%;background-position:var(--pet-x) var(--pet-y);background-repeat:no-repeat}
+.about .halo-dot{background-image:var(--pet-atlas,url(assets/pets-phone-atlas.png));background-size:800% 800%;background-position:var(--pet-x) var(--pet-y);background-repeat:no-repeat}
 
 .sample-photo{position:relative;display:grid;overflow:hidden;min-height:var(--s7);aspect-ratio:var(--phi);margin:0;& img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}& figcaption{position:relative;align-self:end;padding:var(--s2);font-size:var(--type-body);line-height:var(--leading-body);color:var(--ink);background:color-mix(in srgb,var(--surface) 90%,transparent);z-index:1}}
 
@@ -247,7 +247,7 @@ main :is(.team .drawing,.contact-art){grid-column:1/span 6}
 @media(max-width:600px){.people .person,.people .person:last-child{grid-column:1/-1}}
 
 /* Zaproszenie: dwie poziome połówki i CTA na ich styku. */
-.booking{padding:0;&>.wrap.booking-composition{max-width:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:clamp(580px,calc(100svh - var(--floating-header-height)),960px);isolation:isolate;&::before{display:none}}& .booking-copy{grid-column:1;grid-row:1;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto;padding:var(--s6) var(--gutter);background:var(--surface);color:var(--ink);z-index:2;& h2{grid-column:1;grid-row:1;max-width:none;margin:0}& .booking-subtitle{grid-column:1;grid-row:3;align-self:end;max-width:27ch;color:var(--ink);font-size:var(--type-h4);line-height:1.4;letter-spacing:0}}& .booking-photo{grid-column:2;grid-row:1;min-width:0;min-height:0;position:relative;overflow:hidden;z-index:0;& img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(1) contrast(.92)}&::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 2px,#00000020 3px 4px);opacity:.16;mix-blend-mode:multiply}}& .booking-pets{position:absolute!important;inset:0;z-index:3!important;pointer-events:none}& .booking-pet{position:absolute;left:var(--x);top:var(--y);width:clamp(32px,6vw,80px);aspect-ratio:1;clip-path:circle(50%);background:url(assets/pets-phone-atlas.png) var(--pet-x) var(--pet-y)/800% 800%;transform:translate(-50%,-50%)}}
+.booking{padding:0;&>.wrap.booking-composition{max-width:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:clamp(580px,calc(100svh - var(--floating-header-height)),960px);isolation:isolate;&::before{display:none}}& .booking-copy{grid-column:1;grid-row:1;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto;padding:var(--s6) var(--gutter);background:var(--surface);color:var(--ink);z-index:2;& h2{grid-column:1;grid-row:1;max-width:none;margin:0}& .booking-subtitle{grid-column:1;grid-row:3;align-self:end;max-width:27ch;color:var(--ink);font-size:var(--type-h4);line-height:1.4;letter-spacing:0}}& .booking-photo{grid-column:2;grid-row:1;min-width:0;min-height:0;position:relative;overflow:hidden;z-index:0;& img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(1) contrast(.92)}&::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 2px,#00000020 3px 4px);opacity:.16;mix-blend-mode:multiply}}& .booking-pets{position:absolute!important;inset:0;z-index:3!important;pointer-events:none}& .booking-pet{position:absolute;left:var(--x);top:var(--y);width:clamp(32px,6vw,80px);aspect-ratio:1;clip-path:circle(50%);background:var(--pet-atlas,url(assets/pets-phone-atlas.png)) var(--pet-x) var(--pet-y)/800% 800%;transform:translate(-50%,-50%)}}
 @media(max-width:700px){.booking>.wrap.booking-composition{min-height:max(560px,calc(100svh - var(--floating-header-height)))}.booking .booking-copy{padding:var(--s4) var(--s2);& .booking-subtitle{font-size:16px;line-height:1.6}}}
 
 .booking .booking-pet.solid{background:var(--accent)}
@@ -510,7 +510,7 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 .booking-social a{text-decoration:underline;text-underline-offset:4px}
 
 /* Komponent inline-pet: dekoracyjne zdjęcia zwierząt w zdaniu hero. */
-.hero-links .hero-inline-pet{display:inline-block;inline-size:2em;block-size:2em;vertical-align:-.6em;margin-inline:.12em;border-radius:50%;overflow:hidden;background-image:url(assets/pets-phone-atlas.png);background-size:800% 800%;background-position:var(--pet-x) var(--pet-y);filter:grayscale(1)}
+.hero-links .hero-inline-pet{display:inline-block;inline-size:2em;block-size:2em;vertical-align:-.6em;margin-inline:.12em;border-radius:50%;overflow:hidden;background-image:var(--pet-atlas,url(assets/pets-phone-atlas.png));background-size:800% 800%;background-position:var(--pet-x) var(--pet-y);filter:grayscale(1)}
 .hero-links:has(.hero-inline-pet){line-height:2.35}
 
 /* Hero po usunięciu tytułu i hasła: akapit bez dawnego odstępu pod h1. */
@@ -521,7 +521,7 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 .hero-links .hero-greeting{display:block;width:fit-content;margin-bottom:0;font-family:var(--font-emphasis);font-size:2em;line-height:1.08;font-style:normal;font-weight:400;letter-spacing:normal}
 /* Zerowa wysokość miejsca w linii: większe zdjęcie nie powiększa interlinii. */
 .hero-links .hero-inline-pet{position:relative;inline-size:1.65em;block-size:0;vertical-align:.35em;overflow:visible;background:none;filter:none}
-.hero-links .hero-inline-pet::before{content:"";position:absolute;inset-inline-start:0;top:0;inline-size:100%;aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:url(assets/pets-phone-atlas.png) var(--pet-x) var(--pet-y)/800% 800%;filter:grayscale(1)}
+.hero-links .hero-inline-pet::before{content:"";position:absolute;inset-inline-start:0;top:0;inline-size:100%;aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:var(--pet-atlas,url(assets/pets-phone-atlas.png)) var(--pet-x) var(--pet-y)/800% 800%;filter:grayscale(1)}
 
 /* Dolny wiersz zaproszenia: CTA po lewej, social media po prawej. */
 .booking .booking-copy .booking-bottom{grid-template-columns:minmax(0,1fr) auto;column-gap:var(--s3);align-items:baseline}
@@ -745,7 +745,7 @@ main .button,main .button *{--weight-text:900;font-weight:900!important}
 
 /* Większe portrety pupili i tooltip poza obszarem przycinania halo. */
 #onas .halo-dot{width:13%;padding:0;border:0;border-radius:50%;clip-path:none;background:none;pointer-events:auto;cursor:help;overflow:visible}
-#onas .halo-dot::before{content:"";position:absolute;inset:0;border-radius:50%;background:url(assets/pets-phone-atlas.png) var(--pet-x) var(--pet-y)/800% 800% no-repeat}
+#onas .halo-dot::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--pet-atlas,url(assets/pets-phone-atlas.png)) var(--pet-x) var(--pet-y)/800% 800% no-repeat}
 #onas .halo-dot:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .pet-name-tooltip{position:fixed;z-index:150;padding:8px 13px;background:#fff;color:#595959;font-family:var(--font-main);font-size:14px;line-height:21px;pointer-events:none;white-space:nowrap;box-shadow:0 3px 12px #00000012}
 .pet-name-tooltip[hidden]{display:none}
