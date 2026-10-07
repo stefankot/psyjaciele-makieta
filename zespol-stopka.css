@@ -1,0 +1,31 @@
+/* Zespół w stopce — układ Zdanie. */
+footer .footer-team .people .person{--top:.04;--head:.34;--cx:.5}
+footer .footer-team .people .person:has(img[src*="3b64aaacd150"]){--top:.07;--head:.50;--cx:.50}
+footer .footer-team .people .person:has(img[src*="e48db60840a2"]){--top:.09;--head:.35;--cx:.59}
+footer .footer-team .people .person:has(img[src*="557c244c36a9"]){--top:.03;--head:.27;--cx:.49}
+footer .footer-team .people .person:has(img[src*="d9e0817d66ec"]){--top:.05;--head:.30;--cx:.49}
+footer .footer-team .people .person:has(img[src*="5205d4b0e462"]){--top:.03;--head:.33;--cx:.49}
+footer .footer-team .people .person:has(img[src*="a6e997421073"]){--top:.04;--head:.36;--cx:.47}
+footer .footer-team .people .person:has(img[src*="5be50d2b873b"]){--top:.03;--head:.37;--cx:.51}
+footer .footer-team .people .person .portrait-blob::before{content:none}
+footer .footer-team .people .person .portrait-blob img{--z:max(calc(var(--hs) / var(--head)),calc((1 - var(--ht)) / (1 - var(--top))));inset:calc((var(--ht) - var(--top) * var(--z)) * 100%) auto auto 50%;width:auto;height:calc(var(--z) * 100%);max-width:none;max-height:none;translate:calc(var(--cx) * -100%) 0;mask:none;object-fit:fill}
+footer .footer-team{grid-column:1/-1;--hover-accent:#fbd9c6;min-width:0;border-bottom:1px solid currentColor;padding-bottom:var(--s5)}
+footer .footer-team>h2{margin-bottom:var(--s3)}
+footer .footer-team .people{display:block;font-size:clamp(20px,2.3vw,29px);line-height:1.95;text-wrap:pretty}
+footer .footer-team .people .person{position:relative;display:inline;border:0;padding:0 0 0 2.05em;min-height:0;width:auto;background:none;color:inherit}
+footer .footer-team .person::after{content:" ";word-spacing:.35em}
+footer .footer-team .person>header,footer .footer-team .person .person-name,footer .footer-team .person .person-name>:is(em,span),footer .footer-team .person .specializations,footer .footer-team .person .specializations li{display:inline;inline-size:auto;max-inline-size:none;margin:0;padding:0;text-align:start}
+footer .footer-team .person .person-name{font-size:1em;line-height:inherit;font-weight:700;letter-spacing:0;white-space:nowrap}
+footer .footer-team .person .person-name em{font-size:1.28em;line-height:1;font-family:var(--font-emphasis);font-weight:400}
+footer .footer-team .person .person-name span{text-transform:none;letter-spacing:0;font-weight:700;overflow-wrap:normal}
+footer .footer-team .person .specializations{font-size:1em;line-height:inherit;font-weight:400;color:var(--small-ink,var(--ink));list-style:none}
+footer .footer-team .person .specializations li{white-space:normal}
+footer .footer-team .person .specializations::before{content:"\00a0— "}
+footer .footer-team .person .specializations li+li::before{content:", "}
+footer .footer-team .person .specializations li:last-child::after{content:"."}
+footer .footer-team .person figure,footer .footer-team .person .person-card-link{position:absolute;inset:-.12em auto auto 0;width:1.7em;height:1.7em;aspect-ratio:1;border-radius:50%}
+footer .footer-team .person figure{display:block;margin:0;overflow:clip;isolation:isolate;background:var(--accent);transition:background-color .2s ease,scale .2s ease;--hs:.62;--ht:.13}
+footer .footer-team .portrait-blob{position:absolute;inset:0;width:100%;height:100%}
+footer .footer-team .person:focus-within figure{background:var(--hover-accent)}
+@media(hover:hover) and (pointer:fine){footer .footer-team .person:hover figure{background:var(--hover-accent);scale:1.12}}
+@media(prefers-reduced-motion:reduce){footer .footer-team .person figure{transition:none}}
