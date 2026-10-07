@@ -1,13 +1,13 @@
 /* Psyjaciele — sekcja Zespół, układ 1: Rejestr (7 wierszy).
    Osie: nazwisko / specjalizacje / portret. Arkusz po minimal.css i animacje.css. */
 :root .team .people .person{--top:.04;--head:.34;--cx:.5}
-:root .team .people .person:has(img[src*="3b64aaacd150"]){--top:.07;--head:.50;--cx:.50}
-:root .team .people .person:has(img[src*="e48db60840a2"]){--top:.09;--head:.35;--cx:.59}
+:root .team .people .person:has(img[src*="3b64aaacd150"]){--top:.03;--head:.47;--cx:.53}
+:root .team .people .person:has(img[src*="e48db60840a2"]){--top:.04;--head:.34;--cx:.60}
 :root .team .people .person:has(img[src*="557c244c36a9"]){--top:.03;--head:.27;--cx:.49}
 :root .team .people .person:has(img[src*="d9e0817d66ec"]){--top:.05;--head:.30;--cx:.49}
 :root .team .people .person:has(img[src*="5205d4b0e462"]){--top:.03;--head:.33;--cx:.49}
-:root .team .people .person:has(img[src*="a6e997421073"]){--top:.04;--head:.36;--cx:.47}
-:root .team .people .person:has(img[src*="5be50d2b873b"]){--top:.03;--head:.37;--cx:.51}
+:root .team .people .person:has(img[src*="a6e997421073"]){--top:.03;--head:.37;--cx:.49}
+:root .team .people .person:has(img[src*="5be50d2b873b"]){--top:.02;--head:.38;--cx:.51}
 :root .team .people .person .portrait-blob::before{content:none}
 :root .team .people .person .portrait-blob img{--z:max(calc(var(--hs) / var(--head)),calc((1 - var(--ht)) / (1 - var(--top))));inset:calc((var(--ht) - var(--top) * var(--z)) * 100%) auto auto 50%;width:auto;height:calc(var(--z) * 100%);max-width:none;max-height:none;translate:calc(var(--cx) * -100%) 0;mask:none;object-fit:fill}
 :root .team .people .person .specializations li{display:block;white-space:normal}
