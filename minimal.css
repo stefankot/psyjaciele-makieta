@@ -641,9 +641,9 @@ footer .foot-links h2{margin:0}
 @media(prefers-reduced-motion:reduce){.header-backdrop,.site-header.site-header .brand .icon{transition:none}}
 
 /* Hamburger po prawej stronie logo, także w szerokiej nawigacji. */
-.site-header.site-header .header-brand{display:flex;align-items:center;gap:21px;min-width:0}
+.site-header.site-header .header-brand{display:flex;align-items:flex-start;gap:21px;min-width:0}
 .site-header.site-header .header-brand .brand{display:block;flex:none}
-.site-header.site-header .header-brand .menu-toggle{display:grid;flex:none;grid-column:auto;grid-row:auto}
+.site-header.site-header .header-brand .menu-toggle{display:grid;flex:none;grid-column:auto;grid-row:auto;margin-top:8px}
 @media(max-width:600px){
  .site-header.site-header .header-brand{gap:8px}
  .site-header.site-header .header-actions>.button{max-width:90px;white-space:normal}
