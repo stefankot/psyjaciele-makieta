@@ -442,4 +442,5 @@ body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-te
 /* Stopka */
 footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 /* Service artwork: dark green linework; multiply removes white against the card. */
-.bento .tile img.service-art{height:auto;object-fit:contain;background:none;mask:none;filter:url(#service-color);mix-blend-mode:multiply}
+.bento .tile:has(img.service-art){aspect-ratio:auto;grid-template-rows:55px auto minmax(130px,1fr)}
+.bento .tile img.service-art{width:calc(100% + 2 * var(--s3));max-width:none;height:auto;aspect-ratio:1;object-fit:contain;background:none;mask:none;filter:url(#service-color);mix-blend-mode:multiply}
