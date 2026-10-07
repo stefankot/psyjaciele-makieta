@@ -508,3 +508,6 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 /* Komponent inline-pet: dekoracyjne zdjęcia zwierząt w zdaniu hero. */
 .hero-links .hero-inline-pet{display:inline-block;inline-size:2em;block-size:2em;vertical-align:-.6em;margin-inline:.12em;border-radius:50%;overflow:hidden;background-image:url(assets/pets-phone-atlas.png);background-size:800% 800%;background-position:var(--pet-x) var(--pet-y);filter:grayscale(1)}
 .hero-links:has(.hero-inline-pet){line-height:2.35}
+
+/* Hero po usunięciu tytułu i hasła: akapit bez dawnego odstępu pod h1. */
+.hero-intro>.hero-links:first-child{margin-top:0}
