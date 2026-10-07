@@ -766,3 +766,13 @@ main .button,main .button *{--weight-text:900;font-weight:900!important}
 /* Poprawiony plik kontaktu: użyj samego kanału alpha, bez inwersji jasności. */
 .contact .contact-illustration{filter:url(#contact-clean-ink)}
 #contact-clean-ink feFlood{flood-color:var(--contact-art-ink,#f6b08f)}
+
+/* Założycielki: wszystkie podpisy w jednej osi pod wspólnym portretem. */
+#onas>.wrap.grid{row-gap:var(--s4);min-height:0}
+#onas .about-photo{grid-column:4/span 6;grid-row:1;margin:0;align-self:start}
+#onas .about-copy{grid-column:3/span 8;grid-row:2;margin:0;transform:none;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:var(--s3);text-align:center;justify-items:center;align-content:start;align-self:start;max-width:none}
+#onas .about-copy h2:has(.heading-roman):has(em){display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s2);justify-items:center;inline-size:100%;max-inline-size:100%;text-align:center}
+#onas .about-copy h2 .heading-roman,#onas .about-copy h2>em{grid-row:auto;align-self:auto;width:auto;max-width:100%;white-space:normal}
+#onas .founder-names{font-size:var(--type-small);line-height:var(--leading-small);max-width:none}
+#onas .founder-description{max-width:42ch;margin:0}
+@media(max-width:700px){#onas .about-photo{grid-column:2/span 10;grid-row:1;margin-top:var(--s6)}#onas .about-copy{grid-column:1/-1;grid-row:2}#onas .founder-names span{display:none}#onas .founder-names{max-width:27ch}}
