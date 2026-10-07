@@ -655,3 +655,11 @@ footer .foot-links h2{margin:0}
 /* Nawigacja przejmuje rzeczywisty kolor tekstu sekcji pod nią. */
 .site-header.site-header{mix-blend-mode:normal}
 .site-header.site-header:not(.menu-open){--ink:var(--nav-ink,#f6b08f);--small-ink:var(--nav-ink,#f6b08f);color:var(--nav-ink,#f6b08f)}
+
+/* Krótkie przejście barwy tekstu, logo i hamburgera między sekcjami. */
+.site-header.site-header{transition:color 180ms ease-out}
+.site-header.site-header .header-grid :is(a,p,dt,dd,.icon,.menu-toggle){transition:color 180ms ease-out}
+.site-header.site-header .brand .icon{transition:width .25s ease,height .25s ease,color 180ms ease-out}
+@media(prefers-reduced-motion:reduce){
+ .site-header.site-header,.site-header.site-header .header-grid :is(a,p,dt,dd,.icon,.menu-toggle),.site-header.site-header .brand .icon{transition:none}
+}
