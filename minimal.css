@@ -502,7 +502,7 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 @media(min-width:1201px){.site-header.site-header .header-actions>.button{min-height:22px;margin-top:22px}}
 
 /* Proste linki społecznościowe na dole sekcji zaproszenia. */
-.booking-social{display:flex;gap:var(--s3);align-items:center;justify-content:flex-start;font-size:var(--type-body);line-height:var(--leading-body);color:var(--ink)}
+.booking-social{display:flex;gap:var(--s3);align-items:center;justify-content:flex-start;font-size:var(--paragraph-size,var(--type-body));line-height:var(--paragraph-leading,var(--leading-body));color:var(--ink)}
 .booking-social a{text-decoration:underline;text-underline-offset:4px}
 
 /* Komponent inline-pet: dekoracyjne zdjęcia zwierząt w zdaniu hero. */
