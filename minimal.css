@@ -540,3 +540,14 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 
 /* Subtelne zwężenie kreski w renderowaniu; oryginalny obraz pozostaje bez zmian. */
 .emergency .poster-grid .poster-art{filter:url(#emergency-fine-line)}
+
+/* Detail-columns: tytuł i jeden blok opisów — akapity nie konkurują o wiersz subgridu. */
+.arrival-details .detail-body{display:grid;align-content:start;gap:var(--s2);min-width:0}
+.arrival-details .detail-body>p{margin:0}
+/* Stopka: marka po lewej, dwie kolumny linków po prawej. */
+footer .foot-brand{grid-column:1/span 6}
+footer .footer-primary{grid-column:7/span 3}
+footer .footer-secondary{grid-column:10/span 3;display:grid;align-content:start;gap:var(--s4)}
+footer .foot-links>div{display:grid;align-content:start;gap:var(--s3)}
+footer .foot-links h2{margin:0}
+@media(max-width:700px){footer .foot-brand{grid-column:1/-1}footer .footer-primary{grid-column:1/span 6}footer .footer-secondary{grid-column:7/span 6}}
