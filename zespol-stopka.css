@@ -29,3 +29,10 @@ footer .footer-team .portrait-blob{position:absolute;inset:0;width:100%;height:1
 footer .footer-team .person:focus-within figure{background:var(--hover-accent)}
 @media(hover:hover) and (pointer:fine){footer .footer-team .person:hover figure{background:var(--hover-accent);scale:1.12}}
 @media(prefers-reduced-motion:reduce){footer .footer-team .person figure{transition:none}}
+
+/* Zespół zastępuje hasło w kolumnie marki: skala akapitowa i swobodne łamanie nazw. */
+footer .foot-brand .footer-team{grid-column:auto;border:0;padding:0;inline-size:100%;min-inline-size:0}
+footer .footer-team .people{font-size:16px;line-height:1.95}
+footer .footer-team .person .person-name{white-space:normal;text-wrap:pretty}
+footer .footer-team .person .person-name em{margin-inline-end:.15em}
+footer .footer-team .person .person-name span{overflow-wrap:break-word}
