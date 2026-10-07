@@ -587,3 +587,12 @@ footer .foot-links h2{margin:0}
  .services .bento .tile:hover :is(h3,a,p.tile-description){color:#f6b08f}
  .services .bento .tile:hover img.service-art{filter:url(#service-hover-ink)}
 }
+
+/* Zespół: ten sam rytm kolumn co usługi — kreska / tekst / portret. */
+.team .people .person{--surface:transparent;--ink:#124e2c;--accent:#fbd9c6;background:transparent;border:0;border-top:var(--column-rule-width) solid currentColor;padding:var(--column-rule-gap) 0 var(--s4);min-height:0;grid-template-rows:auto auto auto;gap:var(--s2);align-content:start}
+.team .people .person>header{justify-items:start;text-align:left;gap:var(--s2)}
+.team .people .person .person-name{justify-items:start;text-align:left}
+.team .people .person .person-name>:is(em,span){margin-inline:0;text-align:left}
+.team .people .person .person-role,.team .people .person .person-name>span{padding-inline-start:0}
+.team .people .person .specializations{align-self:start}
+.team .people .person figure{width:100%;max-width:none;place-self:start stretch;transform:none}
