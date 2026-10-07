@@ -456,3 +456,13 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 
 .contact .contact-hours-row .contact-hours{grid-column:1/span 6}
 @media(max-width:700px){.contact .contact-hours-row .contact-hours{grid-column:1/-1}}
+
+/* Wariant poster-grid: kontakt — ilustracja przy górnej krawędzi, tytuł nad nią. */
+.contact .poster-copy{position:relative;z-index:2}
+.contact .poster-heading h2{width:max-content;max-width:none;white-space:nowrap}
+.contact .poster-grid .poster-art .art{mask-position:center top;align-self:start}
+@media(max-width:700px){
+ main .contact .poster-grid .poster-art{grid-column:7/span 6;grid-row:1;align-self:start}
+ .contact .poster-copy{grid-row:1}
+ .contact .poster-heading h2{font-size:clamp(28px,8vw,var(--type-h2))}
+}
