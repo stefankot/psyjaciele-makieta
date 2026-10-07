@@ -415,31 +415,34 @@ body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-te
    Stała: ciemna zieleń #124e2c.
    ════════════════════════════════════════════════════════════════════ */
 :root{--paper:#f7f3ee;--ink:#124e2c}
-/* Nagłówek */
-.site-header.site-header{--surface:#124e2c;--ink:#fbd9c6;--small-ink:#ffffff;--accent:#f6b08f}
+/* Kolory rysunków wstawianych jako <img>: muszą leżeć w :root, bo filtry SVG są poza sekcjami. */
+:root{--hero-art-ink:#f6b08f;--service-art-ink:#124e2c;--service-hover-ink:#2233b0;--contact-art-ink:#f6b08f}
+#hero-color feFlood{flood-color:var(--hero-art-ink)}#service-light-ink feFlood{flood-color:var(--service-art-ink)}#service-hover-ink feFlood{flood-color:var(--service-hover-ink)}#contact-ink feFlood{flood-color:var(--contact-art-ink)}
+/* Menu: po otwarciu nagłówek przestaje mieszać się z tłem — pełne tło, czytelne pozycje. */
+.site-header.site-header.site-header.menu-open{--ink:#fbd9c6;mix-blend-mode:normal;background:#124e2c;color:#fbd9c6}
+.site-header.site-header.site-header.menu-open .site-nav{background:#124e2c;color:#fbd9c6}
 /* Hero */
-.hero{--surface:#f0764a;--ink:#0b3a20;--small-ink:#072a16;--accent:#f8b393}
+.hero{--surface:#124e2c;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#1d6a3e}
 /* Założycielki */
 .about{--surface:#fbd9c6;--ink:#124e2c;--small-ink:#0b3a20;--accent:#f6b08f}
 /* Usługi */
-.services{--surface:#124e2c;--ink:#cfdcc3;--small-ink:#ffffff;--accent:#1d6a3e}
-.services .bento .tile{--surface:#a9c296;--ink:#124e2c;--small-ink:#0b3a20;--accent:#cfdcc3}
-/* Zespół */
-.team{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6}
-/* Przychodnia i sprzęt */
-.clinic{--surface:#2233b0;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#1a2890}
-/* Rekomendacje */
-.reviews{--surface:#cfdcc3;--ink:#124e2c;--small-ink:#0b3a20;--accent:#a9c296}
+.services{--surface:#a9c296;--ink:#124e2c;--small-ink:#0b3a20;--accent:#cfdcc3;--hover-ink:#2233b0}
 /* Zaproszenie */
 .booking{--surface:#124e2c;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#f0764a}
-/* Przed wizytą */
-.arrival.preparation{--surface:#f7f3ee;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6}
-/* Jak do nas trafić */
-.arrival:not(.preparation){--surface:#a9c296;--ink:#124e2c;--small-ink:#0b3a20;--accent:#cfdcc3}
+/* Przychodnia i sprzęt */
+.clinic{--surface:#f7f3ee;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6}
+/* Zespół */
+.team{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6;--hover-ink:#0b3a20;--hover-accent:#f7f3ee}
+/* Rekomendacje */
+.reviews{--surface:#cfdcc3;--ink:#124e2c;--small-ink:#0b3a20;--accent:#a9c296}
 /* Nagłe przypadki */
 .emergency{--surface:#124e2c;--ink:#f8b393;--small-ink:#fbd9c6;--accent:#1d6a3e}
+/* Przed wizytą */
+.arrival.preparation{--surface:#f7f3ee;--ink:#124e2c;--small-ink:#0b3a20;--accent:#cfdcc3}
+/* Jak do nas trafić */
+.arrival:not(.preparation){--surface:#fbd9c6;--ink:#124e2c;--small-ink:#0b3a20;--accent:#f6b08f}
 /* Kontakt */
-.contact{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6}
+.contact{--surface:#2233b0;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#1a2890}
 /* Stopka */
 footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 /* Service artwork: dark green linework; multiply removes white against the card. */
@@ -534,7 +537,7 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 /* Kompensacja odstępu po ostatnim znaku przy rozstrzelonych kapitalikach. */
 .people .person .person-role,.people .person .person-name>span{padding-inline-start:var(--tracking-caps)}
 
-/* Tekst hero dzieli dokładnie tę samą zieleń co filtr ilustracji (#0b3a20). */
+/* Tekst hero i ilustracja korzystają z barwy przypisanej w palecie. */
 .hero .hero-copy .hero-intro .hero-links,
 .hero .hero-copy .hero-intro .hero-links :is(a,em){color:var(--ink)}
 
@@ -553,7 +556,7 @@ footer .foot-links h2{margin:0}
 @media(max-width:700px){footer .foot-brand{grid-column:1/-1}footer .footer-primary{grid-column:1/span 6}footer .footer-secondary{grid-column:7/span 6}}
 
 /* Usługi: te same wymiary kart, bez wypełnienia; wspólna kreska u góry. */
-.services .bento .tile{position:relative;--surface:#124e2c;--ink:#cfdcc3;--small-ink:#cfdcc3;background:transparent;border:0;border-top:var(--column-rule-width) solid currentColor;padding:var(--column-rule-gap) 0 var(--s4)}
+.services .bento .tile{position:relative;--small-ink:var(--ink);background:transparent;border:0;border-top:var(--column-rule-width) solid currentColor;padding:var(--column-rule-gap) 0 var(--s4)}
 .services .bento .tile::before{display:none}
 .services .bento .tile img.service-art{width:100%;filter:url(#service-light-ink);mix-blend-mode:normal}
 
@@ -569,22 +572,22 @@ footer .foot-links h2{margin:0}
 .services .bento .tile img.service-art{transition:transform .25s ease}
 .services .bento .tile:has(a:hover){outline:none}
 .services .bento .tile p.tile-description{background:transparent}
-.services .bento .tile:focus-within{border-top-color:#f6b08f}
-.services .bento .tile:focus-within h3{color:#f6b08f}
+.services .bento .tile:focus-within{border-top-color:var(--hover-ink)}
+.services .bento .tile:focus-within h3{color:var(--hover-ink)}
 .services .bento .tile:focus-within h3 a{text-decoration:underline;text-underline-offset:.2em}
 @media(hover:hover) and (pointer:fine){
- .services .bento .tile:hover{border-top-color:#f6b08f}
- .services .bento .tile:hover h3{color:#f6b08f}
+ .services .bento .tile:hover{border-top-color:var(--hover-ink)}
+ .services .bento .tile:hover h3{color:var(--hover-ink)}
  .services .bento .tile:hover h3 a{text-decoration:underline;text-underline-offset:.2em}
  .services .bento .tile:hover img.service-art{transform:translateY(-4px)}
 }
 @media(prefers-reduced-motion:reduce){.services .bento .tile,.services .bento .tile h3,.services .bento .tile img.service-art{transition:none}.services .bento .tile:hover img.service-art{transform:none}}
 
 /* Jeden kolor hover dla całego tekstu oraz ilustracji usługi. */
-.services .bento .tile:focus-within :is(h3,a,p.tile-description){color:#f6b08f}
+.services .bento .tile:focus-within :is(h3,a,p.tile-description){color:var(--hover-ink)}
 .services .bento .tile:focus-within img.service-art{filter:url(#service-hover-ink)}
 @media(hover:hover) and (pointer:fine){
- .services .bento .tile:hover :is(h3,a,p.tile-description){color:#f6b08f}
+ .services .bento .tile:hover :is(h3,a,p.tile-description){color:var(--hover-ink)}
  .services .bento .tile:hover img.service-art{filter:url(#service-hover-ink)}
 }
 
@@ -613,13 +616,13 @@ footer .foot-links h2{margin:0}
 .team .people .person :is(.person-name,.specializations){transition:color .2s ease}
 .team .people .person .portrait-blob img{transition:transform .25s ease}
 .team .people .person .portrait-blob::before{transition:background-color .2s ease}
-.team .people .person:focus-within{border-top-color:#0b3a20}
-.team .people .person:focus-within :is(.person-name,.person-name em,.person-name span,.specializations){color:#0b3a20}
-.team .people .person:focus-within .portrait-blob::before{background:#f7f3ee}
+.team .people .person:focus-within{border-top-color:var(--hover-ink)}
+.team .people .person:focus-within :is(.person-name,.person-name em,.person-name span,.specializations){color:var(--hover-ink)}
+.team .people .person:focus-within .portrait-blob::before{background:var(--hover-accent)}
 @media(hover:hover) and (pointer:fine){
- .team .people .person:hover{border-top-color:#0b3a20}
- .team .people .person:hover :is(.person-name,.person-name em,.person-name span,.specializations){color:#0b3a20}
- .team .people .person:hover .portrait-blob::before{background:#f7f3ee}
+ .team .people .person:hover{border-top-color:var(--hover-ink)}
+ .team .people .person:hover :is(.person-name,.person-name em,.person-name span,.specializations){color:var(--hover-ink)}
+ .team .people .person:hover .portrait-blob::before{background:var(--hover-accent)}
  .team .people .person:hover .portrait-blob img{transform:translateY(-4px)}
 }
 @media(prefers-reduced-motion:reduce){.team .people .person,.team .people .person :is(.person-name,.specializations),.team .people .person .portrait-blob img,.team .people .person .portrait-blob::before{transition:none}.team .people .person:hover .portrait-blob img{transform:none}}
