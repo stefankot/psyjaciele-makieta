@@ -464,9 +464,9 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
  .contact .poster-heading h2{font-size:clamp(28px,8vw,var(--type-h2))}
 }
 
-/* Kontakt: pełny obraz z mieszaniem bieli z kolorem sekcji. */
+/* Kontakt: jedna barwa nagłówka; biel i poświata stają się przezroczyste. */
 .contact .poster-grid{isolation:isolate;background:var(--surface)}
-.contact .contact-illustration{width:100%;height:100%;object-fit:contain;object-position:center top;align-self:start;filter:url(#service-color);mix-blend-mode:multiply}
+.contact .contact-illustration{width:100%;height:100%;object-fit:contain;object-position:center top;align-self:start;filter:url(#contact-ink);mix-blend-mode:normal}
 
 /* Komponent asymmetric-header: logo / kontakt w dwóch wierszach / osobne działania. */
 :root{--header-float-top:0px;--floating-header-height:140px}
