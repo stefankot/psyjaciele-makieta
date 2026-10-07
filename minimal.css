@@ -373,7 +373,8 @@ body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-te
 .foot-links a{display:inline-grid;grid-template-columns:1fr auto;align-items:baseline;gap:8px;& .type-arrow{margin:0;font-size:20px}}
 .booking-cta .type-arrow{font-size:1.4em}
 @media(max-width:900px){.site-header .button .type-arrow{display:none}}
-.people .person .specializations{padding-left:1em;& li::marker{content:"·  ";font-family:var(--font-main);font-size:1em}}
+/* Specjalizacje: lista ciągła, kropka środkowa pomiędzy pozycjami. */
+.people .person .specializations{padding:0;list-style:none;display:block;text-wrap:pretty;& li{display:inline}& li+li::before{content:"\00a0·\00a0";font-family:var(--font-main);font-size:1em}}
 
 /* Komponent hero-intro: tytuł + zdanie z odnośnikami do wszystkich sekcji. */
 .hero-intro{grid-column:1/span 9;grid-row:1;z-index:2}
