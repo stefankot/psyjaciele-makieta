@@ -38,9 +38,8 @@ window.addEventListener('resize',fitTitles,{passive:true});document.fonts.ready.
    let x,y;
    const inset=size*.65,travel=(a,b,t)=>a+(b-a)*(.5+.5*Math.sin(t));
    if(right){
-    const lane=n%4,t=angle+n*.7;
-    if(lane<2){x=travel(width/2+inset,width-inset,t);y=lane===0?travel(inset,height*.26,t*.71+i):travel(height*.74,height-inset,t*.71+i);}
-    else{x=lane===2?travel(width/2+inset,width*.62-inset,t):travel(width*.88+inset,width-inset,t);y=travel(height*.28,height*.72,t*.71+i);}
+    const t=angle+n*.7;
+    x=travel(width/2+inset,width-inset,t);y=travel(inset,height-inset,t*.71+i);
    }else{x=travel(inset,width/2-inset,angle);y=travel(top,bottom,angle*.73+i*1.9);}
    dot.style.transform=`translate(${x-size/2}px,${y-size/2}px) rotate(${Math.sin(angle)*12}deg)`;
   });

@@ -1,0 +1,5 @@
+# Wycięty pies — warstwa zaproszenia
+
+Plik: booking-dog-cutout-v1.png. Narzędzie: wbudowane image_gen. Oryginał pozostawiono w f32ec8880e2b.webp. Tło jest przezroczyste; kolor zdjęcia na stronie ustawiany jest przez dotychczasowy filtr skali szarości.
+
+Use case: background-extraction. Edit target: supplied original dog photograph. PRECISION CUTOUT ONLY. Remove the entire beige studio background and floor to true transparent alpha=0. Keep the SAME dog with exact unchanged face, fur, eyes, ears, whiskers, collar and metal tag, paws, pose and body proportions. Do not redraw, regenerate, beautify or change any part of the dog. Preserve the fine individual wispy hairs at the outer ears, head, muzzle, whiskers, legs and back, with clean natural antialiased alpha edges. No beige halo, no grey fringe, no leftover floor, no drop shadow. Retain the original full rectangular canvas 1440x2100 and exact dog scale and position; do not tightly crop or recenter. This transparent overlay must align pixel-for-pixel with the reference photograph. Deliver photographic dog only on genuinely transparent background.
