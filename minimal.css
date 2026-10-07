@@ -758,3 +758,7 @@ footer .foot-brand>div>p:first-of-type{font-size:var(--type-h4);line-height:1.4;
  .follow-logo{width:160px}
 }
 @media(prefers-reduced-motion:reduce){.follow-logo-ring{animation:none}}
+
+/* Wypełnione przyciski i numery instrukcji: Satoshi Black. */
+main .button,main .button *{--weight-text:900;font-weight:900!important}
+.emergency-steps h4::before{--weight-text:900;font-weight:900}
