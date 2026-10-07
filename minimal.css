@@ -444,3 +444,7 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 /* Service artwork: dark green linework; multiply removes white against the card. */
 .bento .tile:has(img.service-art){aspect-ratio:auto;min-height:0;grid-template-rows:auto auto minmax(calc(4 * var(--leading-body)),1fr);gap:var(--s1);& h3{min-height:calc(2 * var(--type-h4) * 1.24)}}
 .bento .tile img.service-art{width:calc(100% + 2 * var(--s3));max-width:none;height:auto;aspect-ratio:1;object-fit:contain;background:none;mask:none;filter:url(#service-color);mix-blend-mode:multiply}
+
+/* Emergency divider: full 12-column width, equal spacing on both sides. */
+.emergency .section-stack{row-gap:0}
+.emergency .after-hours{margin-top:var(--group-gap);border-top:var(--column-rule-width) solid currentColor;padding-top:var(--group-gap)}
