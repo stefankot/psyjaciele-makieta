@@ -663,3 +663,11 @@ footer .foot-links h2{margin:0}
 @media(prefers-reduced-motion:reduce){
  .site-header.site-header,.site-header.site-header .header-grid :is(a,p,dt,dd,.icon,.menu-toggle),.site-header.site-header .brand .icon{transition:none}
 }
+
+/* Osobna ramka: nagłówek, trzy kliniki i przypis na szerokości 12 kolumn. */
+.emergency .section-stack>.after-hours-panel{
+ inline-size:100%;max-inline-size:none;min-inline-size:0;
+ border:1px solid currentColor;border-top-width:3px;
+ padding:var(--s4);margin-top:var(--group-gap);
+}
+@media(max-width:700px){.emergency .section-stack>.after-hours-panel{padding:var(--s3)}}
