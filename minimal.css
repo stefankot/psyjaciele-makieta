@@ -184,7 +184,7 @@ h1{--roman-heading-scale:var(--roman-h1-scale)}
 
 .about .portrait-circle{background:transparent;clip-path:none;mask:var(--blob) center/contain no-repeat}
 
-.about .portrait-circle img{width:100%;height:100%;object-fit:cover;place-self:center;transform:translateY(8%)}
+.about .portrait-circle img{width:100%;height:100%;object-fit:cover;place-self:center;transform:translateY(8%);filter:none}
 
 
 .about .halo-dot{background-image:url(assets/pets-phone-atlas.png);background-size:800% 800%;background-position:var(--pet-x) var(--pet-y);background-repeat:no-repeat}
