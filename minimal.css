@@ -526,3 +526,10 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 .booking .booking-bottom .booking-cta{grid-column:1;grid-row:2}
 .booking .booking-bottom .booking-social{grid-column:2;grid-row:2;justify-self:end;justify-content:flex-end;flex-wrap:wrap}
 @media(max-width:400px){.booking-social{gap:var(--s2)}}
+
+/* Podpisy zespołu: wspólna oś środka, również przy długich nazwiskach. */
+.people .person>header{inline-size:100%;min-inline-size:0;justify-items:center;text-align:center}
+.people .person .person-name{inline-size:100%;min-inline-size:0;justify-items:center;text-align:center}
+.people .person .person-name>:is(em,span){display:block;inline-size:fit-content;max-inline-size:100%;margin-inline:auto;text-align:center}
+/* Kompensacja odstępu po ostatnim znaku przy rozstrzelonych kapitalikach. */
+.people .person .person-role,.people .person .person-name>span{padding-inline-start:var(--tracking-caps)}
