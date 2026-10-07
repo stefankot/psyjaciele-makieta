@@ -671,3 +671,24 @@ footer .foot-links h2{margin:0}
  padding:var(--s4);margin-top:var(--group-gap);
 }
 @media(max-width:700px){.emergency .section-stack>.after-hours-panel{padding:var(--s3)}}
+
+/* Stopka: nazwa przychodni w spokojniejszej skali tekstowej. */
+footer .foot-brand>div>p:first-of-type{font-size:var(--type-h4);line-height:1.4;letter-spacing:0}
+
+/* Kliniki: wspólna tabela z wyrównanymi rzędami i podziałami kolumn. */
+.emergency .section-stack>.after-hours-panel{padding:0;gap:0}
+.after-hours-panel>.poster-heading{padding:var(--s4);border-bottom:1px solid currentColor;display:grid;grid-template-columns:1fr 1fr;gap:var(--s3) var(--gap);align-items:start}
+.after-hours-panel>.poster-heading>p{width:auto;max-width:44ch}
+.after-hours-panel .emergency-clinics{gap:0;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(5,auto)}
+.after-hours-panel .emergency-clinics>article{grid-column:span 1;grid-row:span 5;grid-template-rows:subgrid;gap:0;border:0;padding:0}
+.after-hours-panel .emergency-clinics>article+article{border-left:1px solid currentColor}
+.after-hours-panel .emergency-clinics>article>*{margin:0;padding:var(--s3) var(--s4);border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent)}
+.after-hours-panel .emergency-clinics>article>.clinic-links{align-content:start;border-bottom:0}
+.after-hours-panel>p{padding:var(--s3) var(--s4);border-top:1px solid currentColor}
+@media(max-width:700px){
+ .after-hours-panel>.poster-heading{grid-template-columns:1fr;padding:var(--s3)}
+ .after-hours-panel .emergency-clinics{grid-template-columns:1fr;grid-template-rows:auto}
+ .after-hours-panel .emergency-clinics>article{grid-column:1;grid-row:auto;grid-template-rows:auto}
+ .after-hours-panel .emergency-clinics>article+article{border-left:0;border-top:1px solid currentColor}
+ .after-hours-panel .emergency-clinics>article>*,.after-hours-panel>p{padding:var(--s3)}
+}
