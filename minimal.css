@@ -441,3 +441,5 @@ body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-te
 .contact{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6}
 /* Stopka */
 footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
+/* Supplied service artwork: retain original transparency and white fills. */
+.bento .tile img.service-art{height:auto;object-fit:contain;background:none;mask:none}
