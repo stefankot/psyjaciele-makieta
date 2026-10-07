@@ -709,3 +709,5 @@ footer .foot-brand>div>p:first-of-type{font-size:var(--type-h4);line-height:1.4;
  .after-hours-panel>.poster-heading>h3{grid-column:1/span 2;padding:var(--s4)}
  .after-hours-panel>.poster-heading>p{grid-column:3;padding:var(--s4);width:100%;max-width:none}
 }
+
+.after-hours-panel>.poster-heading>p>span{white-space:nowrap}
