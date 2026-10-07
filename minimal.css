@@ -607,3 +607,19 @@ footer .foot-links h2{margin:0}
 .person-card-link{position:absolute;inset:0;z-index:5}
 .person-card-link:focus-visible{outline:3px solid currentColor;outline-offset:4px}
 @media(hover:hover){.team .people .person:has(.person-card-link:hover) .person-name{text-decoration:underline;text-underline-offset:.2em}}
+
+/* Hover całej karty zespołu, także gdy kursor znajduje się nad portretem. */
+.team .people .person{transition:border-color .2s ease,color .2s ease}
+.team .people .person :is(.person-name,.specializations){transition:color .2s ease}
+.team .people .person .portrait-blob img{transition:transform .25s ease}
+.team .people .person .portrait-blob::before{transition:background-color .2s ease}
+.team .people .person:focus-within{border-top-color:#0b3a20}
+.team .people .person:focus-within :is(.person-name,.person-name em,.person-name span,.specializations){color:#0b3a20}
+.team .people .person:focus-within .portrait-blob::before{background:#f7f3ee}
+@media(hover:hover) and (pointer:fine){
+ .team .people .person:hover{border-top-color:#0b3a20}
+ .team .people .person:hover :is(.person-name,.person-name em,.person-name span,.specializations){color:#0b3a20}
+ .team .people .person:hover .portrait-blob::before{background:#f7f3ee}
+ .team .people .person:hover .portrait-blob img{transform:translateY(-4px)}
+}
+@media(prefers-reduced-motion:reduce){.team .people .person,.team .people .person :is(.person-name,.specializations),.team .people .person .portrait-blob img,.team .people .person .portrait-blob::before{transition:none}.team .people .person:hover .portrait-blob img{transform:none}}
