@@ -39,6 +39,9 @@ main .poster-heading h2{inline-size:100%;max-inline-size:100%;white-space:normal
 
 /* Instrukcje: jednakowe początki akapitów w każdym rzędzie. */
 .emergency-guide{margin-top:0;gap:32px}
+.emergency .poster-copy{min-height:clamp(560px,44vw,680px)}
+.emergency .poster-bottom{gap:24px}
+.emergency .emergency-guide{margin-top:112px}
 .emergency-steps{grid-template-rows:auto auto;row-gap:16px}
 .emergency-steps>li{display:grid;grid-row:span 2;grid-template-rows:subgrid;padding-top:24px;padding-bottom:24px}
 .emergency-steps h4{margin:0;align-content:start}
@@ -47,9 +50,8 @@ main .poster-heading h2{inline-size:100%;max-inline-size:100%;white-space:normal
 .after-hours-panel .emergency-clinics>article>*{padding-inline:32px}
 .after-hours-panel>p{padding-inline:32px}
 
-/* Pełna sekcja 4:3; fotografia zajmuje sześć kolumn i ma proporcję 2:3.
-   block-size nie może być auto: nadpisywało poprzednią deklarację height. */
-#obserwuj-nas>.social-promo-composition{height:auto;block-size:max(720px,75vw);min-block-size:720px}
+/* Na szerokim ekranie 80% wysokości; na pionowym tablecie 80% szerokości. */
+#obserwuj-nas>.social-promo-composition{height:auto;block-size:80vh;min-block-size:0}
 #obserwuj-nas .social-promo-copy{padding-block:64px 128px}
 #obserwuj-nas .social-promo-actions{bottom:48px}
 
@@ -60,6 +62,14 @@ footer .foot-links>div{gap:16px}
 footer .footer-team .people{line-height:2}
 /* Obracany prostokąt maski jest szerszy niż sam okrągły znak. */
 footer .footer-logo{overflow:clip}
+
+/* Portrety stoją na prawej połowie linii również przed jej animacją.
+   Pozostała część dorysowuje się od prawej do lewej. */
+html.motion .team .people .person{border-image:linear-gradient(to left,var(--hover-ink,currentColor) var(--rule-hover),currentColor 0 max(50%,var(--rule)),transparent 0) 1!important}
+
+@media(min-width:701px) and (orientation:portrait){
+ #obserwuj-nas>.social-promo-composition{block-size:80vw}
+}
 
 @media(min-width:701px) and (max-width:1000px){
  :root{--gap:24px;--group-gap:48px;--row-gap:48px}
@@ -84,6 +94,8 @@ footer .footer-logo{overflow:clip}
  .poster-grid{row-gap:32px}
  .poster-copy,.arrival .poster-copy{grid-column:1/-1;grid-row:1;gap:24px;min-height:0}
  .poster-bottom{align-self:start}
+ .emergency .poster-copy{min-height:0;row-gap:80px}
+ .emergency .emergency-guide{margin-top:64px}
  main .poster-grid .poster-art,main .contact .poster-grid .poster-art,
  .arrival .poster-grid .poster-art{grid-column:1/-1;grid-row:2;height:auto;aspect-ratio:var(--art-ratio,1.6);max-height:360px}
  .contact-copy h2{max-inline-size:100%;white-space:normal}
