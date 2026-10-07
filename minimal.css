@@ -497,3 +497,6 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
  html{scroll-padding-top:260px}
  .site-header.site-header{padding:13px;& .header-grid{column-gap:13px;row-gap:13px}& .header-info{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px 21px;justify-content:normal}& .header-location{grid-column:1;grid-row:1}& .header-phone{grid-column:2;grid-row:1}& .header-hours div{grid-row:2}& .header-actions{flex-direction:column-reverse;align-items:end;gap:13px;padding-top:0}& .header-actions>.button{min-height:22px}& .site-nav{grid-template-columns:1fr;padding:13px}}
 }
+
+/* CTA na osi drugiego wiersza danych kontaktowych. */
+@media(min-width:1201px){.site-header.site-header .header-actions>.button{min-height:22px;margin-top:22px}}
