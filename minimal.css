@@ -539,4 +539,4 @@ footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
 .hero .hero-copy .hero-intro .hero-links :is(a,em){color:var(--ink)}
 
 /* Subtelne zwężenie kreski w renderowaniu; oryginalny obraz pozostaje bez zmian. */
-.emergency .poster-grid .poster-art .art{filter:url(#emergency-fine-line)}
+.emergency .poster-grid .poster-art{filter:url(#emergency-fine-line)}
