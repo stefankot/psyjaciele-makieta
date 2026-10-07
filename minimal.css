@@ -562,3 +562,20 @@ footer .foot-links h2{margin:0}
 .services .bento .tile:has(img.service-art) h3{min-height:0;margin:0}
 .services .bento .tile img.service-art{align-self:end}
 .services .bento .tile p.tile-description{align-self:start}
+
+/* Hover usług: akcent typograficzny zamiast obrysu całego boksa. */
+.services .bento .tile{transition:border-color .2s ease}
+.services .bento .tile h3{transition:color .2s ease}
+.services .bento .tile img.service-art{transition:transform .25s ease}
+.services .bento .tile:has(a:hover){outline:none}
+.services .bento .tile p.tile-description{background:transparent}
+.services .bento .tile:focus-within{border-top-color:#f6b08f}
+.services .bento .tile:focus-within h3{color:#f6b08f}
+.services .bento .tile:focus-within h3 a{text-decoration:underline;text-underline-offset:.2em}
+@media(hover:hover) and (pointer:fine){
+ .services .bento .tile:hover{border-top-color:#f6b08f}
+ .services .bento .tile:hover h3{color:#f6b08f}
+ .services .bento .tile:hover h3 a{text-decoration:underline;text-underline-offset:.2em}
+ .services .bento .tile:hover img.service-art{transform:translateY(-4px)}
+}
+@media(prefers-reduced-motion:reduce){.services .bento .tile,.services .bento .tile h3,.services .bento .tile img.service-art{transition:none}.services .bento .tile:hover img.service-art{transform:none}}
