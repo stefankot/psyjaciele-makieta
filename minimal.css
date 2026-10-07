@@ -579,3 +579,11 @@ footer .foot-links h2{margin:0}
  .services .bento .tile:hover img.service-art{transform:translateY(-4px)}
 }
 @media(prefers-reduced-motion:reduce){.services .bento .tile,.services .bento .tile h3,.services .bento .tile img.service-art{transition:none}.services .bento .tile:hover img.service-art{transform:none}}
+
+/* Jeden kolor hover dla całego tekstu oraz ilustracji usługi. */
+.services .bento .tile:focus-within :is(h3,a,p.tile-description){color:#f6b08f}
+.services .bento .tile:focus-within img.service-art{filter:url(#service-hover-ink)}
+@media(hover:hover) and (pointer:fine){
+ .services .bento .tile:hover :is(h3,a,p.tile-description){color:#f6b08f}
+ .services .bento .tile:hover img.service-art{filter:url(#service-hover-ink)}
+}
