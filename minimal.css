@@ -776,3 +776,7 @@ main .button,main .button *{--weight-text:900;font-weight:900!important}
 #onas .founder-names{font-size:var(--type-small);line-height:var(--leading-small);max-width:none}
 #onas .founder-description{max-width:42ch;margin:0}
 @media(max-width:700px){#onas .about-photo{grid-column:2/span 10;grid-row:1;margin-top:var(--s6)}#onas .about-copy{grid-column:1/-1;grid-row:2}#onas .founder-names span{display:none}#onas .founder-names{max-width:27ch}}
+
+/* Nazwiska założycielek pozostają tooltipami przy portrecie. */
+#onas .founder-hover:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+#onas .founder-hover:is(:hover,:focus-visible)>span{opacity:1}
