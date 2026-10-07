@@ -766,3 +766,7 @@ main .button,main .button *{--weight-text:900;font-weight:900!important}
 .site-header.site-header .brand .nav-logo{background:none;mask:none;fill:currentColor;stroke:currentColor;stroke-width:0;stroke-linejoin:round;paint-order:stroke fill;transition:width .25s ease,height .25s ease,color 180ms ease-out,stroke-width .25s ease}
 .site-header.site-header.is-scrolling-down .brand .nav-logo{stroke-width:.46px}
 @media(prefers-reduced-motion:reduce){.site-header.site-header .brand .nav-logo{transition:none}}
+
+/* Kulki pozostają dostępne nad przezroczystym kadrem i obszarami tooltipów założycielek. */
+#onas .portrait-halo{z-index:3;pointer-events:none}
+#onas .portrait-halo .halo-dot{pointer-events:auto}
