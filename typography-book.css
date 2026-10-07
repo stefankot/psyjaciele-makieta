@@ -1,0 +1,215 @@
+/*
+ * typography-book.css — typografia do spokojnej, długiej lektury.
+ * Samodzielny, opcjonalny arkusz; nie został podłączony do makiety.
+ *
+ * Użycie po arkuszu projektu:
+ *   <link rel="stylesheet" href="typography-book.css">
+ *   <body class="book-type">
+ *     <article class="book-prose" lang="pl">...</article>
+ *   </body>
+ *
+ * .book-type: drobna typografia w całej wybranej części strony.
+ * .book-prose: szerokość łamu, rytm akapitów i interlinia z container queries.
+ * Klasy można stosować razem lub osobno. Nie ustawiaj book-prose na całym
+ * layoucie strony: to kontener tekstu, a nie siatki czy ilustracji.
+ * Arkusz nie zmienia krojów, kolorów marki ani istniejących wag fontów.
+ * Selektory :where() celowo mają małą specyficzność; reguły projektu wygrywają.
+ *
+ * Wymagania redakcyjne:
+ * - ustaw lang="pl" na dokumencie dla dzielenia wyrazów i cudzysłowów;
+ * - po polskich jednoliterowych wyrazach wpisuj spację nierozdzielającą:
+ *   „w&nbsp;domu”, „i&nbsp;kot”, „z&nbsp;nami”; CSS nie rozpoznaje takich wyrazów;
+ * - używaj prawdziwych znaków: „…”, półpauzy „–”, pauzy „—”, „×”, „−”;
+ * - nie wymuszaj <br> w tytułach, które mają być automatycznie równoważone;
+ * - ligatury i warianty cyfr wymagają odpowiednich znaków w pliku fontu.
+ *
+ * Dokumentacja:
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-ligatures
+ */
+
+/* 1. Mikrotypografia. Ligatury standardowe, bez ozdobnych wariantów domyślnie. */
+:where(.book-type, .book-prose) {
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures contextual;
+  font-optical-sizing: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: 1.6;
+  text-align: start;
+  word-break: normal;
+}
+
+/* Dopasowanie wysokości małych liter fontu zapasowego do wybranego kroju. */
+@supports (font-size-adjust: from-font) {
+  :where(.book-type, .book-prose) { font-size-adjust: from-font; }
+}
+
+/* 2. Łam. 66ch to miara przybliżona, nie dokładna liczba znaków w wierszu.
+ * W praktyce szerokość i interlinię należy obejrzeć w docelowym foncie.
+ * Bez obsługi container queries pozostaje bezpieczna interlinia 1.6.
+ */
+:where(.book-prose) {
+  --book-measure: 66ch;
+  --book-paragraph-gap: 0.85em;
+  max-inline-size: var(--book-measure);
+  min-inline-size: 0;
+  overflow-wrap: break-word;
+}
+
+:where(.book-prose > :is(p, ul, ol, dl, blockquote, figure)) {
+  margin-block: 0;
+}
+:where(.book-prose > * + *) { margin-block-start: var(--book-paragraph-gap); }
+
+@supports (container-type: inline-size) {
+  :where(.book-prose) {
+    container-type: inline-size;
+    container-name: book-copy;
+  }
+  /* Interlinia rośnie wraz z szerokością ŁAMU, a nie okna przeglądarki.
+   * Zapytanie obejmuje potomków; kontener nie może zapytać o własną szerokość.
+   */
+  @container book-copy (inline-size < 38ch) {
+    :where(.book-prose :is(p, li, dd, blockquote)) { line-height: 1.5; }
+  }
+  @container book-copy (38ch <= inline-size < 55ch) {
+    :where(.book-prose :is(p, li, dd, blockquote)) { line-height: 1.6; }
+  }
+  @container book-copy (55ch <= inline-size < 72ch) {
+    :where(.book-prose :is(p, li, dd, blockquote)) { line-height: 1.68; }
+  }
+  @container book-copy (inline-size >= 72ch) {
+    :where(.book-prose :is(p, li, dd, blockquote)) { line-height: 1.75; }
+  }
+}
+
+/* 3. Akapity: spokojne zakończenia wierszy zamiast równoważenia całego akapitu.
+ * pretty jest progresywnym ulepszeniem; algorytm zależy od przeglądarki.
+ */
+@supports (text-wrap: pretty) {
+  :where(.book-type, .book-prose) :where(p, li, dd, figcaption) {
+    text-wrap: pretty;
+  }
+}
+:where(.book-prose) :where(p, li, dd) {
+  hyphens: auto;
+  /* Ograniczenia stosują tylko przeglądarki obsługujące te właściwości. */
+  hyphenate-limit-chars: 7 3 3;
+  hyphenate-limit-lines: 2;
+}
+
+/* 4. Tytuły: zwarte, ale czytelne; bez dzielenia słów na siłę. */
+:where(.book-type, .book-prose) :where(h1, h2, h3, h4, h5, h6) {
+  line-height: 1.15;
+  hyphens: manual;
+  overflow-wrap: normal;
+  word-break: normal;
+  font-variant-ligatures: common-ligatures contextual;
+}
+@supports (text-wrap: balance) {
+  :where(.book-type, .book-prose) :where(h1, h2, h3, h4, h5, h6) {
+    text-wrap: balance;
+  }
+}
+:where(.book-prose > :is(h1, h2, h3, h4, h5, h6)) {
+  margin-block: 1.8em 0.55em;
+}
+:where(.book-prose > :is(h1, h2, h3, h4, h5, h6):first-child) {
+  margin-block-start: 0;
+}
+:where(.book-prose > :is(h1, h2, h3, h4, h5, h6) + *) {
+  margin-block-start: 0;
+}
+
+/* 5. Cudzysłowy i interpunkcja wisząca. Druga reguła jest opcjonalna,
+ * bo obsługa hanging-punctuation nie jest jednakowa w przeglądarkach.
+ */
+:where(.book-type, .book-prose):lang(pl),
+:where(.book-type, .book-prose) :where(q:lang(pl)) {
+  quotes: "„" "”" "«" "»";
+}
+@supports (hanging-punctuation: first last) {
+  :where(.book-prose :is(p, blockquote)) {
+    hanging-punctuation: first last;
+  }
+}
+:where(.book-prose blockquote) {
+  margin-inline: 0;
+  padding-inline-start: 1.25em;
+  border-inline-start: 1px solid currentColor;
+}
+:where(.book-prose blockquote cite) {
+  display: block;
+  margin-block-start: 0.6em;
+  font-size: 0.9em;
+}
+
+/* 6. Czytelne linki; nie odróżniamy ich wyłącznie kolorem. */
+:where(.book-type, .book-prose) :where(p, li, dd, figcaption) :where(a) {
+  text-decoration-line: underline;
+  text-decoration-thickness: max(1px, 0.06em);
+  text-underline-offset: 0.18em;
+  text-decoration-skip-ink: auto;
+  hyphens: manual;
+}
+:where(.book-type, .book-prose) :where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+:where(.book-prose a, .book-prose code) { overflow-wrap: anywhere; }
+:where(.book-prose pre) { overflow-x: auto; }
+:where(.book-prose :is(code, pre, kbd, samp)) {
+  font-variant-ligatures: none;
+  hyphens: none;
+}
+:where(.book-prose :is(ul, ol)) { padding-inline-start: 1.4em; }
+:where(.book-prose li + li) { margin-block-start: 0.35em; }
+:where(.book-prose figcaption) { font-size: 0.9em; line-height: 1.5; }
+
+/* 7. Klasy narzędziowe. Stosuj stosownie do znaczenia treści. */
+:where(.book-nowrap) { white-space: nowrap; }
+:where(.book-numbers) { font-variant-numeric: lining-nums tabular-nums; }
+:where(.book-oldstyle) { font-variant-numeric: oldstyle-nums proportional-nums; }
+:where(.book-fraction) { font-variant-numeric: diagonal-fractions; }
+:where(.book-smallcaps) { font-variant-caps: all-small-caps; letter-spacing: 0.04em; }
+/* Małe kapitaliki wymagają prawdziwego wariantu w foncie. */
+:where(.book-smallcaps) { font-synthesis: none; }
+
+/* 8. Opcjonalny skład książkowy: wcięcia ZAMIAST odstępów między akapitami.
+ * Pierwszy akapit oraz akapit po tytule pozostają bez wcięcia.
+ */
+:where(.book-prose--indented > p + p) {
+  margin-block-start: 0;
+  text-indent: 1.25em;
+}
+/* Justowanie jest opcją, nie domyślnym ustawieniem: w wąskich kolumnach
+ * może tworzyć duże dziury między wyrazami. Wymaga poprawnego lang.
+ */
+:where(.book-prose--justified) :where(p) {
+  text-align: justify;
+  text-align-last: start;
+  hyphens: auto;
+}
+@supports (container-type: inline-size) {
+  @container book-copy (inline-size < 45ch) {
+    :where(.book-prose--justified p) { text-align: start; }
+  }
+}
+
+/* 9. Druk: wdowy/sieroty dotyczą łamania stron i kolumn, NIE ostatniego
+ * słowa w zwykłym ekranowym akapicie. Do tego służą pretty i redakcja tekstu.
+ */
+@media print {
+  :where(.book-type, .book-prose) :where(p, li, blockquote) {
+    orphans: 3;
+    widows: 3;
+  }
+  :where(.book-type, .book-prose) :where(h1, h2, h3, h4, h5, h6) {
+    break-after: avoid;
+    break-inside: avoid;
+  }
+  :where(.book-prose) :where(figure, pre, tr) { break-inside: avoid; }
+  :where(.book-prose) { max-inline-size: none; }
+}
