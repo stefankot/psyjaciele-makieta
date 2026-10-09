@@ -1,0 +1,108 @@
+/*
+  layout-srednia.css — wariant „średni”: porządkuje to, co przeszkadza w czytaniu i działaniu,
+  bez zmiany charakteru strony. Nagłówki sekcji (poster-grid) pozostają bez zmian.
+  Działa razem z layout-base.css.
+*/
+
+/* ---------- Usługi: 4 kolumny, ilustracja nad opisem, cały kafel jest linkiem ---------- */
+html body.book-type .services .bento {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  grid-template-rows: none !important;
+  grid-auto-rows: auto;
+  column-gap: 32px;
+  row-gap: 48px;
+  height: auto;
+}
+html body.book-type .services .tile {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding: 24px 0 0;
+  justify-content: flex-start;
+}
+html body.book-type .services .tile .service-art {
+  order: -1;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1.2 / 1;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 0 12px;
+  transition: transform .35s ease;
+}
+html body.book-type .services .tile h3 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 0;
+  margin-top: 8px;
+}
+html body.book-type .services .tile h3::after {
+  content: "↗";
+  flex: none;
+  font-size: .8em;
+  font-weight: 500;
+  opacity: .65;
+  transition: transform .2s ease, opacity .2s ease;
+}
+html body.book-type .services .tile p { margin-top: 10px; max-width: none; }
+html body.book-type .services .tile:hover h3 a { text-decoration: underline; text-underline-offset: .18em; }
+html body.book-type .services .tile:hover h3::after { opacity: 1; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html body.book-type .services .tile:hover .service-art { transform: translateY(-6px) rotate(-1.5deg); }
+  html body.book-type .services .tile:hover h3::after { transform: translate(2px, -2px); }
+}
+
+@media (max-width: 1179px) {
+  html body.book-type .services .bento { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 759px) {
+  html body.book-type .services .bento { grid-template-columns: minmax(0, 1fr) !important; row-gap: 0; }
+  html body.book-type .services .tile {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-areas: "art title" "art desc";
+    column-gap: 16px;
+    row-gap: 6px;
+    align-items: start;
+    align-content: start;
+    padding: 22px 0 24px;
+  }
+  html body.book-type .services .tile .service-art {
+    grid-area: art;
+    order: 0;
+    width: 112px;
+    aspect-ratio: 1;
+    margin: 0;
+  }
+  html body.book-type .services .tile h3 { grid-area: title; margin-top: 0; }
+  html body.book-type .services .tile p { grid-area: desc; margin-top: 0; }
+}
+
+/* ---------- Przychodnia / przed wizytą / FAQ / kontakt: kolumny z liniami ---------- */
+html body.book-type .detail-columns .detail-body p { max-width: 38ch; }
+@media (max-width: 700px) {
+  html body.book-type .detail-columns { row-gap: 40px; }
+}
+
+/* ---------- Usługi: dwa ostatnie kafle w układzie poziomym, żeby domknąć siatkę 4 kolumn ---------- */
+@media (min-width: 1180px) {
+  html body.book-type .services .tile:nth-last-child(-n+2) {
+    grid-column: span 2 !important;
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    grid-template-areas: "art title" "art desc";
+    grid-template-rows: auto 1fr;
+    column-gap: 24px;
+    row-gap: 10px;
+    align-content: start;
+  }
+  html body.book-type .services .tile:nth-last-child(-n+2) .service-art { grid-area: art; order: 0; margin: 0; }
+  html body.book-type .services .tile:nth-last-child(-n+2) h3 { grid-area: title; margin-top: 12px; }
+  html body.book-type .services .tile:nth-last-child(-n+2) p { grid-area: desc; margin-top: 0; }
+}

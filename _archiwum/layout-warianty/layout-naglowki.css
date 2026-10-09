@@ -1,0 +1,74 @@
+/*
+  layout-naglowki.css — poprawki nagłówków sekcji (header.poster-grid.section-header).
+  Zasada: charakter zostaje — tytuł u góry, światło i ilustracja pod nim, tekst razem na dole.
+  Ładowany po layout-base.css i pliku wariantu. Żeby wrócić do oryginalnych nagłówków,
+  usuń z index-*.html linijkę <link ... layout-naglowki.css>.
+
+  1) Lead pod tytułem: 16 px przy tytule 69 px było zbyt małym skokiem skali → ok. 21 px na desktopie.
+  2) Szerokie ilustracje (opinie, przygotowanie, pytania) wychodziły poza prawą krawędź ekranu
+     (na 1440 px o ok. 76 px, ucinały np. ptaka w „Częste pytania”) → skalowanie od prawej strony kolumny.
+  3) Mobile: tytuł → ilustracja → tekst (jak na desktopie), zamiast tytuł → tekst → ilustracja,
+     która odsuwała lead od treści pod nagłówkiem.
+*/
+
+/* ---------- 1) Lead ---------- */
+html body.book-type main .section-header .poster-bottom p {
+  font-size: clamp(18px, 1.45vw, 21px);
+  line-height: 1.5;
+  font-weight: 500;
+  max-inline-size: 34ch;
+  text-wrap: pretty;
+}
+
+/* ---------- 2) Szerokie ilustracje nie wychodzą poza ekran ---------- */
+@media (min-width: 701px) {
+  /* skala 1,5 → 1,3 i zakotwiczenie przy prawej krawędzi kolumny (+ odrobina w marginesie),
+     dzięki czemu rysunek nie wchodzi na tytuł ani na lead po lewej */
+  html body.book-type main :is(#rekomendacje, #przygotowanie, #pytania) .section-header .poster-media {
+    scale: 1.3;
+    transform-origin: 100% 50%;
+    translate: calc(var(--gutter, 55px) - 24px) 0;
+  }
+}
+
+/* ---------- 3) Mobile: tytuł → ilustracja → tekst na dole ---------- */
+@media (max-width: 700px) {
+  html body.book-type main .section-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 12px;
+    height: auto;
+  }
+  html body.book-type main .section-header > .poster-copy { display: contents; }
+
+  html body.book-type main .section-header .poster-heading {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  html body.book-type main .section-header .poster-art {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    max-height: none;
+    margin: 0;
+  }
+  html body.book-type main .section-header .poster-bottom {
+    grid-column: 1;
+    grid-row: 3;
+    align-self: start;
+    margin-top: 8px;
+  }
+
+  /* tytuł nieco większy, żeby na telefonie też był „plakatem” */
+  html body.book-type main .section-header .poster-heading h2 {
+    font-size: clamp(36px, 10vw, 54px);
+    line-height: 1.04;
+  }
+  html body.book-type main .contact .section-header .poster-heading h2 {
+    width: auto;
+    max-width: 100%;
+    white-space: normal;
+  }
+}

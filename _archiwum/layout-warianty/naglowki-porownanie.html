@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Nagłówki sekcji — porównanie</title>
+<style>
+  :root { --bg: #f4f1ea; --ink: #143324; --line: #cfc8b6; --muted: #5d6b61; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+  .bar { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center;
+         padding: 10px 16px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .group > span { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-right: 4px; }
+  button { font: inherit; padding: 6px 12px; border: 1px solid var(--ink); background: transparent; color: inherit; cursor: pointer; border-radius: 0; }
+  button:hover { background: rgba(20, 51, 36, .08); }
+  button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  button:focus-visible, a:focus-visible { outline: 3px solid #f0764a; outline-offset: 2px; }
+  .stage { display: grid; gap: 20px; padding: 16px; }
+  .stage.sbs { grid-template-columns: 1fr 1fr; }
+  .col h2 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 6px; font-size: 14px; }
+  .col h2 a { font-weight: 400; font-size: 13px; color: var(--ink); }
+  .frame { position: relative; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+  .frame iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: #fff; }
+  .note { padding: 0 16px 24px; color: var(--muted); font-size: 13px; max-width: 80ch; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="group" id="sections" role="group" aria-label="Sekcja"><span>Sekcja</span></div>
+  <div class="group" id="widths" role="group" aria-label="Szerokość ekranu"><span>Ekran</span></div>
+  <div class="group" id="variants" role="group" aria-label="Wariant po zmianach"><span>Po zmianach</span></div>
+</div>
+
+<div class="stage" id="stage">
+  <section class="col">
+    <h2><span>Teraz (oryginał)</span><a id="open-before" href="../index-min.html" target="_blank" rel="noopener">otwórz w pełnym oknie ↗</a></h2>
+    <div class="frame" id="frame-before"><iframe id="before" title="Oryginalna strona główna" loading="eager"></iframe></div>
+  </section>
+  <section class="col">
+    <h2><span id="after-label">Po zmianach (średnia)</span><a id="open-after" href="index-srednia.html" target="_blank" rel="noopener">otwórz w pełnym oknie ↗</a></h2>
+    <div class="frame" id="frame-after"><iframe id="after" title="Strona główna po zmianach" loading="eager"></iframe></div>
+  </section>
+</div>
+<p class="note">Obie ramki są w pełni działające — możesz w nich przewijać. Wersja „po zmianach” ma też nowy stały pasek u góry i inne kafle usług; porównuj sam nagłówek sekcji (tytuł, ilustracja, tekst na dole).</p>
+
+<script>
+(() => {
+  const SECTIONS = [
+    ['uslugi', 'Usługi'], ['przychodnia', 'Przychodnia'], ['zespol', 'Zespół'], ['rekomendacje', 'Opinie'],
+    ['nagle-przypadki', 'Nagłe przypadki'], ['przygotowanie', 'Przygotuj się'], ['dojazd', 'Dojazd'],
+    ['pytania', 'Pytania'], ['kontakt', 'Kontakt']
+  ];
+  const WIDTHS = [
+    ['desktop', 'Desktop 1440', 1440, 900], ['laptop', 'Laptop 1366', 1366, 768],
+    ['tablet', 'Tablet 825', 825, 987], ['mobile', 'Telefon 390', 390, 844]
+  ];
+  const VARIANTS = [['srednia', 'Średnia', 'index-srednia.html'], ['odwazna', 'Odważna', 'index-odwazna.html']];
+
+  const state = { section: 'uslugi', width: 'desktop', variant: 'srednia' };
+  try { Object.assign(state, JSON.parse(sessionStorage.getItem('cmp-state') || '{}')); } catch (e) {}
+  const hash = location.hash.slice(1);
+  if (SECTIONS.some(s => s[0] === hash)) state.section = hash;
+
+  const $ = id => document.getElementById(id);
+  const stage = $('stage');
+  const frames = { before: $('before'), after: $('after') };
+  const boxes = { before: $('frame-before'), after: $('frame-after') };
+
+  function mkButtons(host, items, key) {
+    items.forEach(it => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = it[1]; b.dataset.value = it[0];
+      b.addEventListener('click', () => { state[key] = it[0]; save(); render(key === 'variant'); });
+      host.appendChild(b);
+    });
+  }
+  mkButtons($('sections'), SECTIONS, 'section');
+  mkButtons($('widths'), WIDTHS, 'width');
+  mkButtons($('variants'), VARIANTS, 'variant');
+
+  function save() { try { sessionStorage.setItem('cmp-state', JSON.stringify(state)); } catch (e) {} }
+
+  function align(name) {
+    const ifr = frames[name];
+    try {
+      const w = ifr.contentWindow, d = ifr.contentDocument;
+      const h = d && d.querySelector('#' + state.section + ' .section-header');
+      if (!h) return;
+      const top = h.getBoundingClientRect().top + w.scrollY - 96;
+      w.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
+    } catch (e) {}
+  }
+  function alignAll() { ['before', 'after'].forEach(align); }
+  let timers = [];
+  function alignSoon() {
+    timers.forEach(clearTimeout);
+    timers = [250, 900, 2000, 3500].map(ms => setTimeout(alignAll, ms));
+  }
+
+  function layout() {
+    const [, , W, H] = WIDTHS.find(w => w[0] === state.width);
+    const cw = document.documentElement.clientWidth - 32, gap = 20;
+    const sbsScale = Math.min(1, (cw - gap) / (2 * W));
+    const sbs = sbsScale >= 0.5;
+    const scale = sbs ? sbsScale : Math.min(1, cw / W);
+    stage.classList.toggle('sbs', sbs);
+    Object.keys(frames).forEach(k => {
+      const f = frames[k];
+      f.style.width = W + 'px'; f.style.height = H + 'px';
+      f.style.transform = 'scale(' + scale + ')';
+      boxes[k].style.width = Math.round(W * scale) + 'px';
+      boxes[k].style.height = Math.round(H * scale) + 'px';
+    });
+  }
+
+  function render(reloadAfter) {
+    document.querySelectorAll('#sections button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.value === state.section)));
+    document.querySelectorAll('#widths button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.value === state.width)));
+    document.querySelectorAll('#variants button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.value === state.variant)));
+    const v = VARIANTS.find(x => x[0] === state.variant);
+    $('after-label').textContent = 'Po zmianach (' + v[1].toLowerCase() + ')';
+    $('open-after').href = v[2] + '#' + state.section;
+    $('open-before').href = '../index-min.html#' + state.section;
+    layout();
+    const beforeSrc = '../index-min.html', afterSrc = v[2];
+    if (!frames.before.dataset.ready) { frames.before.dataset.ready = '1'; frames.before.src = beforeSrc; }
+    if (!frames.after.dataset.src || reloadAfter) { frames.after.dataset.src = afterSrc; frames.after.src = afterSrc; }
+    alignSoon();
+  }
+
+  Object.values(frames).forEach(f => f.addEventListener('load', alignSoon));
+  window.addEventListener('resize', () => { layout(); alignSoon(); });
+  render(false);
+})();
+</script>
+</body>
+</html>

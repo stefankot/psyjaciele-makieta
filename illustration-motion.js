@@ -4,10 +4,36 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const visible = new Set();
   const started = new Set();
-  let heroReady = false;
+  const heroImages = images.filter(image => image.closest('.hero'));
+  const heroLoads = new Map();
+  function prepareHero(image) {
+    if (reducedMotion.matches || heroLoads.has(image)) return;
+    // Fetch bytes immediately, without decoding/playing the animation early.
+    const load = fetch(image.dataset.animatedSrc)
+      .then(response => {
+        if (!response.ok) throw new Error('Illustration could not be loaded');
+        return response.blob();
+      });
+    heroLoads.set(image, load);
+    Promise.all([
+      load,
+      new Promise(resolve => setTimeout(resolve, Math.max(0, 3000 - performance.now())))
+    ]).then(([blob]) => {
+      if (reducedMotion.matches || started.has(image)) return;
+      const still = image.src;
+      const url = URL.createObjectURL(blob);
+      started.add(image);
+      image.addEventListener('error', () => {
+        image.src = still;
+        URL.revokeObjectURL(url);
+      }, { once: true });
+      image.src = url;
+      image.dataset.animationStartedAt = String(performance.now());
+    }).catch(() => { heroLoads.delete(image); });
+  }
   function start(image) {
     if (reducedMotion.matches || started.has(image) || !visible.has(image)) return;
-    if (image.closest('.hero') && !heroReady) return;
+    if (image.closest('.hero')) return;
     started.add(image);
     const still = image.src;
     image.addEventListener('error', () => { image.src = still; }, { once: true });
@@ -15,14 +41,7 @@
     image.fetchPriority = 'low';
     image.src = image.dataset.animatedSrc;
   }
-  function afterPageLoad() {
-    setTimeout(() => {
-      heroReady = true;
-      images.forEach(start);
-    }, 3000);
-  }
-  if (document.readyState === 'complete') afterPageLoad();
-  else window.addEventListener('load', afterPageLoad, { once: true });
+  heroImages.forEach(prepareHero);
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -37,6 +56,10 @@
     images.forEach(image => { visible.add(image); start(image); });
   }
   reducedMotion.addEventListener('change', () => {
-    if (!reducedMotion.matches) images.forEach(start);
+    if (!reducedMotion.matches) {
+      heroLoads.clear();
+      heroImages.forEach(prepareHero);
+      images.forEach(start);
+    }
   });
 })();

@@ -1,0 +1,12 @@
+{
+  "site_url": "https://www.psyjacielevet.pl/mystaging02",
+  "home_page_id": 14,
+  "theme_slug": "psyjaciele-staging",
+  "parent_theme": "twentytwentyfive",
+  "html": "index-min.html",
+  "output": "../wordpress-staging/generated",
+  "remote_asset_base": "https://raw.githubusercontent.com/stefankot/psyjaciele-makieta/2596330441be66638cb854430987e7f2dd8b316e/",
+  "font_urls": {
+    "assets/fonts/RialtoScript-Regular.otf": "https://www.psyjacielevet.pl/mystaging02/wp-content/fonts/rialtoscript-regular.otf"
+  }
+}

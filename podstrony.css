@@ -1,0 +1,1070 @@
+/* generated: psyjaciele-podstrony — podstrony.css
+   Ładowany jako ostatni arkusz (po layout-nowa.css). Zasady: siatka 8 px, min. 16 px, zero cieni i zaokrągleń,
+   kolor wyłącznie ze zmiennych sekcji (--surface/--ink/--small-ink/--accent/--hover-ink), nowe bloki są bezbarwne.
+   Selektory zaczynają się od body.subpage. Kolejność: 0 pomocnicze · 1 podstawy · 2 hero/okruszki/fakty · 3 układy ·
+   4 bloki treści · 5 sygnały · 6 FAQ · 7 placeholdery · 8 druk. */
+
+/* ==========================================================================
+   0. Pomocnicze
+   ========================================================================== */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ==========================================================================
+   1. Podstawy podstron
+   ========================================================================== */
+body.subpage {
+  --lead-size: 20px; --lead-lh: 32px;
+  --sticky-top: calc(var(--header-float-top, 0px) + var(--floating-header-height, 0px) + var(--s3));
+  --line-soft: 25%;
+}
+html.bar body.subpage { --sticky-top: calc(var(--hdr-h, 64px) + var(--s3)); }
+
+body.subpage main > section { min-width: 0; }
+body.subpage main .section-stack > * { min-width: 0; }
+
+/* każdy akapit w treści bez własnych marginesów — odstępy daje siatka kontenera */
+body.subpage main :is(.split-body, .rail-body, .faq-answer, .sub-chapter, .callout, .legal-prose) p { margin: 0; }
+body.subpage main :is(.split-body, .rail-body, .sub-chapter) p { max-inline-size: 62ch; text-wrap: pretty; }
+body.subpage .sub-chapter { display: grid; gap: var(--s3); align-content: start; }
+body.subpage .sub-chapter > h3 { font-size: 24px; margin: 0; }
+body.subpage .sub-chapter > h3 + * { margin-top: 0; }
+body.subpage a.hero-btn, body.subpage .cta-band a { text-underline-offset: .22em; }
+
+/* tytuły mieszane w aside i nad szerokimi blokami */
+body.subpage .section-head h2 { --mixed-title-size: clamp(34px, 3.5vw, 48px); }
+
+/* ==========================================================================
+   2. N1 page-hero · N2 breadcrumb · N3 fact-strip
+   ========================================================================== */
+body.subpage .hero.page-hero { height: auto; max-height: none; min-height: 0; }
+body.subpage .hero.page-hero > .wrap { height: auto; min-height: 0; }
+/* hero w układzie Off→Grid (oś 6/6): tytuł + przyciski + ilustracja w kol. 1–6, lead w kol. 7–12, wszystko od górnej linii wersalików */
+body.subpage .hero.page-hero .poster-grid {
+  display: grid; grid-template-columns: var(--cols); column-gap: var(--gap); row-gap: var(--s4);
+  align-items: start; min-height: 0;
+}
+body.subpage .hero.page-hero .poster-heading { grid-column: 1 / span 6; grid-row: 1; display: grid; min-width: 0; }
+body.subpage .hero.page-hero .poster-copy { grid-column: 7 / span 6; grid-row: 1; display: grid; gap: var(--s3); align-content: start; min-width: 0; min-height: 0; }
+body.subpage .hero.page-hero .hero-actions { grid-column: 1 / span 6; grid-row: 2; margin-top: 0; }
+body.subpage .hero.page-hero .poster-art { grid-column: 7 / span 6; grid-row: 2; align-self: start; justify-self: start; position: relative; aspect-ratio: var(--art-ratio, 1); height: auto; width: 100%; min-height: 0; margin-top: 0; }
+body.subpage .hero.page-hero .poster-art > img { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
+/* tytuł: Satoshi, jeden rozmiar, bez wersalików i bez Rialto — „Czipowanie psów i kotów — Warszawa Gocław” jako jeden napis */
+html body.book-type.subpage .page-hero h1 {
+  --hero-title: clamp(40px, 4.6vw, 64px);
+  font-family: var(--font-main); font-size: var(--hero-title); font-weight: 700; font-style: normal; letter-spacing: -.035em; text-transform: none;
+  line-height: 72px; line-height: round(up, 1.06em, 8px); text-wrap: balance; overflow-wrap: break-word; margin: 0; display: block;
+}
+html body.book-type.subpage .page-hero h1 :is(.heading-roman, em) {
+  display: inline !important; font: inherit; font-size: inherit !important; font-style: normal; letter-spacing: inherit; text-transform: none;
+  line-height: inherit !important; color: inherit; margin: 0; padding: 0; transform: none;
+}
+html body.book-type.subpage .page-hero h1 .heading-roman::before, html body.book-type.subpage .page-hero h1 .heading-roman::after { content: none; }
+body.subpage .page-hero h1 .visually-hidden { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: normal; }
+/* lead: jeden rozmiar w hero i w nagłówkach sekcji (token --lead-size) */
+body.subpage .page-hero .poster-copy > p {
+  font-size: var(--lead-size); line-height: var(--lead-lh); font-weight: 500; max-inline-size: none; text-wrap: pretty; margin: 0;
+}
+@supports (text-box: trim-both cap alphabetic) {
+  /* optyczne wyrównanie góry: wierzch małych liter (x-height) pierwszej linii tytułu i leadu leży na jednej poziomej */
+  body.subpage .page-hero h1, body.subpage .page-hero .poster-copy > p:first-child { text-box: trim-both ex alphabetic; }
+}
+
+body.subpage .breadcrumb ol { display: flex; flex-wrap: wrap; gap: 0 var(--s2); list-style: none; margin: 0; padding: 0; }
+body.subpage .breadcrumb li { font-size: 16px; line-height: 24px; letter-spacing: .12em; text-transform: uppercase; }
+body.subpage .breadcrumb li + li::before { content: "/"; margin-inline-end: var(--s2); opacity: .6; }
+body.subpage .breadcrumb a { text-decoration: none; display: inline-block; padding-block: 8px; margin-block: -8px; }
+body.subpage .breadcrumb a:hover { text-decoration: underline; text-underline-offset: .25em; }
+
+body.subpage .fact-strip {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin: 0;
+  border-top: var(--column-rule-width, 1px) solid currentColor;
+}
+body.subpage .fact-strip > div { padding: var(--s3) var(--s3) var(--s3) 0; min-width: 0; }
+body.subpage .fact-strip > div + div {
+  border-inline-start: 1px solid color-mix(in srgb, currentColor 25%, transparent); padding-inline-start: var(--s3);
+}
+body.subpage .fact-strip dt { font-size: 16px; line-height: 24px; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 var(--s1); }
+body.subpage .fact-strip dd { margin: 0; font-size: clamp(24px, 2.4vw, 32px); line-height: 32px; line-height: round(up, 1.1em, 8px); text-wrap: balance; }
+
+/* ==========================================================================
+   N4 toc-index · N5 section-head
+   ========================================================================== */
+
+body.subpage .section-head { display: grid; gap: var(--s2); align-content: start; }
+body.subpage .section-head .kicker { display: flex; align-items: baseline; gap: var(--s2); margin: 0; }
+body.subpage .section-head .kicker::after { content: ""; flex: 1; border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
+body.subpage .section-lead { max-inline-size: none; font-size: var(--lead-size); line-height: var(--lead-lh); font-weight: 500; margin: 0; text-wrap: pretty; }
+
+/* ==========================================================================
+   3. Układy: N6 split-feature · N7 rail-layout · N25 figure-band · N26 figure-mosaic
+   ========================================================================== */
+body.subpage .split-feature { display: grid; grid-template-columns: var(--cols); column-gap: var(--gap); row-gap: var(--s5); align-items: start; }
+/* tytuł rozdziału stoi NAD treścią (zasada: bez układu „tytuł po jednej stronie, treść po drugiej” poza hero);
+   zdjęcie leży w ciągu artykułu: po pierwszym bloku treści, na całej szerokości kolumny (portret i kwadrat — połowa kolumny) */
+body.subpage .split-feature { row-gap: var(--s4); }
+body.subpage .split-feature:not(.is-faq) > :is(.split-aside, .split-body) { display: contents; }
+body.subpage .split-feature:not(.is-faq) > .split-aside > .section-head { order: 0; grid-column: 1 / -1; }
+body.subpage .split-feature:not(.is-faq) > .split-aside > :not(.section-head) { order: 2; grid-column: 1 / -1; min-width: 0; }
+body.subpage .split-feature:not(.is-faq) > .split-body > :first-child { order: 1; }
+body.subpage .split-feature:not(.is-faq) > .split-body > :not(:first-child) { order: 3; }
+body.subpage .split-feature:not(.is-faq) > .split-body > * { grid-column: 1 / -1; min-width: 0; }
+body.subpage .split-feature > .split-aside > .photo-frame.is-narrow { inline-size: calc((100% - var(--gap)) / 2); }
+body.subpage .split-feature.is-faq > :is(.split-aside, .split-body) { display: grid; gap: var(--s4); align-content: start; min-width: 0; grid-column: 1 / -1; }
+/* FAQ z bocznym bannerem: pytania po lewej (kol. 1–4 artykułu), pionowy baner po prawej (kol. 5–8) */
+@media (min-width: 1001px) {
+  body.subpage .split-feature.is-faq > .split-body { grid-column: 1 / span 4; grid-row: 1; }
+  body.subpage .split-feature.is-faq > .split-aside { grid-column: 5 / span 4; grid-row: 1; }
+}
+
+body.subpage .rail-layout { display: grid; grid-template-columns: var(--cols); column-gap: var(--gap); row-gap: var(--s5); }
+body.subpage .rail-nav { grid-column: 1 / span 4; min-width: 0; }
+body.subpage .rail-body { grid-column: 5 / span 8; min-width: 0; display: grid; gap: var(--group-gap); align-content: start; }
+@media (min-width: 1001px) { body.subpage .rail-nav { position: sticky; align-self: start; top: var(--sticky-top); } }
+body.subpage .rail-nav ol { list-style: none; margin: var(--s2) 0 0; padding: 0; font-size: 16px; }
+body.subpage .rail-nav a {
+  display: block; padding: var(--s1) 0; position: relative; text-decoration: none;
+  border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+}
+body.subpage .rail-nav a:hover { text-decoration: underline; text-underline-offset: .22em; }
+@media (max-width: 1000px) { body.subpage .rail-nav, body.subpage .rail-body { grid-column: 1 / -1; } }
+@media (max-width: 1000px) { body.subpage .rail-nav a { padding-inline-start: var(--s3); } }
+
+body.subpage .figure-band { position: relative; display: grid; padding-block-end: var(--s4); }
+body.subpage .figure-band .photo-frame { aspect-ratio: 21 / 9; }
+body.subpage .figure-band .callout {
+  position: absolute; inset-inline-start: var(--s4); inset-block-end: 0; max-inline-size: 42ch; background: var(--surface);
+}
+@media (max-width: 700px) {
+  body.subpage .figure-band { padding-block-end: 0; }
+  body.subpage .figure-band .photo-frame { aspect-ratio: 4 / 3; }
+  body.subpage .figure-band .callout { position: static; }
+}
+
+body.subpage .figure-mosaic { display: grid; grid-template-columns: var(--cols); gap: var(--gap); align-items: start; }
+body.subpage .figure-mosaic > :nth-child(1) { grid-column: 1 / span 4; grid-row: 1 / span 2; --ph-ratio: 4 / 5; }
+body.subpage .figure-mosaic > :nth-child(2) { grid-column: 5 / span 4; --ph-ratio: 3 / 2; }
+body.subpage .figure-mosaic > :nth-child(3) { grid-column: 5 / span 4; --ph-ratio: 3 / 2; }
+body.subpage .figure-mosaic.is-reversed > :nth-child(1) { grid-column: 5 / span 4; }
+body.subpage .figure-mosaic.is-reversed > :nth-child(2), body.subpage .figure-mosaic.is-reversed > :nth-child(3) { grid-column: 1 / span 4; }
+@media (max-width: 700px) { body.subpage .figure-mosaic > *, body.subpage .figure-mosaic.is-reversed > * { grid-column: 1 / -1 !important; grid-row: auto; } }
+
+/* ==========================================================================
+   4. Bloki treści: N8 ruled-list · N9 ruled-table · N10 step-list · N11 phase-timeline · N12 duo ·
+      N13 range-scale · N14 key-values · N15 legal-prose · N21 chooser · N22 related-tiles
+   ========================================================================== */
+body.subpage .ruled-list { list-style: none; margin: 0; padding: 0; counter-reset: rl; }
+body.subpage .ruled-list > li {
+  position: relative; padding: var(--s2) 0 var(--s2) var(--hang-pad);
+  border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+}
+body.subpage .ruled-list > li:last-child { border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
+/* znacznik = strzałka w prawo; grubość kreski ≈ 0,13 em Satoshi (zmierzone), więc optycznie jak tekst obok */
+body.subpage .ruled-list > li::before, body.subpage .toc-entry ul li::before {
+  content: ""; position: absolute; inset-inline-start: var(--hang-start); top: calc(var(--s2) + 2px); inline-size: 20px; block-size: 20px;
+  background: currentColor; -webkit-mask: var(--arrow-mask) center / contain no-repeat; mask: var(--arrow-mask) center / contain no-repeat;
+}
+body.subpage .ruled-list.is-numbered > li { counter-increment: rl; padding-inline-start: var(--hang-pad-circle); }
+body.subpage .ruled-list.is-numbered > li::before {
+  content: counter(rl); display: grid; place-items: center; inline-size: 40px; block-size: 40px; border-radius: 50%; top: var(--s2);
+  inset-inline-start: var(--hang-start-circle); -webkit-mask: none; mask: none;
+  background: var(--ink); color: var(--surface); font-family: var(--font-main); font-size: 16px; line-height: 1; font-weight: 900; letter-spacing: 0;
+}
+@media (min-width: 701px) {
+  body.subpage .ruled-list.is-columns { columns: 2; column-gap: var(--gap); }
+  body.subpage .ruled-list.is-columns > li { break-inside: avoid; }
+}
+
+body.subpage .ruled-table { overflow-x: auto; max-inline-size: 100%; }
+body.subpage .ruled-table table { width: 100%; border-collapse: collapse; }
+body.subpage .ruled-table th[scope=col] {
+  text-align: start; font-size: 16px; line-height: 24px; letter-spacing: .12em; text-transform: uppercase;
+  padding: var(--s2) var(--s3) var(--s2) 0; border-bottom: var(--column-rule-width, 1px) solid currentColor; vertical-align: bottom;
+}
+body.subpage .ruled-table th[scope=row] {
+  text-align: start; font-size: 24px; line-height: 32px; line-height: round(up, 1.2em, 8px);
+  padding: var(--s3) var(--s3) var(--s3) 0; vertical-align: top; min-width: 160px;
+}
+body.subpage .ruled-table td { padding: var(--s3) var(--s3) var(--s3) 0; vertical-align: top; }
+body.subpage .ruled-table tbody tr { border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
+body.subpage .ruled-table:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+body.subpage .ruled-table p { margin: 0; }
+body.subpage .ruled-table.is-directory tbody tr { position: relative; }
+body.subpage .ruled-table.is-directory th[scope=row] a { text-decoration: none; }
+body.subpage .ruled-table.is-directory th[scope=row] a::after { content: ""; position: absolute; inset: 0; }
+body.subpage .ruled-table.is-directory tbody tr:hover { color: var(--hover-ink, currentColor); }
+body.subpage .ruled-table.is-directory .row-go { text-align: end; padding-inline-end: 0; font-size: 24px; width: 1%; white-space: nowrap; }
+body.subpage .ruled-table.is-triage td strong { display: inline-block; padding: var(--s1) var(--s2); border: 1px solid currentColor; }
+@media (max-width: 700px) {
+  body.subpage .ruled-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  body.subpage .ruled-table :is(tr, th, td) { display: block; }
+  body.subpage .ruled-table th[scope=row] { padding: var(--s3) 0 var(--s1); min-width: 0; }
+  body.subpage .ruled-table td { padding: var(--s1) 0; }
+  body.subpage .ruled-table td:last-child { padding-bottom: var(--s3); }
+  body.subpage .ruled-table td::before { content: attr(data-label); display: block; font-size: 16px; line-height: 24px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: var(--s1); }
+  body.subpage .ruled-table.is-directory .row-go { display: none; }
+}
+
+body.subpage .step-list {
+  list-style: none; margin: 0; padding: 0; counter-reset: st; display: grid; gap: var(--row-gap) var(--gap);
+  grid-template-columns: repeat(var(--steps, 3), minmax(0, 1fr));
+}
+body.subpage .step-list > li {
+  counter-increment: st; border-top: var(--column-rule-width, 1px) solid currentColor; padding-top: var(--column-rule-gap, 24px);
+  display: grid; gap: var(--s2); align-content: start; min-width: 0;
+}
+body.subpage .step-list > li::before {
+  content: counter(st); display: grid; place-items: center; inline-size: 40px; block-size: 40px; border-radius: 50%; justify-self: start; align-self: start;
+  background: var(--ink); color: var(--surface); font-family: var(--font-main); font-size: 16px; line-height: 1; font-weight: 900; letter-spacing: 0;
+}
+body.subpage .step-list h3, body.subpage .step-list h4 { font-size: 24px; margin: 0; }
+body.subpage .step-list p { margin: 0; }
+body.subpage .step-list.is-stacked { grid-template-columns: 1fr; gap: 0; }
+body.subpage .step-list.is-stacked > li {
+  position: relative; grid-template-columns: minmax(0, 1fr); row-gap: var(--s1); padding: var(--s3) 0 var(--s3) var(--hang-pad-circle); align-items: start;
+}
+body.subpage .step-list.is-stacked > li::before { position: absolute; inset-inline-start: var(--hang-start-circle); top: calc(var(--s3) - var(--s1)); }
+@media (max-width: 1000px) { body.subpage .step-list:not(.is-stacked) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) {
+  body.subpage .step-list:not(.is-stacked) { grid-template-columns: 1fr; gap: var(--s4); }
+  body.subpage .step-list:not(.is-stacked) > li { border-top: 0; border-inline-start: 1px solid currentColor; padding: 0 0 0 var(--s3); }
+}
+
+body.subpage .phase-timeline {
+  list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--phases, 4), minmax(0, 1fr)); gap: var(--gap);
+}
+body.subpage .phase-timeline > li { position: relative; padding-top: var(--s4); border-top: 1px solid currentColor; display: grid; gap: var(--s1); align-content: start; }
+body.subpage .phase-timeline > li::before { content: ""; position: absolute; top: -5px; inset-inline-start: 0; width: 10px; height: 10px; background: currentColor; }
+body.subpage .phase-timeline h4 { font-size: 24px; margin: 0; }
+body.subpage .phase-timeline p { margin: 0; }
+body.subpage .phase-when { font-family: var(--font-emphasis, serif); font-size: clamp(24px, 2.4vw, 32px); line-height: 32px; line-height: round(up, 1.1em, 8px); }
+@media (max-width: 1000px) {
+  body.subpage .phase-timeline { grid-template-columns: 1fr; border-inline-start: 1px solid currentColor; gap: var(--s4); }
+  body.subpage .phase-timeline > li { border-top: 0; padding: 0 0 0 var(--s4); }
+  body.subpage .phase-timeline > li::before { top: 8px; inset-inline-start: -5px; }
+}
+
+body.subpage .duo { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); column-gap: var(--gap); }
+body.subpage .duo-head {
+  font-size: clamp(24px, 2.4vw, 32px); line-height: 32px; line-height: round(up, 1.1em, 8px);
+  border-bottom: var(--column-rule-width, 1px) solid currentColor; padding-bottom: var(--s2); margin: 0;
+}
+body.subpage .duo-vs { font-family: var(--font-emphasis, serif); font-style: normal; align-self: center; font-size: 32px; line-height: 40px; }
+body.subpage .duo-vs em { font-style: normal; }
+body.subpage .duo-row {
+  grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; padding-block: var(--s3);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent); row-gap: var(--s1);
+}
+body.subpage .duo-label { grid-column: 1 / -1; font-size: 16px; line-height: 24px; letter-spacing: .12em; text-transform: uppercase; margin: 0; }
+body.subpage .duo-cell { min-width: 0; }
+body.subpage .duo-cell:nth-of-type(1) { grid-column: 1; }
+body.subpage .duo-cell:nth-of-type(2) { grid-column: 3; }
+body.subpage .duo-cell p { margin: 0; }
+@media (max-width: 700px) {
+  body.subpage .duo, body.subpage .duo-row { grid-template-columns: 1fr; }
+  body.subpage .duo-head { margin-top: var(--s3); }
+  body.subpage .duo-vs { display: none; }
+  body.subpage .duo-cell:nth-of-type(n) { grid-column: 1; }
+  body.subpage .duo-cell::before { content: attr(data-side); display: block; font-size: 16px; line-height: 24px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: var(--s1); }
+}
+
+body.subpage .range-scale { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols-n, 4), minmax(0, 1fr)); gap: 2px; }
+body.subpage .range-scale > li { display: grid; gap: var(--s1); align-content: start; min-width: 0; }
+/* skala z kółkami: patrz „Infografiki” na końcu arkusza */
+body.subpage .range-value { font-family: var(--font-emphasis, serif); font-size: clamp(24px, 2.4vw, 32px); line-height: 32px; }
+body.subpage .range-cell { display: block; }
+@media (max-width: 700px) { body.subpage .range-scale { grid-template-columns: 1fr; } }
+
+body.subpage .key-values { margin: 0; display: grid; }
+body.subpage .key-values > div {
+  display: grid; grid-template-columns: minmax(120px, 1fr) 3fr; gap: var(--s3); padding: var(--s2) 0;
+  border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+}
+body.subpage .key-values > div:last-child { border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
+body.subpage .key-values dt { font-size: 16px; line-height: 24px; letter-spacing: .12em; text-transform: uppercase; padding-top: 0; }
+body.subpage .key-values dd { margin: 0; }
+@media (max-width: 700px) { body.subpage .key-values > div { grid-template-columns: 1fr; gap: var(--s1); } }
+
+body.subpage .legal-prose { counter-reset: lp; max-inline-size: 66ch; display: grid; gap: var(--s3); }
+body.subpage .legal-prose h2 { font-size: clamp(24px, 2.2vw, 32px); line-height: 32px; line-height: round(up, 1.15em, 8px); margin: var(--s5) 0 var(--s1); }
+body.subpage .legal-prose h3 { font-size: 20px; line-height: 32px; margin: var(--s3) 0 0; }
+body.subpage .legal-prose :is(ol, ul) { padding-inline-start: var(--s4); margin: 0; display: grid; gap: var(--s1); }
+body.subpage .legal-prose p { margin: 0; }
+
+body.subpage .chooser { list-style: none; margin: 0; padding: 0; display: grid; border-bottom: 1px solid currentColor; }
+body.subpage .chooser > li { border-top: 1px solid currentColor; }
+body.subpage .chooser > li > p {
+  margin: 0; padding: var(--s3) 0; display: flex; gap: var(--s3); align-items: baseline; flex-wrap: wrap;
+  font-size: clamp(20px, 2vw, 24px); line-height: 32px;
+}
+body.subpage .chooser .type-arrow { flex: none; }
+body.subpage .chooser a { text-underline-offset: .22em; }
+
+body.subpage .related-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(224px, 1fr)); gap: var(--gap); }
+body.subpage .related-tiles > article { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: none; align-content: start; gap: var(--s2); min-width: 0; }
+body.subpage .related-tiles > article > * { grid-column: 1; grid-row: auto; }
+body.subpage .related-tiles h3 { font-size: 24px; margin: 0; }
+body.subpage .related-tiles h3 a { text-decoration: none; }
+body.subpage .related-tiles h3 a::after { content: ""; position: absolute; inset: 0; }
+body.subpage .related-tiles p { margin: 0; }
+body.subpage .related-tiles figure.section-illustration { max-inline-size: 224px; width: 100%; aspect-ratio: 1; margin: 0; }
+body.subpage .related-tiles > article:hover { color: var(--hover-ink, currentColor); }
+
+/* ==========================================================================
+   5. Sygnały: N16 alert-band · N17 callout · N18 cta-band · N19 sticky-cta · N27 breath-counter
+   ========================================================================== */
+body.subpage .alert-band { border: 1px solid currentColor; padding: var(--s4); display: grid; gap: var(--s3); }
+body.subpage .alert-band .alert-title { font-size: 24px; margin: 0; }
+body.subpage .alert-band p { margin: 0; }
+body.subpage .alert-band .button { justify-self: start; }
+body.subpage .alert-band.is-inverted { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+body.subpage .alert-band.is-inverted :is(.kicker, h3, p, li, dt, dd, a:not(.button), strong) { color: inherit; }
+body.subpage .alert-band.is-inverted .ruled-list > li { border-color: color-mix(in srgb, var(--surface) 35%, transparent); }
+body.subpage .alert-band.is-inverted .button { background: var(--surface); color: var(--ink); border-color: var(--surface); }
+
+body.subpage .callout {
+  border-inline-start: 3px solid currentColor; padding: var(--s3) var(--s4);
+  background: color-mix(in srgb, var(--ink) 6%, transparent); display: grid; gap: var(--s1); max-inline-size: 56ch;
+}
+body.subpage .callout .kicker { margin: 0; }
+body.subpage .callout p { margin: 0; }
+
+body.subpage .cta-band {
+  display: grid; grid-template-columns: var(--cols); gap: var(--gap); align-items: center;
+  border-block: var(--column-rule-width, 1px) solid currentColor; padding-block: var(--s5);
+}
+body.subpage .cta-band > p { grid-column: 1 / span 7; font-size: clamp(24px, 2.6vw, 32px); line-height: 40px; line-height: round(up, 1.2em, 8px); margin: 0; }
+body.subpage .cta-band .hero-actions { grid-column: 1 / -1; justify-content: flex-start; margin-top: 0; }
+body.subpage .cta-band .hero-actions .hero-btn--solid { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+body.subpage .cta-band .hero-actions .hero-btn--solid:hover { background: var(--surface); color: var(--ink); }
+body.subpage .cta-band .hero-actions .hero-btn--ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+body.subpage .cta-band .hero-actions .hero-btn--ghost:hover { background: var(--ink); color: var(--surface); }
+body.subpage .cta-band .hero-status { color: var(--small-ink); }
+@media (max-width: 1000px) { body.subpage .cta-band > * { grid-column: 1 / -1 !important; justify-content: flex-start !important; } }
+
+body.subpage .sticky-cta { display: none; }
+@media (max-width: 700px) {
+  body.subpage .sticky-cta {
+    display: flex; gap: var(--s2); position: fixed; inset: auto 0 0 0; z-index: 20; padding: var(--s2) var(--gutter);
+    --ink: var(--wp--preset--color--green); --surface: var(--wp--preset--color--paper);
+    background: var(--ink); color: var(--surface); transform: translateY(110%);
+  }
+  body.subpage .sticky-cta.is-visible { transform: none; }
+  body.subpage .sticky-cta .button { flex: 1; white-space: nowrap; padding-inline: var(--s2); background: var(--surface); color: var(--ink); border-color: var(--surface); min-height: 56px; }
+  body.subpage { padding-bottom: var(--sticky-cta-h, 0px); }
+}
+@media (max-width: 700px) and (prefers-reduced-motion: no-preference) { body.subpage .sticky-cta { transition: transform .25s ease; } }
+
+body.subpage .breath-counter { display: grid; gap: var(--s3); border: 1px solid currentColor; padding: var(--s4); max-inline-size: 416px; }
+body.subpage .breath-counter output { font-family: var(--font-emphasis, serif); font-size: clamp(56px, 8vw, 88px); line-height: 88px; }
+
+/* ==========================================================================
+   6. N20 faq-accordion
+   ========================================================================== */
+body.subpage .faq-accordion { display: grid; border-bottom: 1px solid currentColor; }
+body.subpage .faq-item { border-top: 1px solid currentColor; }
+body.subpage .faq-item > summary {
+  list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); padding: var(--s3) 0;
+}
+body.subpage .faq-item > summary::-webkit-details-marker { display: none; }
+body.subpage .faq-item > summary h3 { font-size: clamp(20px, 2vw, 24px); margin: 0; }
+body.subpage .faq-item > summary::after { content: "+"; font-size: 32px; line-height: 32px; flex: none; }
+body.subpage .faq-item[open] > summary::after { content: "−"; }
+body.subpage .faq-answer { padding: 0 0 var(--s4); max-inline-size: 62ch; display: grid; gap: var(--s2); }
+body.subpage .faq-item > summary:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+
+/* ==========================================================================
+   H5/H6 poza kontekstem home: kolumny z liniami, numeracja Satoshi w kole
+   ========================================================================== */
+body.subpage .equipment-grid.is-numbered { counter-reset: eqp; }
+body.subpage .equipment-grid.is-numbered > div { counter-increment: eqp; }
+body.subpage .equipment-grid.is-numbered h3::before {
+  content: counter(eqp); display: grid; place-items: center; inline-size: 40px; block-size: 40px; margin-bottom: var(--s2); border-radius: 50%;
+  background: var(--ink); color: var(--surface); font-family: var(--font-main); font-size: 16px; line-height: 1; font-weight: 900; letter-spacing: 0;
+}
+body.subpage .equipment-grid > div :is(ul, ol) { margin: 0; padding: 0; list-style: none; max-inline-size: 38ch; }
+body.subpage .equipment-grid > div p { max-inline-size: 38ch; margin: 0; }
+body.subpage .equipment-grid > div > * + * { margin-top: var(--s2); }
+
+body.subpage .contact .poster-heading h2 { width: auto; max-width: 100%; white-space: normal; }
+body.subpage .contact .contact-note { margin: 0; }
+
+/* ==========================================================================
+   7. N24 photo-frame (placeholdery)
+   ========================================================================== */
+body.subpage .photo-frame {
+  margin: 0; aspect-ratio: var(--ph-ratio, 4 / 5); position: relative; overflow: hidden; display: grid; place-items: center; text-align: center;
+  padding: var(--s3); background: var(--accent); border: 1px dashed currentColor; min-width: 0; inline-size: 100%;
+  background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--ink) 12%, transparent) 0 1px, transparent 1px 12px);
+}
+body.subpage .photo-frame figcaption { display: grid; gap: var(--s1); font-size: 16px; line-height: 24px; max-inline-size: 28ch; }
+body.subpage .photo-frame figcaption span { font-size: 16px; line-height: 24px; letter-spacing: .08em; text-transform: uppercase; }
+body.subpage .photo-frame > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); mix-blend-mode: multiply; }
+body.subpage .photo-frame.is-plain > img { mix-blend-mode: normal; }
+body.subpage .photo-frame.is-round { clip-path: circle(50% at 50% 50%); }
+body.subpage .photo-frame.has-image { border: 0; display: block; padding: 0; background-image: none; }
+body.subpage .photo-frame.has-image figcaption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+/* zdjęcia (foto, pas): kolorowe, w stylu retro/telefon + filtr z Instagrama; bez szarości i mieszania z tłem */
+body.subpage .photo-frame:is([data-kind="foto"], [data-kind="pas"]).has-image > img { filter: none; mix-blend-mode: normal; object-fit: cover; }
+body.subpage .photo-frame[data-kind="pas"].has-image > img { object-position: 50% 45%; }
+/* ilustracje liniowe: tło = --accent palety sekcji, kreska = --ink (filtr SVG wstrzykiwany per ramka w podstrony.js) */
+body.subpage .photo-frame:is([data-kind="ilustracja"], [data-kind="diagram"], [data-kind="wycinek"]).has-image > img { object-fit: contain; mix-blend-mode: normal; }
+
+/* ==========================================================================
+   8. Druk
+   ========================================================================== */
+@media print {
+  body.subpage .site-header, body.subpage .header-backdrop, body.subpage .sticky-cta, body.subpage .skip { display: none !important; }
+  body.subpage .faq-item > .faq-answer { display: block; }
+  body.subpage main > section { padding-block: var(--s4); }
+}
+
+/* nagłówki sekcji na podstronach: niższe niż na stronie głównej (ilustracja nie wyznacza wysokości sekcji) */
+@media (min-width: 701px) {
+  body.subpage main .section-header { height: auto; min-height: 0; align-items: end; }
+  body.subpage main .section-header .poster-art { width: min(100%, 360px); justify-self: end; align-self: end; }
+  body.subpage main .contact .section-header .poster-art { width: min(100%, 520px); }
+}
+
+/* ==========================================================================
+   Responsywność podstron: hero, spis treści, tytuły
+   ========================================================================== */
+html body.book-type.subpage :is(h1, h2) .heading-roman { line-height: 1.3 !important; }
+@media (max-width: 1000px) {
+  body.subpage .hero.page-hero .poster-grid { grid-template-columns: minmax(0, 1fr); row-gap: var(--s4); }
+  body.subpage .hero.page-hero :is(.poster-heading, .poster-copy, .hero-actions, .poster-art) { grid-column: 1; }
+  body.subpage .hero.page-hero .poster-heading { grid-row: 1; }
+  body.subpage .hero.page-hero .poster-copy { grid-row: 2; }
+  body.subpage .hero.page-hero .hero-actions { grid-row: 3; }
+  body.subpage .hero.page-hero .poster-art { grid-row: 4; width: min(100%, 440px); }
+}
+@media (max-width: 700px) {
+  body.subpage .fact-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body.subpage .fact-strip > div:nth-child(odd) { border-inline-start: 0; padding-inline-start: 0; }
+  body.subpage .hero.page-hero .poster-art { width: min(100%, 280px); }
+  body.subpage .related-tiles figure.section-illustration { max-inline-size: 160px; }
+}
+
+/* ==========================================================================
+   N21 chooser · profile zespołu · licznik oddechów (uzupełnienia)
+   ========================================================================== */
+body.subpage .chooser { list-style: none; margin: 0; padding: 0; display: grid; }
+body.subpage .chooser > li { border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent); padding: var(--s3) 0; }
+body.subpage .chooser > li:last-child { border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
+body.subpage .chooser p { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.2fr); column-gap: var(--s3); align-items: baseline; }
+body.subpage .chooser .type-arrow { font-size: 24px; }
+@media (max-width: 700px) {
+  body.subpage .chooser p { grid-template-columns: minmax(0, 1fr); row-gap: var(--s1); }
+  body.subpage .chooser .type-arrow { display: none; }
+}
+
+body.subpage .rail-body > .profile + .profile { margin-top: var(--s6); }
+
+body.subpage .breath-counter .breath-actions { display: flex; flex-wrap: wrap; gap: var(--s2); }
+body.subpage .breath-counter .breath-time { margin: 0; font-size: 20px; line-height: 32px; }
+body.subpage .breath-counter .button { min-height: 56px; }
+
+body.subpage .split-aside .section-head h2 { --mixed-title-size: clamp(28px, 2.4vw, 36px); overflow-wrap: break-word; }
+body.subpage .stack { display: grid; gap: var(--s4); }
+
+html body.book-type.subpage :is(h1, h2) .heading-roman { font-size: max(16px, calc(var(--mixed-title-size) * var(--mixed-roman-scale, 0.5))); }
+@media (max-width: 700px) { body.subpage .page-hero h1 { --mixed-title-size: clamp(28px, 7.5vw, 40px); } }
+
+/* --- poprawki: H6 poza home (komórki o dowolnej liczbie akapitów), H12 i H11 poza .emergency --- */
+body.subpage .equipment-grid { grid-template-rows: none; }
+body.subpage .equipment-grid > div { grid-row: auto; grid-template-rows: none; display: block; grid-column: span 4; }
+body.subpage .equipment-grid > div > h3 { min-height: 0; margin: 0 0 var(--s2); }
+body.subpage .after-hours-panel { border: 1px solid currentColor; padding: 0; gap: 0; inline-size: 100%; max-inline-size: none; }
+body.subpage .after-hours-panel > .poster-heading { background: var(--ink); color: var(--surface); }
+body.subpage .after-hours-panel > .poster-heading :is(h3, p) { color: var(--surface); }
+body.subpage .split-body .emergency-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 700px) {
+  body.subpage .split-body .emergency-steps { grid-template-columns: 1fr; }
+  body.subpage .equipment-grid > div { grid-column: 1 / -1; }
+}
+body.subpage .equipment-grid { row-gap: var(--s5); }
+
+/* --- em-only h2/h1 (bez .heading-roman): rozmiar z --mixed-title-size, żeby nie wychodziły poza kolumnę --- */
+body.subpage .section-head h2:not(:has(.heading-roman)) { font-size: var(--mixed-title-size); line-height: 1.08; }
+body.subpage .section-head h2:not(:has(.heading-roman)) > em { font-size: calc(var(--mixed-title-size) * var(--rialto-scale, 1.12)); overflow-wrap: break-word; }
+body.subpage .rail-body, body.subpage .legal-prose { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 700px) {
+  body.subpage .page-hero h1:not(:has(.heading-roman)) > em { font-size: calc(var(--mixed-title-size) * var(--rialto-scale, 1.12)); overflow-wrap: break-word; }
+}
+
+/* --- kontakt na podstronach: wiersze „etykieta | treść” — równe odstępy niezależnie od długości punktów --- */
+body.subpage .contact .contact-columns { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+body.subpage .contact .contact-columns > .contact-column { border-top: 1px solid currentColor; }
+body.subpage .contact .contact-columns > .contact-column:last-child { border-bottom: 1px solid currentColor; }
+body.subpage .contact .contact-columns > .contact-column {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); align-items: baseline; align-content: start;
+  grid-column: auto; grid-row: auto; grid-template-rows: none; max-inline-size: none; padding: var(--s3) 0;
+}
+body.subpage .contact .contact-columns > .contact-column > h3 { margin: 0; }
+body.subpage .contact .contact-columns > .contact-column > :is(p, ul, address) { margin: 0; max-inline-size: 62ch; }
+@media (max-width: 700px) {
+  body.subpage .contact .contact-columns > .contact-column { grid-template-columns: minmax(0, 1fr); row-gap: var(--s1); }
+}
+
+/* --- N4 toc-index: etykieta po lewej, lista w dwóch zrównoważonych kolumnach; wiersze zawsze przylegają (brak pustych pól) --- */
+body.subpage .toc-index { display: grid; grid-template-columns: var(--cols); column-gap: var(--gap); row-gap: var(--s3); align-items: start; }
+body.subpage .toc-index > .kicker { margin: 0; grid-column: 1 / span 6; padding-top: var(--s2); }
+body.subpage .toc-grid { grid-column: 7 / span 6; column-count: 1; }
+body.subpage .toc-entry { break-inside: avoid; border-top: 1px solid currentColor; padding: var(--s2) 0; }
+body.subpage .toc-link { display: block; font-size: 20px; line-height: 32px; text-decoration: none; text-wrap: pretty; }
+body.subpage .toc-link:hover { text-decoration: underline; text-underline-offset: .22em; }
+/* podpunkty: pionowa kreska równo z początkiem linii poziomych + wcięcie; wiersze 32 px = siatka 8 px, odstęp nad i pod tekstem jednakowy */
+body.subpage .toc-entry ul { list-style: none; margin: var(--s1) 0 0; padding: 0; font-size: 16px; }
+body.subpage .toc-entry ul li { position: relative; line-height: 24px; padding-inline-start: var(--hang-pad); }
+body.subpage .toc-entry ul li::before { top: 4px; }
+body.subpage .toc-entry ul a { display: block; padding-block: 4px; text-decoration: none; }
+body.subpage .toc-entry ul a:hover { text-decoration: underline; text-underline-offset: .22em; }
+@media (max-width: 1000px) {
+  body.subpage .toc-index > .kicker, body.subpage .toc-grid { grid-column: 1 / -1; }
+}
+@media (max-width: 700px) { body.subpage .toc-grid { column-count: 1; } }
+
+/* --- hero: strzałka powrotu po lewej stronie tytułu (zastępuje okruszki i etykietę nad tytułem) --- */
+body.subpage .title-row { position: relative; display: block; --mixed-title-size: clamp(40px, 5vw, 72px); }
+body.subpage .back-link {
+  display: grid; place-items: center; inline-size: 48px; block-size: 48px; color: inherit; text-decoration: none; margin-bottom: var(--s2);
+}
+body.subpage .back-link svg { inline-size: 48px; block-size: 48px; overflow: visible; fill: none; stroke: currentColor; stroke-width: calc(var(--mixed-title-size) * .062); }
+@media (min-width: 1440px) {
+  body.subpage .back-link { position: absolute; inset-inline-end: 100%; margin: 0 var(--s2) 0 0; inset-block-start: 0; }
+}
+body.subpage .back-link:hover svg { transform: translateX(-4px); }
+body.subpage .back-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+@media (prefers-reduced-motion: no-preference) { body.subpage .back-link svg { transition: transform .2s ease; } }
+@media (max-width: 700px) { body.subpage .title-row { --mixed-title-size: clamp(28px, 7.5vw, 40px); } }
+
+/* --- zespół: profil = portret „stojący” na dolnej linii + kolumna tekstu; co drugi profil odwrócony --- */
+body.subpage .profile { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 5fr); column-gap: var(--gap); align-items: end; border-bottom: 1px solid currentColor; }
+body.subpage .profile.is-reversed { grid-template-columns: minmax(0, 5fr) minmax(0, 3fr); }
+body.subpage .profile.is-reversed > .profile-portrait { grid-column: 2; grid-row: 1; }
+body.subpage .profile.is-reversed > .profile-main { grid-column: 1; grid-row: 1; }
+body.subpage .profile-main { align-self: start; display: grid; gap: var(--s4); align-content: start; min-width: 0; padding-bottom: var(--s5); }
+body.subpage .profile-main .section-head h2 { --mixed-title-size: clamp(28px, 2.6vw, 40px); overflow-wrap: anywhere; }
+body.subpage .profile-body { display: grid; gap: var(--s3); align-content: start; min-width: 0; }
+body.subpage .profile-body p { margin: 0; }
+body.subpage .profile-portrait figure { position: relative; margin: 0; aspect-ratio: 1043 / 1508; }
+body.subpage .profile-portrait .portrait-blob {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: none; mask: none; -webkit-mask: none; transform: none;
+}
+body.subpage .profile-portrait .portrait-blob::before {
+  content: ""; position: absolute; inset: 22% -10% 0 -10%; background: color-mix(in srgb, var(--ink) 14%, transparent);
+  mask: var(--blob) center bottom / contain no-repeat; -webkit-mask: var(--blob) center bottom / contain no-repeat;
+}
+body.subpage .profile-portrait .portrait-blob img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; transform: none; filter: grayscale(1);
+}
+@media (max-width: 1000px) {
+  body.subpage .profile, body.subpage .profile.is-reversed { grid-template-columns: minmax(0, 1fr); }
+  body.subpage .profile > .profile-portrait, body.subpage .profile.is-reversed > .profile-portrait, body.subpage .profile > .profile-main, body.subpage .profile.is-reversed > .profile-main { grid-column: 1; grid-row: auto; }
+  body.subpage .profile-main { padding-bottom: var(--s4); }
+  body.subpage .profile-portrait { max-inline-size: 200px; order: 2; }
+}
+/* profile: etykieta nad wartością (kolumna tekstu jest wąska), poprawiony skok linii nazwiska */
+body.subpage .profile-body .key-values > div { grid-template-columns: minmax(0, 1fr); row-gap: var(--s1); }
+body.subpage .profile-main .section-head h2 { --mixed-title-size: clamp(26px, 2.3vw, 36px); }
+body.subpage .profile-main .section-head h2 em { line-height: 1.15; }
+
+/* ==========================================================================
+   Uwagi z przeglądu (8.10.2026) — reguły ogólne dla wszystkich podstron
+   - znaczniki (strzałki, koła z cyframi) WISZĄ poza kolumną tekstu; tekst zaczyna się w jednej linii
+   - grubość kreski strzałek ≈ 0,13 em kroju Satoshi (zmierzone: trzon „I” = 0,13 em), czyli optycznie jak tekst obok
+   - wszystkie numery telefonów bez zawijania; hero łososiowe z większą ilustracją
+   ========================================================================== */
+body.subpage {
+  --arrow-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M1 10h17M11 3l7 7-7 7' fill='none' stroke='%23000' stroke-width='2.2'/%3E%3C/svg%3E");
+  /* wąskie okna: brak marginesu na wiszący znacznik → znacznik w linii, tekst odsunięty */
+  --hang-start: 0px; --hang-pad: 32px;
+  --hang-start-circle: 0px; --hang-pad-circle: 56px;
+}
+@media (min-width: 1001px) { body.subpage { --hang-start: -32px; --hang-pad: 0px; } }
+@media (min-width: 1440px) { body.subpage { --hang-start-circle: -56px; --hang-pad-circle: 0px; } }
+/* w ramkach z własnym marginesem (pasek pilny) znacznik wisi wewnątrz ramki */
+body.subpage .alert-band { padding-inline-start: var(--s5); }
+@media (max-width: 1000px) { body.subpage .alert-band { padding-inline-start: var(--s4); } }
+
+body.subpage a[href^="tel:"] { white-space: nowrap; }
+
+/* hero: łososiowe tło (zmienne sekcji z palety .team), większa ilustracja, więcej miejsca pod przyciskami */
+body.subpage .hero.page-hero {
+  --surface: var(--wp--preset--color--peach); --ink: var(--wp--preset--color--green); --small-ink: var(--wp--preset--color--green-deep);
+  --accent: var(--wp--preset--color--peach-light); --hover-ink: var(--wp--preset--color--green-deep); --hover-accent: var(--wp--preset--color--paper);
+  padding-block-end: var(--section-space);
+}
+body.subpage .page-hero .hero-actions .hero-btn--solid { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+body.subpage .page-hero .hero-actions .hero-btn--solid:hover { background: var(--surface); color: var(--ink); }
+body.subpage .page-hero .hero-actions .hero-btn--ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+body.subpage .page-hero .hero-actions .hero-btn--ghost:hover { background: var(--ink); color: var(--surface); }
+body.subpage .page-hero .hero-status { color: var(--small-ink); }
+@media (min-width: 701px) {
+  /* dwa przyciski o jednakowej szerokości i jednakowych paddingach; status w osobnym wierszu */
+  body.subpage .page-hero .hero-actions { display: grid; grid-template-columns: repeat(2, 1fr); inline-size: max-content; max-inline-size: 100%; }
+  body.subpage .page-hero .hero-actions .hero-btn { justify-content: center; padding-inline: var(--s4); }
+  body.subpage .page-hero .hero-actions .hero-status { grid-column: 1 / -1; }
+}
+
+/* „Pilne — Co zrobić”: etykieta scalona z nagłówkiem w jednym wersalikowym napisie */
+/* ilustracja nagłówka „Nagłe przypadki” / „Co zrobić…” większa */
+body.subpage .emergency .section-header .poster-art { height: auto; min-block-size: 0; align-self: center; }
+body.subpage .emergency .section-header .poster-media { --illustration-scale: .72 !important; }
+
+body.subpage .back-link svg circle { fill: none; }
+body.subpage .page-hero .hero-status::before { background: var(--ink); }
+body.subpage .page-hero .hero-status[data-state="closed"]::before { background: transparent; }
+
+/* baner „Praca w Psyjaciołach”: ciemna karta na 8 kolumn (szerokość artykułu); u góry zdjęcie, przerwa 100 px, potem tytuł i akapit z linkiem na końcu */
+body.subpage .join-banner {
+  display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 100px; padding: 0 0 var(--s5); overflow: hidden;
+  background: var(--ink); color: var(--surface); border-radius: var(--s2); inline-size: 100%; margin: 0;
+}
+body.subpage .join-art { aspect-ratio: 21 / 9; overflow: hidden; min-width: 0; }
+body.subpage .join-art .photo-frame { inline-size: 100%; block-size: 100%; margin: 0; --ph-ratio: 21/9; }
+body.subpage .join-copy { display: grid; gap: var(--s3); padding: 0 var(--s4); min-width: 0; align-content: start; }
+body.subpage .join-copy p { margin: 0; max-inline-size: 62ch; text-wrap: pretty; }
+body.subpage .join-banner :is(p, li, h2) { color: var(--surface); }
+body.subpage .join-copy a:not(.join-link) { color: inherit; }
+/* przycisk jako link na końcu wiersza akapitu: ten sam kolor, podkreślenie, strzałka maską (grubość kreski jak w tekście) */
+body.subpage .join-link { font-weight: 700; color: var(--surface); text-decoration: underline; text-underline-offset: .22em; white-space: nowrap; }
+body.subpage .join-link::after {
+  content: ""; display: inline-block; inline-size: 1em; block-size: 1em; margin-inline-start: .3em; vertical-align: -.14em; background: currentColor;
+  -webkit-mask: var(--arrow-mask) center / contain no-repeat; mask: var(--arrow-mask) center / contain no-repeat;
+}
+body.subpage .join-link:hover { text-decoration-thickness: 2px; }
+body.subpage .join-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+@media (max-width: 700px) { body.subpage .join-banner { row-gap: var(--s6); } body.subpage .join-copy { padding: 0 var(--s2); } }
+
+/* lead: jeden token w hero i nagłówkach sekcji; rośnie z szerokością okna */
+@media (min-width: 1001px) { body.subpage { --lead-size: 24px; --lead-lh: 32px; } }
+@media (min-width: 1280px) { body.subpage { --lead-size: 28px; --lead-lh: 40px; } }
+
+/* ==========================================================================
+   TYMCZASOWE (TEMP-GRID): nakładka siatki 12 kolumn — włączana klawiszem G albo ?siatka=1; do usunięcia po przeglądzie.
+   Siatka: 12 kolumn, max. 1280 px, rynna (--gap) 32 px (24 px 701–1000 px, 16 px ≤700 px), margines --gutter = clamp(24px, 4.2vw, 55px).
+   Osie: kol. 1 (lewa), kol. 7 (połowa), koniec kol. 12 (prawa). Jednostka rytmu pionowego: 8 px.
+   ========================================================================== */
+body.subpage.show-grid::before {
+  content: ""; position: fixed; z-index: 2147483000; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
+  inline-size: min(calc(100% - 2 * var(--gutter)), var(--width));
+  background-image: repeating-linear-gradient(to right,
+    rgba(255, 0, 90, .13) 0, rgba(255, 0, 90, .13) calc((100% - 11 * var(--gap)) / 12),
+    transparent calc((100% - 11 * var(--gap)) / 12), transparent calc((100% - 11 * var(--gap)) / 12 + var(--gap)));
+  box-shadow: inset 1px 0 rgba(255, 0, 90, .6), inset -1px 0 rgba(255, 0, 90, .6);
+}
+body.subpage.show-grid::after {
+  content: ""; position: fixed; z-index: 2147483000; top: 0; bottom: 0; left: 50%; inline-size: 1px; background: rgba(255, 0, 90, .6); pointer-events: none;
+}
+/* END TEMP-GRID */
+
+/* ==========================================================================
+   Kolumna artykułów (kol. 5–12) + spis treści jako lewa, przyklejona szpalta (kol. 1–4)
+   Wewnątrz .page-columns zmienna --cols to 8 ścieżek (identycznych z kolumnami 5–12 siatki strony), więc wszystkie bloki
+   zapisane w „kol. N / span M” leżą na tej samej siatce. Poniżej 1001 px: jedna kolumna i spis treści w osobnej sekcji (.toc-mobile).
+   ========================================================================== */
+body.subpage .page-columns { position: relative; }
+body.subpage .toc-rail { display: none; }
+@media (min-width: 1001px) {
+  body.subpage .page-columns { --cols: repeat(8, minmax(0, 1fr)); }
+  body.subpage .toc-mobile { display: none; }
+  body.subpage .page-columns > section > .wrap { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
+  body.subpage .page-columns > section > .wrap > * { grid-column: 5 / -1; min-width: 0; }
+  body.subpage .toc-rail { display: block; position: absolute; inset: 0; z-index: 3; pointer-events: none; padding-inline: var(--gutter); }
+  body.subpage .toc-rail-wrap { max-inline-size: var(--width); margin-inline: auto; block-size: 100%; padding-block-start: var(--section-space); }
+  body.subpage .toc-sticky {
+    position: sticky; top: var(--sticky-top); pointer-events: auto; transition: color .25s ease;
+    inline-size: calc((100% - 11 * var(--gap)) / 12 * 4 + 3 * var(--gap));
+  }
+}
+@media (min-width: 1001px) and (max-height: 700px) { body.subpage .toc-sticky { position: static; } }
+body.subpage .toc-sticky .kicker { margin: 0 0 var(--s2); }
+body.subpage .toc-list { list-style: none; margin: 0; padding: 0; }
+body.subpage .toc-list > .toc-entry { border-top: 1px solid currentColor; padding: 0; break-inside: auto; }
+body.subpage .toc-list > .toc-entry:last-child { border-bottom: 1px solid currentColor; }
+body.subpage .toc-sticky .toc-link { display: block; position: relative; padding: var(--s2) 0; font-size: 18px; line-height: 24px; }
+body.subpage .toc-sticky .toc-entry ul { list-style: none; margin: 0; padding: 0 0 var(--s1) 20px; font-size: 16px; }
+body.subpage .toc-sticky .toc-entry ul li { position: relative; padding: 0; line-height: 24px; border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
+body.subpage .toc-sticky .toc-entry ul li::before { content: none; }
+body.subpage .toc-sticky .toc-entry ul a { display: block; position: relative; padding: var(--s1) 0; }
+body.subpage .toc-sticky a { text-decoration: none; }
+body.subpage .toc-sticky a:hover { text-decoration: underline; text-underline-offset: .22em; }
+/* aktywna pozycja: strzałka po lewej, wisi poza kolumną tak jak znaczniki list */
+body.subpage .toc-sticky a[aria-current="true"]::before, body.subpage .rail-nav a[aria-current="true"]::before {
+  content: ""; position: absolute; inset-inline-start: var(--hang-start); inline-size: 20px; block-size: 20px; background: currentColor;
+  -webkit-mask: var(--arrow-mask) center / contain no-repeat; mask: var(--arrow-mask) center / contain no-repeat;
+}
+body.subpage .toc-sticky .toc-link[aria-current="true"]::before { top: calc(var(--s2) + 2px); }
+body.subpage .toc-sticky .toc-entry ul a[aria-current="true"]::before { top: calc(var(--s1) + 2px); inset-inline-start: calc(var(--hang-start) - 20px); }
+body.subpage .rail-nav a[aria-current="true"]::before { top: calc(var(--s1) + 2px); transform: none; }
+@media (max-width: 1000px) { body.subpage .rail-nav a[aria-current="true"]::before { inset-inline-start: 0; } }
+
+/* ==========================================================================
+   Zdjęcia i obrazki w artykule: wyłącznie 4 albo 8 kolumn (z 8 kolumn artykułu); portret i kwadrat — 4, reszta — 8
+   ========================================================================== */
+body.subpage .page-columns .photo-frame { inline-size: 100%; }
+body.subpage .page-columns .photo-frame.is-narrow { inline-size: calc((100% - var(--gap)) / 2); }
+/* nagłówek sekcji z ilustracją: tytuł, pod nim ilustracja w ciągu artykułu na 4 kolumnach */
+@media (min-width: 701px) {
+  body.subpage main .page-columns .section-header { display: grid; grid-template-columns: var(--cols); row-gap: var(--s4); height: auto; align-items: start; }
+  body.subpage main .page-columns .section-header > :is(.poster-heading, .poster-copy) { grid-column: 1 / -1; grid-row: auto; }
+  body.subpage main .page-columns .section-header > .poster-art { grid-column: 1 / span 4; grid-row: auto; inline-size: 100%; width: 100%; justify-self: start; align-self: start; }
+  body.subpage main .page-columns .contact .section-header .poster-art { width: 100%; }
+}
+/* profile (Zespół): portret na 4 kolumnach, tekst na 4 */
+body.subpage .rail-body > .profile, body.subpage .rail-body > .profile.is-reversed { grid-template-columns: var(--cols); }
+body.subpage .profile > .profile-portrait, body.subpage .profile.is-reversed > .profile-portrait { grid-column: 1 / span 4; grid-row: 1; }
+body.subpage .profile > .profile-main, body.subpage .profile.is-reversed > .profile-main { grid-column: 5 / span 4; grid-row: 1; }
+@media (max-width: 1000px) {
+  body.subpage .rail-body > .profile, body.subpage .rail-body > .profile.is-reversed { grid-template-columns: minmax(0, 1fr); }
+  body.subpage .profile > .profile-portrait, body.subpage .profile.is-reversed > .profile-portrait,
+  body.subpage .profile > .profile-main, body.subpage .profile.is-reversed > .profile-main { grid-column: 1; grid-row: auto; }
+}
+
+/* kroki „Pilne” w jednej kolumnie (3 równe kolumny nie leżą na ośmiu ścieżkach siatki artykułu) */
+body.subpage .page-columns .emergency-steps { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+body.subpage .page-columns .emergency-steps > * { padding-block: var(--s3); }
+
+/* szpalta spisu treści zostawia miejsce na wiszące znaczniki list artykułu */
+body.subpage { --rail-clear: 40px; }
+@media (min-width: 1440px) { body.subpage { --rail-clear: 64px; } }
+@media (min-width: 1001px) { body.subpage .toc-sticky { padding-inline-end: var(--rail-clear); } }
+
+/* ==========================================================================
+   Tytuły: zawsze jeden napis Satoshi, większy rozmiar — bez członów, bez wersalików, bez Rialto (polecenie użytkownika 8.10.2026).
+   Krój emfazy (Rialto) zamieniony na Satoshi także w pozostałych miejscach podstron; na stronie głównej nic się nie zmienia.
+   ========================================================================== */
+body.subpage {
+  --font-emphasis: var(--wp--preset--font-family--satoshi);
+  --wp--preset--font-family--rialto-script: var(--wp--preset--font-family--satoshi);
+  --title-size: clamp(32px, 3.6vw, 48px);
+}
+html body.book-type.subpage main h2:not(.legal-prose h2) {
+  font-family: var(--font-main) !important; font-style: normal !important; font-weight: 700 !important; text-transform: none !important;
+  font-size: var(--title-size) !important; line-height: 56px; line-height: round(up, 1.1em, 8px) !important;
+  letter-spacing: -.03em !important; text-wrap: balance; overflow-wrap: break-word; margin: 0;
+}
+html body.book-type.subpage main :is(.profile-main) h2 { --title-size: clamp(26px, 2.3vw, 32px); }
+/* tytuły przejęte ze strony głównej (np. „Umów wizytę…”) mogą mieć człony — łączone w jeden napis */
+html body.book-type.subpage main :is(h1, h2) :is(.heading-roman, em) {
+  display: inline !important; font: inherit !important; text-transform: none !important; letter-spacing: inherit !important;
+  line-height: inherit !important; color: inherit; margin: 0; padding: 0; transform: none; font-size: inherit !important;
+}
+html body.book-type.subpage main :is(h1, h2) .heading-roman + em::before { content: " "; }
+body.subpage main h2 .visually-hidden { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: normal; }
+/* etykieta kryzysowa scalona z tytułem */
+body.subpage main h2[data-pre]::before { content: attr(data-pre); }
+
+/* szyna rozdziałów (Zespół, Polityka): lewa szpalta 4 kolumny, treść 8 kolumn po prawej — wewnątrz treści ścieżki jak w kolumnie artykułu */
+body.subpage .rail-layout > .rail-body { --cols: repeat(8, minmax(0, 1fr)); }
+
+/* mozaika: komórki siatki już mają 4 kolumny — zdjęcia wypełniają komórkę */
+body.subpage .page-columns .figure-mosaic .photo-frame, body.subpage .page-columns .figure-mosaic .photo-frame.is-narrow { inline-size: 100%; }
+
+/* hero: przyciski jeden pod drugim, gdy sześć kolumn jest za wąskie na dwa równe przyciski */
+@media (min-width: 701px) and (max-width: 1279px) {
+  body.subpage .page-hero .hero-actions { grid-template-columns: minmax(0, 1fr); inline-size: min(100%, 320px); }
+  body.subpage .page-hero .hero-actions .hero-btn { white-space: nowrap; }
+}
+
+/* sekcje prawne: bez odstępów globalnych <section> (te dają padding i przesuwają tekst z osi) */
+body.subpage .legal-section { padding: 0; background: none; }
+/* katalog usług (hub): dwie kolumny po 4 ścieżki w kolumnie artykułu; ilustracje 4-kolumnowe, bez układu „tytuł | treść” */
+html body.book-type.subpage .page-columns .services .bento.ruled-columns { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; column-gap: var(--gap); }
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile,
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile:nth-child(1),
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile:nth-child(3) {
+  grid-column: auto !important; order: 0; display: flex; flex-direction: column; grid-template-areas: none;
+}
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile:nth-child(1) h3,
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile:nth-child(3) h3 {
+  margin-top: 0; grid-area: auto;
+}
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile:nth-child(1) p,
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile:nth-child(3) p { font-size: inherit; line-height: inherit; grid-area: auto; }
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile:nth-child(1) .service-art,
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile:nth-child(3) .service-art { grid-area: auto; }
+/* hub: ilustracja zawsze nad tytułem (w kafelkach 1 i 3 układ Home ustawiał ją inaczej) */
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile > :is(.service-art, img.service-art) { order: -1 !important; }
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile > :is(h3, p) { order: 0 !important; }
+
+/* nawigacja (dane kontaktowe) zaczyna się na osi 7 siatki (pionowa linia środka strony, jak lead w hero): pierwsza kolumna nagłówka
+   ma szerokość „do osi”; środek viewportu = 50 % siatki nagłówka, oś 7 = środek + pół rynny; 34 px = wcięcie nagłówka, 21 px = odstęp kolumn.
+   1440–1599 px: żeby dane i przycisk zmieściły się na prawo od osi, przycisk traci strzałkę, a odstępy w danych są ciaśniejsze. */
+@media (min-width: 1440px) {
+  body.subpage .site-header.site-header .header-grid { grid-template-columns: calc(50% + var(--gap) / 2 - 21px) auto auto; column-gap: 21px; }
+  body.subpage .site-header.site-header .header-info { column-gap: 18px; }
+  body.subpage .site-header.site-header .header-actions > .button .type-arrow { display: none; }
+}
+@media (min-width: 1600px) {
+  body.subpage .site-header.site-header .header-info { column-gap: 24px; }
+  body.subpage .site-header.site-header .header-actions > .button .type-arrow { display: inline; }
+}
+
+/* --- uwagi z przeglądu (8.10.2026), paczka 1 --- */
+/* 23: cały blok rezerwacji jednym rozmiarem (akapit 16/24) */
+body.subpage .booking-bottom, body.subpage .booking-bottom :is(p, a, .booking-subtitle, .booking-cta, .booking-phone) { font-size: 16px; line-height: 24px; }
+body.subpage .booking-bottom .booking-subtitle p { margin: 0; }
+/* 17: pod pierwszym wierszem tabeli kreska 2 px w kolorze tekstu */
+body.subpage .ruled-table th[scope=col] { border-bottom-width: 2px; }
+/* 20: baner pracy — wiersze akapitu równej długości */
+body.subpage .join-copy p { text-wrap: balance; }
+/* 18: znacznik rozwijania FAQ — plus/minus w kółku (obrys w grubości kreski tytułu pytania), maską jak strzałki */
+body.subpage .faq-item > summary::after, body.subpage .faq-item[open] > summary::after {
+  content: ""; inline-size: 32px; block-size: 32px; flex: none; background: currentColor;
+  -webkit-mask: var(--plus-mask) center / contain no-repeat; mask: var(--plus-mask) center / contain no-repeat;
+}
+body.subpage .faq-item[open] > summary::after { -webkit-mask-image: var(--minus-mask); mask-image: var(--minus-mask); }
+body.subpage {
+  --plus-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14.5' fill='none' stroke='%23000' stroke-width='2.2'/%3E%3Cpath d='M16 9v14M9 16h14' stroke='%23000' stroke-width='2.2' fill='none'/%3E%3C/svg%3E");
+  --minus-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14.5' fill='none' stroke='%23000' stroke-width='2.2'/%3E%3Cpath d='M9 16h14' stroke='%23000' stroke-width='2.2' fill='none'/%3E%3C/svg%3E");
+}
+/* 13: kreski spisu treści nie szersze niż najdłuższa linia liter (szerokość liczy podstrony.js → --toc-w) */
+body.subpage .toc-sticky .toc-list { inline-size: var(--toc-w, auto); max-inline-size: 100%; }
+/* 9: odstęp znacznika od tekstu — jednakowe 16 px dla strzałek i kółek */
+@media (min-width: 1001px) { body.subpage { --hang-start: -36px; } }
+
+/* strzałka powrotu wyśrodkowana względem pierwszego wiersza tytułu: środek kółka = środek pasa małych liter (górny brzeg tytułu to x-height) */
+body.subpage .title-row { --hero-title: clamp(40px, 4.6vw, 64px); }
+@media (min-width: 1440px) {
+  body.subpage .back-link { font: 700 var(--hero-title) var(--font-main); line-height: 1; inset-block-start: calc(.5ex - 24px); }
+}
+/* 23: rozmiar akapitu w całym bloku rezerwacji (silniejszy selektor niż style przejęte z Home) */
+html body.book-type.subpage .booking-bottom :is(.booking-subtitle, .booking-subtitle p, .booking-cta, .booking-phone, .booking-cta .type-arrow) { font-size: 16px !important; line-height: 24px !important; }
+
+/* uwaga 1 (callout): zamiast ramki — trójkąt ostrzegawczy z wykrzyknikiem nad tekstem, w kolorze tekstu, kreska ≈ grubości tekstu */
+body.subpage {
+  --warn-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 4.5 29 27.5H3Z' fill='none' stroke='%23000' stroke-width='1.1' stroke-linejoin='miter'/%3E%3Cpath d='M16 12v8M16 22.6v1.8' fill='none' stroke='%23000' stroke-width='1.1'/%3E%3C/svg%3E");
+}
+body.subpage .callout { border-inline-start: 0; background: none; padding: 0; gap: var(--s2); }
+body.subpage .callout::before {
+  content: ""; inline-size: 64px; block-size: 64px; background: currentColor; /* 2× większy znak; stroke-width w masce zmniejszony o połowę, więc kreska zostaje ≈ 2,2 px */
+  -webkit-mask: var(--warn-mask) center / contain no-repeat; mask: var(--warn-mask) center / contain no-repeat;
+}
+body.subpage .figure-band .callout { background: var(--surface); padding: var(--s3) var(--s4); }
+
+/* --- uwagi z przeglądu, paczka 2 --- */
+/* 10 i 16: „Pilne —” w pierwszej linii, reszta tytułu w drugiej (jeden krój i rozmiar) */
+body.subpage main h2[data-pre]::before { content: attr(data-pre); display: block; }
+
+/* 7 (baner pracy): zdjęcie 300 px, pod nim kontener tekstu o wysokości min. 300 px, tytuł na samej górze */
+body.subpage .join-banner { row-gap: 0; padding: 0; }
+body.subpage .join-art { aspect-ratio: auto; block-size: 300px; }
+body.subpage .join-copy { min-block-size: 300px; padding: var(--s4); box-sizing: border-box; }
+
+/* 14, 5, 15: zdjęcie (4 kolumny) i tekst obok niego (4 kolumny) w jednym wierszu; strony naprzemiennie (is-reversed = zdjęcie po prawej);
+   tekst obok zdjęcia ma kreskę na całą szerokość swojej kolumny */
+@media (min-width: 1001px) {
+  body.subpage .split-feature:not(.is-faq):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame { grid-column: 1 / span 4; order: 2; inline-size: 100%; }
+  body.subpage .split-feature:not(.is-faq) > .split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter)) {
+    grid-column: 5 / span 4; order: 2; border-top: 1px solid currentColor; padding-top: var(--s3);
+  }
+  body.subpage .split-feature.is-reversed:not(.is-faq):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame { grid-column: 5 / span 4; order: 3; }
+  body.subpage .split-feature.is-reversed:not(.is-faq) > .split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter)) { grid-column: 1 / span 4; }
+}
+
+/* 8 (rezerwacja): w kolumnie artykułu (kol. 5–12), układ pionowy — tekst (lewa część) na górze, pies (prawa część) pod nim, obie 8 kolumn; bez latających zdjęć zwierząt */
+@media (min-width: 1001px) {
+  body.subpage .page-columns .booking > .wrap.booking-composition { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); min-height: 0; max-width: none; width: min(var(--width), calc(100% - 2 * var(--gutter))); margin-inline: auto; }
+  body.subpage .page-columns .booking > .wrap.booking-composition { position: relative; }
+  html body.book-type.subpage #zapraszamy .booking-copy { grid-column: 5 / -1; grid-row: 1; min-height: 0; padding: var(--s5) 0; row-gap: var(--s3); }
+  html body.book-type.subpage #zapraszamy :is(.booking-photo, .booking-dog-foreground) { grid-column: 5 / -1; grid-row: 2; align-self: start; inline-size: 100%; block-size: auto; min-height: 0; aspect-ratio: 1 / 1; }
+}
+body.subpage .booking .booking-pet:not(.solid) { display: none; }
+
+/* kontakt („Jak umówić…”): prawa kolumna zaczyna się 30 px od końca najdłuższej etykiety po lewej (wspólne ścieżki dla wszystkich wierszy) */
+@media (min-width: 701px) {
+  body.subpage .contact .contact-columns { grid-template-columns: max-content minmax(0, 1fr); column-gap: 30px; }
+  body.subpage .contact .contact-columns > .contact-column { grid-column: 1 / -1; grid-template-columns: subgrid; column-gap: 30px; }
+}
+
+/* listy z kreskami (np. „Jak działa czip”): zamiast strzałek zwykłe kropki średniej wielkości (10 px), wiszące poza akapitem, środek na pierwszym wierszu */
+body.subpage .ruled-list:not(.is-numbered) > li::before {
+  inset-inline-start: calc(var(--hang-start) + 10px); top: calc(var(--s2) + 7px); inline-size: 10px; block-size: 10px;
+  -webkit-mask: none; mask: none; background: currentColor; border-radius: 50%;
+}
+
+/* uwaga 11: ilustracja sekcji „Co zrobić, gdy zwierzę się zgubi” — ramka dokładnie 4 kolumny od osi 5, rysunek przycięty do zawartości i przyklejony do lewej-góry */
+body.subpage .emergency .section-header > .poster-art { position: relative; aspect-ratio: 1; height: auto; min-block-size: 0; }
+body.subpage .emergency .section-header .poster-media { position: absolute; inset: 0; inline-size: 100% !important; width: 100% !important; max-width: none !important; block-size: 100% !important; max-height: none !important; aspect-ratio: auto !important; margin: 0; transform: none !important; scale: 1 !important; --illustration-scale: 1 !important; }
+body.subpage .emergency .section-header .poster-media > img { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: contain !important; object-position: left top; transform: none !important; }
+
+/* hub: wszystkie tytuły kafli jednakowe (20/24 px), także kafle 1 i 3, które przejmowały rozmiar z układu Home */
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile h3 { font-size: 20px !important; line-height: 24px !important; }
+
+/* polityka (hero bez ilustracji): tytuł i tekst bez dużych pustych pasów — hero kończy się tuż pod tytułem */
+body.subpage .hero.page-hero.is-plain { padding-block-end: 0; }
+body.subpage .hero.page-hero.is-plain + .page-columns > section:first-child, body.subpage .hero.page-hero.is-plain + section { padding-block-start: var(--s5); }
+
+/* ==========================================================================
+   Infografiki (HTML + SVG w kolorach palety sekcji: --ink, --surface, --accent; kreska 2 px ≈ grubość liter Satoshi 700 przy 16 px)
+   ========================================================================== */
+body.subpage .info { margin: 0; color: inherit; min-width: 0; }
+body.subpage .split-feature > .split-aside > :is(.info, .range-scale) { order: 1; grid-column: 1 / -1; }
+body.subpage .info .is-ink { background: var(--ink); color: var(--surface); }
+body.subpage .info .is-accent { background: var(--accent); color: var(--ink); }
+
+/* skala ciśnienia: kółka rosną wraz z zakresem, strzałki łączą kolejne stopnie */
+body.subpage .range-scale { --D: 152px; gap: var(--gap); align-items: start; }
+body.subpage .range-scale > li { position: relative; }
+body.subpage .range-scale > li::before {
+  content: ""; display: block; inline-size: var(--d); block-size: var(--d); margin-block: calc((var(--D) - var(--d)) / 2) var(--s1);
+  border: 2px solid currentColor; border-radius: 50%; background: color-mix(in srgb, currentColor var(--fill), transparent);
+}
+body.subpage .range-scale > li:nth-child(1) { --d: 48px;  --fill: 0%; }
+body.subpage .range-scale > li:nth-child(2) { --d: 80px;  --fill: 22%; }
+body.subpage .range-scale > li:nth-child(3) { --d: 112px; --fill: 55%; }
+body.subpage .range-scale > li:nth-child(4) { --d: 152px; --fill: 100%; }
+body.subpage .range-scale > li:not(:last-child)::after {
+  content: ""; position: absolute; block-size: 20px; top: calc(var(--D) / 2 - 10px);
+  inset-inline-start: calc(var(--d) + var(--s2)); inline-size: calc(100% + var(--gap) - var(--d) - var(--s4));
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'%3E%3Cpath d='M2 3l8 7-8 7' fill='none' stroke='%23000' stroke-width='2.2'/%3E%3C/svg%3E") right center / 12px 20px no-repeat, linear-gradient(#000, #000) left center / calc(100% - 4px) 2px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'%3E%3Cpath d='M2 3l8 7-8 7' fill='none' stroke='%23000' stroke-width='2.2'/%3E%3C/svg%3E") right center / 12px 20px no-repeat, linear-gradient(#000, #000) left center / calc(100% - 4px) 2px no-repeat;
+}
+@media (max-width: 700px) {
+  body.subpage .range-scale { --D: 96px; gap: var(--s4); }
+  body.subpage .range-scale > li:nth-child(1) { --d: 32px; } body.subpage .range-scale > li:nth-child(2) { --d: 52px; }
+  body.subpage .range-scale > li:nth-child(3) { --d: 72px; } body.subpage .range-scale > li:nth-child(4) { --d: 96px; }
+  body.subpage .range-scale > li::after { display: none; }
+}
+
+/* kafle z wielkimi liczbami (Jak działa czip) */
+body.subpage .info-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(176px, auto)); gap: var(--gap); }
+body.subpage .info-stat { display: flex; flex-direction: column; justify-content: space-between; gap: var(--s2); padding: var(--s3) var(--s3) var(--s4); min-width: 0; overflow: hidden; }
+body.subpage .info-stat:first-child { grid-row: 1 / span 2; }
+body.subpage .info-stat.is-line { border: 2px solid currentColor; }
+body.subpage .info-stat.is-ink { background: var(--ink); color: var(--surface); }
+body.subpage .info-stat.is-accent { background: var(--accent); color: var(--ink); }
+body.subpage .info-num { font-weight: 700; line-height: 1; letter-spacing: -.04em; font-size: 72px; }
+body.subpage .info-stat:first-child .info-num { font-size: clamp(120px, 14vw, 216px); }
+body.subpage .info-stat.is-wide .info-num { font-size: clamp(80px, 9vw, 140px); }
+body.subpage .info-stat:not(:first-child) .info-label:only-child { font-size: 24px; line-height: 32px; margin-block-start: auto; }
+body.subpage .info-label { font-size: 16px; line-height: 24px; font-weight: 700; }
+body.subpage .info-rice { inline-size: 120px; block-size: auto; flex: none; }
+@media (max-width: 700px) {
+  body.subpage .info-stats { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; gap: var(--s2); }
+  body.subpage .info-stat:first-child { grid-row: auto; min-block-size: 240px; }
+  body.subpage .info-stat { min-block-size: 144px; }
+}
+
+/* wiele dróg prowadzi do jednego punktu (Co zrobić, gdy zwierzę się zgubi) */
+body.subpage .info-converge { display: grid; grid-template-columns: minmax(0, max-content) minmax(96px, 1fr) auto; align-items: start; }
+body.subpage .info-sources { list-style: none; margin: 0; padding: 0; }
+body.subpage .info-sources li { block-size: 48px; display: flex; align-items: center; gap: var(--s2); font-size: 16px; line-height: 24px; font-weight: 700; }
+/* kreska prowadząca zaczyna się zaraz po napisie i płynnie przechodzi w krzywą */
+body.subpage .info-sources li::after { content: ""; flex: 1 1 auto; min-inline-size: var(--s2); block-size: 2px; background: currentColor; }
+body.subpage .info-lines { display: block; inline-size: 100%; block-size: calc(var(--n) * 48px); overflow: visible; fill: none; stroke: currentColor; stroke-width: 2; }
+body.subpage .info-lines path { vector-effect: non-scaling-stroke; }
+body.subpage .info-target { position: relative; align-self: center; display: grid; padding-inline-start: var(--s3); font-size: 16px; line-height: 24px; font-weight: 700; }
+body.subpage .info-dot { position: absolute; inset-inline-start: -8px; top: calc(50% - 8px); inline-size: 16px; block-size: 16px; border-radius: 50%; background: currentColor; }
+body.subpage .info-target strong { font-size: 24px; line-height: 32px; }
+
+/* tory: kto, co i gdzie (Sam czip nie wystarczy) */
+body.subpage .info-lanes { display: grid; grid-template-columns: repeat(var(--lanes, 3), minmax(0, 1fr)); border-inline-end: 1px solid currentColor; }
+body.subpage .lane-head, body.subpage .lane-cell { border-inline-start: 1px solid currentColor; padding-inline: var(--s2); }
+body.subpage .lane-head { font-weight: 700; font-size: 16px; line-height: 24px; padding-block: 0 var(--s2); }
+body.subpage .lane-cell { display: flex; padding-block: var(--s1); min-block-size: 96px; min-width: 0; }
+body.subpage .lane-cell.is-span2 { grid-column: 1 / -1; padding-inline-end: var(--s2); }
+body.subpage .lane-card { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: var(--s1); padding: var(--s2); font-size: 16px; line-height: 24px; font-weight: 700; border: 2px solid currentColor; min-width: 0; }
+body.subpage .lane-card.is-ink, body.subpage .lane-card.is-accent { border-color: transparent; }
+body.subpage .lane-arrow { align-self: flex-end; inline-size: 32px; block-size: 20px; background: currentColor; -webkit-mask: var(--arrow-mask) center / contain no-repeat; mask: var(--arrow-mask) center / contain no-repeat; }
+@media (max-width: 700px) {
+  body.subpage .info-lanes { grid-template-columns: minmax(0, 1fr); }
+  body.subpage .lane-head, body.subpage .lane-cell:empty { display: none; }
+  body.subpage .lane-cell, body.subpage .lane-cell.is-span2 { border: 0; grid-column: auto; min-block-size: 0; padding-inline: 0; }
+  body.subpage .lane-card::before { content: attr(data-l); font-size: 16px; font-weight: 700; opacity: .75; }
+}
+
+/* --- baner „Praca w Psyjaciołach” (8.10.2026): cały baner to link mailto; szary pies z kulkami u góry, apla w kolorze kulek, bez zaokrągleń --- */
+body.subpage a.join-banner {
+  display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 0; padding: 0; border-radius: 0; overflow: hidden; position: relative;
+  background: var(--lay-orange, #f0764a); color: #fff; text-decoration: none; inline-size: 100%;   /* biały tekst na prośbę właściciela (kontrast ≈ 2,9:1) */
+}
+body.subpage a.join-banner :is(p, h2) { color: inherit; }
+body.subpage .join-art { position: relative; aspect-ratio: auto; block-size: 300px; background: #d8d8d8; overflow: hidden; }
+body.subpage .join-dog { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; object-position: 50% 12%; filter: grayscale(1) contrast(.92); }
+body.subpage .join-balls { position: absolute; inset: 0; pointer-events: none; }
+body.subpage .join-ball { position: absolute; inset-inline-start: 0; inset-block-start: 0; border-radius: 50%; background: var(--lay-orange, #f0764a); will-change: transform; }
+body.subpage a.join-banner .join-copy { min-block-size: 300px; block-size: 300px; padding: var(--s4); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: var(--s3); }
+body.subpage a.join-banner .join-text h2 { margin: 0; overflow-wrap: anywhere; }
+body.subpage a.join-banner .join-copy p { font-size: 20px; line-height: 32px; font-weight: 700; max-inline-size: 36ch; text-wrap: balance; margin: 0; }
+body.subpage .join-arrow { display: inline-block; inline-size: 28px; block-size: 20px; margin-inline-start: var(--s1); vertical-align: -2px; background: currentColor; -webkit-mask: var(--arrow-mask) center / contain no-repeat; mask: var(--arrow-mask) center / contain no-repeat; }
+body.subpage a.join-banner:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+@media (prefers-reduced-motion: no-preference) {
+  body.subpage .join-arrow { transition: transform .2s ease; }
+  body.subpage a.join-banner:hover .join-arrow { transform: translateX(6px); }
+}
+@media (max-width: 700px) {
+  body.subpage a.join-banner .join-copy { padding: var(--s3); block-size: auto; min-block-size: 300px; }
+  body.subpage a.join-banner .join-text h2 { font-size: 32px !important; line-height: 40px !important; }
+}
+
+/* Opinie opiekunów w kolumnie artykułu (8 kol.): cytaty jeden pod drugim, oddzielone kreskami */
+body.subpage .page-columns .reviews .quotes { grid-template-columns: minmax(0, 1fr); gap: 0; }
+body.subpage .page-columns .reviews .quotes > * { border-top: 1px solid currentColor; padding-block: var(--s3); min-width: 0; }
+body.subpage .page-columns .reviews .quotes > *:last-child { border-bottom: 1px solid currentColor; }
+
+/* zdjęcie z połowy szerokości artykułu (4 kol.), obok którego nie ma tekstu: ramka na 8 kolumn (ta sama wysokość), obraz wyśrodkowany,
+   po bokach wolna przestrzeń w kolorze tła. Para zdjęcie + tekst (min. 1001 px) zostaje 4 + 4 kolumny; mozaika bez zmian. */
+body.subpage .page-columns .photo-frame.is-narrow,
+body.subpage .page-columns .split-feature > .split-aside > .photo-frame.is-narrow { inline-size: 100%; aspect-ratio: var(--ph-ratio-wide, 2 / 1); }
+body.subpage .page-columns .photo-frame.is-narrow.has-image > img { object-fit: contain; object-position: 50% 50%; }
+body.subpage .page-columns .photo-frame.is-narrow.has-image:is([data-kind="foto"], [data-kind="pas"]) { background: transparent; }
+body.subpage .page-columns .figure-mosaic .photo-frame.is-narrow { aspect-ratio: var(--ph-ratio, 4 / 5); }
+@media (min-width: 1001px) {
+  body.subpage .page-columns .split-feature:not(.is-faq):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame { aspect-ratio: var(--ph-ratio, 4 / 5); }
+  body.subpage .page-columns .split-feature:not(.is-faq):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame.has-image > img { object-fit: cover; }
+}
+
+/* --- baner „W nagłym przypadku zadzwoń” (8 kolumn): kafle w różnych kolorach; kafel z numerem uruchamia telefon, kafel z lecznicami prowadzi do lecznic całodobowych --- */
+body.subpage .alert-banner { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; margin-block: var(--s4); min-width: 0; }
+body.subpage .ab-tile { padding: var(--s4); min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: var(--s3); color: inherit; text-decoration: none; }
+body.subpage .ab-art { padding: 0; background: var(--accent); }
+body.subpage .ab-art .photo-frame { margin: 0; inline-size: 100%; block-size: 100%; aspect-ratio: 1; border: 0; background-image: none; }
+body.subpage .ab-call { background: var(--ink); color: var(--surface); min-block-size: 405px; }
+body.subpage .ab-closed { grid-column: 1 / -1; background: var(--lay-orange, #f0764a); color: var(--lay-green-deep, #0b3a20); min-block-size: 264px; }
+body.subpage .alert-banner:not(.has-art) .ab-call { grid-column: 1; }
+body.subpage .ab-top { display: block; margin: 0; font-size: 20px; line-height: 32px; font-weight: 700; max-inline-size: 22ch; }
+body.subpage .ab-closed .ab-top { font-size: 32px; line-height: 40px; max-inline-size: 24ch; }
+body.subpage .ab-phone { display: block; font-size: clamp(40px, 4.4vw, 64px); line-height: 1.05; font-weight: 700; letter-spacing: -.02em; }
+body.subpage .ab-call .phone-status { margin: 0; font-size: 16px; letter-spacing: 0; }
+body.subpage .ab-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s3); }
+body.subpage .ab-icon { inline-size: 96px; block-size: auto; flex: none; }
+body.subpage .ab-more { font-size: 20px; line-height: 32px; font-weight: 700; text-align: end; }
+body.subpage .ab-arrow { display: inline-block; inline-size: 28px; block-size: 20px; margin-inline-start: var(--s1); vertical-align: -2px; background: currentColor; -webkit-mask: var(--arrow-mask) center / contain no-repeat; mask: var(--arrow-mask) center / contain no-repeat; }
+body.subpage a.ab-tile:hover .ab-phone { text-decoration: underline; text-underline-offset: .1em; }
+body.subpage a.ab-closed:hover .ab-more { text-decoration: underline; text-underline-offset: .22em; }
+body.subpage a.ab-tile:focus-visible { outline: 2px solid currentColor; outline-offset: -6px; }
+@media (prefers-reduced-motion: no-preference) { body.subpage .ab-arrow { transition: transform .2s ease; } body.subpage a.ab-closed:hover .ab-arrow { transform: translateX(6px); } }
+@media (max-width: 700px) {
+  body.subpage .alert-banner { grid-template-columns: minmax(0, 1fr); }
+  body.subpage .ab-tile { padding: var(--s3); }
+  body.subpage .ab-call { min-block-size: 280px; }
+  body.subpage .ab-foot { flex-direction: column; align-items: flex-start; }
+  body.subpage .ab-more { text-align: start; }
+}
+
+/* kafel „zadzwoń”: etykieta u góry, numer i status otwarcia razem na dole */
+body.subpage .ab-call { justify-content: flex-start; gap: var(--s1); }
+body.subpage .ab-call .ab-top { margin-block-end: auto; }
+
+/* każdy kafel baneru: tekst u góry i na dole (kafel z rysunkiem: nazwa dziedziny u góry, podpis rysunku na dole) */
+body.subpage .ab-art { padding: var(--s4); gap: var(--s2); }
+body.subpage .ab-art .photo-frame { flex: 1 1 auto; block-size: auto; min-block-size: 0; aspect-ratio: auto; background: transparent; }
+body.subpage .ab-art .photo-frame.has-image > img { object-fit: contain; mix-blend-mode: normal; }
+body.subpage .ab-cap { display: block; font-size: 20px; line-height: 32px; font-weight: 700; }
+
+/* zespół: „Lekarka weterynarii” kapitalikami nad imieniem i nazwiskiem */
+body.subpage main h2 .kapitaliki { display: block; font-variant-caps: all-small-caps; font-feature-settings: "c2sc", "smcp"; letter-spacing: .08em; font-size: .7em; line-height: 1.2; margin-block-end: var(--s1); font-weight: 700; }
+/* „Poza godzinami pracy” w kolumnie artykułu: lecznice jedna pod drugą */
+body.subpage .page-columns .after-hours .emergency-clinics { grid-template-columns: minmax(0, 1fr); gap: var(--s4); }
+
+/* telefon: baner pracy i baner „nagły przypadek” — poprawki dla wąskich ekranów */
+@media (max-width: 700px) {
+  html body.book-type.subpage main a.join-banner .join-text h2 { font-size: clamp(24px, 6.9vw, 30px) !important; line-height: 1.25 !important; overflow-wrap: break-word; }
+  body.subpage .ab-art .photo-frame { flex: none; aspect-ratio: 1; block-size: auto; }
+}

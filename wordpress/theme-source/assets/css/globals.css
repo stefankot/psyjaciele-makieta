@@ -1,0 +1,15 @@
+/* Shared editorial rules complement native WordPress global settings. */
+/* Legacy site CSS uses "Rialto Script"; load the same webfont for that name too. */
+@font-face{font-family:"Rialto Script";src:url("https://www.psyjacielevet.pl/mystaging02/wp-content/fonts/rialtoscript-regular.otf") format("opentype");font-style:normal;font-weight:400;font-display:swap}
+:root{--psy-gutter:var(--wp--custom--psyjaciele--gutter,clamp(24px,4.2vw,55px));--psy-gap:var(--wp--custom--psyjaciele--column-gap,32px);--psy-section-space:var(--wp--custom--psyjaciele--section-space,clamp(64px,8vw,104px))}
+body{font-kerning:normal;font-variant-ligatures:common-ligatures;overflow-wrap:break-word}
+*,*::before,*::after{box-sizing:border-box}
+.wp-site-blocks{padding-block:0}
+.wp-block-post-content{min-width:0}
+.wp-block-post-content :where(p,li){text-wrap:pretty}
+.wp-block-post-content :where(h1,h2,h3,h4){text-wrap:balance}
+.wp-element-button{font-weight:900;border-radius:0}
+.is-style-psy-section{padding-block:var(--psy-section-space)}
+.is-style-psy-columns{column-gap:var(--psy-gap)}
+.is-style-psy-rule{border-top:1px solid currentColor;padding-top:24px}
+@media(max-width:700px){:root{--psy-gap:16px;--psy-section-space:64px}.wp-block-columns{gap:24px}}

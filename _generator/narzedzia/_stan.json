@@ -1,0 +1,1340 @@
+{
+ "uslugi-weterynaryjne": {
+  "file": "uslugi-weterynaryjne/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "mid-a",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "paper",
+   "soft-b",
+   "alarm",
+   "paper",
+   "mid-b",
+   "end",
+   "social"
+  ],
+  "uses": [
+   "after-hours",
+   "back-link",
+   "bento",
+   "chooser",
+   "contact",
+   "contact-columns",
+   "detail-columns",
+   "figure-band",
+   "figure-mosaic",
+   "page-hero",
+   "photo-frame",
+   "poster-grid",
+   "quotes",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "social-promo",
+   "split-feature",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "uslugi-02-gabinet",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/uslugi-weterynaryjne/uslugi-02-gabinet.jpg",
+    "page": "uslugi-weterynaryjne",
+    "sekcja": "diagnostyka",
+    "rola": ""
+   },
+   {
+    "id": "uslugi-03-mozaika-a",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/uslugi-weterynaryjne/uslugi-03-mozaika-a.jpg",
+    "page": "uslugi-weterynaryjne",
+    "sekcja": "konsultacje-specjalistyczne",
+    "rola": ""
+   },
+   {
+    "id": "uslugi-03-mozaika-b",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/uslugi-weterynaryjne/uslugi-03-mozaika-b.jpg",
+    "page": "uslugi-weterynaryjne",
+    "sekcja": "konsultacje-specjalistyczne",
+    "rola": ""
+   },
+   {
+    "id": "uslugi-03-mozaika-c",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/uslugi-weterynaryjne/uslugi-03-mozaika-c.jpg",
+    "page": "uslugi-weterynaryjne",
+    "sekcja": "konsultacje-specjalistyczne",
+    "rola": ""
+   },
+   {
+    "id": "uslugi-01-recepcja",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/uslugi-weterynaryjne/uslugi-01-recepcja.jpg",
+    "page": "uslugi-weterynaryjne",
+    "sekcja": "nie-wiesz-ktora-usluge-wybrac",
+    "rola": "aside rozdziału 5"
+   },
+   {
+    "id": "uslugi-04-kot-pies",
+    "kind": "wycinek",
+    "ratio": "1/1",
+    "file": "assets/podstrony/uslugi-weterynaryjne/uslugi-04-kot-pies.png",
+    "page": "uslugi-weterynaryjne",
+    "sekcja": "jak-wyglada-wizyta",
+    "rola": "aside rozdziału 6"
+   }
+  ],
+  "green": 1
+ },
+ "choroby-wewnetrzne-u-psow-i-kotow": {
+  "file": "uslugi-weterynaryjne/choroby-wewnetrzne-u-psow-i-kotow/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "soft-b",
+   "paper",
+   "mid-b",
+   "soft-a",
+   "booking",
+   "end",
+   "mid-a"
+  ],
+  "uses": [
+   "after-hours",
+   "alert-band",
+   "back-link",
+   "booking",
+   "contact",
+   "contact-columns",
+   "duo",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "page-hero",
+   "photo-frame",
+   "poster-grid",
+   "quotes",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "step-list",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "interna-01-badanie",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/choroby-wewnetrzne-u-psow-i-kotow/interna-01-badanie.jpg",
+    "page": "choroby-wewnetrzne-u-psow-i-kotow",
+    "sekcja": "z-jakimi-objawami-przyjsc-do-internisty",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "interna-03-pas-gabinet",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/choroby-wewnetrzne-u-psow-i-kotow/interna-03-pas-gabinet.jpg",
+    "page": "choroby-wewnetrzne-u-psow-i-kotow",
+    "sekcja": "czym-zajmuje-sie-interna",
+    "rola": ""
+   },
+   {
+    "id": "interna-02-schemat-ukladow",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/choroby-wewnetrzne-u-psow-i-kotow/interna-02-schemat-ukladow.png",
+    "page": "choroby-wewnetrzne-u-psow-i-kotow",
+    "sekcja": "kiedy-nie-czekac-na-wolny-termin",
+    "rola": "aside rozdziału 3"
+   },
+   {
+    "id": "interna-04-kontrola",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/choroby-wewnetrzne-u-psow-i-kotow/interna-04-kontrola.jpg",
+    "page": "choroby-wewnetrzne-u-psow-i-kotow",
+    "sekcja": "jak-wyglada-wizyta-u-internisty",
+    "rola": "aside rozdziału 4"
+   }
+  ],
+  "green": 1
+ },
+ "diagnostyka-laboratoryjna-weterynaryjna": {
+  "file": "uslugi-weterynaryjne/diagnostyka-laboratoryjna-weterynaryjna/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "paper",
+   "soft-b",
+   "paper",
+   "soft-a",
+   "booking",
+   "end"
+  ],
+  "uses": [
+   "back-link",
+   "booking",
+   "contact",
+   "contact-columns",
+   "detail-columns",
+   "duo",
+   "equipment-grid",
+   "figure-band",
+   "key-values",
+   "page-hero",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "lab-01-analizator",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/diagnostyka-laboratoryjna-weterynaryjna/lab-01-analizator.jpg",
+    "page": "diagnostyka-laboratoryjna-weterynaryjna",
+    "sekcja": "badania-zlecane-laboratoriom-zewnetrznym",
+    "rola": "aside rozdziału 2"
+   },
+   {
+    "id": "lab-03-pas-laboratorium",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/diagnostyka-laboratoryjna-weterynaryjna/lab-03-pas-laboratorium.jpg",
+    "page": "diagnostyka-laboratoryjna-weterynaryjna",
+    "sekcja": "badania-zlecane-laboratoriom-zewnetrznym",
+    "rola": ""
+   },
+   {
+    "id": "lab-02-probki",
+    "kind": "wycinek",
+    "ratio": "1/1",
+    "file": "assets/podstrony/diagnostyka-laboratoryjna-weterynaryjna/lab-02-probki.png",
+    "page": "diagnostyka-laboratoryjna-weterynaryjna",
+    "sekcja": "jakie-badania-moga-byc-potrzebne-przy-typowych-objawach",
+    "rola": "aside rozdziału 3"
+   }
+  ],
+  "green": 1
+ },
+ "szczepienia-oraz-profilaktyka-przeciwpasozytnicza": {
+  "file": "uslugi-weterynaryjne/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "paper",
+   "mid-b",
+   "mid-c",
+   "booking",
+   "end"
+  ],
+  "uses": [
+   "back-link",
+   "booking",
+   "contact",
+   "contact-columns",
+   "detail-columns",
+   "figure-band",
+   "figure-mosaic",
+   "page-hero",
+   "phase-timeline",
+   "photo-frame",
+   "poster-grid",
+   "quotes",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "step-list",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "szcz-01-szczepienie",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-01-szczepienie.jpg",
+    "page": "szczepienia-oraz-profilaktyka-przeciwpasozytnicza",
+    "sekcja": "profilaktyka-przeciwpasozytnicza-psow-i-kotow",
+    "rola": "aside rozdziału 2"
+   },
+   {
+    "id": "szcz-04-pas-pies-kot",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-04-pas-pies-kot.jpg",
+    "page": "szczepienia-oraz-profilaktyka-przeciwpasozytnicza",
+    "sekcja": "profilaktyka-przeciwpasozytnicza-psow-i-kotow",
+    "rola": ""
+   },
+   {
+    "id": "szcz-02-ksiazeczka",
+    "kind": "wycinek",
+    "ratio": "1/1",
+    "file": "assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-02-ksiazeczka.png",
+    "page": "szczepienia-oraz-profilaktyka-przeciwpasozytnicza",
+    "sekcja": "profilaktyka-przeciwpasozytnicza-psow-i-kotow",
+    "rola": ""
+   },
+   {
+    "id": "szcz-03-kalendarz",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-03-kalendarz.png",
+    "page": "szczepienia-oraz-profilaktyka-przeciwpasozytnicza",
+    "sekcja": "profilaktyka-przeciwpasozytnicza-psow-i-kotow",
+    "rola": ""
+   }
+  ],
+  "green": 1
+ },
+ "chirurgia-weterynaryjna-tkanek-miekkich": {
+  "file": "uslugi-weterynaryjne/chirurgia-weterynaryjna-tkanek-miekkich/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "soft-b",
+   "paper",
+   "mid-c",
+   "soft-a",
+   "mid-a",
+   "end"
+  ],
+  "uses": [
+   "back-link",
+   "contact",
+   "contact-columns",
+   "cta-band",
+   "doctor-strip",
+   "emergency-guide",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "key-values",
+   "page-hero",
+   "people",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "chir-02-konsultacja",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-02-konsultacja.jpg",
+    "page": "chirurgia-weterynaryjna-tkanek-miekkich",
+    "sekcja": "jak-wyglada-konsultacja-chirurgiczna",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "chir-03-opieka-po",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-03-opieka-po.jpg",
+    "page": "chirurgia-weterynaryjna-tkanek-miekkich",
+    "sekcja": "dlaczego-przygotowanie-zwierzecia-do-zabiegu-jest-wazne",
+    "rola": "aside rozdziału 2"
+   },
+   {
+    "id": "chir-01-sala-zabiegowa",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-01-sala-zabiegowa.jpg",
+    "page": "chirurgia-weterynaryjna-tkanek-miekkich",
+    "sekcja": "dlaczego-przygotowanie-zwierzecia-do-zabiegu-jest-wazne",
+    "rola": ""
+   },
+   {
+    "id": "chir-04-rana-schemat",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-04-rana-schemat.png",
+    "page": "chirurgia-weterynaryjna-tkanek-miekkich",
+    "sekcja": "jakie-badania-wykonac-przed-operacja",
+    "rola": "aside rozdziału 3"
+   }
+  ],
+  "green": 0
+ },
+ "kardiologia-weterynaryjna": {
+  "file": "uslugi-weterynaryjne/kardiologia-weterynaryjna/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "soft-b",
+   "paper",
+   "mid-c",
+   "soft-a",
+   "mid-a",
+   "end"
+  ],
+  "uses": [
+   "back-link",
+   "breath-counter",
+   "contact",
+   "contact-columns",
+   "cta-band",
+   "doctor-strip",
+   "duo",
+   "emergency-guide",
+   "faq-accordion",
+   "figure-mosaic",
+   "join-banner",
+   "page-hero",
+   "people",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "kard-01-serce-diagram",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/kardiologia-weterynaryjna/kard-01-serce-diagram.png",
+    "page": "kardiologia-weterynaryjna",
+    "sekcja": "objawy-ktore-moga-wskazywac-na-chorobe-serca",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "kard-02-echo",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/kardiologia-weterynaryjna/kard-02-echo.jpg",
+    "page": "kardiologia-weterynaryjna",
+    "sekcja": "najczestsze-choroby-serca-u-kotow",
+    "rola": "aside rozdziału 3"
+   },
+   {
+    "id": "kard-04-pies-kot-a",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/kardiologia-weterynaryjna/kard-04-pies-kot-a.jpg",
+    "page": "kardiologia-weterynaryjna",
+    "sekcja": "najczestsze-choroby-serca-u-kotow",
+    "rola": ""
+   },
+   {
+    "id": "kard-04-pies-kot-b",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/kardiologia-weterynaryjna/kard-04-pies-kot-b.jpg",
+    "page": "kardiologia-weterynaryjna",
+    "sekcja": "najczestsze-choroby-serca-u-kotow",
+    "rola": ""
+   },
+   {
+    "id": "kard-04-pies-kot-c",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/kardiologia-weterynaryjna/kard-04-pies-kot-c.jpg",
+    "page": "kardiologia-weterynaryjna",
+    "sekcja": "najczestsze-choroby-serca-u-kotow",
+    "rola": ""
+   },
+   {
+    "id": "kard-03-ekg",
+    "kind": "wycinek",
+    "ratio": "1/1",
+    "file": "assets/podstrony/kardiologia-weterynaryjna/kard-03-ekg.png",
+    "page": "kardiologia-weterynaryjna",
+    "sekcja": "badania-diagnostyczne-przy-chorobach-kardiologicznych-psow",
+    "rola": "aside rozdziału 4"
+   }
+  ],
+  "green": 0
+ },
+ "diagnostyka-obrazowa-psow-i-kotow": {
+  "file": "uslugi-weterynaryjne/diagnostyka-obrazowa-psow-i-kotow/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "paper",
+   "mid-c",
+   "paper",
+   "soft-b",
+   "end"
+  ],
+  "uses": [
+   "back-link",
+   "contact",
+   "contact-columns",
+   "cta-band",
+   "doctor-strip",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "page-hero",
+   "people",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "usg-01-aparat",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/diagnostyka-obrazowa-psow-i-kotow/usg-01-aparat.jpg",
+    "page": "diagnostyka-obrazowa-psow-i-kotow",
+    "sekcja": "kiedy-lekarz-zleca-usg",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "usg-02-mapa-ciala",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/diagnostyka-obrazowa-psow-i-kotow/usg-02-mapa-ciala.png",
+    "page": "diagnostyka-obrazowa-psow-i-kotow",
+    "sekcja": "co-mozna-zbadac-za-pomoca-usg",
+    "rola": "aside rozdziału 2"
+   },
+   {
+    "id": "usg-04-pas",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/diagnostyka-obrazowa-psow-i-kotow/usg-04-pas.jpg",
+    "page": "diagnostyka-obrazowa-psow-i-kotow",
+    "sekcja": "co-mozna-zbadac-za-pomoca-usg",
+    "rola": ""
+   },
+   {
+    "id": "usg-03-badanie",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/diagnostyka-obrazowa-psow-i-kotow/usg-03-badanie.jpg",
+    "page": "diagnostyka-obrazowa-psow-i-kotow",
+    "sekcja": "jak-przygotowac-psa-lub-kota-do-badania-usg",
+    "rola": "aside rozdziału 3"
+   }
+  ],
+  "green": 0
+ },
+ "okulistyka-weterynaryjna": {
+  "file": "uslugi-weterynaryjne/okulistyka-weterynaryjna/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "paper",
+   "mid-c",
+   "paper",
+   "soft-b",
+   "end",
+   "soft-a"
+  ],
+  "uses": [
+   "after-hours",
+   "back-link",
+   "contact",
+   "contact-columns",
+   "cta-band",
+   "doctor-strip",
+   "emergency-guide",
+   "equipment-grid",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "page-hero",
+   "people",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "oko-01-oko-diagram",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/okulistyka-weterynaryjna/oko-01-oko-diagram.png",
+    "page": "okulistyka-weterynaryjna",
+    "sekcja": "kiedy-do-okulisty-a-kiedy-pilnie",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "oko-04-pas-gabinet",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/okulistyka-weterynaryjna/oko-04-pas-gabinet.jpg",
+    "page": "okulistyka-weterynaryjna",
+    "sekcja": "najczestsze-choroby-oczu-u-psow-i-kotow",
+    "rola": ""
+   },
+   {
+    "id": "oko-02-badanie-lampa",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/okulistyka-weterynaryjna/oko-02-badanie-lampa.jpg",
+    "page": "okulistyka-weterynaryjna",
+    "sekcja": "jak-wyglada-badanie-okulistyczne",
+    "rola": "aside rozdziału 3"
+   },
+   {
+    "id": "oko-03-oko-pies",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/okulistyka-weterynaryjna/oko-03-oko-pies.jpg",
+    "page": "okulistyka-weterynaryjna",
+    "sekcja": "jak-dbac-o-zdrowie-oczu-swojego-psyjaciela",
+    "rola": "aside rozdziału 4"
+   }
+  ],
+  "green": 0
+ },
+ "dermatologia-weterynaryjna": {
+  "file": "uslugi-weterynaryjne/dermatologia-weterynaryjna/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "paper",
+   "soft-b",
+   "paper",
+   "soft-a",
+   "booking",
+   "end",
+   "mid-a"
+  ],
+  "uses": [
+   "after-hours",
+   "alert-band",
+   "back-link",
+   "booking",
+   "contact",
+   "contact-columns",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "page-hero",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "derm-01-badanie-skory",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/dermatologia-weterynaryjna/derm-01-badanie-skory.jpg",
+    "page": "dermatologia-weterynaryjna",
+    "sekcja": "objawy-z-ktorymi-warto-przyjsc",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "derm-02-pas-skora-siersc",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/dermatologia-weterynaryjna/derm-02-pas-skora-siersc.jpg",
+    "page": "dermatologia-weterynaryjna",
+    "sekcja": "najczestsze-problemy-skorne-psow-i-kotow",
+    "rola": ""
+   },
+   {
+    "id": "derm-03-cytologia",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/dermatologia-weterynaryjna/derm-03-cytologia.jpg",
+    "page": "dermatologia-weterynaryjna",
+    "sekcja": "jak-wyglada-diagnostyka-dermatologiczna",
+    "rola": "aside rozdziału 3"
+   },
+   {
+    "id": "derm-04-pielegnacja",
+    "kind": "wycinek",
+    "ratio": "1/1",
+    "file": "assets/podstrony/dermatologia-weterynaryjna/derm-04-pielegnacja.png",
+    "page": "dermatologia-weterynaryjna",
+    "sekcja": "leczenie-chorob-skory",
+    "rola": "aside rozdziału 4"
+   }
+  ],
+  "green": 1
+ },
+ "stomatologia-weterynaryjna": {
+  "file": "uslugi-weterynaryjne/stomatologia-weterynaryjna/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "soft-b",
+   "paper",
+   "mid-c",
+   "soft-a",
+   "booking",
+   "end"
+  ],
+  "uses": [
+   "alert-band",
+   "back-link",
+   "booking",
+   "contact",
+   "contact-columns",
+   "detail-columns",
+   "doctor-strip",
+   "figure-mosaic",
+   "page-hero",
+   "people",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "section-head",
+   "split-feature",
+   "step-list",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "stom-01-jama-ustna-diagram",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/stomatologia-weterynaryjna/stom-01-jama-ustna-diagram.png",
+    "page": "stomatologia-weterynaryjna",
+    "sekcja": "objawy-ktorych-nie-warto-przeczekac",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "stom-02-zabieg",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/stomatologia-weterynaryjna/stom-02-zabieg.jpg",
+    "page": "stomatologia-weterynaryjna",
+    "sekcja": "czym-grozi-brak-leczenia",
+    "rola": "aside rozdziału 3"
+   },
+   {
+    "id": "stom-03-mozaika-a",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/stomatologia-weterynaryjna/stom-03-mozaika-a.jpg",
+    "page": "stomatologia-weterynaryjna",
+    "sekcja": "czym-grozi-brak-leczenia",
+    "rola": ""
+   },
+   {
+    "id": "stom-03-mozaika-b",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/stomatologia-weterynaryjna/stom-03-mozaika-b.jpg",
+    "page": "stomatologia-weterynaryjna",
+    "sekcja": "czym-grozi-brak-leczenia",
+    "rola": ""
+   },
+   {
+    "id": "stom-03-mozaika-c",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/stomatologia-weterynaryjna/stom-03-mozaika-c.jpg",
+    "page": "stomatologia-weterynaryjna",
+    "sekcja": "czym-grozi-brak-leczenia",
+    "rola": ""
+   },
+   {
+    "id": "stom-04-pies-szczotka",
+    "kind": "wycinek",
+    "ratio": "1/1",
+    "file": "assets/podstrony/stomatologia-weterynaryjna/stom-04-pies-szczotka.png",
+    "page": "stomatologia-weterynaryjna",
+    "sekcja": "jak-wyglada-zabieg-stomatologiczny",
+    "rola": "aside rozdziału 4"
+   }
+  ],
+  "green": 1
+ },
+ "nefrologia-weterynaryjna": {
+  "file": "uslugi-weterynaryjne/nefrologia-weterynaryjna/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "paper",
+   "soft-b",
+   "mid-a",
+   "paper",
+   "mid-c",
+   "mid-b",
+   "booking",
+   "end",
+   "paper"
+  ],
+  "uses": [
+   "after-hours",
+   "back-link",
+   "booking",
+   "contact",
+   "contact-columns",
+   "doctor-strip",
+   "duo",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "key-values",
+   "page-hero",
+   "people",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "nefr-01-nerki-diagram",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/nefrologia-weterynaryjna/nefr-01-nerki-diagram.png",
+    "page": "nefrologia-weterynaryjna",
+    "sekcja": "objawy-problemow-nefrologicznych-u-psow-i-kotow",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "nefr-02-kot-pije",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/nefrologia-weterynaryjna/nefr-02-kot-pije.jpg",
+    "page": "nefrologia-weterynaryjna",
+    "sekcja": "ostre-uszkodzenie-nerek-aki",
+    "rola": "aside rozdziału 2"
+   },
+   {
+    "id": "nefr-03-pas",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/nefrologia-weterynaryjna/nefr-03-pas.jpg",
+    "page": "nefrologia-weterynaryjna",
+    "sekcja": "ostre-uszkodzenie-nerek-aki",
+    "rola": ""
+   },
+   {
+    "id": "nefr-04-badanie-krwi",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/nefrologia-weterynaryjna/nefr-04-badanie-krwi.jpg",
+    "page": "nefrologia-weterynaryjna",
+    "sekcja": "przewlekla-choroba-nerek-pchn",
+    "rola": "aside rozdziału 3"
+   }
+  ],
+  "green": 1
+ },
+ "urologia-weterynaryjna": {
+  "file": "uslugi-weterynaryjne/urologia-weterynaryjna/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "alarm",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "soft-b",
+   "paper",
+   "soft-a",
+   "booking",
+   "end",
+   "mid-a"
+  ],
+  "uses": [
+   "after-hours",
+   "back-link",
+   "booking",
+   "contact",
+   "contact-columns",
+   "duo",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "key-values",
+   "page-hero",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "section-head",
+   "split-feature",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "uro-01-uklad-moczowy-diagram",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/urologia-weterynaryjna/uro-01-uklad-moczowy-diagram.png",
+    "page": "urologia-weterynaryjna",
+    "sekcja": "objawy-chorob-dolnych-drog-moczowych",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "uro-02-kot-kuweta",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/urologia-weterynaryjna/uro-02-kot-kuweta.jpg",
+    "page": "urologia-weterynaryjna",
+    "sekcja": "jak-wyglada-diagnostyka",
+    "rola": "aside rozdziału 4"
+   },
+   {
+    "id": "uro-04-pies-spacer",
+    "kind": "wycinek",
+    "ratio": "1/1",
+    "file": "assets/podstrony/urologia-weterynaryjna/uro-04-pies-spacer.png",
+    "page": "urologia-weterynaryjna",
+    "sekcja": "leczenie-chorob-dolnych-drog-moczowych-u-psow-i-kotow",
+    "rola": "aside rozdziału 5"
+   },
+   {
+    "id": "uro-03-pas",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/urologia-weterynaryjna/uro-03-pas.jpg",
+    "page": "urologia-weterynaryjna",
+    "sekcja": "jak-zmniejszyc-ryzyko-nawrotow",
+    "rola": ""
+   }
+  ],
+  "green": 2
+ },
+ "pomiar-cisnienia-psow-i-kotow": {
+  "file": "uslugi-weterynaryjne/pomiar-cisnienia-psow-i-kotow/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "paper",
+   "soft-b",
+   "paper",
+   "soft-a",
+   "booking",
+   "end"
+  ],
+  "uses": [
+   "back-link",
+   "booking",
+   "contact",
+   "contact-columns",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "page-hero",
+   "photo-frame",
+   "poster-grid",
+   "range-scale",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "step-list",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "cis-01-mankiet-diagram",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/pomiar-cisnienia-psow-i-kotow/cis-01-mankiet-diagram.png",
+    "page": "pomiar-cisnienia-psow-i-kotow",
+    "sekcja": "kiedy-warto-zmierzyc-cisnienie",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "cis-02-pomiar-kot",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/pomiar-cisnienia-psow-i-kotow/cis-02-pomiar-kot.jpg",
+    "page": "pomiar-cisnienia-psow-i-kotow",
+    "sekcja": "jak-przygotowac-zwierze-do-pomiaru",
+    "rola": "aside rozdziału 2"
+   },
+   {
+    "id": "cis-03-pas-gabinet",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/pomiar-cisnienia-psow-i-kotow/cis-03-pas-gabinet.jpg",
+    "page": "pomiar-cisnienia-psow-i-kotow",
+    "sekcja": "jak-przygotowac-zwierze-do-pomiaru",
+    "rola": ""
+   },
+   {
+    "id": "cis-04-pomiar-pies",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/pomiar-cisnienia-psow-i-kotow/cis-04-pomiar-pies.jpg",
+    "page": "pomiar-cisnienia-psow-i-kotow",
+    "sekcja": "jak-wyglada-pomiar",
+    "rola": "aside rozdziału 3"
+   }
+  ],
+  "green": 1
+ },
+ "wystawianie-paszportow-psom-i-kotom": {
+  "file": "uslugi-weterynaryjne/wystawianie-paszportow-psom-i-kotom/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "mid-b",
+   "soft-b",
+   "paper",
+   "mid-c",
+   "soft-a",
+   "booking",
+   "end"
+  ],
+  "uses": [
+   "back-link",
+   "booking",
+   "contact",
+   "contact-columns",
+   "doctor-strip",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "key-values",
+   "page-hero",
+   "people",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "step-list",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "pasz-01-paszport",
+    "kind": "wycinek",
+    "ratio": "1/1",
+    "file": "assets/podstrony/wystawianie-paszportow-psom-i-kotom/pasz-01-paszport.png",
+    "page": "wystawianie-paszportow-psom-i-kotom",
+    "sekcja": "co-zawiera-paszport",
+    "rola": "aside rozdziału 1"
+   },
+   {
+    "id": "pasz-02-stempel",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/wystawianie-paszportow-psom-i-kotom/pasz-02-stempel.jpg",
+    "page": "wystawianie-paszportow-psom-i-kotom",
+    "sekcja": "jak-przebiega-wizyta-w-sprawie-paszportu",
+    "rola": "aside rozdziału 2"
+   },
+   {
+    "id": "pasz-03-podroz",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/wystawianie-paszportow-psom-i-kotom/pasz-03-podroz.jpg",
+    "page": "wystawianie-paszportow-psom-i-kotom",
+    "sekcja": "jak-przebiega-wizyta-w-sprawie-paszportu",
+    "rola": ""
+   },
+   {
+    "id": "pasz-04-pies-kot-walizka",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/wystawianie-paszportow-psom-i-kotom/pasz-04-pies-kot-walizka.jpg",
+    "page": "wystawianie-paszportow-psom-i-kotom",
+    "sekcja": "co-zabrac-na-wizyte",
+    "rola": "aside rozdziału 3"
+   }
+  ],
+  "green": 1
+ },
+ "czipowanie-psow-i-kotow": {
+  "file": "uslugi-weterynaryjne/czipowanie-psow-i-kotow/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "toc",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "alarm",
+   "mid-b",
+   "paper",
+   "soft-b",
+   "booking",
+   "end"
+  ],
+  "uses": [
+   "back-link",
+   "booking",
+   "callout",
+   "contact",
+   "contact-columns",
+   "emergency-guide",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "page-hero",
+   "photo-frame",
+   "poster-grid",
+   "related-tiles",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "split-feature",
+   "step-list",
+   "sticky-cta",
+   "toc-index",
+   "toc-rail"
+  ],
+  "placeholders": [
+   {
+    "id": "czip-01-czip-diagram",
+    "kind": "diagram",
+    "ratio": "4/3",
+    "file": "assets/podstrony/czipowanie-psow-i-kotow/czip-01-czip-diagram.png",
+    "page": "czipowanie-psow-i-kotow",
+    "sekcja": "jak-dziala-czip",
+    "rola": "aside rozdziału 01"
+   },
+   {
+    "id": "czip-02-aplikator",
+    "kind": "foto",
+    "ratio": "3/2",
+    "file": "assets/podstrony/czipowanie-psow-i-kotow/czip-02-aplikator.jpg",
+    "page": "czipowanie-psow-i-kotow",
+    "sekcja": "jak-wyglada-czipowanie",
+    "rola": "aside rozdziału 02"
+   },
+   {
+    "id": "czip-03-pas-zabieg",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/czipowanie-psow-i-kotow/czip-03-pas-zabieg.jpg",
+    "page": "czipowanie-psow-i-kotow",
+    "sekcja": "jak-wyglada-czipowanie",
+    "rola": ""
+   },
+   {
+    "id": "czip-04-skaner",
+    "kind": "foto",
+    "ratio": "4/5",
+    "file": "assets/podstrony/czipowanie-psow-i-kotow/czip-04-skaner.jpg",
+    "page": "czipowanie-psow-i-kotow",
+    "sekcja": "sam-czip-nie-wystarczy-liczy-sie-rejestracja",
+    "rola": "aside rozdziału 03"
+   },
+   {
+    "id": "czip-05-pies-kot",
+    "kind": "wycinek",
+    "ratio": "1/1",
+    "file": "assets/podstrony/czipowanie-psow-i-kotow/czip-05-pies-kot.png",
+    "page": "czipowanie-psow-i-kotow",
+    "sekcja": "czy-czipowanie-jest-obowiazkowe",
+    "rola": "aside rozdziału 05"
+   }
+  ],
+  "green": 2
+ },
+ "zespol": {
+  "file": "zespol/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "soft-a",
+   "mid-a",
+   "mid-c",
+   "soft-a",
+   "mid-b",
+   "soft-b",
+   "paper",
+   "mid-b",
+   "end",
+   "social"
+  ],
+  "uses": [
+   "about",
+   "back-link",
+   "contact",
+   "contact-columns",
+   "faq-accordion",
+   "figure-band",
+   "join-banner",
+   "key-values",
+   "page-hero",
+   "photo-frame",
+   "poster-grid",
+   "quotes",
+   "rail-layout",
+   "ruled-list",
+   "ruled-table",
+   "section-head",
+   "social-promo",
+   "sticky-cta"
+  ],
+  "placeholders": [
+   {
+    "id": "zespol-01-zespol-grupowe",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/zespol/zespol-01-zespol-grupowe.jpg",
+    "page": "zespol",
+    "sekcja": "Magda",
+    "rola": ""
+   },
+   {
+    "id": "zespol-02-gabinet",
+    "kind": "pas",
+    "ratio": "21/9",
+    "file": "assets/podstrony/zespol/zespol-02-gabinet.jpg",
+    "page": "zespol",
+    "sekcja": "praca-w-psyjaciolach",
+    "rola": ""
+   }
+  ],
+  "green": 0
+ },
+ "polityka-prywatnosci": {
+  "file": "polityka-prywatnosci/index.html",
+  "changed": true,
+  "roles": [
+   "top",
+   "soft-a"
+  ],
+  "uses": [
+   "back-link",
+   "legal-prose",
+   "page-hero",
+   "poster-grid",
+   "rail-layout",
+   "ruled-list",
+   "ruled-table"
+  ],
+  "placeholders": [],
+  "green": 0
+ }
+}

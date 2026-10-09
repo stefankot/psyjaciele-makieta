@@ -1,0 +1,190 @@
+/*
+  nowa-bar.css — nawigacja w wersji „nowa”.
+
+  1) html.bar  = mój stały pasek z tłem sekcji. Włącza się na telefonie (≤ 700 px) oraz gdy
+     przeglądarka jest ustawiona na większą czytelność (większa czcionka / powiększenie strony /
+     „większy kontrast”) — patrz nowa-readability.js. Działa też z ?bar=1.
+  2) html:not(.bar) = nawigacja jak w oryginale (pełna szerokość, te same rozmiary),
+     tylko z mocniejszym podkładem pod rozmyciem, żeby tekst był czytelny na zdjęciach i rysunkach.
+*/
+:root { --hdr-h: 80px; }
+@media (max-width: 700px) { :root { --hdr-h: 64px; } }
+
+/* ---------- Header: stały pasek z tłem sekcji pod spodem ---------- */
+html.bar body.book-type .header-backdrop { display: none !important; }
+
+html.bar body.book-type .site-header.site-header.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--hdr-h);
+  padding: 0 var(--gutter) !important;
+  pointer-events: auto;
+  mix-blend-mode: normal !important;
+  background: var(--header-bg, var(--lay-green));
+  border: 0;
+  box-shadow: none;
+  transition: background-color .25s ease, color .18s ease, box-shadow .25s ease;
+}
+html.bar body.book-type .site-header.site-header.site-header.is-compact {
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--nav-ink, currentColor) 22%, transparent);
+}
+html.bar body.book-type .site-header.site-header.site-header.menu-open {
+  background: var(--lay-green);
+  box-shadow: none;
+}
+
+html.bar body.book-type .site-header .header-grid {
+  display: flex !important;
+  align-items: center;
+  gap: 24px;
+  height: var(--hdr-h) !important;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  pointer-events: auto;
+}
+html.bar body.book-type .site-header .header-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: auto;
+  flex: 0 0 auto;
+}
+html.bar body.book-type .site-header .brand { display: flex; align-items: center; }
+html.bar body.book-type .site-header .brand :is(.icon, svg) {
+  height: 56px !important;
+  width: auto !important;
+  max-width: none !important;
+  transition: height .25s ease;
+}
+html.bar body.book-type .site-header.is-compact .brand :is(.icon, svg) { height: 48px !important; }
+
+html.bar body.book-type .site-header .menu-toggle {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-width: 48px;
+  min-height: 48px;
+  margin: 0;
+}
+
+html.bar body.book-type .site-header .header-info {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.2vw, 34px);
+  margin: 0 0 0 auto;
+  padding: 0;
+  height: auto;
+}
+html.bar body.book-type .site-header .header-info > * {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+html.bar body.book-type .site-header .header-hours { display: flex; gap: clamp(14px, 1.8vw, 28px); margin: 0; }
+html.bar body.book-type .site-header .header-hours > div { display: block; }
+html.bar body.book-type .site-header .header-hours :is(dt, dd) { display: block; margin: 0; }
+html.bar body.book-type .site-header .header-phone { display: flex; flex-direction: column; text-decoration: none; }
+html.bar body.book-type .site-header .header-phone span:last-child { font-size: 16px; line-height: 24px; font-weight: 700; }
+
+html.bar body.book-type .site-header .header-actions {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  flex: 0 0 auto;
+}
+html.bar body.book-type .site-header .header-actions .button {
+  width: auto;
+  max-width: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  min-height: 48px;
+  margin: 0;
+  padding: 0 24px;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  background: var(--nav-ink, var(--lay-peach));
+  color: var(--header-bg, var(--lay-green));
+  border: 2px solid var(--nav-ink, var(--lay-peach));
+  transition: background-color .18s ease, color .18s ease;
+}
+html.bar body.book-type .site-header .header-actions .button:hover {
+  background: transparent;
+  color: var(--nav-ink, var(--lay-peach));
+}
+html.bar body.book-type .site-header .header-call {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  border: 2px solid currentColor;
+}
+html.bar body.book-type .site-header .header-call svg { width: 20px; height: 20px; fill: currentColor; }
+
+/* Menu rozwijane: panel pod paskiem */
+html.bar body.book-type .site-header .site-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 8px max(var(--gutter), calc((100% - 1280px) / 2)) 32px;
+  background: var(--lay-green);
+  color: var(--lay-peach-light);
+  border-top: 1px solid color-mix(in srgb, var(--lay-peach-light) 25%, transparent);
+}
+html.bar body.book-type .site-header .site-nav a { font-size: 20px; line-height: 32px; padding-block: 8px; }
+
+@media (max-width: 1180px) {
+  html.bar body.book-type .site-header .header-location { display: none; }
+}
+@media (max-width: 900px) {
+  html.bar body.book-type .site-header .header-hours { display: none; }
+}
+@media (max-width: 700px) {
+  html.bar body.book-type .site-header .header-info { display: none; }
+  html.bar body.book-type .site-header .header-brand { gap: 6px; }
+  html.bar body.book-type .site-header .header-actions { margin-left: auto; gap: 8px; }
+  html.bar body.book-type .site-header .header-actions .button { min-height: 48px; padding: 0 16px; font-size: 16px; }
+  html.bar body.book-type .site-header .header-actions .button .type-arrow { display: none; }
+  html.bar body.book-type .site-header .header-call { display: inline-flex; }
+  html.bar body.book-type .site-header .brand :is(.icon, svg) { height: 44px !important; }
+  html.bar body.book-type .site-header.is-compact .brand :is(.icon, svg) { height: 38px !important; }
+  html.bar body.book-type .site-header .site-nav a { font-size: 24px; }
+}
+@media (max-width: 370px) {
+  html.bar body.book-type .site-header .header-actions .button { padding: 0 8px; font-size: 16px; }
+}
+
+
+/* ---------- Hero pod stałym paskiem ---------- */
+html.bar body.book-type .hero {
+  padding-top: calc(var(--hdr-h) + 48px);
+}
+
+/* ---------- Nawigacja jak w oryginale: lepsza czytelność na rozmytym tle ---------- */
+/* rozmycie pod nawigacją: dokładnie jak w oryginale (blur 32 px, oryginalna maska, bez podkładu) — bez nadpisań */
+
+
+/* interlinia nawigacji oryginalnej dosunięta do siatki 8 px (rozmiary czcionek bez zmian) */
+html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header-phone span, .header-grid > .button, .site-nav a, .header-actions .button, .type-arrow-glyph) {
+  line-height: 24px !important;
+}

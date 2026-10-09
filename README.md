@@ -1,37 +1,66 @@
-# Psyjaciele — statyczna makieta
+# Makieta strony Psyjaciele (Warszawa Gocław)
 
-Aktualna makieta strony głównej Przychodni Weterynaryjnej Psyjaciele. HTML, CSS i JavaScript oraz lokalne ilustracje, zdjęcia i fonty. Repozytorium nie jest połączone z publikacją produkcyjnej strony WordPress.
+Statyczna makieta bez budowania: otwieraj przez lokalny serwer, nie przez `file://`
+(przeglądarka blokuje wtedy czcionki i maski SVG).
 
-## Podgląd online
-
-Makieta jest opublikowana przez GitHub Pages: https://stefankot.github.io/psyjaciele-makieta/
-
-Repozytorium jest publiczne. Zmiany wysłane do gałęzi `main` automatycznie aktualizują podgląd.
-
-## Uruchomienie
-
-W katalogu repozytorium:
-
-```sh
+```
+cd makieta
 python3 -m http.server 8765
+# http://127.0.0.1:8765/
 ```
 
-Otwórz `http://127.0.0.1:8765/`. Plik `index.html` przekierowuje do aktualnego `index-min.html`.
+## Struktura
 
-## Aktualne pliki
+```
+makieta/
+├── index.html                  strona główna (dawny layout-warianty/index-nowa.html)
+├── uslugi-weterynaryjne/       hub usług + 14 podstron usług  (generowane)
+├── zespol/                     zespół                          (generowane)
+├── polityka-prywatnosci/       polityka prywatności            (generowane)
+│
+├── minimal.css, typography-book.css, animacje.css, section-headings.css,
+│   design-tokens.css, layout-editorial.css, social-promo.css,
+│   zespol-rejestr.css, zespol-stopka.css      style bazowe strony głównej
+├── nowa-bar.css, layout-nowa.css              warstwa „nowa” (nagłówek, hero, układ sekcji)
+├── podstrony.css, podstrony.js                style i skrypty wyłącznie podstron
+├── minimal-nowa.js, nowa-header.js, nowa-readability.js, layout-status.js,
+│   pet-photos.js, animacje.js, illustration-motion.js      skrypty strony głównej
+├── assets/                     obrazy, czcionki, kształty (wspólne dla wszystkich stron)
+│
+├── _generator/                 wszystko, co buduje podstrony
+│   ├── narzedzia/              build.py, checks.py, audit.py, … (Python + bs4)
+│   ├── tresci-podstron/        źródła tekstów (czyste/<slug>.html)
+│   ├── dokumentacja/           prompty i opisy zasad
+│   └── wyniki/                 raporty, manifest obrazów, zrzuty, katalog podstron
+├── wordpress/                  materiały do migracji (bez zmian)
+└── _archiwum/                  stare wersje; nic stąd nie jest używane przez stronę
+```
 
-- `index-min.html` — strona główna, teksty, metadane i przypisania palet.
-- `minimal.css` — siatka 12 kolumn, zestawy kolorów, układ responsywny i pływający header.
-- `minimal.js` — menu, aureola założycielek, pomiar headera i lazy load animowanej ilustracji.
-- `motion.js` — zachowany plik wcześniejszych animacji; nie jest ładowany przez stronę.
-- `assets/` — lokalne zasoby, biblioteki GSAP/ScrollTrigger, oryginalne ilustracje i statyczne pierwsze klatki.
+## Zasada źródeł
 
-Podstrony usług, zespołu i polityki prywatności są wcześniejszymi statycznymi kopiami. Bieżące prace projektowe obejmują stronę główną. `index-poprzedni.html` zachowuje wcześniejszą wersję do porównania.
+- **Strona główna** to `index.html`. Edytujesz ją ręcznie.
+- **Podstrony** nie są edytowane ręcznie: powstają z `index.html` (nagłówek, rezerwacja, stopka)
+  i z `_generator/tresci-podstron/czyste/*.html` (teksty). Zmiana w Home dociera do podstron po `build.py`.
+- Wygląd podstron: `podstrony.css`; zachowanie: `podstrony.js`. Po zmianie podbij `CSS_V` / `JS_V`
+  w `_generator/narzedzia/build.py`.
 
-## Stan makiety
+## Dodatki generatora
+- `psy.py`: owija słowo „Psyjaciele” (i formy) w `<span class="psy">`; styl `.psy` (Rialto, 1,41 em) w `layout-nowa.css`. Ten sam skrypt na Home: `python3 _generator/narzedzia/psy.py index.html`.
+- `infografiki.py`: infografiki wstawiane po nagłówkach wskazanych sekcji (lista `PLAN`); style `.info-*` w `podstrony.css`. Skala ciśnienia to restyl istniejącego bloku `range-scale`.
 
-Hero mieści się w 96% wysokości okna. Sekcje mają ilustracje (z wyjątkiem sekcji założycielek), a układ korzysta ze wspólnej siatki i zmiennych CSS. Animacje nagłówków, kafli i ilustracji reagujące na scroll są wyłączone. Zachowano animację aureoli założycielek oraz odtwarzanie ilustracji hero. Animowana ilustracja hero ładuje się dopiero w widocznym obszarze i odtwarza się raz.
+## Komendy (z katalogu makiety)
 
-Makieta zawiera teksty robocze i miejsca na przyszłe zdjęcia. Strona główna ma `noindex,follow`; przed publikacją jako docelowej witryny trzeba potwierdzić aktualność treści biznesowych i zmienić ustawienie indeksowania. GitHub Pages udostępnia podgląd makiety i nie zmienia WordPressa.
+```
+python3 _generator/narzedzia/build.py     # buduje podstrony
+python3 _generator/narzedzia/checks.py    # sprawdza treść i strukturę (17× OK)
+python3 _generator/narzedzia/audit.py     # audyt przeglądarkowy (Playwright), serwer na :8765
+```
 
-Prawa do zdjęć, ilustracji, fontów i bibliotek pozostają przy ich właścicielach. Nagłówki licencyjne bibliotek zachowano w plikach.
+Wymagania: `beautifulsoup4` (build, checks) i `playwright` (audit).
+
+## Archiwum (`_archiwum/`)
+
+`home-stare/` (index-min, index-poprzedni, przekierowanie), `layout-warianty/` (warianty układu),
+`stare-podstrony-korzen/` i `stare-podstrony-wygenerowane/` (poprzednie wersje podstron),
+`nieuzywane/` (CSS i JS nieładowane przez żadną stronę), `_to_delete/`, `README-stary.md`
+oraz `kopia-przed-porzadkami-2026-10-08.tgz` (kopia całości bez `assets` sprzed porządków).

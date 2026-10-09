@@ -1,0 +1,450 @@
+{
+  "psy-config-1": {
+    "data-palette": "footer-green",
+    "aria-label": "Witajcie w gronie Psyjaciół"
+  },
+  "psy-config-2": {
+    "image": {
+      "data-animated-src": "https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/hero-once.webp",
+      "width": "847",
+      "height": "480",
+      "decoding": "async",
+      "fetchpriority": "high"
+    }
+  },
+  "psy-config-3": {
+    "data-palette": "cream-salmon",
+    "aria-labelledby": "section-title-2"
+  },
+  "psy-config-4": {
+    "aria-hidden": "true"
+  },
+  "psy-config-5": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-14.svg)"
+  },
+  "psy-config-6": {
+    "image": {
+      "width": "1254",
+      "height": "1254",
+      "decoding": "async",
+      "loading": "lazy"
+    }
+  },
+  "psy-config-7": {
+    "data-palette": "bento-base",
+    "aria-labelledby": "nasze-uslugi"
+  },
+  "psy-config-8": {
+    "style": "--art-ratio:1"
+  },
+  "psy-config-9": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-10": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-11": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-12": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-13": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-14": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-15": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-16": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-17": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-18": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-19": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-20": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-21": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-22": {
+    "image": {
+      "class": "service-art",
+      "width": "800",
+      "height": "800",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-23": {
+    "data-palette": "salmon",
+    "aria-labelledby": "section-title-7"
+  },
+  "psy-config-24": {
+    "aria-label": "Profile społecznościowe Psyjaciół"
+  },
+  "psy-config-25": {
+    "aria-hidden": "true"
+  },
+  "psy-config-26": {
+    "image": {
+      "loading": "lazy",
+      "decoding": "async",
+      "width": "1039",
+      "height": "1514"
+    }
+  },
+  "psy-config-27": {
+    "aria-hidden": "true"
+  },
+  "psy-config-28": {
+    "aria-hidden": "true"
+  },
+  "psy-config-29": {
+    "data-palette": "footer-green",
+    "aria-labelledby": "clinic-title"
+  },
+  "psy-config-30": {
+    "style": "--art-ratio:1"
+  },
+  "psy-config-31": {
+    "data-palette": "cream",
+    "aria-labelledby": "section-title-4"
+  },
+  "psy-config-32": {
+    "style": "--art-ratio:1.031556041448685"
+  },
+  "psy-config-33": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-16.svg)"
+  },
+  "psy-config-34": {
+    "image": {
+      "loading": "lazy",
+      "width": "1086",
+      "height": "1448",
+      "decoding": "async"
+    }
+  },
+  "psy-config-35": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-23.svg)"
+  },
+  "psy-config-36": {
+    "image": {
+      "loading": "lazy",
+      "width": "1086",
+      "height": "1448",
+      "decoding": "async"
+    }
+  },
+  "psy-config-37": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-23.svg)"
+  },
+  "psy-config-38": {
+    "image": {
+      "loading": "lazy",
+      "width": "1043",
+      "height": "1508",
+      "decoding": "async"
+    }
+  },
+  "psy-config-39": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-14.svg)"
+  },
+  "psy-config-40": {
+    "image": {
+      "loading": "lazy",
+      "width": "1030",
+      "height": "1526",
+      "decoding": "async"
+    }
+  },
+  "psy-config-41": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-16.svg)"
+  },
+  "psy-config-42": {
+    "image": {
+      "loading": "lazy",
+      "width": "1086",
+      "height": "1448",
+      "decoding": "async"
+    }
+  },
+  "psy-config-43": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-23.svg)"
+  },
+  "psy-config-44": {
+    "image": {
+      "loading": "lazy",
+      "width": "1086",
+      "height": "1448",
+      "decoding": "async"
+    }
+  },
+  "psy-config-45": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-23.svg)"
+  },
+  "psy-config-46": {
+    "image": {
+      "loading": "lazy",
+      "width": "1087",
+      "height": "1446",
+      "decoding": "async"
+    }
+  },
+  "psy-config-47": {
+    "data-palette": "sky",
+    "aria-labelledby": "section-title-6"
+  },
+  "psy-config-48": {
+    "style": "--art-ratio:1.5"
+  },
+  "psy-config-49": {
+    "aria-labelledby": "social-promo-title"
+  },
+  "psy-config-50": {
+    "image": {
+      "loading": "lazy",
+      "decoding": "async",
+      "width": "1024",
+      "height": "1536"
+    }
+  },
+  "psy-config-51": {
+    "aria-hidden": "true"
+  },
+  "psy-config-52": {
+    "aria-label": "Obserwuj Psyjaciół w mediach społecznościowych"
+  },
+  "psy-config-53": {
+    "data-palette": "footer-green",
+    "aria-labelledby": "emergency-title"
+  },
+  "psy-config-54": {
+    "style": "--art-ratio:1"
+  },
+  "psy-config-55": {
+    "aria-labelledby": "emergency-guide-title"
+  },
+  "psy-config-56": {
+    "role": "region",
+    "aria-labelledby": "after-hours-title"
+  },
+  "psy-config-57": {
+    "data-palette": "ivory",
+    "aria-labelledby": "preparation-title"
+  },
+  "psy-config-58": {
+    "style": "--art-ratio:1"
+  },
+  "psy-config-59": {
+    "data-palette": "ivory",
+    "aria-labelledby": "arrival-title"
+  },
+  "psy-config-60": {
+    "style": "--art-ratio:1"
+  },
+  "psy-config-61": {
+    "data-palette": "paper",
+    "aria-labelledby": "section-title-10"
+  },
+  "psy-config-62": {
+    "style": "--art-ratio:1.5"
+  },
+  "psy-config-63": {
+    "image": {
+      "class": "contact-illustration",
+      "width": "1536",
+      "height": "1024",
+      "loading": "lazy",
+      "decoding": "async"
+    }
+  },
+  "psy-config-64": {
+    "data-palette": "footer-green"
+  },
+  "psy-config-65": {
+    "data-palette": "footer-green"
+  },
+  "psy-config-66": {
+    "aria-hidden": "true"
+  },
+  "psy-config-67": {
+    "aria-label": "Zespół przychodni"
+  },
+  "psy-config-68": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-16.svg)"
+  },
+  "psy-config-69": {
+    "image": {
+      "loading": "lazy",
+      "width": "1086",
+      "height": "1448",
+      "decoding": "async"
+    }
+  },
+  "psy-config-70": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-23.svg)"
+  },
+  "psy-config-71": {
+    "image": {
+      "loading": "lazy",
+      "width": "1086",
+      "height": "1448",
+      "decoding": "async"
+    }
+  },
+  "psy-config-72": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-23.svg)"
+  },
+  "psy-config-73": {
+    "image": {
+      "loading": "lazy",
+      "width": "1043",
+      "height": "1508",
+      "decoding": "async"
+    }
+  },
+  "psy-config-74": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-14.svg)"
+  },
+  "psy-config-75": {
+    "image": {
+      "loading": "lazy",
+      "width": "1030",
+      "height": "1526",
+      "decoding": "async"
+    }
+  },
+  "psy-config-76": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-16.svg)"
+  },
+  "psy-config-77": {
+    "image": {
+      "loading": "lazy",
+      "width": "1086",
+      "height": "1448",
+      "decoding": "async"
+    }
+  },
+  "psy-config-78": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-23.svg)"
+  },
+  "psy-config-79": {
+    "image": {
+      "loading": "lazy",
+      "width": "1086",
+      "height": "1448",
+      "decoding": "async"
+    }
+  },
+  "psy-config-80": {
+    "style": "--blob:url(https://www.psyjacielevet.pl/mystaging02/wp-content/uploads/2026/10/shape-23.svg)"
+  },
+  "psy-config-81": {
+    "image": {
+      "loading": "lazy",
+      "width": "1087",
+      "height": "1446",
+      "decoding": "async"
+    }
+  },
+  "psy-config-82": {
+    "aria-label": "Sekcje strony"
+  },
+  "psy-config-83": {
+    "aria-label": "Wizyta i kontakt"
+  },
+  "psy-config-84": {
+    "aria-label": "Polityka prywatności"
+  },
+  "psy-config-85": {
+    "aria-label": "Media społecznościowe"
+  }
+}

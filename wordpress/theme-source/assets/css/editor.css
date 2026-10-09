@@ -1,0 +1,6 @@
+/* Editing view: keep text, media and selectable blocks visible. */
+.editor-styles-wrapper{font-family:Satoshi,Arial,sans-serif}
+.editor-styles-wrapper em{font-family:Rialto,Georgia,serif;font-style:normal}
+.editor-styles-wrapper .psy-image-inner{display:block!important}
+.editor-styles-wrapper .person-card-link{position:static!important}
+.editor-styles-wrapper .portrait-halo,.editor-styles-wrapper .social-promo-logo{display:none}

@@ -1,0 +1,26 @@
+{
+  "assets/fonts/Satoshi-Regular.woff2": {
+    "url": "https://raw.githubusercontent.com/stefankot/psyjaciele-makieta/2596330441be66638cb854430987e7f2dd8b316e/assets/fonts/Satoshi-Regular.woff2",
+    "sha256": "50dca57f0b77918e0fb7dac998c3f5ef6b0c2a29657da97658a04f98ac532fc5"
+  },
+  "assets/fonts/Satoshi-Medium.woff2": {
+    "url": "https://raw.githubusercontent.com/stefankot/psyjaciele-makieta/2596330441be66638cb854430987e7f2dd8b316e/assets/fonts/Satoshi-Medium.woff2",
+    "sha256": "af02a72246f53ad49c44a591921edbd39ec8258a03d8cc2e0532aa1e497e85b4"
+  },
+  "assets/fonts/RialtoScript-Regular.otf": {
+    "url": "https://www.psyjacielevet.pl/mystaging02/wp-content/fonts/rialtoscript-regular.otf",
+    "sha256": "df274831e826b924b95dea25fdfd1807513d573e4048cb5621360e8794f808a8"
+  },
+  "assets/92930f3c52c2.woff2": {
+    "url": "https://raw.githubusercontent.com/stefankot/psyjaciele-makieta/2596330441be66638cb854430987e7f2dd8b316e/assets/92930f3c52c2.woff2",
+    "sha256": "e931823ffd0b6cfd1624e3a7c1c49861ed3420297862e727f07e04c8be1cc89b"
+  },
+  "assets/fonts/Satoshi-Bold.woff2": {
+    "url": "https://raw.githubusercontent.com/stefankot/psyjaciele-makieta/2596330441be66638cb854430987e7f2dd8b316e/assets/fonts/Satoshi-Bold.woff2",
+    "sha256": "353a7fbfb4475f0c31470a7449226006cb64211c71055ca9db860a8acdaa9f68"
+  },
+  "assets/fonts/Satoshi-Black.woff2": {
+    "url": "https://raw.githubusercontent.com/stefankot/psyjaciele-makieta/2596330441be66638cb854430987e7f2dd8b316e/assets/fonts/Satoshi-Black.woff2",
+    "sha256": "bd11b5820231420e78046c611aebdd628dc17ad67788258ffe3fe902253efd3b"
+  }
+}

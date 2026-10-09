@@ -5,3 +5,7 @@
 __pycache__/
 *.pyc
 node_modules/
+
+# zrzuty ekranu z kontroli (nie do repozytorium)
+_generator/wyniki/_zrzuty/
+.playwright-mcp/

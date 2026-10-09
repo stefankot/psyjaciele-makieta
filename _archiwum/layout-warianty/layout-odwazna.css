@@ -1,0 +1,174 @@
+/*
+  layout-odwazna.css — wariant „odważny”: wszystko z wariantu średniego + mocniejszy charakter.
+  Nagłówki sekcji (poster-grid) nadal bez zmian. Działa razem z layout-base.css.
+*/
+@import url("layout-srednia.css?v=1");
+
+/* ---------- Hero: hasło jako plakat, reszta jako drobniejszy druk ---------- */
+html body.book-type .hero .hero-greeting {
+  font-size: clamp(58px, 7.2vw, 116px);
+  line-height: .95;
+  margin: 0 0 .14em;
+}
+html body.book-type .hero .hero-lead {
+  display: block;
+  font-size: clamp(32px, 3.6vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  max-width: 15.5em;
+  margin: 0 0 .55em;
+}
+html body.book-type .hero .hero-links {
+  font-size: clamp(19px, 1.55vw, 24px);
+  line-height: 1.5;
+  max-inline-size: 25em;
+  max-width: 25em;
+}
+html body.book-type .hero .hero-lead .hero-inline-pet {
+  inline-size: .95em !important;
+  margin-inline: 0 .18em;
+  vertical-align: .32em;
+}
+@media (max-width: 700px) {
+  html body.book-type .hero .hero-greeting { font-size: 56px; }
+  html body.book-type .hero .hero-lead { font-size: 31px; line-height: 1.1; }
+  html body.book-type .hero .hero-links { font-size: 19px; line-height: 1.5; }
+}
+
+.hero-status {
+  flex: 1 1 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: .65em;
+  min-height: 56px;
+  padding: 0 4px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--lay-peach-light);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: .22em;
+}
+.hero-status::before {
+  content: "";
+  flex: none;
+  width: .7em;
+  height: .7em;
+  border-radius: 50%;
+  background: currentColor;
+}
+.hero-status[data-state="open"]::before { background: var(--wp--preset--color--sage, #a9c296); }
+.hero-status[data-state="closing"]::before { background: var(--lay-orange); }
+.hero-status[data-state="closed"]::before { background: transparent; border: 2px solid currentColor; }
+.hero-status[hidden] { display: none; }
+@media (max-width: 700px) {
+  .hero-status { min-height: 44px; width: 100%; }
+}
+
+/* ---------- Przyciski CTA: większe ---------- */
+html body.book-type .booking .booking-cta,
+html body.book-type .social-promo-cta {
+  min-height: 64px;
+  padding: 0 34px;
+  font-size: 20px;
+}
+
+/* ---------- Usługi: dwa wyróżnione kafle + 12 w siatce → równe 3 rzędy bez „dziury” ---------- */
+@media (min-width: 1180px) {
+  /* cofnięcie poziomych kafli z wariantu średniego */
+  html body.book-type .services .tile:nth-last-child(-n+2) {
+    grid-column: auto !important;
+    display: flex;
+    grid-template-columns: none;
+    grid-template-areas: none;
+  }
+  html body.book-type .services .tile:nth-last-child(-n+2) .service-art { order: -1; margin: 0 0 12px; }
+  html body.book-type .services .tile:nth-last-child(-n+2) h3 { margin-top: 8px; }
+  html body.book-type .services .tile:nth-last-child(-n+2) p { margin-top: 10px; }
+
+  html body.book-type .services .tile:nth-child(1),
+  html body.book-type .services .tile:nth-child(3) {
+    order: -1;
+    grid-column: span 2 !important;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "art title" "art desc";
+    grid-template-rows: auto 1fr;
+    column-gap: 28px;
+    row-gap: 12px;
+    align-content: start;
+  }
+  html body.book-type .services .tile:nth-child(1) .service-art,
+  html body.book-type .services .tile:nth-child(3) .service-art {
+    grid-area: art;
+    order: 0;
+    aspect-ratio: 1;
+    margin: 0;
+  }
+  html body.book-type .services .tile:nth-child(1) h3,
+  html body.book-type .services .tile:nth-child(3) h3 {
+    grid-area: title;
+    margin-top: 16px;
+    font-size: clamp(28px, 2.5vw, 36px);
+    line-height: 1.08;
+  }
+  html body.book-type .services .tile:nth-child(1) p,
+  html body.book-type .services .tile:nth-child(3) p {
+    grid-area: desc;
+    margin-top: 0;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+}
+
+/* ---------- Zespół: większe pismo i wyraźny hover wiersza ---------- */
+html body.book-type .team .people .person-name em {
+  font-size: clamp(38px, 4.2vw, 60px);
+  line-height: 1;
+}
+html body.book-type .team .people .person { transition: background-color .25s ease; }
+html body.book-type .team .people .person:hover {
+  background: color-mix(in srgb, var(--lay-peach-light) 45%, transparent);
+}
+
+/* ---------- Opinie: przesunięte kolumny i podpisy pismem Rialto ---------- */
+html body.book-type .reviews .quote blockquote p:not(.review-author) {
+  font-size: 17px;
+  line-height: 1.55;
+}
+html body.book-type .reviews .quote .review-author {
+  margin-top: 18px;
+  font-family: var(--font-emphasis, Rialto, Georgia, serif);
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 400;
+  font-style: normal;
+}
+@media (min-width: 1000px) {
+  html body.book-type .reviews .quotes .quote:nth-child(3n+2) { padding-top: 64px; }
+}
+
+/* ---------- Nagłe przypadki: numery jako najważniejsza informacja ---------- */
+html body.book-type .emergency-clinics a[href^="tel:"] {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: clamp(26px, 2.5vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  text-decoration: none;
+  border-bottom: 3px solid var(--lay-orange);
+}
+html body.book-type .emergency-clinics a[href^="tel:"]:hover { color: var(--lay-orange); }
+
+/* ---------- Kontakt: telefon wielkim drukiem ---------- */
+html body.book-type .contact-column a[href^="tel:"] {
+  display: inline-block;
+  font-size: clamp(30px, 3.2vw, 48px);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  text-decoration: none;
+  border-bottom: 3px solid currentColor;
+  margin-bottom: 8px;
+}
+html body.book-type .contact-column a[href^="mailto:"] { font-size: 20px; font-weight: 600; }

@@ -1,5 +1,5 @@
 /* Obserwuj nas: niezależny układ, bez siatki starego zaproszenia. */
-.social-promo-section{--surface:#124e2c;--ink:#f6b08f;--small-ink:#fbd9c6;--social-promo-left-ink:var(--ink);--social-promo-right-ink:#124e2c;padding:0;background:var(--surface);color:var(--ink)}
+.social-promo-section{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--peach);--small-ink:var(--wp--preset--color--peach-light);--social-promo-left-ink:var(--ink);--social-promo-right-ink:var(--wp--preset--color--green);padding:0;background:var(--surface);color:var(--ink)}
 .social-promo-section>.social-promo-composition{position:relative;display:block;width:100%;max-width:none;margin:0;padding:0;block-size:clamp(680px,calc(100svh - var(--floating-header-height)),960px);isolation:isolate}
 .social-promo-composition::before{display:none!important}
 #obserwuj-nas .social-promo-copy{position:absolute;inset:0 50% 0 0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:180px;min-width:0;padding:var(--s6) var(--gutter) 140px;background:var(--surface);color:var(--social-promo-left-ink);box-sizing:border-box}
@@ -51,7 +51,7 @@
 @media(prefers-reduced-motion:reduce){#obserwuj-nas .social-promo-ring{animation:none}}
 
 /* Paleta identyczna jak w sekcji Zespół. */
-#obserwuj-nas{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6;--social-promo-left-ink:var(--ink);--social-promo-right-ink:var(--ink)}
+#obserwuj-nas{--surface:var(--wp--preset--color--peach);--ink:var(--wp--preset--color--green);--small-ink:var(--wp--preset--color--green-deep);--accent:var(--wp--preset--color--peach-light);--social-promo-left-ink:var(--ink);--social-promo-right-ink:var(--ink)}
 #obserwuj-nas .social-promo-photo::after{content:none;display:none}
 
 /* Cała sekcja 4:3, połowa ze zdjęciem 2:3: obraz wypełnia kolumny bez pasów. */

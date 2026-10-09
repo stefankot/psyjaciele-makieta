@@ -121,7 +121,7 @@
       document.body.appendChild(svg);
     }
     boilScale(); small.addEventListener('change', boilScale);
-    var els = [].slice.call(document.querySelectorAll('figure.section-illustration, img.service-art')), paused = false, io = null;
+    var els = [].slice.call(document.querySelectorAll('.section-illustration, img.service-art')), paused = false, io = null;
     function resumeVisible(){ els.forEach(function(el){ el.classList.toggle('is-boiling', enabled && !paused && !document.hidden && (io ? el.dataset.inView === '1' : true)); }); }
     document.addEventListener('visibilitychange', resumeVisible);
     cleanups.push(function(){ document.removeEventListener('visibilitychange', resumeVisible); });
@@ -225,8 +225,8 @@
   var DRIFT = {art: 12, blob: 8, phone: .5};             // maks. przesunięcie w px; na telefonach × 0,5
   function drift(){
     if(saving()) return;
-    var items = [].filter.call(document.querySelectorAll('figure.section-illustration, .team .people .person'), function(el){ return !el.closest('.emergency'); })
-      .map(function(el){ var art = el.matches('figure'); return {el: el, art: art, range: art ? DRIFT.art : DRIFT.blob, top: 0, h: 0, v: 0}; });
+    var items = [].filter.call(document.querySelectorAll('.section-illustration, .team .people .person'), function(el){ return !el.closest('.emergency'); })
+      .map(function(el){ var art = el.matches('.section-illustration'); return {el: el, art: art, range: art ? DRIFT.art : DRIFT.blob, top: 0, h: 0, v: 0}; });
     if(!items.length) return;
     var off = onFrame(function(y, vh, dirty){
       if(dirty) items.forEach(function(it){ var b = box(it.el, y, it.art ? it.v : 0); it.top = b.top; it.h = b.h; });

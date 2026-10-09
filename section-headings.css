@@ -1,0 +1,34 @@
+/* Shared editorial header for the nine text-and-illustration sections.
+   Hero, founders' portrait and photo promotions retain their own compositions.
+   Scales compensate for measured line weights in the supplied raster drawings. */
+main .section-header{margin:0;min-width:0}
+main .section-header .poster-art{filter:none!important;display:grid;place-items:center;min-width:0;min-height:0}
+main .section-header .poster-media{width:calc(100% * var(--illustration-scale,1));aspect-ratio:var(--illustration-ratio,1);max-height:100%;display:grid;place-items:center}
+main .section-header .poster-media>:is(img,.art){width:100%;height:100%;object-fit:contain;object-position:center;align-self:center;mask-position:center}
+@media(min-width:701px){
+ main .section-header{height:max(400px,60vh);min-height:400px;grid-template-rows:minmax(0,1fr)}
+ main .section-header .poster-copy{grid-row:1;min-height:0;height:100%;gap:24px;grid-template-rows:auto 1fr}
+ main .section-header .poster-heading{gap:16px}
+ main .section-header .poster-heading:not(:has(.kicker)){padding-top:40px}
+ main .section-header .poster-heading .kicker{min-height:24px;line-height:24px}
+ main .section-header .poster-heading h2{font-size:clamp(44px,4.8vw,72px);max-width:100%;width:auto;white-space:normal;margin:0}
+ main .section-header .poster-bottom{gap:20px;align-content:end}
+ main .section-header .poster-art{height:100%;aspect-ratio:auto;align-self:stretch}
+ main .section-header .poster-media{width:min(calc(100% * var(--illustration-scale,1)),calc(max(400px,60vh) * var(--illustration-ratio,1)));}
+}
+@media(max-width:700px){
+ main .section-header{height:auto;row-gap:32px}
+ main .section-header .poster-copy{grid-column:1/-1;grid-row:1;min-height:0;gap:32px}
+ main .section-header .poster-art{grid-column:1/-1;grid-row:2;height:auto;aspect-ratio:auto;width:100%;align-self:center}
+ main .section-header .poster-media{max-width:520px;max-height:none}
+}
+/* Enlarge the visible artwork without changing the shared header height. */
+main .section-header .poster-media{scale:1.5;transform-origin:center}
+main :is(#uslugi,#dojazd,#nagle-przypadki) .section-header .poster-media{scale:1.875}
+@media(max-width:700px){
+ /* On narrow screens give the larger drawing its own space and keep it in view. */
+ main .section-header .poster-media{scale:1;width:min(100%,calc(100% * var(--illustration-scale,1) * 1.5));max-width:520px}
+ main :is(#uslugi,#dojazd,#nagle-przypadki) .section-header .poster-media{scale:1;width:min(100%,calc(100% * var(--illustration-scale,1) * 1.875))}
+}
+/* Emergency artwork is now a still illustration. */
+main #nagle-przypadki .section-header .poster-art{animation:none!important;translate:none!important}

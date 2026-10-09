@@ -1,0 +1,535 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        {
+          "slug": "paper",
+          "name": "Papier",
+          "color": "#f7f3ee"
+        },
+        {
+          "slug": "green",
+          "name": "Zieleń Psyjaciół",
+          "color": "#124e2c"
+        },
+        {
+          "slug": "green-deep",
+          "name": "Zieleń — drobny tekst",
+          "color": "#0b3a20"
+        },
+        {
+          "slug": "peach",
+          "name": "Brzoskwinia",
+          "color": "#f6b08f"
+        },
+        {
+          "slug": "peach-light",
+          "name": "Jasna brzoskwinia",
+          "color": "#fbd9c6"
+        },
+        {
+          "slug": "sage",
+          "name": "Szałwia",
+          "color": "#a9c296"
+        },
+        {
+          "slug": "sage-light",
+          "name": "Jasna szałwia",
+          "color": "#cfdcc3"
+        },
+        {
+          "slug": "blue",
+          "name": "Kobalt",
+          "color": "#2233b0"
+        },
+        {
+          "slug": "orange",
+          "name": "Pomarańczowy",
+          "color": "#f0764a"
+        },
+        {
+          "slug": "green-soft",
+          "name": "Zieleń dodatkowa",
+          "color": "#1d6a3e"
+        },
+        {
+          "slug": "emergency-peach",
+          "name": "Brzoskwinia — pilna pomoc",
+          "color": "#f8b393"
+        },
+        {
+          "slug": "blue-deep",
+          "name": "Głęboki kobalt",
+          "color": "#1a2890"
+        },
+        {
+          "slug": "base",
+          "name": "Zgodność: base",
+          "color": "#f7f3ee"
+        },
+        {
+          "slug": "base-2",
+          "name": "Zgodność: base-2",
+          "color": "#fbd9c6"
+        },
+        {
+          "slug": "contrast",
+          "name": "Zgodność: contrast",
+          "color": "#124e2c"
+        },
+        {
+          "slug": "contrast-2",
+          "name": "Zgodność: contrast-2",
+          "color": "#0b3a20"
+        },
+        {
+          "slug": "contrast-3",
+          "name": "Zgodność: contrast-3",
+          "color": "#0b3a20"
+        },
+        {
+          "slug": "accent",
+          "name": "Zgodność: accent",
+          "color": "#f6b08f"
+        },
+        {
+          "slug": "accent-2",
+          "name": "Zgodność: accent-2",
+          "color": "#f0764a"
+        },
+        {
+          "slug": "accent-3",
+          "name": "Zgodność: accent-3",
+          "color": "#124e2c"
+        },
+        {
+          "slug": "accent-4",
+          "name": "Zgodność: accent-4",
+          "color": "#cfdcc3"
+        },
+        {
+          "slug": "accent-5",
+          "name": "Zgodność: accent-5",
+          "color": "#a9c296"
+        }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "name": "Satoshi",
+          "slug": "satoshi",
+          "fontFamily": "Satoshi, Arial, sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Satoshi",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": [
+                "https://raw.githubusercontent.com/stefankot/psyjaciele-makieta/2596330441be66638cb854430987e7f2dd8b316e/assets/fonts/Satoshi-Regular.woff2"
+              ]
+            },
+            {
+              "fontFamily": "Satoshi",
+              "fontStyle": "normal",
+              "fontWeight": "500",
+              "src": [
+                "https://raw.githubusercontent.com/stefankot/psyjaciele-makieta/2596330441be66638cb854430987e7f2dd8b316e/assets/fonts/Satoshi-Medium.woff2"
+              ]
+            },
+            {
+              "fontFamily": "Satoshi",
+              "fontStyle": "normal",
+              "fontWeight": "700",
+              "src": [
+                "https://raw.githubusercontent.com/stefankot/psyjaciele-makieta/2596330441be66638cb854430987e7f2dd8b316e/assets/fonts/Satoshi-Bold.woff2"
+              ]
+            },
+            {
+              "fontFamily": "Satoshi",
+              "fontStyle": "normal",
+              "fontWeight": "900",
+              "src": [
+                "https://raw.githubusercontent.com/stefankot/psyjaciele-makieta/2596330441be66638cb854430987e7f2dd8b316e/assets/fonts/Satoshi-Black.woff2"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Rialto Script",
+          "slug": "rialto-script",
+          "fontFamily": "Rialto, Georgia, serif",
+          "fontFace": [
+            {
+              "fontFamily": "Rialto",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": [
+                "https://www.psyjacielevet.pl/mystaging02/wp-content/fonts/rialtoscript-regular.otf"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Satoshi (zgodność: body)",
+          "slug": "body",
+          "fontFamily": "Satoshi, Arial, sans-serif"
+        },
+        {
+          "name": "Satoshi (zgodność: outfit)",
+          "slug": "outfit",
+          "fontFamily": "Satoshi, Arial, sans-serif"
+        },
+        {
+          "name": "Satoshi (zgodność: syne)",
+          "slug": "syne",
+          "fontFamily": "Satoshi, Arial, sans-serif"
+        },
+        {
+          "name": "Satoshi (zgodność: gabarito)",
+          "slug": "gabarito",
+          "fontFamily": "Satoshi, Arial, sans-serif"
+        },
+        {
+          "name": "Satoshi (zgodność: noto-sans)",
+          "slug": "noto-sans",
+          "fontFamily": "Satoshi, Arial, sans-serif"
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "small",
+          "name": "Mały",
+          "size": "14px"
+        },
+        {
+          "slug": "body",
+          "name": "Tekst",
+          "size": "16px"
+        },
+        {
+          "slug": "medium",
+          "name": "Śródtytuł",
+          "size": "21px"
+        },
+        {
+          "slug": "large",
+          "name": "Tytuł",
+          "size": "34px"
+        },
+        {
+          "slug": "x-large",
+          "name": "Nagłówek sekcji",
+          "size": "55px"
+        },
+        {
+          "slug": "xx-large",
+          "name": "Hero",
+          "size": "89px"
+        }
+      ]
+    },
+    "spacing": {
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "vh",
+        "vw",
+        "%"
+      ],
+      "spacingSizes": [
+        {
+          "slug": "8",
+          "name": "8 px",
+          "size": "8px"
+        },
+        {
+          "slug": "16",
+          "name": "16 px",
+          "size": "16px"
+        },
+        {
+          "slug": "24",
+          "name": "24 px",
+          "size": "24px"
+        },
+        {
+          "slug": "32",
+          "name": "32 px",
+          "size": "32px"
+        },
+        {
+          "slug": "48",
+          "name": "48 px",
+          "size": "48px"
+        },
+        {
+          "slug": "64",
+          "name": "64 px",
+          "size": "64px"
+        },
+        {
+          "slug": "104",
+          "name": "104 px",
+          "size": "104px"
+        }
+      ],
+      "blockGap": true
+    },
+    "layout": {
+      "contentSize": "720px",
+      "wideSize": "1280px"
+    },
+    "custom": {
+      "psyjaciele": {
+        "gridColumns": 12,
+        "gutter": "clamp(24px,4.2vw,55px)",
+        "columnGap": "32px",
+        "sectionSpace": "clamp(64px,8vw,104px)",
+        "contentGap": "16px",
+        "groupGap": "64px"
+      }
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|paper",
+      "text": "var:preset|color|green"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|satoshi",
+      "fontSize": "16px",
+      "fontWeight": "500",
+      "lineHeight": "1.625"
+    },
+    "spacing": {
+      "blockGap": "24px",
+      "padding": {
+        "left": "clamp(24px,4.2vw,55px)",
+        "right": "clamp(24px,4.2vw,55px)",
+        "top": "0",
+        "bottom": "0"
+      }
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|satoshi",
+          "fontWeight": "500",
+          "lineHeight": "1.15",
+          "letterSpacing": "-0.025em"
+        },
+        "color": {
+          "text": "inherit"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "inherit"
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var:preset|color|green",
+          "text": "var:preset|color|peach-light"
+        },
+        "border": {
+          "radius": "0",
+          "width": "1px"
+        },
+        "typography": {
+          "fontFamily": "var:preset|font-family|satoshi",
+          "fontSize": "16px",
+          "fontWeight": "900"
+        },
+        "spacing": {
+          "padding": {
+            "top": "16px",
+            "bottom": "16px",
+            "left": "24px",
+            "right": "24px"
+          }
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontSize": "clamp(40px,7vw,89px)",
+          "lineHeight": "1.15"
+        },
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "16px"
+          }
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontSize": "clamp(34px,5vw,55px)",
+          "lineHeight": "1.15"
+        },
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "16px"
+          }
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontSize": "34px",
+          "lineHeight": "1.15"
+        },
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "16px"
+          }
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontSize": "21px",
+          "lineHeight": "1.15"
+        },
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "16px"
+          }
+        }
+      },
+      "h5": {
+        "typography": {
+          "fontSize": "16px",
+          "lineHeight": "1.15"
+        },
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "16px"
+          }
+        }
+      },
+      "h6": {
+        "typography": {
+          "fontSize": "14px",
+          "lineHeight": "1.15"
+        },
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "16px"
+          }
+        }
+      }
+    },
+    "blocks": {
+      "core/group": {
+        "spacing": {
+          "blockGap": "24px"
+        }
+      },
+      "core/quote": {
+        "border": {
+          "width": "0"
+        },
+        "spacing": {
+          "padding": {
+            "left": "0",
+            "right": "0"
+          }
+        }
+      },
+      "core/columns": {
+        "spacing": {
+          "blockGap": "32px"
+        }
+      },
+      "core/paragraph": {
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "16px"
+          }
+        },
+        "typography": {
+          "lineHeight": "1.625"
+        }
+      },
+      "core/list": {
+        "spacing": {
+          "padding": {
+            "left": "24px"
+          },
+          "margin": {
+            "top": "0",
+            "bottom": "24px"
+          }
+        }
+      },
+      "core/image": {
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "0"
+          }
+        }
+      },
+      "core/separator": {
+        "border": {
+          "width": "0 0 1px 0",
+          "color": "currentColor",
+          "style": "solid"
+        }
+      },
+      "core/post-content": {
+        "spacing": {
+          "blockGap": "24px"
+        }
+      }
+    }
+  },
+  "templateParts": [
+    {
+      "name": "home-header",
+      "title": "Psyjaciele — nawigacja home",
+      "area": "header"
+    },
+    {
+      "name": "home-footer",
+      "title": "Psyjaciele — stopka home",
+      "area": "footer"
+    }
+  ],
+  "customTemplates": [
+    {
+      "name": "psyjaciele-sections",
+      "title": "Psyjaciele — uniwersalne sekcje",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "bez-tytulu",
+      "title": "Psyjaciele — treść bez tytułu",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "wp-custom-template-psyjaciele-custom-hp",
+      "title": "Psyjaciele — treść bez tytułu",
+      "postTypes": [
+        "page"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,687 @@
+/*
+  layout-nowa.css — wersja „nowa”: miks wariantów średniego i odważnego wg decyzji.
+  Ładowany po wszystkich stylach makiety (oryginały bez zmian). Nawigacja: nowa-bar.css.
+
+  Zasady:
+  - siatka 8 px (odstępy, interlinie, wysokości), 12 kolumn, odstęp 32 px,
+  - minimalny rozmiar tekstu 16 px,
+  - hero: tekst bez zmian, pod nim przyciski i status „Otwarte teraz”,
+  - sekcje: usługi = odważna, zespół = średnia, opinie = odważna (poprawiona), kontakt = średnia.
+*/
+
+/* =========================================================
+   0. Tokeny — rytm 8 px
+   ========================================================= */
+:root {
+  --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 56px; --s6: 88px; --s7: 144px;
+  --gutter: 56px;
+  --gap: 32px;
+  --section-space: 128px;
+  --row-gap: 56px;
+  --intro-gap: 32px;
+  --group-gap: 64px;
+  --type-small: 16px;
+  --type-h1: 88px;
+  --type-h2: 56px;
+  --type-h3: 32px;
+  --type-h4: 20px;
+  --leading-body: 24px;
+  --leading-small: 24px;
+  --lay-peach: var(--wp--preset--color--peach, #f6b08f);
+  --lay-peach-light: var(--wp--preset--color--peach-light, #fbd9c6);
+  --lay-green: var(--wp--preset--color--green, #124e2c);
+  --lay-green-deep: var(--wp--preset--color--green-deep, #0b3a20);
+  --lay-orange: var(--wp--preset--color--orange, #f0764a);
+  --lay-paper: var(--wp--preset--color--paper, #f7f3ee);
+  --lay-focus: #f0764a;
+  --lead-cols: 4;
+  --hero-space: 32px;
+}
+@media (max-width: 1099px) {
+  :root { --lead-cols: 6; }
+}
+@media (max-width: 1000px) {
+  :root { --gutter: 40px; --gap: 24px; --section-space: 88px; --row-gap: 56px; --group-gap: 48px; }
+}
+@media (max-width: 700px) {
+  :root {
+    --gutter: 24px; --gap: 16px; --section-space: 88px; --row-gap: 32px; --intro-gap: 24px; --group-gap: 32px;
+    --type-h1: 56px; --type-h2: 32px; --type-h3: 24px;
+    --hero-space: 16px;
+  }
+}
+
+/* Interlinie na siatce 8 px: wartość ułamkowa zaokrąglana do wielokrotności 8 px.
+   (round() — Chrome 125+, Safari 15.4+, Firefox 118+; starsze przeglądarki zostają przy stałej poniżej.) */
+html body.book-type main :is(p, li, dt, dd, blockquote, figcaption, address, summary, label) {
+  line-height: 24px;
+  line-height: round(nearest, 1.5em, 8px);
+}
+html body.book-type main :is(h3, h4) {
+  line-height: 32px;
+  line-height: round(up, 1.15em, 8px);
+}
+html body.book-type main h2 {
+  line-height: 1.04;
+  line-height: round(up, 1.04em, 8px);
+}
+/* elementy wewnątrzwierszowe nie mogą łamać rytmu własną interlinią */
+html body.book-type :is(main, header, footer) :is(a, span, strong, b, small) { line-height: inherit; }
+html body.book-type main em {
+  line-height: 1;
+  line-height: round(nearest, 1.04em, 8px);
+}
+html body.book-type :is(h1, h2, h3) :is(em, span, a),
+html body.book-type .hero .hero-greeting {
+  line-height: 1.04 !important;
+  line-height: round(nearest, 1.04em, 8px) !important;
+}
+html body.book-type :is(p, li, nav) a { line-height: inherit !important; }
+/* hero: rozmiar tekstu bez zmian, tylko interlinia dosunięta do siatki */
+html body.book-type .hero .hero-links {
+  line-height: 56px;
+  line-height: round(up, 1.8em, 8px);
+}
+
+html body.book-type :is(a, button, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--lay-focus);
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   1. Hero — tekst bez zmian; pod nim przyciski i status otwarcia
+   ========================================================= */
+html body.book-type .hero {
+  padding-top: round(nearest, calc(var(--header-float-top) + var(--floating-header-height) + var(--hero-space)), 8px);
+  padding-bottom: var(--hero-space);
+  /* oryginał obcina hero do 96svh — przy dodatkowych przyciskach treść wypadała poza sekcję */
+  height: auto;
+  max-height: none;
+  min-height: 96svh;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+.hero-actions .hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: 0 32px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid var(--lay-peach);
+  transition: background-color .18s ease, color .18s ease;
+}
+.hero-actions .hero-btn--solid { background: var(--lay-peach); color: var(--lay-green-deep); }
+.hero-actions .hero-btn--solid:hover { background: var(--lay-peach-light); border-color: var(--lay-peach-light); }
+.hero-actions .hero-btn--ghost { background: transparent; color: var(--lay-peach); }
+.hero-actions .hero-btn--ghost:hover { background: var(--lay-peach); color: var(--lay-green-deep); }
+
+.hero-status {
+  flex: 1 1 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 56px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--lay-peach-light);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: .22em;
+}
+.hero-status::before {
+  content: "";
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.hero-status[data-state="open"]::before { background: var(--wp--preset--color--sage, #a9c296); }
+.hero-status[data-state="closing"]::before { background: var(--lay-orange); }
+.hero-status[data-state="closed"]::before { background: transparent; border: 2px solid currentColor; }
+.hero-status[hidden] { display: none; }
+
+.hero-meta { display: none; margin: 24px 0 0; font-size: 16px; line-height: 24px; font-weight: 500; }
+@media (max-width: 700px) {
+  .hero-meta { display: block; }
+  .hero-actions .hero-btn { flex: 1 1 100%; }
+  .hero-status { width: 100%; }
+}
+
+/* =========================================================
+   2. Nagłówki sekcji (poster-grid): lead na 4 kolumnach
+   ========================================================= */
+/* szerokość = N kolumn siatki 12-kolumnowej: N·kol + (N−1)·odstęp */
+html body.book-type main .section-header .poster-bottom p {
+  --content-w: min(var(--width, 1280px), 100vw - 2 * var(--gutter));
+  --col-w: calc((var(--content-w) - 11 * var(--gap)) / 12);
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 500;
+  inline-size: calc(var(--lead-cols) * var(--col-w) + (var(--lead-cols) - 1) * var(--gap));
+  max-inline-size: 100%;
+  text-wrap: pretty;
+}
+html body.book-type main .section-header .poster-heading h2 { font-size: clamp(48px, 4.8vw, 72px); }
+
+/* telefon: tytuł → ilustracja → tekst na dole (jak na desktopie), lead na całą szerokość */
+@media (max-width: 700px) {
+  html body.book-type main .section-header .poster-bottom p { inline-size: auto; }
+  html body.book-type main .section-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 16px;
+    height: auto;
+  }
+  html body.book-type main .section-header > .poster-copy { display: contents; }
+  html body.book-type main .section-header .poster-heading { grid-column: 1; grid-row: 1; }
+  html body.book-type main .section-header .poster-art {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    max-height: none;
+    margin: 0;
+  }
+  html body.book-type main .section-header .poster-bottom { grid-column: 1; grid-row: 3; align-self: start; margin-top: 8px; }
+  html body.book-type main .section-header .poster-heading h2 { font-size: clamp(40px, 11vw, 56px); }
+  html body.book-type main .contact .section-header .poster-heading h2 {
+    width: auto;
+    max-width: 100%;
+    white-space: normal;
+  }
+}
+
+/* =========================================================
+   3. Usługi — wersja odważna: 4 kolumny, dwa duże kafle, cały kafel klika się
+   ========================================================= */
+html body.book-type .services .bento {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  grid-template-rows: none !important;
+  grid-auto-rows: auto;
+  column-gap: 32px;
+  row-gap: 48px;
+  height: auto;
+}
+html body.book-type .services .tile {
+  position: relative;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding: 24px 0 0;
+  justify-content: flex-start;
+}
+html body.book-type .services .tile h3 a::after { content: ""; position: absolute; inset: 0; }
+html body.book-type .services .tile h3 a:focus-visible { outline-offset: 6px; }
+html body.book-type .services .tile .service-art {
+  order: -1;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1.2 / 1;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 0 16px;
+  transition: transform .35s ease;
+}
+html body.book-type .services .tile h3 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 0;
+  margin: 8px 0 0;
+}
+html body.book-type .services .tile h3::after {
+  content: "↗";
+  flex: none;
+  font-size: .8em;
+  font-weight: 500;
+  opacity: .65;
+  transition: transform .2s ease, opacity .2s ease;
+}
+html body.book-type .services .tile p { margin: 8px 0 0; max-width: none; font-size: 16px; }
+html body.book-type .services .tile:hover h3 a { text-decoration: underline; text-underline-offset: .18em; }
+html body.book-type .services .tile:hover h3::after { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  html body.book-type .services .tile:hover .service-art { transform: translateY(-8px) rotate(-1.5deg); }
+  html body.book-type .services .tile:hover h3::after { transform: translate(2px, -2px); }
+}
+@media (max-width: 1179px) {
+  html body.book-type .services .bento { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+@media (min-width: 1180px) {
+  /* dwa wyróżnione kafle (1 i 3) na dwie kolumny; reszta w siatce 4 kolumn */
+  html body.book-type .services .tile:nth-child(1),
+  html body.book-type .services .tile:nth-child(3) {
+    order: -1;
+    grid-column: span 2 !important;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "art title" "art desc";
+    grid-template-rows: auto 1fr;
+    column-gap: 32px;
+    row-gap: 16px;
+    align-content: start;
+  }
+  html body.book-type .services .tile:nth-child(1) .service-art,
+  html body.book-type .services .tile:nth-child(3) .service-art { grid-area: art; order: 0; aspect-ratio: 1; margin: 0; }
+  html body.book-type .services .tile:nth-child(1) h3,
+  html body.book-type .services .tile:nth-child(3) h3 {
+    grid-area: title;
+    margin-top: 16px;
+    font-size: clamp(32px, 2.5vw, 40px);
+  }
+  html body.book-type .services .tile:nth-child(1) p,
+  html body.book-type .services .tile:nth-child(3) p { grid-area: desc; margin-top: 0; font-size: 20px; line-height: 32px; }
+}
+/* telefon: ilustracja po lewej, duża; może wychodzić poza ekran do ok. 20 % szerokości */
+@media (max-width: 759px) {
+  html body.book-type .services .bento { grid-template-columns: minmax(0, 1fr) !important; row-gap: 0; }
+  html body.book-type .services .tile {
+    display: grid;
+    grid-template-columns: minmax(0, 42vw) minmax(0, 1fr);
+    grid-template-areas: "art title" "art desc";
+    grid-template-rows: auto 1fr;
+    column-gap: 8px;
+    row-gap: 8px;
+    align-items: start;
+    align-content: start;
+    padding: 24px 0;
+    overflow: visible; /* oryginał ucina kafel; tu rysunek może wyjść poza lewą krawędź */
+  }
+  html body.book-type .services .tile .service-art {
+    grid-area: art;
+    order: 0;
+    width: 60vw;
+    max-width: none;
+    aspect-ratio: 1;
+    margin: -8px 0 0 -15vw; /* ok. 14 % szerokości rysunku poza lewą krawędzią (część to przezroczysty margines PNG) */
+  }
+  html body.book-type .services .tile h3 { grid-area: title; margin-top: 0; }
+  html body.book-type .services .tile p { grid-area: desc; margin-top: 0; }
+}
+
+/* =========================================================
+   4. Rezerwacja (#zapraszamy)
+   ========================================================= */
+html body.book-type #zapraszamy .booking-copy { padding-block: 88px; }
+html body.book-type #zapraszamy .booking-bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 24px;
+  justify-items: start;
+  align-items: start;
+}
+html body.book-type #zapraszamy .booking-subtitle {
+  grid-column: 1;
+  max-width: 34ch;
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+html body.book-type #zapraszamy .booking-subtitle p { margin: 0; font-size: inherit; line-height: inherit; }
+html body.book-type #zapraszamy .booking-subtitle p + p { margin-top: 16px; }
+html body.book-type #zapraszamy .booking-subtitle strong { font-weight: 800; }
+html body.book-type #zapraszamy .booking-cta {
+  grid-column: 1;
+  grid-row: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: 0 32px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--lay-peach);
+  color: var(--lay-green-deep);
+  border: 2px solid var(--lay-peach);
+  transition: background-color .18s ease, color .18s ease;
+}
+html body.book-type #zapraszamy .booking-cta:hover { background: var(--lay-peach-light); border-color: var(--lay-peach-light); }
+html body.book-type #zapraszamy .booking-phone {
+  grid-column: 1;
+  grid-row: auto;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+html body.book-type #zapraszamy .booking-note {
+  grid-column: 1;
+  margin: -8px 0 0;
+  max-width: 34ch;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--small-ink, var(--lay-peach-light));
+}
+
+@media (max-width: 700px) {
+  /* dwa kwadraty jeden pod drugim: tekst na górze, portret psa pod spodem */
+  html body.book-type #zapraszamy > .wrap.booking-composition {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    min-height: 0;
+    padding: 0;
+  }
+  html body.book-type #zapraszamy .booking-copy {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 100vw;
+    padding: 56px var(--gutter);
+    row-gap: 24px;
+  }
+  html body.book-type #zapraszamy .booking-photo,
+  html body.book-type #zapraszamy .booking-dog-foreground {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+  }
+  /* kadr „od góry”: głowa psa zawsze w kadrze */
+  html body.book-type #zapraszamy .booking-dog-foreground img { object-position: 50% 0; }
+  /* szare kropki-zdjęcia nie mają w układzie pionowym wolnego miejsca (zasłaniałyby tekst) */
+  html body.book-type #zapraszamy .booking-pet:not(.solid) { display: none; }
+}
+
+/* kropki: nigdy mniejsze niż 50 px (promień 25 px) */
+html body.book-type #zapraszamy .booking-pet { min-width: 50px; min-height: 50px; }
+
+/* =========================================================
+   5. Przychodnia (#przychodnia) — kolumny z numeracją, listy zamiast zbitych akapitów
+   ========================================================= */
+html body.book-type #przychodnia .equipment-grid {
+  counter-reset: clinic;
+  column-gap: 32px;
+  row-gap: 48px;
+}
+html body.book-type #przychodnia .equipment-grid > div {
+  display: block;
+  counter-increment: clinic;
+  padding-top: 24px;
+}
+html body.book-type #przychodnia .equipment-grid h3::before {
+  content: counter(clinic);
+  display: grid;
+  place-items: center;
+  inline-size: 40px;
+  block-size: 40px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--surface);
+  font-family: var(--font-main);
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+html body.book-type #przychodnia .equipment-grid h3 { margin: 0 0 16px; font-size: 24px; line-height: 32px; }
+html body.book-type #przychodnia .equipment-grid p { max-width: 38ch; margin: 0; font-size: 16px; }
+html body.book-type #przychodnia .equipment-grid .clinic-lead {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 500;
+}
+html body.book-type #przychodnia .equipment-grid :is(ul, ol) { margin: 0 0 16px; padding: 0; list-style: none; max-width: 38ch; }
+html body.book-type #przychodnia .equipment-grid li { margin: 0; padding: 8px 0; border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent); }
+html body.book-type #przychodnia .equipment-grid li:last-child { border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent); }
+html body.book-type #przychodnia .equipment-grid li strong { display: block; font-weight: 800; }
+html body.book-type #przychodnia .equipment-grid a {
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+  text-underline-offset: .2em;
+}
+html body.book-type #przychodnia .equipment-grid a:hover { text-decoration-color: var(--lay-orange); }
+
+/* =========================================================
+   6. Zespół (#zespol) — wersja średnia: bez zmian poza siatką i czytelnością
+   ========================================================= */
+html body.book-type .detail-columns .detail-body p { max-width: 38ch; }
+@media (max-width: 700px) {
+  html body.book-type .detail-columns { row-gap: 40px; }
+}
+
+/* =========================================================
+   7. Opinie (#rekomendacje) — wersja odważna: podpisy pismem, bez przesuniętych kolumn
+   ========================================================= */
+html body.book-type .reviews .quotes { row-gap: 56px; }
+html body.book-type .reviews .review-source a { white-space: nowrap; }
+html body.book-type .reviews .quote { padding-top: 32px; }
+html body.book-type .reviews .quote blockquote p:not(.review-author) { font-size: 16px; }
+html body.book-type .reviews .quote .review-author {
+  margin-top: 24px;
+  font-family: var(--font-emphasis, Rialto, Georgia, serif);
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* =========================================================
+   8. Nagłe przypadki, kontakt — wersja średnia
+   ========================================================= */
+html body.book-type .emergency-clinics a[href^="tel:"] {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+  text-underline-offset: .2em;
+}
+html body.book-type .contact-column a[href^="tel:"] { font-weight: 700; }
+
+/* =========================================================
+   9. Obserwuj nas (#obserwuj-nas)
+   ========================================================= */
+/* przycisk: kolory odwrócone (jasne tło, zielony napis) */
+html body.book-type #obserwuj-nas .social-promo-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: 0 32px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--lay-peach-light);
+  color: var(--lay-green);
+  border: 2px solid var(--lay-green);
+  transition: background-color .18s ease, color .18s ease;
+}
+html body.book-type #obserwuj-nas .social-promo-cta:hover { background: var(--lay-green); color: var(--lay-peach-light); }
+html body.book-type #obserwuj-nas .social-promo-kicker { font-size: max(16px, clamp(16px, 1.7vw, 24px)); }
+html body.book-type #obserwuj-nas .social-promo-subtitle { font-size: 20px; line-height: 32px; }
+
+@media (max-width: 700px) {
+  /* kwadrat z tekstem → kwadrat z kotem → blok z linkami; logo 80 % szerokości na styku zdjęcia i linków
+     (na dolnej krawędzi, żeby nie zasłaniać głowy kota) */
+  html body.book-type #obserwuj-nas > .social-promo-composition {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+  html body.book-type #obserwuj-nas .social-promo-copy {
+    grid-area: 1 / 1;
+    position: relative;
+    height: auto;
+    padding: 56px var(--gutter);
+    gap: 24px;
+  }
+  html body.book-type #obserwuj-nas .social-promo-subtitle { font-size: 20px; line-height: 32px; }
+  html body.book-type #obserwuj-nas .social-promo-photo {
+    grid-area: 2 / 1;
+    position: relative;
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 1 / 1;
+  }
+  html body.book-type #obserwuj-nas .social-promo-photo img { object-position: 50% 0; } /* głowa kota w kadrze */
+  html body.book-type #obserwuj-nas .social-promo-logo {
+    grid-area: 2 / 1;
+    position: relative;
+    left: auto;
+    top: auto;
+    inset: auto;
+    align-self: end;
+    justify-self: center;
+    translate: 0 50%;
+    width: 80vw;
+    height: auto;
+    z-index: 6;
+  }
+  html body.book-type #obserwuj-nas .social-promo-actions {
+    grid-area: 3 / 1;
+    position: static;
+    inset: auto;
+    display: grid;
+    gap: 24px;
+    padding: round(up, calc(40vw + 24px), 8px) var(--gutter) 56px;
+    background: var(--surface);
+  }
+  html body.book-type #obserwuj-nas .social-promo-social { flex-direction: row; flex-wrap: wrap; gap: 8px 24px; font-size: 16px; line-height: 24px; }
+  html body.book-type #obserwuj-nas .social-promo-cta { justify-content: center; }
+}
+
+/* =========================================================
+   10. Minimum 16 px
+   ========================================================= */
+html body.book-type .founder-hover [role="tooltip"] { font-size: 16px; line-height: 24px; }
+@media (max-width: 700px) {
+  html body.book-type :is(#onas, #zapraszamy) h2 .heading-roman { font-size: 16px; line-height: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body.book-type * { scroll-behavior: auto !important; }
+}
+
+html body.book-type :is(.social-promo-social, .foot-brand p) { line-height: 32px !important; }
+
+html body.book-type main .section-header .poster-bottom { gap: 16px; }
+
+/* =========================================================
+   Słowo „Psyjaciele” (i formy): zawsze krój Rialto, powiększony tak, by kreska miała grubość liter Satoshi obok.
+   Znacznik <span class="psy"> dokłada generator (_generator/narzedzia/psy.py).
+   Cały tekst makiety jest w Satoshi 700 (kreska ≈ 0,124 em), a Rialto 400 ma kreskę ≈ 0,088 em → skala 0,124 / 0,088 ≈ 1,41.
+   Dla tekstu w Satoshi 500 (kreska ≈ 0,099 em) ustaw --psy-scale: 1.13; dla 600: ok. 1.27.
+   ========================================================= */
+.psy {
+  --psy-scale: 1.41;
+  font-family: Rialto, Georgia, serif !important; font-style: normal !important; font-weight: 400 !important;
+  font-size: calc(1em * var(--psy-scale)) !important; line-height: 0; letter-spacing: 0 !important;
+  text-transform: none !important; font-synthesis: none;
+}
+/* na stronie głównej tytuły z <em>/.heading-roman mają już Rialto w swojej skali — bez podwójnego powiększenia */
+body:not(.subpage) :is(em, .heading-roman) .psy { font-size: 1em !important; line-height: inherit; }
+
+/* logo w stopce prowadzi na stronę główną (element dekoracyjny owinięty w link; układ bez zmian) */
+.footer-logo-link { display: contents; color: inherit; }
+.footer-logo-link:focus-visible .footer-logo { outline: 2px solid currentColor; outline-offset: 4px; }
+
+/* wskaźnik otwarcia przy numerze telefonu (layout-status.js): pełna kropka = otwarte, pusta = zamknięte */
+.phone-status { display: inline-flex; align-items: center; gap: .4em; margin-inline-start: .6em; font-size: 16px; line-height: 24px; font-weight: 700; white-space: normal; max-inline-size: 100%; text-decoration: none; }
+.phone-status::before { content: ""; inline-size: 10px; block-size: 10px; border-radius: 50%; border: 2px solid currentColor; background: currentColor; box-sizing: border-box; flex: none; }
+.phone-status[data-state="closed"]::before { background: transparent; }
+/* nagłówek: tylko kropka obok „tel.” (brak miejsca na słowo) */
+.header-phone .phone-status { grid-row: 1; grid-column: 2; align-self: center; margin-inline-start: var(--s1); gap: 0; inline-size: 10px; overflow: hidden; }
+/* na wąskich ekranach w przyciskach z numerem tylko kropka (słowo przycięte, zostaje dla czytników ekranu i w podpowiedzi) */
+
+
+/* =========================================================
+   Menu rozwijane (mega-menu): kontakt i rezerwacja (najważniejsze, 4 kol.), usługi (3), zespół z miniaturami (3), strona (2).
+   Siatka 12 kolumn jak strona; od 1000 px 2 kolumny, od 700 px 1 kolumna. Panel przewijany, gdy nie mieści się w oknie.
+   ========================================================= */
+html body.book-type.book-type .site-header .site-nav.is-open {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--s5); align-items: start;
+  padding-block: var(--s4) var(--s5); max-block-size: calc(100svh - var(--hdr-h, 88px)); overflow-y: auto; overscroll-behavior: contain;
+}
+.site-nav .nav-col { min-width: 0; display: grid; gap: var(--s1); align-content: start; }
+.site-nav .nav-primary { grid-column: 1 / span 4; gap: var(--s2); }
+.site-nav .nav-services { grid-column: 5 / span 3; }
+.site-nav .nav-team { grid-column: 8 / span 3; }
+.site-nav .nav-pages { grid-column: 11 / span 2; }
+html body.book-type.book-type .site-header .site-nav .nav-col a { font-size: 16px; line-height: 24px; font-weight: 700; padding-block: var(--s1); text-decoration: none; text-transform: none; letter-spacing: 0; }
+html body.book-type.book-type .site-header .site-nav .nav-col a:hover { text-decoration: underline; text-underline-offset: .22em; }
+.site-nav .nav-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.site-nav .nav-col li { margin: 0; }
+html body.book-type.book-type .site-header .site-nav .nav-col :is(a.nav-title, p.nav-title) { font-size: 24px; line-height: 32px; font-weight: 700; margin: 0 0 var(--s1); padding-block: 0 var(--s2); border-bottom: 2px solid currentColor; display: block; }
+/* kontakt: najważniejszy blok */
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-book {
+  display: flex; justify-content: space-between; align-items: center; padding: var(--s3); font-size: 32px; line-height: 40px;
+  background: var(--lay-orange); color: var(--lay-green-deep); border-radius: 0;
+}
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-book:hover { text-decoration: none; background: var(--lay-peach); }
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone { font-size: 40px; line-height: 48px; letter-spacing: -.02em; padding-block: 0; }
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone .phone-status { font-size: 16px; letter-spacing: 0; margin-inline-start: var(--s2); vertical-align: middle; }
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-mail { font-size: 20px; line-height: 32px; text-decoration: underline; text-underline-offset: .22em; padding-block: 0; }
+.site-nav .nav-address { margin: 0; font-size: 16px; line-height: 24px; }
+.site-nav .nav-hours { margin: 0; display: grid; gap: 0; font-size: 16px; line-height: 24px; }
+.site-nav .nav-hours > div { display: flex; gap: var(--s2); } .site-nav .nav-hours dt { min-inline-size: 72px; font-weight: 700; } .site-nav .nav-hours dd { margin: 0; }
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-urgent { display: flex; align-items: center; gap: var(--s2); border-top: 2px solid currentColor; padding-block: var(--s2) 0; font-size: 20px; line-height: 32px; }
+.site-nav .nav-urgent::before { content: ""; inline-size: 14px; block-size: 14px; border-radius: 50%; background: var(--lay-orange); flex: none; }
+/* zespół z miniaturami */
+html body.book-type.book-type .site-header .site-nav .nav-team li > a { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: var(--s2); align-items: center; padding-block: var(--s1); }
+.site-nav .nav-team img { inline-size: 48px; block-size: 64px; object-fit: cover; object-position: 50% 8%; background: var(--lay-peach); display: block; }
+.site-nav .nav-team li > a > span { display: grid; gap: 0; }
+.site-nav .nav-team small { font-size: 16px; line-height: 24px; font-weight: 500; opacity: .85; }
+@media (max-width: 1180px) {
+  html body.book-type.book-type .site-header .site-nav.is-open { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--s4); }
+  .site-nav .nav-primary, .site-nav .nav-pages { grid-column: 1 / -1; }
+  .site-nav .nav-services, .site-nav .nav-team { grid-column: auto; }
+  .site-nav .nav-pages ul { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); }
+}
+@media (max-width: 700px) {
+  html body.book-type.book-type .site-header .site-nav.is-open { grid-template-columns: minmax(0, 1fr); }
+  .site-nav .nav-services, .site-nav .nav-team { grid-column: 1 / -1; }
+  html body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone { font-size: 32px; line-height: 40px; }
+  html body.book-type.book-type .site-header .site-nav .nav-col a.nav-book { font-size: 24px; line-height: 32px; }
+  html body.book-type.book-type .site-header .site-nav .nav-col :is(a.nav-title, p.nav-title) { font-size: 24px; line-height: 32px; }
+}
+
+html body.book-type.book-type .site-header .site-nav { text-transform: none; letter-spacing: 0; font-weight: 700; }
+html body.book-type.book-type .site-header .site-nav :is(.nav-address, .nav-hours, dt, dd, small) { text-transform: none; letter-spacing: 0; }
+
+/* panel menu trzyma siatkę strony (max 1280 px, środek) i nie dziedziczy ozdobników starego menu */
+html body.book-type.book-type .site-header .site-nav.is-open {
+  position: absolute; top: 100%; left: 0; right: 0; inline-size: auto; margin: 0;
+  padding-inline: max(var(--gutter, 56px), calc((100% - 1280px) / 2));   /* tło na całą szerokość, treść w siatce 1280 px */
+  background: var(--lay-green); color: var(--lay-peach-light);
+  border-top: 1px solid color-mix(in srgb, var(--lay-peach-light) 25%, transparent);
+}
+html body.book-type.book-type .site-header .site-nav .nav-col a::after { content: none; }
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-title { padding-block: 0 var(--s2); }
+
+/* status przy numerze: w menu i w przyciskach w osobnym wierszu pod numerem (pełny tekst, np. „zamknięte — jutro od 9:00”) */
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone .phone-status { display: flex; margin: var(--s1) 0 0; }
+:is(a.button, a.hero-btn) .phone-status { display: flex; margin: var(--s1) 0 0; }
+
+/* przyciski z numerem: status w osobnym wierszu, bez wychodzenia poza ekran */
+:is(a.button, a.hero-btn):has(.phone-status) { display: grid; justify-items: start; max-inline-size: 100%; white-space: normal; }
+.phone-status { white-space: normal; }
+
+a.booking-phone .phone-status { display: flex; margin: var(--s1) 0 0; }

@@ -412,39 +412,39 @@ body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-te
      --ink        tekst główny, tytuły, rysunki, przyciski
      --small-ink  tekst mały (akapity, podpisy) — wyższy kontrast
      --accent     uzupełniający: wariacja tła (karty, ramka godzin, kształty, kropki)
-   Stała: ciemna zieleń #124e2c.
+   Stała: ciemna zieleń var(--wp--preset--color--green).
    ════════════════════════════════════════════════════════════════════ */
-:root{--paper:#f7f3ee;--ink:#124e2c}
+:root{--paper:var(--wp--preset--color--paper);--ink:var(--wp--preset--color--green)}
 /* Kolory rysunków wstawianych jako <img>: muszą leżeć w :root, bo filtry SVG są poza sekcjami. */
-:root{--hero-art-ink:#f6b08f;--service-art-ink:#124e2c;--service-hover-ink:#2233b0;--contact-art-ink:#f6b08f}
+:root{--hero-art-ink:var(--wp--preset--color--peach);--service-art-ink:var(--wp--preset--color--green);--service-hover-ink:var(--wp--preset--color--blue);--contact-art-ink:var(--wp--preset--color--peach)}
 #hero-color feFlood{flood-color:var(--hero-art-ink)}#service-light-ink feFlood{flood-color:var(--service-art-ink)}#service-hover-ink feFlood{flood-color:var(--service-hover-ink)}#contact-ink feFlood{flood-color:var(--contact-art-ink)}
 /* Menu: po otwarciu nagłówek przestaje mieszać się z tłem — pełne tło, czytelne pozycje. */
-.site-header.site-header.site-header.menu-open{--ink:#fbd9c6;mix-blend-mode:normal;background:#124e2c;color:#fbd9c6}
-.site-header.site-header.site-header.menu-open .site-nav{background:#124e2c;color:#fbd9c6}
+.site-header.site-header.site-header.menu-open{--ink:var(--wp--preset--color--peach-light);mix-blend-mode:normal;background:var(--wp--preset--color--green);color:var(--wp--preset--color--peach-light)}
+.site-header.site-header.site-header.menu-open .site-nav{background:var(--wp--preset--color--green);color:var(--wp--preset--color--peach-light)}
 /* Hero */
-.hero{--surface:#124e2c;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#1d6a3e}
+.hero{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--peach);--small-ink:var(--wp--preset--color--peach-light);--accent:var(--wp--preset--color--green-soft)}
 /* Założycielki */
-.about{--surface:#fbd9c6;--ink:#124e2c;--small-ink:#0b3a20;--accent:#f6b08f}
+.about{--surface:var(--wp--preset--color--peach-light);--ink:var(--wp--preset--color--green);--small-ink:var(--wp--preset--color--green-deep);--accent:var(--wp--preset--color--peach)}
 /* Usługi */
-.services{--surface:#a9c296;--ink:#124e2c;--small-ink:#0b3a20;--accent:#cfdcc3;--hover-ink:#2233b0}
+.services{--surface:var(--wp--preset--color--sage);--ink:var(--wp--preset--color--green);--small-ink:var(--wp--preset--color--green-deep);--accent:var(--wp--preset--color--sage-light);--hover-ink:var(--wp--preset--color--blue)}
 /* Zaproszenie */
-.booking{--surface:#124e2c;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#f0764a}
+.booking{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--peach);--small-ink:var(--wp--preset--color--peach-light);--accent:var(--wp--preset--color--orange)}
 /* Przychodnia i sprzęt */
-.clinic{--surface:#f7f3ee;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6}
+.clinic{--surface:var(--wp--preset--color--paper);--ink:var(--wp--preset--color--green);--small-ink:var(--wp--preset--color--green-deep);--accent:var(--wp--preset--color--peach-light)}
 /* Zespół */
-.team{--surface:#f6b08f;--ink:#124e2c;--small-ink:#0b3a20;--accent:#fbd9c6;--hover-ink:#0b3a20;--hover-accent:#f7f3ee}
+.team{--surface:var(--wp--preset--color--peach);--ink:var(--wp--preset--color--green);--small-ink:var(--wp--preset--color--green-deep);--accent:var(--wp--preset--color--peach-light);--hover-ink:var(--wp--preset--color--green-deep);--hover-accent:var(--wp--preset--color--paper)}
 /* Rekomendacje */
-.reviews{--surface:#cfdcc3;--ink:#124e2c;--small-ink:#0b3a20;--accent:#a9c296}
+.reviews{--surface:var(--wp--preset--color--sage-light);--ink:var(--wp--preset--color--green);--small-ink:var(--wp--preset--color--green-deep);--accent:var(--wp--preset--color--sage)}
 /* Nagłe przypadki */
-.emergency{--surface:#124e2c;--ink:#f8b393;--small-ink:#fbd9c6;--accent:#1d6a3e}
+.emergency{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--emergency-peach);--small-ink:var(--wp--preset--color--peach-light);--accent:var(--wp--preset--color--green-soft)}
 /* Przed wizytą */
-.arrival.preparation{--surface:#f7f3ee;--ink:#124e2c;--small-ink:#0b3a20;--accent:#cfdcc3}
+.arrival.preparation{--surface:var(--wp--preset--color--paper);--ink:var(--wp--preset--color--green);--small-ink:var(--wp--preset--color--green-deep);--accent:var(--wp--preset--color--sage-light)}
 /* Jak do nas trafić */
-.arrival:not(.preparation){--surface:#fbd9c6;--ink:#124e2c;--small-ink:#0b3a20;--accent:#f6b08f}
+.arrival:not(.preparation){--surface:var(--wp--preset--color--peach-light);--ink:var(--wp--preset--color--green);--small-ink:var(--wp--preset--color--green-deep);--accent:var(--wp--preset--color--peach)}
 /* Kontakt */
-.contact{--surface:#2233b0;--ink:#f6b08f;--small-ink:#fbd9c6;--accent:#1a2890}
+.contact{--surface:var(--wp--preset--color--blue);--ink:var(--wp--preset--color--peach);--small-ink:var(--wp--preset--color--peach-light);--accent:var(--wp--preset--color--blue-deep)}
 /* Stopka */
-footer{--surface:#124e2c;--ink:#a9c296;--small-ink:#cfdcc3;--accent:#1d6a3e}
+footer{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--sage);--small-ink:var(--wp--preset--color--sage-light);--accent:var(--wp--preset--color--green-soft)}
 /* Service artwork: dark green linework; multiply removes white against the card. */
 .bento .tile:has(img.service-art){aspect-ratio:auto;min-height:0;grid-template-rows:auto auto minmax(calc(4 * var(--leading-body)),1fr);gap:var(--s1);& h3{min-height:calc(2 * var(--type-h4) * 1.24)}}
 .bento .tile img.service-art{width:calc(100% + 2 * var(--s3));max-width:none;height:auto;aspect-ratio:1;object-fit:contain;background:none;mask:none;filter:url(#service-color);mix-blend-mode:multiply}
@@ -592,7 +592,7 @@ footer .foot-links h2{margin:0}
 }
 
 /* Zespół: ten sam rytm kolumn co usługi — kreska / tekst / portret. */
-.team .people .person{--surface:transparent;--ink:#124e2c;--accent:#fbd9c6;background:transparent;border:0;border-top:var(--column-rule-width) solid currentColor;padding:var(--column-rule-gap) 0 var(--s4);min-height:0;grid-template-rows:auto auto auto;gap:var(--s2);align-content:start}
+.team .people .person{--surface:transparent;--ink:var(--wp--preset--color--green);--accent:var(--wp--preset--color--peach-light);background:transparent;border:0;border-top:var(--column-rule-width) solid currentColor;padding:var(--column-rule-gap) 0 var(--s4);min-height:0;grid-template-rows:auto auto auto;gap:var(--s2);align-content:start}
 .team .people .person>header{justify-items:start;text-align:left;gap:var(--s2)}
 .team .people .person .person-name{justify-items:start;text-align:left}
 .team .people .person .person-name>:is(em,span){margin-inline:0;text-align:left}
@@ -654,7 +654,7 @@ footer .foot-links h2{margin:0}
 
 /* Nawigacja przejmuje rzeczywisty kolor tekstu sekcji pod nią. */
 .site-header.site-header{mix-blend-mode:normal}
-.site-header.site-header:not(.menu-open){--ink:var(--nav-ink,#f6b08f);--small-ink:var(--nav-ink,#f6b08f);color:var(--nav-ink,#f6b08f)}
+.site-header.site-header:not(.menu-open){--ink:var(--nav-ink,var(--wp--preset--color--peach));--small-ink:var(--nav-ink,var(--wp--preset--color--peach));color:var(--nav-ink,var(--wp--preset--color--peach))}
 
 /* Krótkie przejście barwy tekstu, logo i hamburgera między sekcjami. */
 .site-header.site-header{transition:color 180ms ease-out}
@@ -727,7 +727,7 @@ main .button,main .button *{--weight-text:900;font-weight:900!important}
 
 /* Poprawiony plik kontaktu: użyj samego kanału alpha, bez inwersji jasności. */
 .contact .contact-illustration{filter:url(#contact-clean-ink)}
-#contact-clean-ink feFlood{flood-color:var(--contact-art-ink,#f6b08f)}
+#contact-clean-ink feFlood{flood-color:var(--contact-art-ink,var(--wp--preset--color--peach))}
 
 /* Założycielki: wszystkie podpisy w jednej osi pod wspólnym portretem. */
 #onas>.wrap.grid{row-gap:var(--s4);min-height:0}
