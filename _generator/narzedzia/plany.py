@@ -85,10 +85,14 @@ URGENT = _re.compile(r'nie czekać|nie warto przeczekać|pilnie|stan nagły|naty
 CHECK = _re.compile(r'zabra|przygotow|co robić|dbać|pielęgn|zapobiegać|chronić|zmniejszyć|ułatwić', _re.I)
 
 
-BREATH = ('<div class="breath-counter" role="group" aria-label="Licznik oddechów"><p class="kicker">Licznik oddechów</p>'
-          '<p class="breath-time"><span data-breath-time>60</span> s</p><output aria-live="polite">0</output>'
+BREATH = ('<div class="breath-counter" role="group" aria-label="Licznik oddechów">'
+          '<div class="bc-intro"><p class="kicker">Licznik oddechów w spoczynku</p>'
+          '<p class="bc-how">Zwierzę ma spać lub spokojnie leżeć. Kliknij „Start”, a potem „Oddech” przy każdym oddechu (uniesienie i opadnięcie klatki). '
+          'Po minucie pokażemy wynik.</p>'
+          '<p class="bc-result" aria-live="polite" data-breath-result>Wynik pojawi się po 60 sekundach.</p></div>'
+          '<div class="bc-panel"><p class="breath-time"><span data-breath-time>60</span> s</p><output aria-live="polite">0</output>'
           '<div class="breath-actions"><button type="button" class="button" data-breath-start data-label-again="Zacznij od nowa">Start</button>'
-          '<button type="button" class="button" data-breath-tap>Oddech</button></div></div>')
+          '<button type="button" class="button" data-breath-tap>Oddech</button></div></div></div>')
 
 
 def urgent_band(ctx, inner, kick='Pilne'):
@@ -223,8 +227,11 @@ def after_hours_section(P):
     P.add('mid-c', B.after_hours(ctx), aria='after-hours-title', kind='after-hours')
 
 
+ART_IN_TIMELINE = {'szcz-03-kalendarz'}   # rysunek osi czasu stoi w infografice „Kiedy szczepić…” (infografiki.inject), nie w mozaice
+
+
 def image_queue(slug):
-    spec = [v for v in OBRAZY.values() if v['strona'] == slug and not v['id'].endswith('-00-hero')]
+    spec = [v for v in OBRAZY.values() if v['strona'] == slug and not v['id'].endswith('-00-hero') and v['id'] not in ART_IN_TIMELINE]
     spec.sort(key=lambda v: v['id'])
     spec = spec[:6]  # + ilustracja hero = max 7 placeholderów na stronę (V13)
     asides, bands, mosaic = [], [], []
@@ -304,7 +311,7 @@ def auto(P, facts, kick='Usługa', directory_ids=(), before_faq=None, hero_kw=No
         doctor_strip(P, list(doctors))
     P.related()
     if phone:
-        cta_section(P)
+        pass   # blok „Umów wizytę / Zadzwoń” usunięty (9.10.2026): powtarzał rezerwację i sekcję „Jak umówić”
     elif booking:
         P.booking()
     P.contact(contact)
@@ -412,14 +419,12 @@ def _zespol(P):
     ctx.cur_sec = keys[0]
     rail = B.rail_layout(ctx, [(k, B.plain(src.by_id[k].title).replace('lek. wet.', '').strip()) for k in keys], ''.join(profiles), label='Lekarki')
     P.add(None, rail, aria=keys[0], kind='rail')
-    P.add(None, B.figure_band(ctx, 'zespol-01-zespol-grupowe'), aria=None)
     P.items.append(Item('soft-a', html=B.about_section(ctx), kind='about'))
     s = src.by_id['praca-w-psyjaciolach']
     P.begin(s)
     ctx.cur_sec = s.id
     P.add(None, B.join_banner(ctx, s.title, s.nodes, B.join_art_dog(ctx), 'mailto:kontakt@psyjacielevet.pl', hid=s.id, forced=ctx.title_split(s.id)), aria=s.id)
     P.mark(s)
-    P.add(None, B.figure_band(ctx, 'zespol-02-gabinet'), aria=None)
     P.faq()
     reviews_section(P, (0, 1, 2))
     P.contact()

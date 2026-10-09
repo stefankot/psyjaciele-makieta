@@ -1,7 +1,7 @@
 <!-- generated: psyjaciele-podstrony -->
 # Obrazy do wgrania (manifest)
 
-Liczba placeholderów: **68**. Źródło prawdy: `_obrazy.json`. Wgraj plik pod ścieżką z kolumny „Plik” (względem katalogu makiety) i odśwież stronę — ramka podmieni się sama (`podstrony.js`).
+Liczba placeholderów: **65**. Źródło prawdy: `_obrazy.json`. Wgraj plik pod ścieżką z kolumny „Plik” (względem katalogu makiety) i odśwież stronę — ramka podmieni się sama (`podstrony.js`).
 
 ## uslugi-weterynaryjne
 
@@ -54,24 +54,22 @@ Liczba placeholderów: **68**. Źródło prawdy: `_obrazy.json`. Wgraj plik pod 
 | `szcz-01-szczepienie` | profilaktyka-przeciwpasozytnicza-psow-i-kotow | zdjęcie | 4:5 | 1600 | `assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-01-szczepienie.jpg` | Dłonie lekarki przygotowujące szczepienie, pies w tle; bez widocznej igły. | prawdziwe zdjęcie z przychodni (za zgodą opiekunów) |
 | `szcz-04-pas-pies-kot` | profilaktyka-przeciwpasozytnicza-psow-i-kotow | pas (zdjęcie panoramiczne) | 21:9 | 2400 | `assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-04-pas-pies-kot.jpg` | Szeroki pas: pies i kot siedzące obok siebie. | generowanie (image_gen) lub zdjęcie stockowe |
 | `szcz-02-ksiazeczka` | profilaktyka-przeciwpasozytnicza-psow-i-kotow | wycinek z przezroczystością | 1:1 | 1200 | `assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-02-ksiazeczka.png` | Zamknięta książeczka zdrowia zwierzęcia, białe tło, czarna kreska. | generowanie (image_gen) lub zdjęcie stockowe |
-| `szcz-03-kalendarz` | profilaktyka-przeciwpasozytnicza-psow-i-kotow | diagram | 4:3 | 1600 | `assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-03-kalendarz.png` | Prosta pozioma oś z kilkoma punktami (bez dat i opisów). | generowanie (image_gen), rysunek liniowy |
 
 - **szcz-01-szczepienie** — alt: „Szczepienie psa”; podpis: „Szczepienie psa”; unikać: twarze obcych osób, napisy, logotypy, krew, widoczny ból lub strach zwierzęcia, igły; obróbka: kolor-retro.
 - **szcz-04-pas-pies-kot** — alt: „Pies i kot obok siebie”; podpis: „Pies i kot”; unikać: twarze obcych osób, napisy, logotypy, zdjęcia sprzętu w użyciu; obróbka: kolor-retro.
 - **szcz-02-ksiazeczka** — alt: „Książeczka szczepień zwierzęcia”; podpis: „Książeczka szczepień”; unikać: halo i rozmycie na krawędziach, cień, napisy, logotypy; obróbka: ink-filter.
-- **szcz-03-kalendarz** — alt: „Oś czasu szczepień”; podpis: „Schemat osi czasu”; unikać: wypełnienia, gradienty, cieniowanie, napisy i numery, drastyczność; obróbka: ink-filter.
 
 ## chirurgia-weterynaryjna-tkanek-miekkich
 
 | ID | Sekcja | Rodzaj | Proporcje | Min. px | Plik | Opis | Źródło |
 |---|---|---|---|---|---|---|---|
 | `chir-02-konsultacja` | jak-wyglada-konsultacja-chirurgiczna | zdjęcie | 3:2 | 1600 | `assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-02-konsultacja.jpg` | Lekarka rozmawia z opiekunem przy psie; bez twarzy. | prawdziwe zdjęcie z przychodni (za zgodą opiekunów) |
-| `chir-03-opieka-po` | dlaczego-przygotowanie-zwierzecia-do-zabiegu-jest-wazne | zdjęcie | 4:5 | 1600 | `assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-03-opieka-po.jpg` | Pies w miękkim kołnierzu leżący na posłaniu. | generowanie (image_gen) lub zdjęcie stockowe |
+| `chir-03-opieka-po` | dlaczego-przygotowanie-zwierzecia-do-zabiegu-jest-wazne | ilustracja liniowa | 8:5 | 1200 | `assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-03-opieka-po.png` | Rysunek (czarna kreska na białym tle): pies w miękkim kołnierzu leżący na posłaniu. | generowanie (image_gen) lub zdjęcie stockowe |
 | `chir-01-sala-zabiegowa` | dlaczego-przygotowanie-zwierzecia-do-zabiegu-jest-wazne | pas (zdjęcie panoramiczne) | 21:9 | 2400 | `assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-01-sala-zabiegowa.jpg` | Pusta, jasna sala zabiegowa; bez widocznych narzędzi w użyciu. | prawdziwe zdjęcie z przychodni (za zgodą opiekunów) |
 | `chir-04-rana-schemat` | jakie-badania-wykonac-przed-operacja | diagram | 4:3 | 1600 | `assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-04-rana-schemat.png` | Ogólny schemat linii opatrunku na łapie (bez ran). | generowanie (image_gen), rysunek liniowy |
 
 - **chir-02-konsultacja** — alt: „Konsultacja przed zabiegiem”; podpis: „Konsultacja przed zabiegiem”; unikać: twarze obcych osób, napisy, logotypy, krew, widoczny ból lub strach zwierzęcia, igły; obróbka: kolor-retro.
-- **chir-03-opieka-po** — alt: „Pies w kołnierzu po zabiegu”; podpis: „Pies w kołnierzu”; unikać: twarze obcych osób, napisy, logotypy, krew, widoczny ból lub strach zwierzęcia, igły; obróbka: kolor-retro.
+- **chir-03-opieka-po** — alt: „Pies w kołnierzu po zabiegu”; podpis: „Ilustracja zamiast zdjęcia: pies w kołnierzu po zabiegu”; unikać: wypełnienia, gradienty, cieniowanie, napisy, drastyczność; obróbka: ink-filter.
 - **chir-01-sala-zabiegowa** — alt: „Sala zabiegowa przychodni”; podpis: „Sala zabiegowa”; unikać: twarze obcych osób, napisy, logotypy, zdjęcia sprzętu w użyciu; obróbka: kolor-retro.
 - **chir-04-rana-schemat** — alt: „Schemat opatrunku”; podpis: „Schemat opatrunku”; unikać: wypełnienia, gradienty, cieniowanie, napisy i numery, drastyczność; obróbka: ink-filter.
 
@@ -111,7 +109,7 @@ Liczba placeholderów: **68**. Źródło prawdy: `_obrazy.json`. Wgraj plik pod 
 
 | ID | Sekcja | Rodzaj | Proporcje | Min. px | Plik | Opis | Źródło |
 |---|---|---|---|---|---|---|---|
-| `oko-01-oko-diagram` | kiedy-do-okulisty-a-kiedy-pilnie | diagram | 4:3 | 1600 | `assets/podstrony/okulistyka-weterynaryjna/oko-01-oko-diagram.png` | Uproszczony przekrój oka psa (bez opisów). | generowanie (image_gen), rysunek liniowy |
+| `oko-01-oko-diagram` | kiedy-do-okulisty-a-kiedy-pilnie | diagram | 2:1 | 1600 | `assets/podstrony/okulistyka-weterynaryjna/oko-01-oko-diagram.png` | Uproszczony przekrój oka psa (bez opisów). | generowanie (image_gen), rysunek liniowy |
 | `oko-04-pas-gabinet` | najczestsze-choroby-oczu-u-psow-i-kotow | pas (zdjęcie panoramiczne) | 21:9 | 2400 | `assets/podstrony/okulistyka-weterynaryjna/oko-04-pas-gabinet.jpg` | Szeroki pas: gabinet z lampą szczelinową. | prawdziwe zdjęcie z przychodni (za zgodą opiekunów) |
 | `oko-02-badanie-lampa` | jak-wyglada-badanie-okulistyczne | zdjęcie | 3:2 | 1600 | `assets/podstrony/okulistyka-weterynaryjna/oko-02-badanie-lampa.jpg` | Lampa szczelinowa przy głowie psa; kadr bez twarzy ludzi. | prawdziwe zdjęcie z przychodni (za zgodą opiekunów) |
 | `oko-03-oko-pies` | jak-dbac-o-zdrowie-oczu-swojego-psyjaciela | zdjęcie | 4:5 | 1600 | `assets/podstrony/okulistyka-weterynaryjna/oko-03-oko-pies.jpg` | Portret psa z widocznymi oczami, spokojny wyraz. | generowanie (image_gen) lub zdjęcie stockowe |
@@ -126,12 +124,12 @@ Liczba placeholderów: **68**. Źródło prawdy: `_obrazy.json`. Wgraj plik pod 
 | ID | Sekcja | Rodzaj | Proporcje | Min. px | Plik | Opis | Źródło |
 |---|---|---|---|---|---|---|---|
 | `derm-01-badanie-skory` | objawy-z-ktorymi-warto-przyjsc | zdjęcie | 4:5 | 1600 | `assets/podstrony/dermatologia-weterynaryjna/derm-01-badanie-skory.jpg` | Dłonie rozchylające sierść na grzbiecie psa; bez widocznych zmian chorobowych. | prawdziwe zdjęcie z przychodni (za zgodą opiekunów) |
-| `derm-02-pas-skora-siersc` | najczestsze-problemy-skorne-psow-i-kotow | pas (zdjęcie panoramiczne) | 21:9 | 2400 | `assets/podstrony/dermatologia-weterynaryjna/derm-02-pas-skora-siersc.jpg` | Szeroki makro-kadr sierści psa. | generowanie (image_gen) lub zdjęcie stockowe |
+| `derm-02-pas-skora-siersc-v2` | najczestsze-problemy-skorne-psow-i-kotow | pas (zdjęcie panoramiczne) | 21:9 | 2400 | `assets/podstrony/dermatologia-weterynaryjna/derm-02-pas-skora-siersc-v2.jpg` | Szeroki makro-kadr sierści psa (nowe ujęcie; poprzednie usunięte). | generowanie (image_gen) lub zdjęcie stockowe |
 | `derm-03-cytologia` | jak-wyglada-diagnostyka-dermatologiczna | zdjęcie | 3:2 | 1600 | `assets/podstrony/dermatologia-weterynaryjna/derm-03-cytologia.jpg` | Mikroskop i szkiełka podstawowe na blacie. | prawdziwe zdjęcie z przychodni (za zgodą opiekunów) |
 | `derm-04-pielegnacja` | leczenie-chorob-skory | wycinek z przezroczystością | 1:1 | 1200 | `assets/podstrony/dermatologia-weterynaryjna/derm-04-pielegnacja.png` | Szczotka do sierści na białym tle, czarna kreska. | generowanie (image_gen) lub zdjęcie stockowe |
 
 - **derm-01-badanie-skory** — alt: „Badanie skóry psa”; podpis: „Badanie skóry psa”; unikać: twarze obcych osób, napisy, logotypy, krew, widoczny ból lub strach zwierzęcia, igły; obróbka: kolor-retro.
-- **derm-02-pas-skora-siersc** — alt: „Sierść psa z bliska”; podpis: „Sierść z bliska”; unikać: twarze obcych osób, napisy, logotypy, zdjęcia sprzętu w użyciu; obróbka: kolor-retro.
+- **derm-02-pas-skora-siersc-v2** — alt: „Sierść psa z bliska”; podpis: „Nowy obraz zamiast zdjęcia: sierść z bliska”; unikać: twarze obcych osób, napisy, logotypy, zdjęcia sprzętu w użyciu; obróbka: kolor-retro.
 - **derm-03-cytologia** — alt: „Mikroskop i szkiełka”; podpis: „Mikroskop i szkiełka”; unikać: twarze obcych osób, napisy, logotypy, krew, widoczny ból lub strach zwierzęcia, igły; obróbka: kolor-retro.
 - **derm-04-pielegnacja** — alt: „Szczotka do sierści”; podpis: „Szczotka do sierści”; unikać: halo i rozmycie na krawędziach, cień, napisy, logotypy; obróbka: ink-filter.
 
@@ -224,14 +222,4 @@ Liczba placeholderów: **68**. Źródło prawdy: `_obrazy.json`. Wgraj plik pod 
 - **czip-03-pas-zabieg** — alt: „Gabinet, w którym wszczepiamy czipy”; podpis: „Gabinet zabiegowy”; unikać: twarze obcych osób, napisy, logotypy, zdjęcia sprzętu w użyciu; obróbka: kolor-retro.
 - **czip-04-skaner** — alt: „Odczyt czipa czytnikiem”; podpis: „Czytnik czipów”; unikać: twarze obcych osób, napisy, logotypy, krew, widoczny ból lub strach zwierzęcia, igły; obróbka: kolor-retro.
 - **czip-05-pies-kot** — alt: „Kot i pies siedzą obok siebie”; podpis: „Kot i pies w poczekalni”; unikać: halo i rozmycie na krawędziach, cień, napisy, logotypy; obróbka: ink-filter.
-
-## zespol
-
-| ID | Sekcja | Rodzaj | Proporcje | Min. px | Plik | Opis | Źródło |
-|---|---|---|---|---|---|---|---|
-| `zespol-01-zespol-grupowe` | Magda | pas (zdjęcie panoramiczne) | 21:9 | 2400 | `assets/podstrony/zespol/zespol-01-zespol-grupowe.jpg` | Zdjęcie grupowe lekarek w gabinecie lub przed budynkiem (prawdziwe, za zgodą). | prawdziwe zdjęcie z przychodni (za zgodą opiekunów) |
-| `zespol-02-gabinet` | praca-w-psyjaciolach | pas (zdjęcie panoramiczne) | 21:9 | 2400 | `assets/podstrony/zespol/zespol-02-gabinet.jpg` | Wnętrze gabinetu przy oknie, bez ludzi. | prawdziwe zdjęcie z przychodni (za zgodą opiekunów) |
-
-- **zespol-01-zespol-grupowe** — alt: „Lekarki weterynarii przychodni Psyjaciele”; podpis: „Zespół przychodni”; unikać: twarze obcych osób, napisy, logotypy, zdjęcia sprzętu w użyciu; obróbka: kolor-retro.
-- **zespol-02-gabinet** — alt: „Gabinet przychodni Psyjaciele”; podpis: „Gabinet”; unikać: twarze obcych osób, napisy, logotypy, zdjęcia sprzętu w użyciu; obróbka: kolor-retro.
 

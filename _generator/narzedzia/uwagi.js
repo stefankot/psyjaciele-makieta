@@ -1,6 +1,6 @@
 /* generated: psyjaciele-podstrony
  * uwagi.js — narzędzie do zaznaczania elementów i komentowania ich (tylko do przeglądu makiety).
- * Uruchomienie: dopisz ?uwagi=1 do adresu strony w podstrony/ albo użyj zakładki (bookmarklet) z podstrony/_narzedzia/UWAGI.md.
+ * Uruchomienie: klawisz „I” na stronie (inspektor.js w korzeniu makiety) albo ?uwagi=1 w adresie.
  * Uwagi zapisują się w przeglądarce (localStorage) i można je skopiować jako Markdown jednym przyciskiem.
  */
 (function () {
@@ -65,6 +65,23 @@
   }
   function here() { return location.pathname + (location.search.replace(/[?&]uwagi=1/, '') || ''); }
   function mine() { return notes.filter(function (n) { return n.page === here(); }); }
+
+  // ---- dane pomocnicze dla Claude: wymiary w siatce, styl, fragment HTML ----
+  function geom(e) {
+    var r = e.getBoundingClientRect(), w = document.querySelector('main .wrap') || document.querySelector('.wrap');
+    var out = Math.round(r.width) + '×' + Math.round(r.height) + ' px, x=' + Math.round(r.left + window.scrollX) + ', y=' + Math.round(r.top + window.scrollY);
+    if (w) {
+      var wr = w.getBoundingClientRect(), g = parseFloat(getComputedStyle(document.body).getPropertyValue('--gap')) || 32, c = (wr.width - 11 * g) / 12;
+      var col = Math.round((r.left - wr.left) / (c + g)) + 1, span = Math.round((r.width + g) / (c + g));
+      if (col >= 1 && col <= 12 && span >= 1 && span <= 12) out += ' (kolumna ' + col + ', ok. ' + span + ' kol.)';
+    }
+    return out;
+  }
+  function style(e) {
+    var cs = getComputedStyle(e), ff = cs.fontFamily.split(',')[0].replace(/["']/g, '');
+    return ff + ' ' + cs.fontSize + '/' + cs.lineHeight + ' ' + cs.fontWeight + ', kolor ' + cs.color + ', tło ' + cs.backgroundColor + ', odstępy ' + cs.paddingTop + ' ' + cs.paddingRight + ' ' + cs.paddingBottom + ' ' + cs.paddingLeft;
+  }
+  function snippet(e) { var h = e.cloneNode(false).outerHTML || ''; return h.slice(0, 200); }
   function find(sel) { try { return document.querySelector(sel); } catch (e) { return null; } }
 
   // ---- panel ----
@@ -75,7 +92,7 @@
       '<button type="button" data-a="pick" class="uw-primary' + (state.picking ? ' uw-active' : '') + '">' + (state.picking ? 'Klikaj elementy… (Esc)' : 'Zaznacz element') + '</button>' +
       '<button type="button" data-a="copy">Kopiuj wszystko</button>' +
       '<button type="button" data-a="clear">Wyczyść</button>' +
-      '<button type="button" data-a="hide">Zamknij</button>' +
+      '<button type="button" data-a="hide">Zamknij (I)</button>' +
       '<div class="uw-msg" aria-live="polite"></div>';
   }
   panel.addEventListener('click', function (ev) {
@@ -92,12 +109,16 @@
     var by = {};
     notes.forEach(function (n) { (by[n.page] = by[n.page] || []).push(n); });
     Object.keys(by).forEach(function (p) {
-      out.push('## ' + p, '');
+      out.push('## ' + (by[p][0].url || location.origin + p), '');
       by[p].forEach(function (n, i) {
         out.push((i + 1) + '. **' + n.comment.replace(/\n+/g, ' ') + '**');
         out.push('   - element: `' + n.sel + '` (' + n.tag + ')');
+        if (n.url) out.push('   - adres: ' + n.url);
         if (n.sec) out.push('   - sekcja: ' + n.sec);
         if (n.text) out.push('   - tekst: „' + n.text + '”');
+        if (n.geom) out.push('   - wymiary: ' + n.geom);
+        if (n.style) out.push('   - styl: ' + n.style);
+        if (n.html) out.push('   - html: `' + n.html.replace(/`/g, "'") + '`');
         out.push('   - szerokość okna: ' + n.vw + ' px');
       });
       out.push('');
@@ -154,7 +175,7 @@
       if (a === 'ok') {
         var c = ta.value.trim(); if (!c) { ta.focus(); return; }
         if (existing) existing.comment = c;
-        else notes.push({ page: here(), sel: sel, tag: e.tagName.toLowerCase(), sec: section(e), text: (e.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80), comment: c, vw: window.innerWidth });
+        else notes.push({ page: here(), url: location.href.replace(/[?&]uwagi=1/, ''), sel: sel, tag: e.tagName.toLowerCase(), sec: section(e), text: (e.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80), comment: c, vw: window.innerWidth, geom: geom(e), style: style(e), html: snippet(e) });
         save(); closePop(); draw(); renderPanel();
       }
     });
@@ -179,6 +200,7 @@
   window.addEventListener('scroll', function () { clearTimeout(rt); rt = setTimeout(draw, 400); }, { passive: true });
 
   var api = {
+    pick: function (on) { state.picking = on !== false; closePop(); renderPanel(); },
     toggle: function () { panel.style.display = panel.style.display === 'none' ? '' : 'none'; },
     destroy: function () {
       document.removeEventListener('mouseover', onOver, true); document.removeEventListener('mouseout', onOut, true);

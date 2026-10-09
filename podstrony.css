@@ -830,7 +830,7 @@ body.subpage .toc-sticky .toc-list { inline-size: var(--toc-w, auto); max-inline
 /* strzałka powrotu wyśrodkowana względem pierwszego wiersza tytułu: środek kółka = środek pasa małych liter (górny brzeg tytułu to x-height) */
 body.subpage .title-row { --hero-title: clamp(40px, 4.6vw, 64px); }
 @media (min-width: 1440px) {
-  body.subpage .back-link { font: 700 var(--hero-title) var(--font-main); line-height: 1; inset-block-start: calc(.5ex - 24px); }
+  body.subpage .back-link { font: 700 var(--hero-title) var(--font-main); line-height: 1; inset-block-start: calc(.5ex - 24px - .119em); }   /* środek kółka = środek wielkiej pierwszej litery (cap), nie x-height */
 }
 /* 23: rozmiar akapitu w całym bloku rezerwacji (silniejszy selektor niż style przejęte z Home) */
 html body.book-type.subpage .booking-bottom :is(.booking-subtitle, .booking-subtitle p, .booking-cta, .booking-phone, .booking-cta .type-arrow) { font-size: 16px !important; line-height: 24px !important; }
@@ -858,12 +858,12 @@ body.subpage .join-copy { min-block-size: 300px; padding: var(--s4); box-sizing:
 /* 14, 5, 15: zdjęcie (4 kolumny) i tekst obok niego (4 kolumny) w jednym wierszu; strony naprzemiennie (is-reversed = zdjęcie po prawej);
    tekst obok zdjęcia ma kreskę na całą szerokość swojej kolumny */
 @media (min-width: 1001px) {
-  body.subpage .split-feature:not(.is-faq):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame { grid-column: 1 / span 4; order: 2; inline-size: 100%; }
-  body.subpage .split-feature:not(.is-faq) > .split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter)) {
+  body.subpage .split-feature:not(.is-faq):not(.is-short):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame { grid-column: 1 / span 4; order: 2; inline-size: 100%; }
+  body.subpage .split-feature:not(.is-faq):not(.is-short) > .split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter)) {
     grid-column: 5 / span 4; order: 2; border-top: 1px solid currentColor; padding-top: var(--s3);
   }
-  body.subpage .split-feature.is-reversed:not(.is-faq):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame { grid-column: 5 / span 4; order: 3; }
-  body.subpage .split-feature.is-reversed:not(.is-faq) > .split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter)) { grid-column: 1 / span 4; }
+  body.subpage .split-feature.is-reversed:not(.is-faq):not(.is-short):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame { grid-column: 5 / span 4; order: 3; }
+  body.subpage .split-feature.is-reversed:not(.is-faq):not(.is-short) > .split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter)) { grid-column: 1 / span 4; }
 }
 
 /* 8 (rezerwacja): w kolumnie artykułu (kol. 5–12), układ pionowy — tekst (lewa część) na górze, pies (prawa część) pod nim, obie 8 kolumn; bez latających zdjęć zwierząt */
@@ -881,9 +881,9 @@ body.subpage .booking .booking-pet:not(.solid) { display: none; }
   body.subpage .contact .contact-columns > .contact-column { grid-column: 1 / -1; grid-template-columns: subgrid; column-gap: 30px; }
 }
 
-/* listy z kreskami (np. „Jak działa czip”): zamiast strzałek zwykłe kropki średniej wielkości (10 px), wiszące poza akapitem, środek na pierwszym wierszu */
+/* listy z kreskami (np. „Jak działa czip”): zamiast strzałek zwykłe kropki 8 px (było 10), wiszące poza akapitem, środek na pierwszym wierszu */
 body.subpage .ruled-list:not(.is-numbered) > li::before {
-  inset-inline-start: calc(var(--hang-start) + 10px); top: calc(var(--s2) + 7px); inline-size: 10px; block-size: 10px;
+  inset-inline-start: calc(var(--hang-start) + 20px); top: calc(var(--s2) + 8px); inline-size: 8px; block-size: 8px;   /* odstęp kropka–tekst 8 px (było 16) */
   -webkit-mask: none; mask: none; background: currentColor; border-radius: 50%;
 }
 
@@ -1016,8 +1016,8 @@ body.subpage .page-columns .photo-frame.is-narrow.has-image > img { object-fit: 
 body.subpage .page-columns .photo-frame.is-narrow.has-image:is([data-kind="foto"], [data-kind="pas"]) { background: transparent; }
 body.subpage .page-columns .figure-mosaic .photo-frame.is-narrow { aspect-ratio: var(--ph-ratio, 4 / 5); }
 @media (min-width: 1001px) {
-  body.subpage .page-columns .split-feature:not(.is-faq):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame { aspect-ratio: var(--ph-ratio, 4 / 5); }
-  body.subpage .page-columns .split-feature:not(.is-faq):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame.has-image > img { object-fit: cover; }
+  body.subpage .page-columns .split-feature:not(.is-faq):not(.is-short):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame { aspect-ratio: var(--ph-ratio, 4 / 5); }
+  body.subpage .page-columns .split-feature:not(.is-faq):not(.is-short):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame.has-image > img { object-fit: cover; }
 }
 
 /* --- baner „W nagłym przypadku zadzwoń” (8 kolumn): kafle w różnych kolorach; kafel z numerem uruchamia telefon, kafel z lecznicami prowadzi do lecznic całodobowych --- */
@@ -1068,3 +1068,164 @@ body.subpage .page-columns .after-hours .emergency-clinics { grid-template-colum
   html body.book-type.subpage main a.join-banner .join-text h2 { font-size: clamp(24px, 6.9vw, 30px) !important; line-height: 1.25 !important; overflow-wrap: break-word; }
   body.subpage .ab-art .photo-frame { flex: none; aspect-ratio: 1; block-size: auto; }
 }
+
+/* Baner „Praca w Psyjaciołach” (9.10.2026): łososiowa karta z kobaltowym tekstem, bez zaokrągleń; u góry na całą szerokość siatka 8×8 zdjęć pacjentów (zdjęcie 640×640,
+   komórki 80×80; na desktopie przycięte do 400 px wysokości), pod nią tytuł „Praca” (40 px, 2× paragraf) w lewej kolumnie i krótki tekst w prawej;
+   tytuł i tekst tym samym krojem i rozmiarem. Aplą jest łososiowy (peach), tekst kobaltowy; wokół siatki ramka w kolorze tła o szerokości paddingu tekstu. */
+html body.book-type.subpage main a.join-banner {
+  --cobalt: #0047ab;
+  display: flex; flex-direction: column; padding: 0; border-radius: 0; background: var(--wp--preset--color--peach, #f6b08f); color: var(--cobalt); overflow: hidden;
+}
+html body.book-type.subpage main a.join-banner::before { content: none; }
+html body.book-type.subpage main a.join-banner .join-art { order: 0; position: relative; inline-size: 100%; block-size: auto; aspect-ratio: auto; margin: 0; padding: var(--s4) var(--s4) 0; box-sizing: border-box; background: transparent; }
+html body.book-type.subpage main a.join-banner .join-art::after { content: none; }
+html body.book-type.subpage main a.join-banner .join-grid { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 50%; }
+@media (min-width: 701px) { html body.book-type.subpage main a.join-banner .join-grid { block-size: 400px; aspect-ratio: auto; } }
+html body.book-type.subpage main a.join-banner .join-copy { order: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap, 32px); grid-template-rows: minmax(0, 1fr); align-items: start; block-size: auto; min-block-size: 260px; padding: var(--s4); box-sizing: border-box; text-align: left; }
+html body.book-type.subpage main a.join-banner .join-copy .join-text h2 { font-size: 40px !important; line-height: 48px !important; font-weight: 700; margin: 0; color: var(--cobalt); }
+html body.book-type.subpage main a.join-banner .join-copy p { font-size: 20px !important; line-height: 32px !important; font-weight: 700; margin: 0; max-inline-size: 40ch; text-wrap: balance; color: var(--cobalt); align-self: end; }
+html body.book-type.subpage main a.join-banner .join-text { align-self: flex-start; }
+@media (max-width: 700px) { html body.book-type.subpage main a.join-banner .join-copy { grid-template-columns: minmax(0, 1fr); row-gap: var(--s3); padding: var(--s3); } }
+
+/* Uwagi 9.10: mało tekstu obok pionowego zdjęcia → zdjęcie poziome (8 kol.), tekst pod nim; status otwarcia w ciemnym alercie czytelny i duży. */
+html body.book-type.subpage main .split-feature.is-short > .split-body > :is(.callout:first-child, :first-child + p) { max-inline-size: 62ch; }
+/* Status otwarcia w alercie: przedłużenie przycisku po prawej, tylko ramka (bez tła), ten sam krój i rozmiar co przycisk. */
+html body.book-type.subpage main .alert-band a.button:has(> .phone-status) { margin-block-end: 0; }
+html body.book-type.subpage main .alert-band a.button > .phone-status {
+  position: absolute; inset-inline-start: calc(100% + 1px); inset-block: -1px; margin: 0; display: flex; align-items: center; box-sizing: border-box;
+  padding: 0 var(--s3, 21px); border: 2px solid currentColor; border-inline-start: 0; background: transparent;
+  color: var(--surface); font-size: 16px; line-height: 24px; font-weight: 900; white-space: nowrap;   /* kolor jak tło przycisku */
+}
+
+/* Uwagi 9.10 (4, 5): rezerwacja w gridzie artykułu — tytuł na 8 kol., niżej tekst (4 kol.) i przyciski (4 kol.); lecznice całodobowe w 3 kolumnach, gdy się mieszczą. */
+@media (min-width: 1001px) {
+  html body.book-type.subpage #zapraszamy .booking-copy { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap, 32px); row-gap: var(--s3); align-content: start; align-items: start; }
+  html body.book-type.subpage #zapraszamy .booking-copy > h2 { grid-column: 1 / -1; grid-row: 1; margin-block-end: 100px; }
+  html body.book-type.subpage #zapraszamy .booking-bottom { display: contents; }
+  html body.book-type.subpage #zapraszamy .booking-subtitle { grid-column: 2; grid-row: 2 / span 2; align-self: end; margin: 0; }
+  html body.book-type.subpage #zapraszamy .booking-cta { grid-column: 1; grid-row: 2; justify-self: start; align-self: end; }
+  html body.book-type.subpage #zapraszamy .booking-phone { grid-column: 1; grid-row: 3; justify-self: start; align-self: end; }
+}
+@media (min-width: 1200px) {
+  body.subpage .page-columns .after-hours .emergency-clinics { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }   /* bez odstępu, żeby poziome kreski dochodziły do pionowych */
+}
+
+/* Uwaga 6: akapit rezerwacji z ikoną (i) po lewej (akapit wcięty), przyciski po lewej, tekst po prawej, wszystko na dole. */
+html body.book-type.subpage #zapraszamy .booking-subtitle p { position: relative; padding-inline-start: 36px; }
+html body.book-type.subpage #zapraszamy .booking-subtitle p::before {
+  content: "i"; position: absolute; inset-inline-start: 0; inset-block-start: 2px; inline-size: 20px; block-size: 20px; box-sizing: border-box;
+  border: 2px solid currentColor; border-radius: 50%; display: grid; place-items: center; font: 700 12px/1 var(--font-main, Satoshi, sans-serif);
+}
+
+/* kropla w statystyce bliżej lewej krawędzi (para „Gdzie wykonujemy badania” wróciła do prostego układu bez ramek i apli) */
+body.subpage .info-drop { inline-size: 48px; block-size: 66px; }
+
+/* Uwagi 9.10 (rezerwacja): sekcja w jasnym kolorze, blok 8 kolumn zdecydowany (zielony) z paddingiem; więcej światła pod „Psyjaciele”. */
+html body.book-type.subpage #zapraszamy { background: var(--wp--preset--color--peach-light, #fbd9c6); padding-block: var(--s6); }
+html body.book-type.subpage #zapraszamy .booking-copy { background: var(--wp--preset--color--green, #124e2c); padding: var(--s5); }
+@media (min-width: 1001px) {
+  html body.book-type.subpage #zapraszamy .booking-copy { padding: var(--s5); }
+  html body.book-type.subpage #zapraszamy .booking-copy > h2 { margin-block-end: var(--s7, 144px); }
+}
+
+/* Uwagi 9.10 (czip): „Sam czip nie wystarczy” — cztery kroki 2×2 (po 4 kolumny): numer, kto, co; kolor wg wykonawcy (lecznica ciemna, opiekun jasny). */
+body.subpage .info-steps4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap, 32px); }
+body.subpage .step4 { display: flex; flex-direction: column; justify-content: space-between; gap: var(--s4); min-block-size: 220px; padding: var(--s3) var(--s3) var(--s4); min-width: 0; }
+body.subpage .step4.is-ink { background: var(--ink); color: var(--surface); }
+body.subpage .step4.is-accent { background: var(--accent); color: var(--ink); }
+body.subpage .s4-top { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s2); }
+body.subpage .s4-num { font-size: 72px; line-height: 1; font-weight: 700; }
+body.subpage .s4-who { font-size: 16px; line-height: 24px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+body.subpage .step4 p { margin: 0; font-size: 20px; line-height: 32px; font-weight: 700; text-wrap: balance; }
+@media (max-width: 700px) { body.subpage .info-steps4 { grid-template-columns: minmax(0, 1fr); gap: var(--s2); } body.subpage .step4 { min-block-size: 0; } }
+/* czip (zgubi się): odstęp pod ilustracją, zanim zacznie się infografika */
+body.subpage .emergency .section-header { margin-block-end: var(--s5); }
+html body.book-type.subpage main .step4 p { color: inherit !important; }
+
+/* Uwagi 9.10 (szczepienia): lead w hero tylko odrobinę ciemniejszy od podstawowego; oś czasu z rysunkiem (8 kol.) i opisami pod kółkami; pojedynczy rysunek w mozaice na 8 kolumn. */
+body.subpage #poczatek { --small-ink: color-mix(in srgb, var(--ink) 92%, #000); }
+@media (min-width: 1001px) {
+  body.subpage .phase-timeline.has-art { position: relative; gap: 0; padding-top: 0; }
+  body.subpage .phase-timeline.has-art::before {
+    content: ""; grid-column: 1 / -1; grid-row: 1; aspect-ratio: 4.16 / 1; margin-block-end: var(--s3); filter: url(#tl-ink);
+    background: var(--tl-img) 51.2% 42.64% / 94.67% auto no-repeat;
+  }
+  body.subpage .phase-timeline.has-art > li { grid-row: 2; border-top: 0; padding: 0 var(--s1); text-align: center; justify-items: center; }
+  body.subpage .phase-timeline.has-art > li::before { content: none; }
+  body.subpage .phase-timeline.has-art h4 { font-size: 20px; line-height: 24px; }
+  body.subpage .phase-timeline.has-art .phase-when { font-size: 20px; line-height: 28px; }
+  body.subpage .phase-timeline.has-art p { font-size: 16px; line-height: 24px; }
+}
+body.subpage .figure-mosaic > :only-child { grid-column: 1 / -1; grid-row: auto; }
+
+/* Uwaga 9.10: proces czipowania — 4 punkty poziomo (po 2 z 8 kolumn); poniżej 1001 px zostaje lista. */
+body.subpage .info-points4 { display: none; }
+@media (min-width: 1001px) {
+  body.subpage .info-points4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--gap, 32px); margin: 0; }
+  body.subpage .pt4 { border-top: 2px solid currentColor; padding-top: var(--s3); display: grid; gap: var(--s2); align-content: start; min-width: 0; }
+  body.subpage .pt4-num { font-size: 48px; line-height: 1; font-weight: 700; }
+  body.subpage .pt4 p { margin: 0; font-size: 16px; line-height: 24px; font-weight: 700; text-wrap: pretty; }
+  body.subpage .step-list.is-road-source { position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+
+/* Uwagi 9.10 (chirurgia): lead z więcej niż jednym akapitem — font mniejszy o ok. 20%; zdjęcia (foto) w ramce 8 kolumn wypełniają ją (cover, kadr z --ph-pos). */
+body.subpage .page-hero .poster-copy:has(> p:nth-of-type(2)) > p { font-size: calc(var(--lead-size) * .8); line-height: calc(var(--lead-lh) * .8); }
+body.subpage .page-columns .photo-frame.is-narrow.has-image[data-kind="foto"] > img { object-fit: cover; object-position: var(--ph-pos, 50% 40%); }
+@media (min-width: 1001px) {
+  body.subpage .page-columns .split-feature:not(.is-faq):not(.is-short):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame.has-image[data-kind="foto"] > img { object-position: var(--ph-pos, 50% 40%); }
+}
+
+/* Uwagi 9.10 (paszporty): key-values w kolumnie podziału: etykieta nad opisem (zamiast wąskiej kolumny, z której wychodziła); etykiety tylko kapitalikami rozstrzelone. */
+body.subpage .split-body .key-values > div { grid-template-columns: minmax(0, 1fr); gap: var(--s1); }
+
+/* imiona w kartach lekarek (Kto przyjmuje) — krój Rialto jak na stronie głównej */
+html body.book-type.subpage main .people .person .person-name > em { font-family: Rialto, Georgia, serif !important; font-weight: 400 !important; font-size: 30px !important; line-height: 1.1 !important; }
+
+/* Licznik oddechów: panel na całą szerokość kolumny; po lewej cel, instrukcja i wynik, po prawej stoper, liczba i przyciski. */
+body.subpage .breath-counter { max-inline-size: none; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap, 32px); align-items: start; border: 2px solid currentColor; }
+body.subpage .breath-counter .bc-intro { display: grid; gap: var(--s2); align-content: start; }
+body.subpage .breath-counter .bc-intro p { margin: 0; }
+body.subpage .breath-counter .bc-how { font-size: 16px; line-height: 24px; }
+body.subpage .breath-counter .bc-result { font-size: 20px; line-height: 32px; font-weight: 700; border-top: 2px solid currentColor; padding-top: var(--s2); }
+body.subpage .breath-counter[data-state="high"] .bc-result { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }
+body.subpage .breath-counter .bc-panel { display: grid; gap: var(--s2); justify-items: start; }
+@media (max-width: 700px) { body.subpage .breath-counter { grid-template-columns: minmax(0, 1fr); row-gap: var(--s3); } }
+
+/* Uwagi 9.10 (okulistyka): baner bez kafla z rysunkiem — „zadzwoń” i „lecznice całodobowe” obok siebie (po 4 kolumny); rysunek leży w sekcji na 8 kolumn. */
+body.subpage .alert-banner:not(.has-art) .ab-call { grid-column: 1; }
+body.subpage .alert-banner:not(.has-art) .ab-closed { grid-column: 2; min-block-size: 405px; }
+body.subpage .alert-banner:not(.has-art) .ab-closed .ab-top { font-size: 20px; line-height: 32px; }
+@media (max-width: 700px) { body.subpage .alert-banner:not(.has-art) .ab-call, body.subpage .alert-banner:not(.has-art) .ab-closed { grid-column: 1; min-block-size: 0; } }
+
+/* informacja dodatkowa w rezerwacji (akapit z (i)) — taki sam kolor jak reszta tekstu na tej apli */
+html body.book-type.subpage #zapraszamy .booking-subtitle p { color: var(--wp--preset--color--peach, #f6b08f); }   /* jak standardowy tekst na tej apli */
+
+/* Uwagi 9.10 (okulistyka): rysunek w sekcji z banerem alarmowym leży pod banerem (kolejność: tabela → baner → rysunek → reszta). */
+html body.book-type.subpage main .split-feature:has(> .split-body > .alert-banner):not(.is-faq) > .split-body > .alert-banner { order: 3; }
+html body.book-type.subpage main .split-feature:has(> .split-body > .alert-banner):not(.is-faq) > .split-aside > .photo-frame { order: 4; }
+html body.book-type.subpage main .split-feature:has(> .split-body > .alert-banner):not(.is-faq) > .split-body > :not(:first-child):not(.alert-banner) { order: 5; }
+
+/* Znak trójkąta (ostrzeżenie) przy nagłówku: SVG z kreską o stałej grubości na ekranie = 0,13 em kroju obok (Satoshi 700), niezależnie od rozmiaru znaku. */
+body.subpage h2.has-warn { display: block; }
+body.subpage .warn-sign { display: block; margin-block-end: var(--s2); inline-size: 1.33em; block-size: 1.33em; fill: none; stroke: currentColor; stroke-width: .13em; stroke-linejoin: miter; }
+body.subpage .warn-sign path { vector-effect: non-scaling-stroke; }
+
+/* Uwagi 9.10 (alert „Pilne”): większe paddingi pionowe i ikona (i) w prawym górnym rogu. */
+html body.book-type.subpage main .alert-band { position: relative; padding-block: var(--s5); padding-inline-end: calc(var(--s5) + 48px + var(--s3)); }
+html body.book-type.subpage main .alert-band::after {
+  content: "i"; position: absolute; inset-block-start: var(--s5); inset-inline-end: var(--s5); inline-size: 48px; block-size: 48px; box-sizing: border-box;
+  border: 3px solid currentColor; border-radius: 50%; display: grid; place-items: center; font: 700 28px/1 var(--font-main, Satoshi, sans-serif);
+}
+@media (max-width: 700px) { html body.book-type.subpage main .alert-band { padding-block: var(--s4); } html body.book-type.subpage main .alert-band::after { inset-block-start: var(--s4); inset-inline-end: var(--s3); inline-size: 40px; block-size: 40px; font-size: 24px; } html body.book-type.subpage main .alert-band { padding-inline-end: calc(var(--s3) + 40px + var(--s2)); } }
+
+/* „vs” w kółku wszędzie: także w parach .duo bez wierszy (środkowa kolumna siatki). */
+body.subpage .duo > .duo-vs {
+  inline-size: 56px; block-size: 56px; display: grid; place-items: center; align-self: center; justify-self: center; box-sizing: border-box;
+  border: 2px solid var(--ink); border-radius: 50%; background: var(--ink); color: var(--surface); font-size: 28px; line-height: 1;
+}
+body.subpage .duo > .duo-vs em { display: block; line-height: 1; margin-top: -4px; }
+
+/* Uwagi 9.10 (ciśnienie): akapit wprowadzający do listy zostaje przy liście — zdjęcie z kolumny bocznej leży pod listą. */
+html body.book-type.subpage main .split-feature:not(.is-faq):has(> .split-body > p:first-child + :is(ul, ol)) > .split-aside > .photo-frame { order: 4; }
+body.subpage .book-prose > .duo { max-inline-size: none; inline-size: 100%; }
+body.subpage .book-prose:has(> .duo) { max-inline-size: none; }

@@ -10,7 +10,7 @@ ROW = 48   # wysokość wiersza infografiki „zbieżne linie” w px (wielokrot
 
 RICE = ('<svg class="info-rice" viewBox="0 0 120 56" aria-hidden="true"><ellipse cx="60" cy="28" rx="50" ry="15" '
         'transform="rotate(-18 60 28)" fill="none" stroke="currentColor" stroke-width="3"/></svg>')
-DROP = ('<svg class="info-rice" viewBox="0 0 120 68" aria-hidden="true"><path d="M60 4C46 22 38 32 38 40a22 22 0 0 0 44 0C82 32 74 22 60 4Z" '
+DROP = ('<svg class="info-rice info-drop" viewBox="36 2 48 66" aria-hidden="true"><path d="M60 4C46 22 38 32 38 40a22 22 0 0 0 44 0C82 32 74 22 60 4Z" '
         'fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="miter"/></svg>')
 
 
@@ -98,21 +98,16 @@ def converge_urologia():
 
 
 def lanes():
-    """„Sam czip nie wystarczy”: kto, co i gdzie (opiekun / lecznica / baza). Teksty to skróty zdań sekcji i kroków zabiegu."""
-    def card(txt, lane, cls='', arrow=False):
-        ar = '<span class="lane-arrow"></span>' if arrow else ''
-        return f'<div class="lane-card {cls}" data-l="{lane}">{txt}{ar}</div>'
-    e = '<div class="lane-cell"></div>'
-    c = lambda inner, span='': f'<div class="lane-cell{span}">{inner}</div>'
-    rows = [
-        e + c(card('Wszczepia czip i wpisuje numer do książeczki lub paszportu', 'Lecznica', 'is-ink')) + e,
-        e + c(card('Rejestruje zwierzę i dane opiekuna', 'Lecznica', 'is-accent', True)) + c(card('Safe-Animal', 'Baza')),
-        c(card('Zapisuje numer czipa', 'Opiekun', 'is-accent')) + e + e,
-        c(card('Sprawdza dane i aktualizuje je przy zmianie telefonu, adresu lub opiekuna', 'Opiekun', 'is-ink', True), ' is-span2') + c(card('Aktualne dane', 'Baza')),
+    """„Sam czip nie wystarczy”: cztery kroki po kolei (numer, kto, co) — zamiast torów z pustymi komórkami. Teksty to skróty zdań sekcji i kroków zabiegu."""
+    steps = [
+        ('Lecznica', 'Wszczepia czip i wpisuje jego numer do książeczki lub paszportu.', 'is-ink'),
+        ('Lecznica', 'Rejestruje zwierzę i dane opiekuna w bazie, np. Safe-Animal.', 'is-ink'),
+        ('Opiekun', 'Zapisuje numer czipa.', 'is-accent'),
+        ('Opiekun', 'Sprawdza dane w bazie i aktualizuje je przy zmianie telefonu, adresu lub opiekuna.', 'is-accent'),
     ]
-    return ('<figure class="info info-lanes" aria-hidden="true">'
-            '<div class="lane-head">Opiekun</div><div class="lane-head">Lecznica</div><div class="lane-head">Baza</div>'
-            + ''.join(rows) + '</figure>')
+    cards = ''.join(f'<div class="step4 {cls}"><span class="s4-top"><span class="s4-num">{i}</span><span class="s4-who">{who}</span></span><p>{txt}</p></div>'
+                    for i, (who, txt, cls) in enumerate(steps, 1))
+    return f'<figure class="info info-steps4" aria-hidden="true">{cards}</figure>'
 
 
 def lanes_chirurgia():
@@ -132,11 +127,23 @@ def lanes_chirurgia():
             '<div class="lane-head">Lekarka</div><div class="lane-head">Opiekun</div>' + ''.join(rows) + '</figure>')
 
 
+def road_czip():
+    """Proces czipowania: 4 punkty poziomo (numer, kreska, tekst), po 2 z 8 kolumn artykułu. Teksty to kroki z listy w sekcji
+    (lista zostaje w HTML jako źródło dla czytników, na desktopie ukryta; poniżej 1001 px widać listę)."""
+    steps = ['Lekarka sprawdza czytnikiem, czy zwierzę nie ma już czipa.',
+             'Wszczepia czip jednorazowym aplikatorem — trwa to kilka sekund i przypomina zastrzyk; nie wymaga znieczulenia.',
+             'Odczytuje numer i wpisuje go do książeczki zdrowia lub paszportu.',
+             'Rejestruje zwierzę i dane opiekuna w bazie Safe-Animal.']
+    pts = ''.join(f'<div class="pt4"><span class="pt4-num">{i}</span><p>{t}</p></div>' for i, t in enumerate(steps, 1))
+    return f'<figure class="info info-points4" aria-hidden="true">{pts}</figure>'
+
+
 # (slug, id nagłówka) → fabryka
 PLAN = {
     ('czipowanie-psow-i-kotow', 'jak-dziala-czip'): stats_czip,
     ('czipowanie-psow-i-kotow', 'co-zrobic-gdy-zwierze-sie-zgubi'): converge_zgubi,
     ('czipowanie-psow-i-kotow', 'sam-czip-nie-wystarczy-liczy-sie-rejestracja'): lanes,
+    ('czipowanie-psow-i-kotow', 'jak-wyglada-czipowanie'): road_czip,
     ('diagnostyka-obrazowa-psow-i-kotow', 'jak-przygotowac-psa-lub-kota-do-badania-usg'): stats_usg,
     ('diagnostyka-laboratoryjna-weterynaryjna', 'jak-przygotowac-zwierze-do-badan'): stats_lab,
     ('wystawianie-paszportow-psom-i-kotom', 'co-zabrac-na-wizyte'): steps_paszport,
@@ -165,6 +172,13 @@ def _icon():
     return svg.replace('<svg ', '<svg class="ab-icon" fill="currentColor" aria-hidden="true" focusable="false" data-credit="Annisa, Noun Project" ', 1)
 
 
+MOVE_ART = False
+
+# nagłówki ostrzegawcze ze znakiem trójkąta (kreska 0,13 em, jak pismo obok)
+WARN_H2 = {('dermatologia-weterynaryjna', 'dlaczego-nie-leczyc-skory-na-wlasna-reke')}
+WARN_SIGN = ('<svg class="warn-sign" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5 29 27.5H3Z"/><path d="M16 12v8M16 22.6v1.8"/></svg>')
+
+
 def alert_banner(html, root='../../', slug=''):
     m = _EMERGENCY_P.search(html)
     if not m:
@@ -176,7 +190,7 @@ def alert_banner(html, root='../../', slug=''):
     fm = None
     for fm in re.finditer(r'<figure class="placeholder photo-frame[^"]*"[^>]*>.*?</figure>(?:<!--.*?-->)?', html[sec:m.start()], flags=re.S):
         pass
-    if fm:
+    if fm and MOVE_ART:   # od 9.10.2026 rysunek zostaje w sekcji (poziomo, 8 kolumn), a baner to dwa kafle obok siebie
         art = fm.group(0)
         a, b = sec + fm.start(), sec + fm.end()
         html = html[:a] + html[b:]
@@ -207,4 +221,31 @@ def inject(slug, html):
         j = html.find('</header>', i)
         k = j + len('</header>')
         html = html[:k] + fn() + html[k:]
+    for (ws, wid) in WARN_H2:
+        if ws == slug:
+            tag = f'<h2 id="{wid}">'
+            if tag not in html:
+                raise SystemExit(f'infografiki: brak nagłówka {wid} na stronie {slug}')
+            html = html.replace(tag, f'<h2 id="{wid}" class="has-warn">{WARN_SIGN}', 1)
+    if slug == 'czipowanie-psow-i-kotow':
+        ol = '<ol class="step-list is-stacked" style="--steps:4">'
+        if html.count(ol) != 1:
+            raise SystemExit('infografiki: oczekiwano jednej listy kroków czipowania')
+        html = html.replace(ol, '<ol class="step-list is-stacked is-road-source" style="--steps:4">', 1)
+    if slug == 'szczepienia-oraz-profilaktyka-przeciwpasozytnicza':
+        html = timeline_art(html, 'assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-03-kalendarz.png')
     return html
+
+
+_TL_FILTER = ('<svg width="0" height="0" aria-hidden="true" style="position:absolute"><filter id="tl-ink" color-interpolation-filters="sRGB">'
+              '<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -.2126 -.7152 -.0722 0 1"/><feComposite in2="SourceGraphic" operator="in" result="lines"/>'
+              '<feFlood flood-color="var(--ink)"/><feComposite in2="lines" operator="in"/></filter></svg>')
+
+
+def timeline_art(html, img):
+    """Oś czasu faz (5 kroków): rysunek z kółkami na górze (8 kol.), pod każdym kółkiem opis fazy; kolor kreski z filtra SVG (var(--ink))."""
+    old = '<ol class="phase-timeline" style="--phases:5">'
+    if old not in html:
+        raise SystemExit('infografiki: brak osi czasu z 5 fazami')
+    new = _TL_FILTER + f'<ol class="phase-timeline has-art" style="--phases:5;--tl-img:url({img})">'
+    return html.replace(old, new, 1)

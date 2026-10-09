@@ -6,7 +6,7 @@ Nic tu nie wpisuje zdań treści: wszystkie teksty pochodzą ze źródła (węz�
 import html as _html
 import re
 
-from bs4 import Tag, NavigableString
+from bs4 import BeautifulSoup, Tag, NavigableString
 
 from home import Raw, strip_shy, text_of, DOMENA
 from zrodlo import runin, table_rows
@@ -283,8 +283,19 @@ def section_head(ctx, num, sec, lead_html=None, level=2, forced=None):
     return f'<header class="section-head">{kk}{heading(level, sec.title, sec.id, f)}{lead}</header>'
 
 
+def _short_pair(body):
+    """Czy tekst, który stałby obok zdjęcia (callout albo akapit po pierwszym elemencie), jest krótki (< 320 znaków)?"""
+    kids = [c for c in BeautifulSoup(body, 'html.parser').contents if getattr(c, 'name', None)]
+    if not kids:
+        return False
+    pair = kids[0] if 'callout' in (kids[0].get('class') or []) else (kids[1] if len(kids) > 1 and (kids[1].name == 'p' or 'sub-chapter' in (kids[1].get('class') or [])) else None)
+    return pair is not None and len(pair.get_text().strip()) < 320
+
+
 def split_feature(ctx, aside, body, reverse=False, cls=''):
     ctx.use('split-feature')
+    if 'photo-frame' not in aside or _short_pair(body):   # bez zdjęcia obok nie ma pary 4+4; mało tekstu: zdjęcie poziome, tekst pod nim   # mało tekstu: zdjęcie poziome na 8 kolumn, tekst pod nim (nie obok pionowego zdjęcia)
+        cls = (cls + ' is-short').strip()
     r = ' is-reversed' if reverse else ''
     return (f'<div class="split-feature{r}{(" " + cls) if cls else ""}"><div class="split-aside">{aside}</div>'
             f'<div class="split-body">{body}</div></div>')
@@ -560,6 +571,10 @@ def _node_html(ctx, n):
 EXT = {'foto': 'jpg', 'pas': 'jpg', 'wycinek': 'png', 'ilustracja': 'png', 'diagram': 'png', 'ikona': 'svg'}
 
 
+# ustawienie kadru zdjęcia w ramce 8 kolumn (object-position), gdy domyślne 50% 40% ucina główny motyw
+PH_POS = {'chir-03-opieka-po': '50% 54%'}
+
+
 def photo_frame(ctx, ph_id, variant='', ratio=None, role=''):
     from obrazy import OBRAZY
     spec = OBRAZY[ph_id]
@@ -583,7 +598,7 @@ def photo_frame(ctx, ph_id, variant='', ratio=None, role=''):
     arr = {'foto': 'Zdjęcie', 'pas': 'Pas', 'wycinek': 'Wycinek', 'ilustracja': 'Ilustracja', 'diagram': 'Diagram', 'ikona': 'Ikona'}[kind]
     bw = 'kolor, retro' if kind in ('foto', 'pas') else ('liniowa' if kind in ('diagram', 'ilustracja') else 'czarna kreska na białym tle')
     return (f'<figure class="{cls}" data-ph="{ph_id}" data-kind="{kind}" data-src="{fn}" '
-            f'data-alt="{esc(spec["alt"])}" style="--ph-ratio:{r}' + (f';--ph-ratio-wide:{wide}' if wide else '') + '">'
+            f'data-alt="{esc(spec["alt"])}" style="--ph-ratio:{r}' + (f';--ph-ratio-wide:{wide}' if wide else '') + (f';--ph-pos:{PH_POS[ph_id]}' if ph_id in PH_POS else '') + '">'
             f'<figcaption><strong>{esc(spec["title"])}</strong><span>{arr} {ratio.replace("/", "∶")} · {bw}</span></figcaption></figure>'
             f'<!-- Podmiana: wgraj plik {fn} i odśwież stronę — podstrony.js podmieni ramkę bez edycji HTML. -->')
 
@@ -791,11 +806,12 @@ def prose_nodes(ctx, nodes):
 
 
 def join_art_dog(ctx):
-    """Obraz banera „Praca w Psyjaciołach”: szary pies (jak w rezerwacji) i latające kulki (podstrony.js, moduł joinBalls)."""
+    """Obraz banera „Praca w Psyjaciołach”: siatka 8×8 kolorowych zdjęć pacjentów (psy i koty), komórki 80×80 px, całość 640×640 px."""
     ctx.use('join-banner')
-    src = ctx.rw.asset('assets/booking-dog-cutout-v1.png')
-    return (f'<img class="join-dog" src="{src}" alt="Pies w przychodni Psyjaciele" width="1039" height="1514" loading="lazy" decoding="async">'
-            '<span class="join-balls" aria-hidden="true"></span>')
+    s1 = ctx.rw.asset('assets/join-pacjenci-640.png')
+    s2 = ctx.rw.asset('assets/join-pacjenci-1254.png')
+    return (f'<img class="join-grid" src="{s1}" srcset="{s1} 640w, {s2} 1254w" sizes="(min-width: 1001px) 843px, 100vw" '
+            'alt="Pacjenci przychodni Psyjaciele — psy i koty" width="640" height="640" loading="lazy" decoding="async">')
 
 
 def join_art_shared(ctx):
@@ -815,6 +831,6 @@ def join_banner(ctx, title, nodes, img_html, mail_href, hid=None, side=False, fo
         ps = ''.join(f'<p>{x}</p>' for x in parts)
     else:
         ps = f'<p>{arrow}</p>'
-    h = heading(2, title, hid, forced)
+    h = f'<h2 id="{hid}" aria-label="{plain(title)}">Praca</h2>' if hid else '<h2 aria-label="Praca w Psyjaciołach">Praca</h2>'   # na banerze widać samo „Praca”
     return (f'<a class="join-banner" href="{mail_href}"><div class="join-art">{img_html}</div>'
             f'<div class="join-copy"><div class="join-text">{h}</div>{ps}</div></a>')

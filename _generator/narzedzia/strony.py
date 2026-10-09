@@ -276,7 +276,7 @@ class PB:
                 cls += ' toc-mobile'   # wersja dla wąskich okien; od 1001 px spis jest lewą szpaltą (toc-rail)
             out.append((it, B.section(self.ctx, cls, it.inner, sid=it.sid, aria=it.aria, label=self.home.label_for(cls))))
         # artykuły: kolumna po prawej (kol. 5–12), po lewej przyklejony spis treści (kol. 1–4); sekcje „home” i pasma pełnej szerokości poza kolumną
-        full = {'hero', 'toc', 'social', 'doctors', 'rail', 'about'}   # „reviews” (Opinie opiekunów) w kolumnie 8 kol. i w spisie treści
+        full = {'hero', 'toc', 'social', 'rail', 'about'}   # „doctors” (Kto przyjmuje) w kolumnie 8 kol., spis treści idzie do końca   # „reviews” (Opinie opiekunów) w kolumnie 8 kol. i w spisie treści
         toc_html = B.toc_rail(self.ctx, self.src.toc) if any(it.kind == 'toc' for it, _ in out) else ''
         res, cur = [], []
         def flush():

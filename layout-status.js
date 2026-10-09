@@ -31,8 +31,14 @@
     return { state: 'closed', label, from: hoursFor(d)[0], day, minutes };
   }
 
+  // Wskaźnik tylko tam, gdzie numer stoi sam; numer w ciągłym tekście (akapit, element listy) go nie dostaje.
+  function inRunningText(a) {
+    const p = a.parentElement;
+    return !!p && /^(P|LI)$/.test(p.tagName) && (p.textContent.length - a.textContent.length) > 30;
+  }
+
   const hero = document.querySelector('[data-hero-status]');
-  const phones = Array.from(document.querySelectorAll(PHONE)).filter(a => !a.closest('.hero-actions, .sticky-cta') && !a.matches('.header-call'));
+  const phones = Array.from(document.querySelectorAll(PHONE)).filter(a => !a.closest('.hero-actions, .sticky-cta') && !a.matches('.header-call') && !inRunningText(a));
   const tags = phones.map(a => {
     const s = document.createElement('span');
     s.className = 'phone-status';
@@ -48,7 +54,7 @@
       else text = st.state === 'closing' ? `Otwarte jeszcze do ${fmt(st.close)}` : `Otwarte teraz — do ${fmt(st.close)}`;
       hero.textContent = text;
       hero.dataset.state = st.state;
-      hero.setAttribute('href', st.state === 'closed' ? '#after-hours-title' : '#zapraszamy');
+      hero.setAttribute('href', st.state === 'closed' ? '#after-hours-title' : (document.getElementById('zapraszamy') ? '#zapraszamy' : '#kontakt'));
       hero.hidden = false;
     }
     const word = st.state === 'closed' ? `zamknięte — ${st.label} od ${fmt(st.from)}` : (st.state === 'closing' ? `otwarte jeszcze do ${fmt(st.close)}` : `otwarte do ${fmt(st.close)}`);

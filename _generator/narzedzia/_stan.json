@@ -316,15 +316,6 @@
     "page": "szczepienia-oraz-profilaktyka-przeciwpasozytnicza",
     "sekcja": "profilaktyka-przeciwpasozytnicza-psow-i-kotow",
     "rola": ""
-   },
-   {
-    "id": "szcz-03-kalendarz",
-    "kind": "diagram",
-    "ratio": "4/3",
-    "file": "assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-03-kalendarz.png",
-    "page": "szczepienia-oraz-profilaktyka-przeciwpasozytnicza",
-    "sekcja": "profilaktyka-przeciwpasozytnicza-psow-i-kotow",
-    "rola": ""
    }
   ],
   "green": 1
@@ -343,14 +334,12 @@
    "paper",
    "mid-c",
    "soft-a",
-   "mid-a",
    "end"
   ],
   "uses": [
    "back-link",
    "contact",
    "contact-columns",
-   "cta-band",
    "doctor-strip",
    "emergency-guide",
    "faq-accordion",
@@ -382,9 +371,9 @@
    },
    {
     "id": "chir-03-opieka-po",
-    "kind": "foto",
-    "ratio": "4/5",
-    "file": "assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-03-opieka-po.jpg",
+    "kind": "ilustracja",
+    "ratio": "8/5",
+    "file": "assets/podstrony/chirurgia-weterynaryjna-tkanek-miekkich/chir-03-opieka-po.png",
     "page": "chirurgia-weterynaryjna-tkanek-miekkich",
     "sekcja": "dlaczego-przygotowanie-zwierzecia-do-zabiegu-jest-wazne",
     "rola": "aside rozdziału 2"
@@ -424,7 +413,6 @@
    "paper",
    "mid-c",
    "soft-a",
-   "mid-a",
    "end"
   ],
   "uses": [
@@ -432,7 +420,6 @@
    "breath-counter",
    "contact",
    "contact-columns",
-   "cta-band",
    "doctor-strip",
    "duo",
    "emergency-guide",
@@ -523,14 +510,12 @@
    "paper",
    "mid-c",
    "paper",
-   "soft-b",
    "end"
   ],
   "uses": [
    "back-link",
    "contact",
    "contact-columns",
-   "cta-band",
    "doctor-strip",
    "faq-accordion",
    "figure-band",
@@ -601,16 +586,14 @@
    "paper",
    "mid-c",
    "paper",
-   "soft-b",
    "end",
-   "soft-a"
+   "soft-b"
   ],
   "uses": [
    "after-hours",
    "back-link",
    "contact",
    "contact-columns",
-   "cta-band",
    "doctor-strip",
    "emergency-guide",
    "equipment-grid",
@@ -634,7 +617,7 @@
    {
     "id": "oko-01-oko-diagram",
     "kind": "diagram",
-    "ratio": "4/3",
+    "ratio": "2/1",
     "file": "assets/podstrony/okulistyka-weterynaryjna/oko-01-oko-diagram.png",
     "page": "okulistyka-weterynaryjna",
     "sekcja": "kiedy-do-okulisty-a-kiedy-pilnie",
@@ -721,10 +704,10 @@
     "rola": "aside rozdziału 1"
    },
    {
-    "id": "derm-02-pas-skora-siersc",
+    "id": "derm-02-pas-skora-siersc-v2",
     "kind": "pas",
     "ratio": "21/9",
-    "file": "assets/podstrony/dermatologia-weterynaryjna/derm-02-pas-skora-siersc.jpg",
+    "file": "assets/podstrony/dermatologia-weterynaryjna/derm-02-pas-skora-siersc-v2.jpg",
     "page": "dermatologia-weterynaryjna",
     "sekcja": "najczestsze-problemy-skorne-psow-i-kotow",
     "rola": ""
@@ -1267,10 +1250,8 @@
    "top",
    "soft-a",
    "mid-a",
-   "mid-c",
    "soft-a",
-   "mid-b",
-   "soft-b",
+   "mid-c",
    "paper",
    "mid-b",
    "end",
@@ -1282,11 +1263,9 @@
    "contact",
    "contact-columns",
    "faq-accordion",
-   "figure-band",
    "join-banner",
    "key-values",
    "page-hero",
-   "photo-frame",
    "poster-grid",
    "quotes",
    "rail-layout",
@@ -1296,26 +1275,7 @@
    "social-promo",
    "sticky-cta"
   ],
-  "placeholders": [
-   {
-    "id": "zespol-01-zespol-grupowe",
-    "kind": "pas",
-    "ratio": "21/9",
-    "file": "assets/podstrony/zespol/zespol-01-zespol-grupowe.jpg",
-    "page": "zespol",
-    "sekcja": "Magda",
-    "rola": ""
-   },
-   {
-    "id": "zespol-02-gabinet",
-    "kind": "pas",
-    "ratio": "21/9",
-    "file": "assets/podstrony/zespol/zespol-02-gabinet.jpg",
-    "page": "zespol",
-    "sekcja": "praca-w-psyjaciolach",
-    "rola": ""
-   }
-  ],
+  "placeholders": [],
   "green": 0
  },
  "polityka-prywatnosci": {

@@ -344,7 +344,12 @@
       links.forEach(function (a) { if (cur && a === cur.a) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
       var y = box.getBoundingClientRect().top + 48, hit = null;
       secs.forEach(function (sec) { var r = sec.getBoundingClientRect(); if (r.top <= y && r.bottom > y) hit = sec; });
-      if (hit) box.style.color = getComputedStyle(hit).color;
+      if (hit) {
+        var cs = getComputedStyle(hit), m = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(cs.backgroundColor);
+        var light = m && (0.2126 * +m[1] + 0.7152 * +m[2] + 0.0722 * +m[3]) / 255 > 0.6;
+        // sekcja o jasnym tle, ale z jasnym kolorem tekstu (np. rezerwacja z zielonym blokiem w środku) → spis w zieleni marki
+        box.style.color = light && /rgba?\((2[0-9]{2})/.test(cs.color) ? "#124e2c" : cs.color;
+      }
     }
     function schedule() { if (!sched) { sched = true; raf(update); } }
     window.addEventListener("scroll", schedule, { passive: true });
@@ -417,16 +422,24 @@
     apply();
   });
 
-  /* 13. Licznik oddechów (kardiologia): stoper 60 s i licznik kliknięć; po czasie pokazuje tylko liczbę — bez oceny */
+  /* 13. Licznik oddechów (kardiologia): stoper 60 s i licznik kliknięć; po czasie pokazuje wynik (oddechy na minutę) i krótką wskazówkę:
+        do 30 — typowy zakres w spoczynku, powyżej 30 — powtórz pomiar i przy powtarzającym się wyniku skontaktuj się z lekarzem */
   run("initBreathCounter", function () {
     $$(".breath-counter").forEach(function (box) {
-      var start = $("[data-breath-start]", box), tap = $("[data-breath-tap]", box), out = $("output", box);
+      var start = $("[data-breath-start]", box), tap = $("[data-breath-tap]", box), out = $("output", box), res = $("[data-breath-result]", box);
       if (!start || !tap || !out) return;
       var secs = 60, count = 0, timer = 0, running = false, clock = $("[data-breath-time]", box);
       function show() { out.textContent = String(count); if (clock) clock.textContent = String(Math.max(0, secs)); }
-      function stop() { clearInterval(timer); running = false; start.disabled = false; tap.disabled = true; start.textContent = start.getAttribute("data-label-again") || start.textContent; }
+      function verdict() {
+        var high = count > 30;
+        box.setAttribute("data-state", high ? "high" : "ok");
+        if (res) res.textContent = count + " oddechów na minutę — " + (high
+          ? "powyżej 30. Powtórz pomiar po kilkunastu minutach spokoju; jeśli wynik się powtarza, skontaktuj się z lekarzem."
+          : "w typowym zakresie (do 30). Powtórz pomiar w ciągu kilku dni i zapisz wyniki.");
+      }
+      function stop() { clearInterval(timer); running = false; start.disabled = false; tap.disabled = true; start.textContent = start.getAttribute("data-label-again") || start.textContent; verdict(); }
       start.addEventListener("click", function () {
-        count = 0; secs = 60; running = true; tap.disabled = false; start.disabled = true; show();
+        count = 0; secs = 60; running = true; tap.disabled = false; start.disabled = true; box.removeAttribute("data-state"); if (res) res.textContent = "Liczę… klikaj „Oddech” przy każdym oddechu."; show();
         timer = setInterval(function () { secs -= 1; show(); if (secs <= 0) stop(); }, 1000);
       });
       tap.addEventListener("click", function () { if (running) { count += 1; show(); } });
@@ -458,12 +471,13 @@
     });
   });
 
-  /* 15. Latające kulki w banerze pracy: kilka kulek w kolorze apli dryfuje nad szarym psem; bez ruchu przy prefers-reduced-motion */
+  /* 15. Latające kulki w banerze pracy: kilka czarno-białych kulek ze zwierzętami (atlas zdjęć) dryfuje nad szarym psem; bez ruchu przy prefers-reduced-motion */
   run("joinBalls", function () {
     $$(".join-balls").forEach(function (box) {
-      var art = box.parentElement, sizes = [28, 40, 52, 32, 44, 24, 36, 48], balls = [], W = 0, H = 0, vis = false, frame = 0;
+      var art = box.parentElement, sizes = [64, 88, 72, 96, 60, 80, 68, 84], balls = [], W = 0, H = 0, vis = false, frame = 0;
       sizes.forEach(function (s, i) {
         var b = document.createElement("span"); b.className = "join-ball"; b.style.width = b.style.height = s + "px";
+        var fr = 40 + i; b.style.setProperty("--pet-x", (fr % 8 * 100 / 7) + "%"); b.style.setProperty("--pet-y", (Math.floor(fr / 8) * 100 / 7) + "%");
         box.appendChild(b); balls.push({ el: b, s: s, i: i });
       });
       function place(t) {
@@ -497,16 +511,5 @@
     });
   });
 
-  // tryb przeglądu: ?uwagi=1 włącza narzędzie do zaznaczania i komentowania elementów (?uwagi=0 wyłącza); flaga trzyma się w karcie
-  run("uwagi", function () {
-    var q = /[?&]uwagi=([01])/.exec(location.search), on = false;
-    try {
-      if (q) { if (q[1] === "1") sessionStorage.setItem("uwagi-on", "1"); else sessionStorage.removeItem("uwagi-on"); }
-      on = sessionStorage.getItem("uwagi-on") === "1";
-    } catch (e) { on = !!(q && q[1] === "1"); }
-    if (!on || !document.currentScript) return;
-    var s = document.createElement("script");
-    s.src = document.currentScript.src.replace(/podstrony\.js.*$/, "_narzedzia/uwagi.js");
-    document.body.appendChild(s);
-  });
+  // inspektor uwag (klawisz „I”, ?uwagi=1): patrz inspektor.js w korzeniu makiety
 })();

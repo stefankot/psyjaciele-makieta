@@ -62,6 +62,8 @@ def check(slug, pages):
             t = 'Lekarka weterynarii ' + t[len('lek. wet. '):]   # skrót rozwinięty na polecenie użytkownika
         if not t:
             continue
+        if e.name == 'h2' and t == 'Praca w Psyjaciołach':
+            continue   # baner pokazuje samo „Praca” na polecenie użytkownika (9.10.2026); pełny tytuł w aria-label i w spisie treści
         if e.name == 'p' and 'cta-wizyta' in (e.get('class') or []):
             continue   # zdanie „Umów wizytę: …” usunięte na polecenie użytkownika (8.10.2026) — powtarzało przyciski
         key = re.sub(r'[^0-9A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]', '', t)
@@ -114,7 +116,7 @@ def check(slug, pages):
             errs.append(f'V6 literał koloru w style: {st[:60]}')
     # V13 obrazy
     figs = soup.select('figure.placeholder')
-    low = 2 if slug == 'zespol' else 3   # zespół: baner pracy ma już prawdziwy obraz (pies), nie placeholder
+    low = 0 if slug == 'zespol' else 3   # zespół: bez placeholderów (baner pracy ma prawdziwy obraz, pasy 21:9 usunięte)
     if slug != 'polityka-prywatnosci' and not (low <= len(figs) <= 7):
         errs.append(f'V13 liczba placeholderów = {len(figs)} (wymagane {low}–7)')
     if slug == 'polityka-prywatnosci' and figs:

@@ -48,6 +48,11 @@ makieta/
 - `psy.py`: owija słowo „Psyjaciele” (i formy) w `<span class="psy">`; styl `.psy` (Rialto, 1,41 em) w `layout-nowa.css`. Ten sam skrypt na Home: `python3 _generator/narzedzia/psy.py index.html`.
 - `infografiki.py`: infografiki wstawiane po nagłówkach wskazanych sekcji (lista `PLAN`); style `.info-*` w `podstrony.css`. Skala ciśnienia to restyl istniejącego bloku `range-scale`.
 
+## Inspektor uwag (do zbierania poprawek)
+- Klawisz **I** na dowolnej stronie (lokalnie: localhost, 127.0.0.1, file://) włącza inspektor; kliknięcie elementu otwiera okienko uwagi, **Kopiuj wszystko** daje Markdown
+  (selektor, wymiary i kolumna w siatce, styl, fragment HTML, szerokość okna) do wklejenia w rozmowie. Ponowne **I** wyłącza. Na stronie publicznej: `?uwagi=1`.
+- Kod: `inspektor.js` (skrót, ładowany ze strony głównej i podstron) i `_generator/narzedzia/uwagi.js` (narzędzie).
+
 ## Komendy (z katalogu makiety)
 
 ```

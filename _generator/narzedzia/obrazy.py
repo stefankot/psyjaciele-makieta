@@ -48,7 +48,7 @@ _ROWS = [
     # --- chirurgia
     ('chir-01-sala-zabiegowa', 'pas', '21/9', 'Sala zabiegowa', 'Pusta, jasna sala zabiegowa; bez widocznych narzędzi w użyciu.', 'Sala zabiegowa przychodni', REAL, 'a bright empty surgical room with a table and lamp, no instruments in use'),
     ('chir-02-konsultacja', 'foto', '3/2', 'Konsultacja przed zabiegiem', 'Lekarka rozmawia z opiekunem przy psie; bez twarzy.', 'Konsultacja przed zabiegiem', REAL, 'a veterinarian talking with a pet owner next to a dog, faces not visible'),
-    ('chir-03-opieka-po', 'foto', '4/5', 'Pies w kołnierzu', 'Pies w miękkim kołnierzu leżący na posłaniu.', 'Pies w kołnierzu po zabiegu', GEN, 'a dog resting on a bed wearing a soft recovery collar'),
+    ('chir-03-opieka-po', 'ilustracja', '8/5', 'Ilustracja zamiast zdjęcia: pies w kołnierzu po zabiegu', 'Rysunek (czarna kreska na białym tle): pies w miękkim kołnierzu leżący na posłaniu.', 'Pies w kołnierzu po zabiegu', GEN, 'line drawing of a dog resting on a bed wearing a soft recovery collar, black line on white'),
     ('chir-04-rana-schemat', 'diagram', '4/3', 'Schemat opatrunku', 'Ogólny schemat linii opatrunku na łapie (bez ran).', 'Schemat opatrunku', DRAW, 'simplified line drawing of a dog\'s leg with a bandage wrap, no wound shown'),
     # --- kardiologia
     ('kard-01-serce-diagram', 'diagram', '4/3', 'Schemat budowy serca', 'Uproszczony przekrój czterech jam serca psa ze strzałkami przepływu krwi.', 'Schemat budowy serca psa', DRAW, 'simplified four-chamber heart of a dog in cross-section with unlabeled arrows showing blood flow'),
@@ -64,13 +64,13 @@ _ROWS = [
     ('usg-03-badanie', 'foto', '3/2', 'Badanie USG jamy brzusznej', 'Głowica na wygolonym brzuchu psa; bez twarzy.', 'Badanie USG psa', REAL, 'an ultrasound probe on the shaved belly of a calm dog lying on its back, faces not visible'),
     ('usg-04-pas', 'pas', '21/9', 'Gabinet USG', 'Szeroki pas: stół badań i przyciemnione światło.', 'Gabinet badań USG', REAL, 'wide view of a dim ultrasound room with a table and machine'),
     # --- okulistyka
-    ('oko-01-oko-diagram', 'diagram', '4/3', 'Schemat budowy oka', 'Uproszczony przekrój oka psa (bez opisów).', 'Schemat budowy oka psa', DRAW, 'simplified cross-section of a dog\'s eye showing cornea, lens and retina as plain shapes'),
+    ('oko-01-oko-diagram', 'diagram', '2/1', 'Schemat budowy oka', 'Uproszczony przekrój oka psa (bez opisów).', 'Schemat budowy oka psa', DRAW, 'simplified cross-section of a dog\'s eye showing cornea, lens and retina as plain shapes'),
     ('oko-02-badanie-lampa', 'foto', '3/2', 'Badanie lampą szczelinową', 'Lampa szczelinowa przy głowie psa; kadr bez twarzy ludzi.', 'Badanie oka lampą szczelinową', REAL, 'a slit lamp examination of a dog\'s eye, human faces not visible'),
     ('oko-03-oko-pies', 'foto', '4/5', 'Portret psa', 'Portret psa z widocznymi oczami, spokojny wyraz.', 'Portret psa z bliska', GEN, 'a close portrait of a calm dog looking toward the camera'),
     ('oko-04-pas-gabinet', 'pas', '21/9', 'Gabinet okulistyczny', 'Szeroki pas: gabinet z lampą szczelinową.', 'Gabinet okulistyczny', REAL, 'wide view of a veterinary room with a slit lamp on a table'),
     # --- dermatologia
     ('derm-01-badanie-skory', 'foto', '4/5', 'Badanie skóry psa', 'Dłonie rozchylające sierść na grzbiecie psa; bez widocznych zmian chorobowych.', 'Badanie skóry psa', REAL, 'hands parting the fur on a dog\'s back to look at healthy-looking skin, no lesions visible'),
-    ('derm-02-pas-skora-siersc', 'pas', '21/9', 'Sierść z bliska', 'Szeroki makro-kadr sierści psa.', 'Sierść psa z bliska', GEN, 'wide macro view of a dog\'s fur texture'),
+    ('derm-02-pas-skora-siersc-v2', 'pas', '21/9', 'Nowy obraz zamiast zdjęcia: sierść z bliska', 'Szeroki makro-kadr sierści psa (nowe ujęcie; poprzednie usunięte).', 'Sierść psa z bliska', GEN, 'wide macro view of a dog\'s fur texture'),
     ('derm-03-cytologia', 'foto', '3/2', 'Mikroskop i szkiełka', 'Mikroskop i szkiełka podstawowe na blacie.', 'Mikroskop i szkiełka', REAL, 'a microscope and glass slides on a clean counter'),
     ('derm-04-pielegnacja', 'wycinek', '1/1', 'Szczotka do sierści', 'Szczotka do sierści na białym tle, czarna kreska.', 'Szczotka do sierści', GEN, 'a pet grooming brush, simple object'),
     # --- stomatologia

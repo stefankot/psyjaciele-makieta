@@ -685,3 +685,45 @@ html body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone .phone
 .phone-status { white-space: normal; }
 
 a.booking-phone .phone-status { display: flex; margin: var(--s1) 0 0; }
+
+/* Zespół (Home) — pasy ze zdjęciami przyciętymi od dołu, 3 w rzędzie (4 kol.); podpisy do lewej pod pasem. */
+html body.book-type.book-type .team .people{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap,32px);row-gap:clamp(40px,5vw,72px);border:0}
+html body.book-type.book-type .team .people::before,html body.book-type.book-type .team .people::after{content:none}
+html.motion body.book-type.book-type .team .people .person,html body.book-type.book-type .team .people .person,html body.book-type.book-type .team .people .person:last-child{grid-column:span 4;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr;align-items:start;gap:0;min-height:0;padding:0;border:0!important;border-image:none!important;text-align:left;position:relative}
+html body.book-type.book-type .team .people .person::after{content:none}
+html body.book-type.book-type .team .people .person figure{grid-column:1;grid-row:1;place-self:stretch;width:100%;height:auto;aspect-ratio:400/260;margin:0;background:color-mix(in srgb,currentColor 9%,transparent);overflow:hidden}
+html body.book-type.book-type .team .people .person .portrait-blob{position:relative;width:100%;height:100%}
+html body.book-type.book-type .team .people .person .portrait-blob img{position:absolute;left:0;right:0;top:9%;bottom:0;inset:9% 0 0 0;width:100%;height:91%;object-fit:contain;object-position:center bottom}
+html body.book-type.book-type .team .people .person>header{grid-column:1;grid-row:2;padding:var(--s2,16px) 0 0;align-self:start}
+html body.book-type.book-type .team .people .person .specializations{grid-column:1;grid-row:3;padding:6px 0 0;align-self:start;text-align:left}
+html body.book-type.book-type .team .people .person .person-name{text-align:left}
+@media(max-width:700px){
+html.motion body.book-type.book-type .team .people .person,html body.book-type.book-type .team .people .person,html body.book-type.book-type .team .people .person:last-child{grid-column:span 6;grid-template-columns:minmax(0,1fr);min-height:0}
+html body.book-type.book-type .team .people .person figure{aspect-ratio:1/1.05;width:100%;height:auto}
+html body.book-type.book-type .team .people .person>header,html body.book-type.book-type .team .people .person .specializations{grid-column:1;padding-inline:0}
+}
+
+/* Uwagi 9.10: status pod przyciskiem (zawsze), kropka przy numerze w nagłówku, pogrubiona strzałka kafelka usług. */
+html body.book-type.book-type a.button:has(> .phone-status),html body.book-type.book-type a.hero-btn:has(> .phone-status){position:relative;margin-block-end:calc(var(--status-gap,16px) + 24px)}
+html body.book-type.book-type a.button > .phone-status,html body.book-type.book-type a.hero-btn > .phone-status{position:absolute;inset-inline-start:0;top:100%;margin:var(--status-gap,16px) 0 0;color:var(--ink);white-space:nowrap;display:flex}
+html body.book-type.book-type .site-header .header-phone{position:relative}
+html body.book-type.book-type .site-header .header-phone .phone-status{position:absolute;inset-inline-start:100%;bottom:0;margin:0 0 0 var(--s1);height:24px;align-self:auto;width:10px;inline-size:10px;max-inline-size:none}
+html body.book-type.book-type .services .tile h3::after{filter:url(#thick-2)}
+
+/* Jednolity odstęp statusu od numeru/przycisku (16 px) i imiona w stopce bez Rialto. */
+html body.book-type.book-type :is(a.booking-phone,.site-nav .nav-col a.nav-phone) .phone-status{margin-top:16px}
+html body.book-type.book-type footer .footer-team .person .person-name em{font-family:var(--font-main);font-size:1em;font-weight:700;letter-spacing:0;line-height:inherit}
+
+/* Rozwinięta nawigacja: strzałka w prawo przy pozycji, w której jest użytkownik (aria-current ustawia nowa-header.js); wisi w odstępie między kolumnami. */
+.site-nav { --nav-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M1 10h17M11 3l7 7-7 7' fill='none' stroke='%23000' stroke-width='2.2'/%3E%3C/svg%3E"); }
+html body.book-type.book-type .site-header .site-nav .nav-col a[aria-current] { position: relative; }
+html body.book-type.book-type .site-header .site-nav .nav-col a[aria-current]::before {
+  content: ""; position: absolute; inset-inline-start: -32px; top: calc(var(--s1) + 2px); inline-size: 20px; block-size: 20px; background: currentColor;
+  -webkit-mask: var(--nav-arrow) center / contain no-repeat; mask: var(--nav-arrow) center / contain no-repeat;
+}
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-title[aria-current]::before { top: 6px; }
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-urgent[aria-current]::before { top: calc(50% + 1px - 10px); }
+
+/* Nagłówki kolumn menu (a.nav-title i p.nav-title) o identycznej wysokości — kolumny startują z jednej linii. */
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-title,
+html body.book-type.book-type .site-header .site-nav .nav-col p.nav-title { font-size: 24px !important; line-height: 32px !important; padding-block: 0 var(--s2) !important; margin: 0 0 var(--s1); box-sizing: border-box; display: block; }

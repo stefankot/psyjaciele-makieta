@@ -147,15 +147,6 @@ Plik: szcz-02-ksiazeczka.png. Narzędzie: wbudowane image_gen.
 Use case: stylized-concept. Asset type: website cutout illustration, 1:1 square. Subject: a closed pet vaccination booklet, front cover with no text. Monoline black ink line art on pure white background (#FFFFFF), even stroke width, tiny solid-black accents only, in the clinic's existing line-illustration style (animals as deadpan humans). Composition within the middle 75 percent of the frame. No text, no numbers, no shading, no grey, no colour.
 ```
 
-## szcz-03-kalendarz
-
-```text
-# Schemat osi czasu
-Plik: szcz-03-kalendarz.png. Narzędzie: wbudowane image_gen.
-
-Use case: scientific-educational illustration. Asset type: website diagram, 4:3 landscape. Subject: a simple horizontal timeline with five small markers, no dates. Monoline black ink line art on pure white background (#FFFFFF), no fill, even stroke width, consistent with the clinic's existing line illustrations. No text, no numbers, no gradients, no shading, no grey, no colour.
-```
-
 ## chir-02-konsultacja
 
 ```text
@@ -168,10 +159,10 @@ Use case: photorealistic-natural. Asset type: website photograph, 3:2 landscape.
 ## chir-03-opieka-po
 
 ```text
-# Pies w kołnierzu
-Plik: chir-03-opieka-po.jpg. Narzędzie: wbudowane image_gen.
+# Ilustracja zamiast zdjęcia: pies w kołnierzu po zabiegu
+Plik: chir-03-opieka-po.png. Narzędzie: wbudowane image_gen.
 
-Use case: photorealistic-natural. Asset type: website photograph, 4:5 portrait. Subject: a dog resting on a bed wearing a soft recovery collar. Casual smartphone snapshot with a retro 2010s Instagram-style filter: slightly faded warm film look, soft grain, gentle vignette, lifted blacks, faint warm light leak, slightly imperfect handheld framing. Palette: muted sage green, warm peach and apricot, deep forest green, cream; no harsh saturation. No text, no graphics, no logos, no people's faces.
+Use case: scientific-educational illustration. Asset type: website diagram, 8:5. Subject: line drawing of a dog resting on a bed wearing a soft recovery collar, black line on white. Monoline black ink line art on pure white background (#FFFFFF), no fill, even stroke width, consistent with the clinic's existing line illustrations. No text, no numbers, no gradients, no shading, no grey, no colour.
 ```
 
 ## chir-01-sala-zabiegowa
@@ -288,7 +279,7 @@ Use case: photorealistic-natural. Asset type: website photograph, 3:2 landscape.
 # Schemat budowy oka
 Plik: oko-01-oko-diagram.png. Narzędzie: wbudowane image_gen.
 
-Use case: scientific-educational illustration. Asset type: website diagram, 4:3 landscape. Subject: simplified cross-section of a dog's eye showing cornea, lens and retina as plain shapes. Monoline black ink line art on pure white background (#FFFFFF), no fill, even stroke width, consistent with the clinic's existing line illustrations. No text, no numbers, no gradients, no shading, no grey, no colour.
+Use case: scientific-educational illustration. Asset type: website diagram, 2:1. Subject: simplified cross-section of a dog's eye showing cornea, lens and retina as plain shapes. Monoline black ink line art on pure white background (#FFFFFF), no fill, even stroke width, consistent with the clinic's existing line illustrations. No text, no numbers, no gradients, no shading, no grey, no colour.
 ```
 
 ## oko-04-pas-gabinet
@@ -327,11 +318,11 @@ Plik: derm-01-badanie-skory.jpg. Narzędzie: wbudowane image_gen.
 Use case: photorealistic-natural. Asset type: website photograph, 4:5 portrait. Subject: hands parting the fur on a dog's back to look at healthy-looking skin, no lesions visible. Casual smartphone snapshot with a retro 2010s Instagram-style filter: slightly faded warm film look, soft grain, gentle vignette, lifted blacks, faint warm light leak, slightly imperfect handheld framing. Palette: muted sage green, warm peach and apricot, deep forest green, cream; no harsh saturation. No text, no graphics, no logos, no people's faces.
 ```
 
-## derm-02-pas-skora-siersc
+## derm-02-pas-skora-siersc-v2
 
 ```text
-# Sierść z bliska
-Plik: derm-02-pas-skora-siersc.jpg. Narzędzie: wbudowane image_gen.
+# Nowy obraz zamiast zdjęcia: sierść z bliska
+Plik: derm-02-pas-skora-siersc-v2.jpg. Narzędzie: wbudowane image_gen.
 
 Use case: photorealistic-natural. Asset type: website photograph, 21:9 wide panoramic banner. Subject: wide macro view of a dog's fur texture. Casual smartphone snapshot with a retro 2010s Instagram-style filter: slightly faded warm film look, soft grain, gentle vignette, lifted blacks, faint warm light leak. Palette: muted sage green, warm peach and apricot, deep forest green, cream. Wide horizontal composition: all key objects in a central horizontal band, plain wall and floor above and below (will be cropped to 21:9). No text, no graphics, no logos, no people's faces.
 ```
@@ -595,23 +586,5 @@ Use case: photorealistic-natural. Asset type: website photograph, 4:5 portrait. 
 Plik: czip-05-pies-kot.png. Narzędzie: wbudowane image_gen.
 
 Use case: stylized-concept. Asset type: website cutout illustration, 1:1 square. Subject: a calm grey cat and a small dog sitting side by side, seen from the front. Monoline black ink line art on pure white background (#FFFFFF), even stroke width, tiny solid-black accents only, in the clinic's existing line-illustration style (animals as deadpan humans). Composition within the middle 75 percent of the frame. No text, no numbers, no shading, no grey, no colour.
-```
-
-## zespol-01-zespol-grupowe
-
-```text
-# Zespół przychodni
-Plik: zespol-01-zespol-grupowe.jpg. Narzędzie: wbudowane image_gen.
-
-Use case: photorealistic-natural. Asset type: website photograph, 21:9 wide panoramic banner. Subject: a group of seven women veterinarians in white coats standing together in a bright clinic, wide group portrait. Casual smartphone snapshot with a retro 2010s Instagram-style filter: slightly faded warm film look, soft grain, gentle vignette, lifted blacks, faint warm light leak. Palette: muted sage green, warm peach and apricot, deep forest green, cream. Wide horizontal composition: all key objects in a central horizontal band, plain wall and floor above and below (will be cropped to 21:9). No text, no graphics, no logos, no people's faces.
-```
-
-## zespol-02-gabinet
-
-```text
-# Gabinet
-Plik: zespol-02-gabinet.jpg. Narzędzie: wbudowane image_gen.
-
-Use case: photorealistic-natural. Asset type: website photograph, 21:9 wide panoramic banner. Subject: a quiet veterinary consulting room with a desk and a window. Casual smartphone snapshot with a retro 2010s Instagram-style filter: slightly faded warm film look, soft grain, gentle vignette, lifted blacks, faint warm light leak. Palette: muted sage green, warm peach and apricot, deep forest green, cream. Wide horizontal composition: all key objects in a central horizontal band, plain wall and floor above and below (will be cropped to 21:9). No text, no graphics, no logos, no people's faces.
 ```
 
