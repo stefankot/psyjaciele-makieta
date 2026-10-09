@@ -138,7 +138,7 @@
 :where(.book-prose blockquote) {
   margin-inline: 0;
   padding-inline-start: 1.25em;
-  border-inline-start: 1px solid currentColor;
+  border-inline-start: 1px solid var(--ink);
 }
 :where(.book-prose blockquote cite) {
   display: block;

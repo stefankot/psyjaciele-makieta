@@ -22,7 +22,7 @@ ALL_SLUGS = ['uslugi-weterynaryjne'] + SLUGS_USLUGI + ['zespol', 'polityka-prywa
 # nazwy bazowe ilustracji hero (service-<nazwa>.png); slug → plik po stronie assets
 HERO_ART = {
     'uslugi-weterynaryjne': 'assets/illustrations/sekcja-uslugi-c.png',
-    'zespol': 'assets/illustrations/zespol-header-first-frame.png',
+    'zespol': 'assets/illustrations/zespol-header-first-frame.avif',
 }
 
 # mapa powiązań „Zobacz też” (maks. 4; tytuł i opis z kafla home)

@@ -53,6 +53,18 @@ makieta/
   (selektor, wymiary i kolumna w siatce, styl, fragment HTML, szerokość okna) do wklejenia w rozmowie. Ponowne **I** wyłącza. Na stronie publicznej: `?uwagi=1`.
 - Kod: `inspektor.js` (skrót, ładowany ze strony głównej i podstron) i `_generator/narzedzia/uwagi.js` (narzędzie).
 
+## Zmienne palety sekcji
+Każda sekcja (`.hero`, `.about`, `.services`, … w `minimal.css`) ma cztery zmienne; nic w sekcji nie powinno mieć na stałe wpisanego koloru z palety:
+- `--surface` — tło sekcji,
+- `--ink` — nagłówki, tytuły, ilustracje (filtry SVG), przyciski,
+- `--small-ink` — akapity, listy, komórki tabel, podpisy; zawsze `color-mix(--ink, 86%, czarny/biały)` (niezauważalnie ciemniejszy/jaśniejszy),
+- `--accent` — tło kart, pasów i kształty (elementy graficzne); linie dzielące są w kolorze `--ink` (nie `--accent`).
+Pomocniczo: `--hover-ink`, `--hover-accent`. Globalna reguła w końcu `layout-nowa.css` ustawia kolor tekstu z tych zmiennych (wyjątki: bloki odwrócone, przyciski, menu, panel „poza godzinami”).
+
+## Nakładka palet (klawisz K)
+- **K** na dowolnej stronie (lokalnie) włącza nakładkę: najedź na sekcję i kliknij — panel pokazuje 12 gotowych palet z kolorów strony, cztery własne kolory (tło, tekst, tekst mały, akcent), „Odwróć”, „Przywróć sekcję/wszystko” i „Kopiuj zmiany” (Markdown do rozmowy). Ponowne **K** lub **Esc** zamyka nakładkę.
+- Zmiany to zmienne CSS sekcji ustawione inline (`--surface`, `--ink`, `--small-ink`, `--accent`, `--hover-ink`, `--hover-accent`); po odświeżeniu znikają. Kod: `_generator/narzedzia/paleta.js`, ładowany z `inspektor.js`.
+
 ## Komendy (z katalogu makiety)
 
 ```

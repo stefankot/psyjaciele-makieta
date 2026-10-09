@@ -11,7 +11,7 @@
     const frame = id % 64;
     element.dataset.petPhoto = String(id);
     element.dataset.frame = String(id);
-    element.style.setProperty('--pet-atlas', `url(assets/${id < 64 ? 'pets-phone-atlas.png' : 'pets-phone-atlas-unique-v2.png'})`);
+    element.style.setProperty('--pet-atlas', `url(assets/${id < 64 ? 'pets-phone-atlas.avif' : 'pets-phone-atlas-unique-v2.avif'})`);
     element.style.setProperty('--pet-x', `${frame % 8 * 100 / 7}%`);
     element.style.setProperty('--pet-y', `${Math.floor(frame / 8) * 100 / 7}%`);
   }

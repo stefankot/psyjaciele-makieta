@@ -24,10 +24,30 @@
     document.body.appendChild(s);
   }
   function toggle() {
+    if (window.__paleta && window.__paleta.isOn()) window.__paleta.destroy();
     if (window.__uwagi) { window.__uwagi.destroy(); return; }
     load(function (api) { if (api && api.pick) api.pick(true); });
   }
+  // K: nakładka palet (zmiana kolorów całej sekcji) — _generator/narzedzia/paleta.js, ładowana przy pierwszym użyciu
+  var palLoading = false;
+  function togglePalette() {
+    if (window.__paleta) { window.__paleta.toggle(); return; }
+    if (palLoading) return;
+    palLoading = true;
+    var s = document.createElement("script");
+    s.src = new URL("_generator/narzedzia/paleta.js", self).href + "?v=" + Date.now();
+    s.onload = function () { palLoading = false; if (window.__paleta) window.__paleta.start(); };
+    s.onerror = function () { palLoading = false; console.warn("paleta: nie znaleziono _generator/narzedzia/paleta.js"); };
+    document.body.appendChild(s);
+  }
   document.addEventListener("keydown", function (e) {
+    if ((e.key === "k" || e.key === "K") && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || "")) || e.target.isContentEditable) return;
+      if (!LOCAL && !flag) return;
+      e.preventDefault();
+      togglePalette();
+      return;
+    }
     if ((e.key !== "i" && e.key !== "I") || e.metaKey || e.ctrlKey || e.altKey) return;
     if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || "")) || e.target.isContentEditable) return;
     if (!LOCAL && !flag) return;

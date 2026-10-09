@@ -105,9 +105,9 @@ def lanes():
         ('Opiekun', 'Zapisuje numer czipa.', 'is-accent'),
         ('Opiekun', 'Sprawdza dane w bazie i aktualizuje je przy zmianie telefonu, adresu lub opiekuna.', 'is-accent'),
     ]
-    cards = ''.join(f'<div class="step4 {cls}"><span class="s4-top"><span class="s4-num">{i}</span><span class="s4-who">{who}</span></span><p>{txt}</p></div>'
+    cards = ''.join(f'<div class="pt4"><span class="pt4-num">{i}</span><span class="pt4-who">{who}</span><p>{txt}</p></div>'
                     for i, (who, txt, cls) in enumerate(steps, 1))
-    return f'<figure class="info info-steps4" aria-hidden="true">{cards}</figure>'
+    return f'<figure class="info info-row4" aria-hidden="true">{cards}</figure>'
 
 
 def lanes_chirurgia():
@@ -176,7 +176,8 @@ MOVE_ART = False
 
 # nagłówki ostrzegawcze ze znakiem trójkąta (kreska 0,13 em, jak pismo obok)
 WARN_H2 = {('dermatologia-weterynaryjna', 'dlaczego-nie-leczyc-skory-na-wlasna-reke')}
-WARN_SIGN = ('<svg class="warn-sign" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5 29 27.5H3Z"/><path d="M16 12v8M16 22.6v1.8"/></svg>')
+WARN_SIGN = ('<svg class="warn-sign" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.0429 21H3.95705C2.41902 21 1.45658 19.3364 2.22324 18.0031L10.2662 4.01533C11.0352 2.67792 12.9648 2.67791 13.7338 4.01532L21.7768 18.0031C22.5434 19.3364 21.581 21 20.0429 21Z"/>'
+             '<path d="M12 9V13"/><path d="M12 17.01L12.01 16.9989"/></svg>')
 
 
 def alert_banner(html, root='../../', slug=''):
@@ -233,7 +234,7 @@ def inject(slug, html):
             raise SystemExit('infografiki: oczekiwano jednej listy kroków czipowania')
         html = html.replace(ol, '<ol class="step-list is-stacked is-road-source" style="--steps:4">', 1)
     if slug == 'szczepienia-oraz-profilaktyka-przeciwpasozytnicza':
-        html = timeline_art(html, 'assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-03-kalendarz.png')
+        html = timeline_art(html, 'assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-03-kalendarz.avif')
     return html
 
 

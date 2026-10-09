@@ -349,6 +349,7 @@
         var light = m && (0.2126 * +m[1] + 0.7152 * +m[2] + 0.0722 * +m[3]) / 255 > 0.6;
         // sekcja o jasnym tle, ale z jasnym kolorem tekstu (np. rezerwacja z zielonym blokiem w środku) → spis w zieleni marki
         box.style.color = light && /rgba?\((2[0-9]{2})/.test(cs.color) ? "#124e2c" : cs.color;
+        box.style.setProperty("--accent", cs.getPropertyValue("--accent"));   // linie spisu w kolorze akcentu sekcji pod spisem
       }
     }
     function schedule() { if (!sched) { sched = true; raf(update); } }
@@ -376,6 +377,8 @@
     frames.forEach(function (fig) {
       var src = fig.getAttribute("data-src");
       if (!src || fig.classList.contains("has-image")) return;
+      /* najpierw wersja AVIF (jeśli istnieje), potem plik z data-src (jpg/png) */
+      var tries = [src.replace(/\.(png|jpe?g|webp)$/i, ".avif"), src].filter(function (v, i, a) { return a.indexOf(v) === i; }), ti = 0;
       var probe = new Image();
       probe.onload = function () {
         var img = document.createElement("img");
@@ -395,8 +398,8 @@
         fig.insertBefore(img, fig.firstChild);
         fig.classList.add("has-image");
       };
-      probe.onerror = function () { /* brak pliku: ramka zostaje */ };
-      probe.src = abs(src);
+      probe.onerror = function () { ti += 1; if (ti < tries.length) probe.src = abs(tries[ti]); /* brak pliku: ramka zostaje */ };
+      probe.src = abs(tries[0]);
     });
   });
 

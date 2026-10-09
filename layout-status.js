@@ -38,7 +38,7 @@
   }
 
   const hero = document.querySelector('[data-hero-status]');
-  const phones = Array.from(document.querySelectorAll(PHONE)).filter(a => !a.closest('.hero-actions, .sticky-cta') && !a.matches('.header-call') && !inRunningText(a));
+  const phones = Array.from(document.querySelectorAll(PHONE)).filter(a => !a.closest('.hero-actions, .sticky-cta') && !a.matches('.header-call, .header-phone') && !inRunningText(a));   // bez kropki przy numerze w pasku nawigacji
   const tags = phones.map(a => {
     const s = document.createElement('span');
     s.className = 'phone-status';

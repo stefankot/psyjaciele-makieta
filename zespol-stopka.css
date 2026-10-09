@@ -9,7 +9,7 @@ footer .footer-team .people .person:has(img[src*="a6e997421073"]){--top:.03;--he
 footer .footer-team .people .person:has(img[src*="5be50d2b873b"]){--top:.02;--head:.38;--cx:.51}
 footer .footer-team .people .person .portrait-blob::before{content:none}
 footer .footer-team .people .person .portrait-blob img{position:absolute;aspect-ratio:auto;margin:0;--z:max(calc(var(--hs) / var(--head)),calc((1 - var(--ht)) / (1 - var(--top))));inset:calc((var(--ht) - var(--top) * var(--z)) * 100%) auto auto 50%;width:auto;height:calc(var(--z) * 100%);max-width:none;max-height:none;translate:calc(var(--cx) * -100%) 0;mask:none;object-fit:fill}
-footer .footer-team{grid-column:1/-1;--hover-accent:var(--wp--preset--color--peach-light);min-width:0;border-bottom:1px solid currentColor;padding-bottom:var(--s5)}
+footer .footer-team{grid-column:1/-1;--hover-accent:var(--wp--preset--color--peach-light);min-width:0;border-bottom:1px solid var(--ink);padding-bottom:var(--s5)}
 footer .footer-team>h2{margin-bottom:var(--s3)}
 footer .footer-team .people{display:block;font-size:clamp(20px,2.3vw,29px);line-height:1.95;text-wrap:pretty}
 footer .footer-team .people .person{position:relative;display:inline;border:0;padding:0 0 0 2.05em;min-height:0;width:auto;background:none;color:inherit}

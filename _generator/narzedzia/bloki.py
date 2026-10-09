@@ -12,8 +12,8 @@ from home import Raw, strip_shy, text_of, DOMENA
 from zrodlo import runin, table_rows
 
 NB = ' '
-ARROW_IN = '<span class="type-arrow" aria-hidden="true">→</span>'
-ARROW_OUT = '<span class="type-arrow" aria-hidden="true">↗</span>'
+ARROW_IN = '<span class="type-arrow ico ico-arrow-right" aria-hidden="true"></span>'
+ARROW_OUT = '<span class="type-arrow ico ico-arrow-up-right" aria-hidden="true"></span>'
 
 
 # ----------------------------------------------------------------------------
@@ -195,7 +195,7 @@ def hero_actions(ctx, cta):
     tel_txt = f'Zadzwoń: {nap["tel_disp"].replace(" ", NB)}'
     parts = []
     if wet:
-        parts.append(f'<a class="hero-btn hero-btn--solid" href="{wet}" rel="noopener">Umów wizytę{NB}<span aria-hidden="true">↗</span></a>')
+        parts.append(f'<a class="hero-btn hero-btn--solid" href="{wet}" rel="noopener">Umów wizytę{NB}<span class="ico ico-arrow-up-right" aria-hidden="true"></span></a>')
         parts.append(f'<a class="hero-btn hero-btn--ghost" href="{tel}">{tel_txt}</a>')
     else:
         parts.append(f'<a class="hero-btn hero-btn--solid" href="{tel}">{tel_txt}</a>')
@@ -203,9 +203,19 @@ def hero_actions(ctx, cta):
     return f'<div class="hero-actions">{"".join(parts)}</div>'
 
 
+_ROOT = __import__('pathlib').Path(__file__).resolve().parents[2]
+
+
+def prefer_avif(img):
+    """Jeśli obok pliku (png/jpg/webp) leży wersja .avif, użyj jej (konwersja: avif.py)."""
+    a = re.sub(r'\.(png|jpe?g|webp)$', '.avif', img, flags=re.I)
+    return a if a != img and (_ROOT / a).exists() else img
+
+
 def art_figure(ctx, img, ratio='1', alt='', mask=False, eager=False, w=None, h=None):
     """T1 (filtr barwiący atramentem sekcji) albo T2 (maska) — hero i kafle."""
     rw = ctx.rw
+    img = prefer_avif(img)
     if mask:
         return (f'<figure class="section-illustration poster-art" style="--art-ratio:{ratio}">'
                 f'<span class="art" aria-hidden="true" style="--art:url({img})"></span></figure>')
@@ -218,8 +228,8 @@ def art_figure(ctx, img, ratio='1', alt='', mask=False, eager=False, w=None, h=N
 
 
 def back_link(href, label):
-    return (f'<a class="back-link" href="{href}" aria-label="{esc(label)}"><svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true" focusable="false">'
-            '<circle cx="24" cy="24" r="22"/><path d="M35 24H14M22 15l-9 9 9 9" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a>')
+    return (f'<a class="back-link" href="{href}" aria-label="{esc(label)}"><svg viewBox="0 0 24 24" width="48" height="48" aria-hidden="true" focusable="false">'
+            '<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/><path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5"/></svg></a>')
 
 
 def page_hero(ctx, crumbs, kick, h1, lead_nodes, cta, art, facts, hid='h1-strony', forced=None, no_art=False, back=None):
@@ -808,8 +818,8 @@ def prose_nodes(ctx, nodes):
 def join_art_dog(ctx):
     """Obraz banera „Praca w Psyjaciołach”: siatka 8×8 kolorowych zdjęć pacjentów (psy i koty), komórki 80×80 px, całość 640×640 px."""
     ctx.use('join-banner')
-    s1 = ctx.rw.asset('assets/join-pacjenci-640.png')
-    s2 = ctx.rw.asset('assets/join-pacjenci-1254.png')
+    s1 = ctx.rw.asset('assets/join-pacjenci-640.avif')
+    s2 = ctx.rw.asset('assets/join-pacjenci-1254.avif')
     return (f'<img class="join-grid" src="{s1}" srcset="{s1} 640w, {s2} 1254w" sizes="(min-width: 1001px) 843px, 100vw" '
             'alt="Pacjenci przychodni Psyjaciele — psy i koty" width="640" height="640" loading="lazy" decoding="async">')
 

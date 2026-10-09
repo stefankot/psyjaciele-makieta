@@ -25,8 +25,8 @@ import plany  # noqa: E402
 import strony  # noqa: E402
 
 MARK = '<!-- generated: psyjaciele-podstrony -->'
-CSS_V = '114'
-JS_V = '20'
+CSS_V = '127'
+JS_V = '22'
 
 
 def esc(s):
