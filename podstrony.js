@@ -378,7 +378,7 @@
       var src = fig.getAttribute("data-src");
       if (!src || fig.classList.contains("has-image")) return;
       /* najpierw wersja AVIF (jeśli istnieje), potem plik z data-src (jpg/png) */
-      var tries = [src.replace(/\.(png|jpe?g|webp)$/i, ".avif"), src].filter(function (v, i, a) { return a.indexOf(v) === i; }), ti = 0;
+      var tries = fig.hasAttribute("data-resolved") ? [src] : [src.replace(/\.(png|jpe?g|webp)$/i, ".avif"), src].filter(function (v, i, a) { return a.indexOf(v) === i; }), ti = 0;
       var probe = new Image();
       probe.onload = function () {
         var img = document.createElement("img");

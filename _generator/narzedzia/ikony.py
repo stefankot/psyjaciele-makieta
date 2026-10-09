@@ -28,6 +28,8 @@ def data_uri(svg: str, sw: float) -> str:
 # Reguły ogólne (Home i podstrony): rozmiar, położenie i ruch ikon w miejscach dawnych glifów.
 EXTRA = r"""
 html body.book-type .type-arrow.ico{font-size:1em!important;margin-left:.25em;inline-size:1.25em;block-size:1.25em;vertical-align:-.28em;line-height:1;font-weight:inherit}
+/* pusty .type-arrow-glyph w środku ikony tworzył wewnętrzny wiersz tekstu: linia bazowa ikony przesuwała ją ok. 8 px w dół względem liter (strzałki za nisko) */
+html body.book-type .type-arrow.ico>.type-arrow-glyph{display:none}
 html body.book-type .site-header .site-nav a .type-arrow.ico,html body.book-type .foot-links a .type-arrow.ico{margin:0}
 html body.book-type .hero-btn .ico{margin-left:.25em}
 html.motion .type-arrow.ico{transition:translate .2s ease-out}
@@ -37,18 +39,18 @@ html body.book-type .header-call .ico{inline-size:24px;block-size:24px;margin:0;
 html:not(.bar) body.book-type .site-header .header-call{display:none}
 html body.book-type .services .tile h3::after{content:"";inline-size:1.1em;block-size:1.1em;font-size:inherit;font-weight:inherit;background:currentColor;-webkit-mask:var(--ico-arrow-up-right) center/contain no-repeat;mask:var(--ico-arrow-up-right) center/contain no-repeat;opacity:.65}
 /* ikony pomocnicze nad tytułami kolumn (dojazd, przygotowanie, kontakt) — 32 px, kreska jak w tytule 24 px */
-html body.book-type :is(#dojazd,#przygotowanie,#kontakt) .detail-columns > div > h3::before{content:"";display:block;inline-size:32px;block-size:32px;margin-block-end:var(--s2,13px);background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
-html body.book-type #dojazd .detail-columns > div:nth-child(1){--ic:var(--ico-walking-l)}
-html body.book-type #dojazd .detail-columns > div:nth-child(2){--ic:var(--ico-bus-l)}
-html body.book-type #dojazd .detail-columns > div:nth-child(3){--ic:var(--ico-car-l)}
-html body.book-type #kontakt .detail-columns > div:nth-child(1){--ic:var(--ico-map-pin-l)}
-html body.book-type #kontakt .detail-columns > div:nth-child(2){--ic:var(--ico-phone-l)}
-html body.book-type #kontakt .detail-columns > div:nth-child(3){--ic:var(--ico-clock-l)}
-html body.book-type #przygotowanie .detail-columns > div:nth-child(1){--ic:var(--ico-page-l)}
-html body.book-type #przygotowanie .detail-columns > div:nth-child(2){--ic:var(--ico-stats-report-l)}
-html body.book-type #przygotowanie .detail-columns > div:nth-child(3){--ic:var(--ico-list-l)}
-html body.book-type #przygotowanie .detail-columns > div:nth-child(4){--ic:var(--ico-chat-bubble-question-l)}
-html body.book-type #przygotowanie .detail-columns > div:nth-child(5){--ic:var(--ico-shield-check-l)}
+html body.book-type:not(.subpage) :is(#dojazd,#przygotowanie,#kontakt) .detail-columns > div > h3::before{content:"";display:block;inline-size:32px;block-size:32px;margin-block-end:var(--s2,13px);background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
+html body.book-type:not(.subpage) #dojazd .detail-columns > div:nth-child(1){--ic:var(--ico-walking-l)}
+html body.book-type:not(.subpage) #dojazd .detail-columns > div:nth-child(2){--ic:var(--ico-bus-l)}
+html body.book-type:not(.subpage) #dojazd .detail-columns > div:nth-child(3){--ic:var(--ico-car-l)}
+html body.book-type:not(.subpage) #kontakt .detail-columns > div:nth-child(1){--ic:var(--ico-map-pin-l)}
+html body.book-type:not(.subpage) #kontakt .detail-columns > div:nth-child(2){--ic:var(--ico-phone-l)}
+html body.book-type:not(.subpage) #kontakt .detail-columns > div:nth-child(3){--ic:var(--ico-clock-l)}
+html body.book-type:not(.subpage) #przygotowanie .detail-columns > div:nth-child(1){--ic:var(--ico-page-l)}
+html body.book-type:not(.subpage) #przygotowanie .detail-columns > div:nth-child(2){--ic:var(--ico-stats-report-l)}
+html body.book-type:not(.subpage) #przygotowanie .detail-columns > div:nth-child(3){--ic:var(--ico-list-l)}
+html body.book-type:not(.subpage) #przygotowanie .detail-columns > div:nth-child(4){--ic:var(--ico-chat-bubble-question-l)}
+html body.book-type:not(.subpage) #przygotowanie .detail-columns > div:nth-child(5){--ic:var(--ico-shield-check-l)}
 /* menu rozwijane: adres, godziny, telefon, e-mail */
 html body.book-type .site-nav :is(.nav-address,.nav-hours){position:relative;padding-inline-start:32px}
 html body.book-type .site-nav :is(.nav-address,.nav-hours)::before{content:"";display:inline-block;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}

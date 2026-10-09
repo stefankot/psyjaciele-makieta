@@ -46,6 +46,7 @@ makieta/
 
 ## Dodatki generatora
 - `psy.py`: owija słowo „Psyjaciele” (i formy) w `<span class="psy">`; styl `.psy` (Rialto, 1,41 em) w `layout-nowa.css`. Ten sam skrypt na Home: `python3 _generator/narzedzia/psy.py index.html`.
+- `nbsp.py`: twarda spacja po jednoliterowych spójnikach (a, i, o, u, w, z) i przed pauzą; adresy e-mail w tekście dostają `<span class="nohy">` (bez dzielenia wyrazów). Uruchamiany w `build.py`; na Home po ręcznych zmianach tekstu: `python3 _generator/narzedzia/nbsp.py index.html`.
 - `infografiki.py`: infografiki wstawiane po nagłówkach wskazanych sekcji (lista `PLAN`); style `.info-*` w `podstrony.css`. Skala ciśnienia to restyl istniejącego bloku `range-scale`.
 
 ## Inspektor uwag (do zbierania poprawek)
@@ -65,12 +66,18 @@ Pomocniczo: `--hover-ink`, `--hover-accent`. Globalna reguła w końcu `layout-n
 - **K** na dowolnej stronie (lokalnie) włącza nakładkę: najedź na sekcję i kliknij — panel pokazuje 12 gotowych palet z kolorów strony, cztery własne kolory (tło, tekst, tekst mały, akcent), „Odwróć”, „Przywróć sekcję/wszystko” i „Kopiuj zmiany” (Markdown do rozmowy). Ponowne **K** lub **Esc** zamyka nakładkę.
 - Zmiany to zmienne CSS sekcji ustawione inline (`--surface`, `--ink`, `--small-ink`, `--accent`, `--hover-ink`, `--hover-accent`); po odświeżeniu znikają. Kod: `_generator/narzedzia/paleta.js`, ładowany z `inspektor.js`.
 
+## Zespół (Home #zespol i „Kto przyjmuje” na podstronach)
+Karty osób: kwadratowa komórka na 4 kolumnach w kolorze akcentowym sekcji (Home: 3 w rzędzie; podstrony: 2 w rzędzie w kolumnie artykułu; poniżej 560 px jedna). Hover/fokus pokazuje linie wokół sylwetki:
+- `team-echo.js`: z kanału alfa zdjęcia liczone jest pole odległości od sylwetki, a canvas rysuje cienkie linie konturu (3 px, co 15 px) przesuwane w pętli na zewnątrz (11 px/s); parametry na górze pliku (`STROKE_PX`, `GAP_PX`, `SPEED_PX`, `FADE_IN_PX`); kolor linii = `--team-overlay-ink` (domyślnie `--accent` karty); pętla działa tylko przy hoverze. Bez JS, przy `prefers-reduced-motion` i na dotyku karta jest bez linii (statycznej nakładki nie ma).
+
 ## Komendy (z katalogu makiety)
 
 ```
 python3 _generator/narzedzia/build.py     # buduje podstrony
 python3 _generator/narzedzia/checks.py    # sprawdza treść i strukturę (17× OK)
 python3 _generator/narzedzia/audit.py     # audyt przeglądarkowy (Playwright), serwer na :8765
+python3 _generator/narzedzia/pomiar.py    # pomiar geometrii wszystkich stron (siatka, rytm 8 px, nakładanie, kontrast, sierotki, kotwice); serwer na :8766
+python3 _generator/narzedzia/pomiar_analiza.py siatka|rytm|przepelnienia|kontrast|sieroty|nakladanie|puste|meta [szerokości]
 ```
 
 Wymagania: `beautifulsoup4` (build, checks) i `playwright` (audit).

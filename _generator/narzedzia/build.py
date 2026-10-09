@@ -15,6 +15,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import infografiki  # noqa: E402
+import nbsp  # noqa: E402
 import psy  # noqa: E402
 
 import bloki as B  # noqa: E402
@@ -25,8 +26,8 @@ import plany  # noqa: E402
 import strony  # noqa: E402
 
 MARK = '<!-- generated: psyjaciele-podstrony -->'
-CSS_V = '127'
-JS_V = '22'
+CSS_V = '139'
+JS_V = '23'
 
 
 def esc(s):
@@ -74,6 +75,7 @@ def head_html(home, pages, P, ld):
     title = esc(re.sub(r'\s+', ' ', s.title))
     desc = esc(s.desc)
     parts = [MARK, '<meta charset="utf-8">', '<meta name="viewport" content="width=device-width, initial-scale=1">',
+             '<link rel="icon" href="data:,">',  # makieta bez faviconu: puste „data:,” oszczędza żądania /favicon.ico (404 w konsoli)
              f'<title>{title}</title>']
     if desc:
         parts.append(f'<meta name="description" content="{desc}">')
@@ -167,7 +169,7 @@ def render(home, pages, slug, root):
 
 def simple_head(home, rw, title, desc):
     R = rw.root
-    parts = [MARK, '<meta charset="utf-8">', '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    parts = [MARK, '<meta charset="utf-8">', '<meta name="viewport" content="width=device-width, initial-scale=1">', '<link rel="icon" href="data:,">',
              f'<title>{esc(title)}</title>', f'<meta name="description" content="{esc(desc)}">',
              f'<meta name="robots" content="{H.ROBOTS}">', f'<script src="{R}{home.head_sync_script}"></script>']
     for pl in home.head_preloads:
@@ -230,6 +232,7 @@ def write(path: Path, content: str, dry=False):
     if path.suffix == '.html':
         content = infografiki.inject(path.parent.name, content)   # infografiki po nagłówkach wskazanych sekcji
         content = psy.wrap(content)   # słowo „Psyjaciele” zawsze krojem Rialto (.psy)
+        content = nbsp.fix(content)   # twarda spacja po a/i/o/u/w/z i przed pauzą (bez „sierotek” na końcu wiersza)
     if path.exists():
         old = path.read_text(encoding='utf-8')
         if 'generated: psyjaciele-podstrony' not in old[:400] and '"_generated": "psyjaciele-podstrony"' not in old[:400]:

@@ -211,7 +211,7 @@ html body.book-type .services .bento {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   grid-template-rows: none !important;
   grid-auto-rows: auto;
-  column-gap: 32px;
+  column-gap: var(--gap);   /* było 32 px na stałe: przy ≤ 1000 px rynna siatki to 24 px, kafle wypadały z kolumn */
   row-gap: 48px;
   height: auto;
 }
@@ -412,7 +412,7 @@ html body.book-type #zapraszamy .booking-pet { min-width: 50px; min-height: 50px
    ========================================================= */
 html body.book-type #przychodnia .equipment-grid {
   counter-reset: clinic;
-  column-gap: 32px;
+  column-gap: var(--gap);
   row-gap: 48px;
 }
 html body.book-type #przychodnia .equipment-grid > div {
@@ -704,6 +704,18 @@ html body.book-type.book-type .team .people .person figure{aspect-ratio:1/1.05}
 html body.book-type.book-type .team .people .person>header,html body.book-type.book-type .team .people .person .specializations{padding-inline:var(--s2,13px)}
 }
 
+/* Zespół na Home (uwaga 9.10): trzy osoby w rzędzie, każda w kwadratowej komórce (4 kolumny, odstęp --gap) w kolorze akcentowym sekcji.
+   Na hoverze i fokusie team-echo.js rysuje linie konturu sylwetki (kolor: --team-overlay-ink, domyślnie --accent karty). Statycznej nakładki nie ma:
+   bez JS, przy prefers-reduced-motion i na dotyku karta pokazuje się bez linii. Podpisy pod komórką od jej lewej krawędzi. */
+html body.book-type.book-type #zespol .people{column-gap:var(--gap)}
+html body.book-type.book-type .team .people .person figure{aspect-ratio:1;background:var(--card-surface);position:relative;overflow:hidden;isolation:isolate}
+html body.book-type.book-type .team .people .person .portrait-blob{position:absolute;inset:0;z-index:1;width:100%;height:100%;background:none;-webkit-mask:none;mask:none;transform:none}
+html body.book-type.book-type .team .people .person .portrait-blob::before{content:none}
+html body.book-type.book-type .team .people .person .portrait-blob img{inset:auto 0 0 0;width:100%;height:76%}
+html body.book-type.book-type .team .people .person>header,html body.book-type.book-type .team .people .person .specializations{padding-inline:0}
+@media(max-width:1000px){html.motion body.book-type.book-type #zespol .people .person,html body.book-type.book-type #zespol .people .person,html body.book-type.book-type #zespol .people .person:last-child{grid-column:span 6}}
+@media(max-width:560px){html.motion body.book-type.book-type #zespol .people .person,html body.book-type.book-type #zespol .people .person,html body.book-type.book-type #zespol .people .person:last-child{grid-column:1/-1}}
+
 /* Uwagi 9.10: status pod przyciskiem (zawsze), kropka przy numerze w nagłówku, pogrubiona strzałka kafelka usług. */
 html body.book-type.book-type a.button:has(> .phone-status),html body.book-type.book-type a.hero-btn:has(> .phone-status){position:relative;margin-block-end:calc(var(--status-gap,16px) + 24px)}
 html body.book-type.book-type a.button > .phone-status,html body.book-type.book-type a.hero-btn > .phone-status{position:absolute;inset-inline-start:0;top:100%;margin:var(--status-gap,16px) 0 0;color:var(--ink);white-space:nowrap;display:flex}
@@ -743,3 +755,88 @@ html body.book-type.book-type .site-header .site-nav .nav-col p.nav-title { font
 html body.book-type.book-type :is(p, li, td, th, dd, dt, figcaption, cite, address, small, blockquote, label, .kicker, .tile-description):not(:where(.alert-band.is-inverted, .info-stat, .step4, .ab-tile, .join-banner, .site-header, .site-nav, .button, [class*="hero-btn"], .booking-cta, .social-promo-cta, .phone-status) *):not(:where(.alert-band.is-inverted, .info-stat, .step4, .ab-tile, .join-banner, .button, .phone-status)) { color: var(--small-ink); }
 html body.book-type.book-type :is(h1, h2, h3, h4, h5, h6):not(:where(.alert-band.is-inverted, .info-stat, .step4, .ab-tile, .join-banner, .site-header, .site-nav, .button, [class*="hero-btn"]) *) { color: var(--ink); }
 html body.book-type.book-type .hero p.hero-links { color: var(--small-ink); }
+
+/* =========================================================
+   Porządki wizualne (audyt 9.10) — jedna reguła na wszystkie analogiczne miejsca
+   ========================================================= */
+/* Rytm 8 px: interlinie nagłówków i podpisów (były 24,8 / 37,8 / 51,8 / 74,6 / 77,8 px). round() — Chrome 125+, Safari 15.4+, Firefox 118+;
+   starsze przeglądarki zostają przy wcześniejszej, ułamkowej wartości. */
+html body.book-type :is(footer h2, .bento .tile h3){line-height:24px}
+html body.book-type .bento .major h3{line-height:round(down,1.24em,8px)}
+/* Tytuły sekcji Home: minimal-nowa.js (fitTitles) wpisuje inline line-height 1,08 oraz 1,02/1,12 w <em>/.heading-roman — stąd 51,8 / 74,6 / 77,8 px.
+   !important przebija inline; starsza przeglądarka bez round() pomija deklarację i zostaje przy wartościach z JS. */
+html body.book-type :is(main .section-header .poster-heading h2, #onas h2){line-height:round(up,1.04em,8px)!important}
+html body.book-type :is(main .section-header .poster-heading h2, #onas h2) em{line-height:inherit!important}
+html body.book-type :is(main .section-header .poster-heading h2, #onas h2) .heading-roman{line-height:round(nearest,1.12em,8px)!important}   /* drobny napis wersalikami: własna interlinia, nie 56 px z h2 */
+
+/* Osierocone linie: bez jednowyrazowych ostatnich wierszy akapitów, list i tabel; nagłówki niższego rzędu wyważone. */
+html body.book-type main :is(p,li,dd,blockquote,figcaption,td){text-wrap:pretty}
+html body.book-type main :is(h3,h4,th,summary){text-wrap:balance}
+
+/* Wąski ekran: długie słowa w tytułach (np. „przeciwpasożytnicza”) dzielone zamiast wystawać poza kolumnę. */
+@media(max-width:700px){
+  html body.book-type :is(h1,h2){hyphens:auto;hyphenate-limit-chars:14 5 5;overflow-wrap:break-word}   /* tylko słowa od 14 liter („przeciwpasożytnicza”) */
+  html body.book-type :is(.poster-heading,.title-row){min-inline-size:0}
+}
+
+/* Zespół (Home i „Kto przyjmuje”): poniżej 560 px jedna osoba w rzędzie (imię pismem Rialto nie mieści się w połowie ekranu). */
+@media(max-width:560px){
+  html.motion body.book-type.book-type .team .people .person,html body.book-type.book-type .team .people .person,html body.book-type.book-type .team .people .person:last-child{grid-column:1/-1}
+}
+
+/* Panel „Poza godzinami pracy” (Home → Nagłe przypadki): pas nagłówka ma tło --ink, więc opis musi mieć --surface
+   (globalna reguła --small-ink dawała jasny tekst na jasnym tle: kontrast 1,09∶1). */
+html body.book-type.book-type .after-hours-panel > .poster-heading :is(h3,p){color:var(--surface)}
+
+/* Dzielenie wyrazów w tekście ciągłym (akapity, listy, podpisy; tabele bez dzielenia — zmieniałoby szerokości kolumn) — limity jak w typography-book.css: słowa od 7 liter,
+   min. 3 litery przed i po dzieleniu, najwyżej dwa kolejne wiersze z dzieleniem. Nagłówki bez dzielenia (poza ≤ 700 px, wyżej);
+   nazwa „Psyjaciele”, adresy e-mail i numery telefonów nigdy. Wymaga lang="pl". */
+html body.book-type main :is(p,li,dd,blockquote,figcaption){hyphens:auto;hyphenate-limit-chars:7 3 3;hyphenate-limit-lines:2}
+html body.book-type main :is(.psy,.nohy,a[href^="mailto:"],a[href^="tel:"],.phone-status,.kicker,.small-caps),html body.book-type main :is(a[href^="mailto:"],a[href^="tel:"]) :is(p,li,span){hyphens:manual}
+
+/* Podpisy pod portretem (Home i „Kto przyjmuje”) zaczynają się na krawędzi kolumny, bez wcięcia 16–24 px (poza siatką). */
+html body.book-type.book-type .team .people .person>header,html body.book-type.book-type .team .people .person .specializations{padding-inline:0}
+html body.book-type.book-type .team .people .person .specializations{padding-block-start:var(--s1)}   /* było 6 px, poza rytmem 8 px */
+
+/* Home → O nas: opis pod nagłówkiem na 6 kolumnach (szerokość portretu nad nim), nie 42ch (474 px, poza siatką). 6 z 8 kolumn kontenera = 75 % − rynna/4. */
+@media(min-width:1001px){html body.book-type #onas .founder-description{max-width:calc(75% - var(--gap) / 4)}}
+
+/* „Kto przyjmuje” na podstronach: te same komórki co na Home (kolor akcentowy, nakładka na hoverze), po dwie w rzędzie (2 × 4 kolumny artykułu, 405 px),
+   poniżej 560 px jedna. */
+html body.book-type.subpage .team .people{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gap)}
+html.motion body.book-type.subpage .team .people .person,html body.book-type.subpage .team .people .person,html body.book-type.subpage .team .people .person:last-child{grid-column:auto}
+@media(max-width:560px){html body.book-type.subpage .team .people{grid-template-columns:minmax(0,1fr)}}
+
+/* Stopka (uwaga 9.10): nawigacja skopiowana z rozwijanego menu — trzy kolumny linków (Usługi, Zespół, Na stronie) na prawych 6 kolumnach siatki;
+   logo i tekst pod logo na 4 kolumnach (405,3 px) lewego bloku marki. Poniżej 1000 px blok marki na całą szerokość (logo 4 z 12 kolumn, tekst 8),
+   trzy kolumny linków po 4 kolumny; poniżej 700 px „Usługi” na całą szerokość, „Zespół” i „Na stronie” obok siebie. */
+html body.book-type footer .foot-brand{grid-column:1 / span 6}
+html body.book-type footer .foot-links.footer-nav{grid-column:span 2;row-gap:var(--s4)}   /* odstęp między grupami w kolumnie (Na stronie / Śledź nas) */
+html body.book-type footer .footer-logo{width:auto;inline-size:calc(66.6667% - var(--gap) / 3);max-inline-size:none}
+html body.book-type footer .foot-brand > div > :is(p,.footer-team){max-inline-size:calc(66.6667% - var(--gap) / 3);inline-size:100%}
+html body.book-type footer .foot-links h2 a{font:inherit;color:inherit;text-decoration:none}
+html body.book-type footer .foot-links h2 a:hover{text-decoration:underline;text-underline-offset:.2em}
+@media(max-width:1000px){
+  html body.book-type footer .foot-brand{grid-column:1 / -1}
+  html body.book-type footer .foot-links.footer-nav{grid-column:span 4}
+  html body.book-type footer .footer-logo{inline-size:calc(33.3333% - var(--gap) * 2 / 3)}
+}
+@media(max-width:700px){
+  html body.book-type footer .footer-logo{inline-size:calc((100% - 11 * var(--gap)) / 12 * 8 + 7 * var(--gap))}
+  html body.book-type footer .foot-brand > div > :is(p,.footer-team){max-inline-size:none}
+  html body.book-type footer .foot-links.footer-nav-uslugi{grid-column:1 / -1}
+  html body.book-type footer .foot-links.footer-nav-zespol,html body.book-type footer .foot-links.footer-nav-strona{grid-column:span 6}
+}
+
+/* Stopka: tekst marki pod logo ma rozmiar akapitu (16/24 px; „Psyjaciele” Rialto skaluje .psy = 141 %) i większy odstęp od logo (32 + 24 = 56 px).
+   Nagłówki kolumn w Rialto także na podstronach (tak jak na Home). */
+html body.book-type footer .foot-brand p{font-size:16px;line-height:24px!important;margin-block-start:var(--s3)!important}
+html body.book-type.subpage footer .foot-links h2 em{font-family:Rialto,Georgia,serif}
+
+/* Strzałka po tekście linku: odstęp daje margines, a nie spacja w linku (podkreślenie nie obejmuje już spacji przed strzałką). */
+html body.book-type a:not(:is(.button,.hero-btn,.booking-cta,.social-promo-cta,.chooser)) .type-arrow.ico.is-after-text{margin-left:.5em}
+
+/* Dynamiczny hover kart zespołu (team-echo.js): obrys sylwetki powielany na zewnątrz w pętli; pokazuje się po przygotowaniu karty (klasa has-echo). */
+html body.book-type .team .people .person figure .person-echo{position:absolute;inset:0;inline-size:100%;block-size:100%;z-index:0;opacity:0;pointer-events:none;transition:opacity .3s ease;color:var(--team-overlay-ink,var(--accent))}
+html body.book-type .team .people .person.has-echo:focus-within figure .person-echo{opacity:1}
+@media(hover:hover) and (pointer:fine){html body.book-type .team .people .person.has-echo:hover figure .person-echo{opacity:1}}

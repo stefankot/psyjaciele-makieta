@@ -1,0 +1,170 @@
+ROLE AND GOAL
+You are the photographer, art director and image generator for the website of "Psyjaciele", a small friendly neighbourhood veterinary clinic in Warsaw (Gocław). I need you to REPLACE ALL 45 PHOTOGRAPHS on the website with new ones. The old photographs are discarded: ignore them, do not try to imitate them. ILLUSTRATIONS (line drawings) are NOT part of this job and must not be touched or imitated.
+The idea, the style and the colour logic below are yours to execute with full creative control inside these rules. I attach one image: "PALETA-I-KADROWANIE.png" (section colours and crop zones; ignore any filter note on it). Use it.
+
+THE CONCEPT: "CAMERA ROLL OF SOMEONE WHO WORKS AT THE CLINIC"
+Every photo must feel like a spontaneous, slightly random snapshot taken with a modern smartphone during an ordinary day at the clinic: caught, not staged. Not stock photography, not a studio, not an ad. Real, warm, a little imperfect. The photos share NO filter (see below): they look like ordinary unedited phone photos, while the colours of each photo are tuned to the section it sits in.
+
+PHONE-SNAPSHOT BEHAVIOUR (apply to every photo)
+- Handheld smartphone look: main camera about 24-26 mm (slight wide-angle perspective, a little stretching at the edges) or 2x tele for close-ups. Autofocus occasionally lands a bit off; mild phone noise in shadows; window highlights slightly blown out; soft phone-lens corners.
+- Caught moments: animals mid-action (sniffing, glancing away, blinking, yawning, an ear flick, a tilted head). Objects are not arranged perfectly. Slight tilt of the horizon (1-4 degrees), off-centre composition, an object cut by the frame edge now and then, a blurred foreground edge (a coat sleeve, a door frame, a leaf). Ordinary everyday clutter is welcome (a mug, a jacket on a chair, a lead on a hook).
+- Never: symmetrical hero compositions, studio or flash lighting, glossy stock look, over-smooth plastic fur or skin, "AI-perfect" eyes, HDR, over-sharpening, text overlays, watermarks, borders, collages, light leaks, date stamps.
+
+NO FILTER (owner decision, 9 Oct 2026: the film filter looked clichéd and was removed)
+- Natural white-balanced daylight and true-to-life colours, exactly as an unedited phone photo. No colour grading, no split toning, no matte or faded film look, no golden glow, no vignette, no bloom, no artificial grain, no Instagram look.
+- The colour harmony of each photo comes from the objects and walls themselves (palette table below), never from a colour cast applied to the whole image.
+
+COLOUR MATCHING TO THE SECTION (very important)
+Each photo sits directly on a flat background in the colour of its section. The text next to it is forest green #124e2c. The photo must harmonise with that background and with the section: build the colours of the scene (walls, blankets, clothing, props, light) around the palette tag given for each photo. Avoid colours that clash with the palette: no blue, no magenta, no neon, no cold white clinical light, no shiny stainless-steel glare, no black plastic.
+- SALMON (section background #f6b08f, accent #fbd9c6): warm apricot, terracotta, cream and honey-coloured wood, small forest-green accents (plants, a chair seat); warm window light; objects (not a colour cast) carry the peach #fbd9c6 tones.
+- PEACH (background #fbd9c6, accent #f6b08f): high-key, airy and soft; cream, ivory, pale peach, light wood; low contrast; creamy light surfaces, no heavy dark areas.
+- SAGE (background #a9c296, accent #cfdcc3): sage, olive, cream and natural wood; neutral daylight; no orange or pink cast, terracotta only as tiny accents.
+- MIST (background #cfdcc3, accent #a9c296): pale, milky mint-sage; very soft contrast; cream highlights; airy daylight, few deep shadows.
+- IVORY (background #f7f3ee, accent #cfdcc3): neutral warm daylight, creamy whites, light wood, small green accents; clean and bright.
+
+SETTING (consistent across the series)
+A small, tidy, friendly clinic: walls in sage green, cream or pale peach, light wooden furniture, houseplants on sills and shelves, big windows with soft daylight and blurred trees, simple objects. Recurring animal "actors" are welcome for coherence: a grey tabby cat, a scruffy cream-and-brown terrier mix, a black labrador, a golden labrador-type dog, a beagle. Ordinary, healthy-looking, calm pets with natural anatomy and fur.
+
+CONTENT RULES (hard)
+- NO human faces, ever. People appear only as hands, forearms, a white-coat or cream knit-sweater sleeve, or a torso cropped at the neck, or seen from behind.
+- NO readable text, numbers, logos, signs, labels or flags anywhere. Screens are dark or turned away. Booklets and documents show only blurred lines.
+- Animals are calm and comfortable; never distressed, never in pain. No blood, no needles pointing at skin, no wounds, no visible illness.
+- Everything clean and tidy.
+
+CANVAS AND CROPPING (the site crops your image to a fixed frame)
+- All images are 3:2 landscape 1536x1024, except where the item says "portrait 1024x1536".
+- slot "wide 3:2": the whole canvas is shown. Slot "wide 8:5": top and bottom 4% may be cut. Slot "small 3:2": shown small, so the subject must be large and simple.
+- slot "panoramic STRIP 21:9": the site shows only the VERTICAL MIDDLE of the canvas (about 1536x658). Put every important object between 30% and 70% of the image height; above and below show only calm continuation of wall, floor or fur.
+- slot "narrow PORTRAIT 4:5": the site shows the middle 80% of the portrait canvas; keep the subject inside it with air above and below.
+- Items marked "one of three frames shown together as a mosaic" (the 3 frames of one group) must look like one photo session: same clinic corner, same light.
+
+HOW WE WORK
+1. First answer in 5 lines: how you understand the concept, the no-filter rule and the colour matching, and confirm the no-faces / no-text rules. Then generate item 1.
+2. Generate ONE image per reply. Under each image write: the file name, the palette tag, and one line saying how you matched the colours. Then wait for me to write "next" or for corrections. Never generate several images at once.
+3. Work page by page in the order below. After the last photo of a page, list the files done for that page and ask whether to continue.
+4. If I write "redo N: ...", regenerate only item N with my correction and keep everything else.
+5. Check each image yourself before showing it and silently regenerate if you see: any readable text or logo; a human face; wrong anatomy (paws, ears, eyes, extra limbs); CGI-looking fur; a studio or stock look; colours that clash with the palette tag; a strip with important content outside the 30-70% band.
+
+THE 45 PHOTOS (file name | slot | canvas | palette | section where it appears)
+--- SOFT-TISSUE SURGERY page ---
+1. chir-02-konsultacja.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: PEACH | section: "Jak wygląda konsultacja chirurgiczna"
+   IDEA: Over-the-shoulder candid in a consulting room: a vet in a white coat and a client in a cream knit cardigan, both seen from behind or cropped at the neck (no faces), lean over a small scruffy terrier sitting on a bench. The dog is the only one looking at the camera. Slightly tilted, window light from the left.
+2. chir-01-sala-zabiegowa.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Dlaczego przygotowanie zwierzęcia do zabiegu jest ważne?"
+   IDEA: A tidy treatment room seen from the doorway, nobody inside: a pale treatment table, a folded green drape on a trolley, a wall shelf, a wide window with soft daylight. Casual off-centre framing, a door-frame edge intruding at the left.
+
+--- INTERNAL MEDICINE page ---
+3. interna-01-badanie.jpg | slot: wide 8:5 | canvas: landscape 1536x1024 | palette: PEACH | section: "Z jakimi objawami przyjść do internisty"
+   IDEA: Close candid of a stethoscope disc on the chest of a calm black labrador; a white coat sleeve and hand at the edge of the frame; the dog's eye and nose soft in the foreground.
+4. interna-03-pas-gabinet.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Czym zajmuje się interna"
+   IDEA: A consulting room from the doorway: a wooden desk with a mug and a small plant, two chairs, a framed print, a white coat hanging on a hook. Looks like a quick phone shot, a little crooked.
+5. interna-04-kontrola.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: MIST | section: "Jak wygląda wizyta u internisty"
+   IDEA: Waiting-room moment: a grey tabby cat sitting on a client's lap (client reduced to a cream knit sweater and hands, no face), seen from slightly above; the cat looks sideways at something out of frame.
+
+--- MICROCHIPPING page ---
+6. czip-02-aplikator.jpg | slot: small 3:2 (one of three frames shown together as a mosaic) | canvas: landscape 1536x1024 | palette: SAGE | section: "Jak wygląda czipowanie"
+   IDEA: Macro of two gloved hands holding a capped microchip applicator (a thick pen-like plastic tool, needle covered, no needle visible); a dog's fur softly blurred behind.
+7. czip-03-pas-zabieg.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Jak wygląda czipowanie"
+   IDEA: A treatment corner: a small exam table with a folded towel, a tray with a few capped items, a window; no people, no animals; a quick phone snap.
+8. czip-04-skaner.jpg | slot: wide 8:5 | canvas: landscape 1536x1024 | palette: SALMON | section: "Sam czip nie wystarczy — liczy się rejestracja"
+   IDEA: A slim grey handheld scanner (display dark, no text) held by a hand over the shoulder of a sleepy cat curled on a blanket; the cat's closed eyes are the sharpest point.
+
+--- DERMATOLOGY page ---
+9. derm-01-badanie-skory.jpg | slot: wide 8:5 | canvas: landscape 1536x1024 | palette: PEACH | section: "Objawy, z którymi warto przyjść"
+   IDEA: Close, slightly crooked shot of fingers parting the coat on the back of a healthy cream-and-brown dog to look at the skin; natural light; healthy skin, no lesions, no redness.
+10. derm-02-pas-skora-siersc-v2.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Najczęstsze problemy skórne psów i kotów"
+   IDEA: Wide macro of a healthy dog's coat in warm ginger and cream, the hairs catching soft window light in a gentle diagonal, a little out of focus like a phone macro. Real photograph look, natural irregular hair direction, no painterly smears, no skin problems visible. Content in the middle band only.
+11. derm-03-cytologia.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: SALMON | section: "Jak wygląda diagnostyka dermatologiczna"
+   IDEA: A small microscope on a wooden table by the window, a box of glass slides and a mug beside it, a hand reaching for the focus knob; shot at an angle with some window glare.
+
+--- LABORATORY DIAGNOSTICS page ---
+12. lab-01-analizator.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: SALMON | section: "Badania zlecane laboratoriom zewnętrznym"
+   IDEA: A small tabletop analyser (grey box, blank dark display, no text) next to a rack of capped sample tubes; real and slightly cluttered but tidy; window reflection on the casing.
+13. lab-03-pas-laboratorium.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SALMON | section: "Badania zlecane laboratoriom zewnętrznym"
+   IDEA: A lab counter: tube racks, a microscope, a box of gloves without printed text, a houseplant; wide casual snapshot, nobody in it.
+
+--- ULTRASOUND / IMAGING page ---
+14. usg-01-aparat.jpg | slot: wide 8:5 | canvas: landscape 1536x1024 | palette: PEACH | section: "Kiedy lekarz zleca USG"
+   IDEA: An ultrasound machine on a trolley in a corner, screen dark, probe in its holder, cable looped; seen from the side in soft window light.
+15. usg-04-pas.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Co można zbadać za pomocą USG"
+   IDEA: A calm dim ultrasound room: an exam table with a cream blanket, the machine's silhouette, a curtain half drawn, a warm lamp glow; nobody.
+16. usg-03-badanie.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: SALMON | section: "Jak przygotować psa lub kota do badania USG?"
+   IDEA: A relaxed mixed-breed dog lying on its back on a cream blanket, a gloved hand moving a probe over a clipped patch on the belly; the dog's upside-down face soft in the foreground.
+
+--- CARDIOLOGY page ---
+17. kard-02-echo.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: SALMON | section: "Najczęstsze choroby serca u kotów"
+   IDEA: A large black dog lying on an exam table, a probe on its chest held by a gloved hand (white sleeve, no face); the dog's head rests on the blanket, eyes half closed.
+18. kard-04-pies-kot-a.jpg | slot: narrow PORTRAIT 4:5 | canvas: portrait 1024x1536 | palette: SALMON | section: "Najczęstsze choroby serca u kotów"
+   IDEA: A scruffy terrier mix sitting on a wooden chair in a clinic corner, tilting its head and looking straight at the camera; window light from the left. Same session and same corner as the next two frames.
+19. kard-04-pies-kot-b.jpg | slot: small 3:2 (one of three frames shown together as a mosaic) | canvas: landscape 1536x1024 | palette: SALMON | section: "Najczęstsze choroby serca u kotów"
+   IDEA: A grey tabby cat sitting on a folded cream blanket, ears turned toward a sound, looking out of a window. Same session and light as the frame above.
+20. kard-04-pies-kot-c.jpg | slot: small 3:2 (one of three frames shown together as a mosaic) | canvas: landscape 1536x1024 | palette: SALMON | section: "Najczęstsze choroby serca u kotów"
+   IDEA: A hand stroking a fluffy cat's back on a blanket; close and partial, the cat's face out of frame. Same session and light as the frames above.
+
+--- NEPHROLOGY page ---
+21. nefr-02-kot-pije.jpg | slot: wide 8:5 | canvas: landscape 1536x1024 | palette: SAGE | section: "Ostre uszkodzenie nerek (AKI)"
+   IDEA: A grey cat drinking from a ceramic bowl on a tiled floor, shot from above and slightly crooked; a houseplant leaf intrudes at the edge.
+22. nefr-03-pas.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Ostre uszkodzenie nerek (AKI)"
+   IDEA: A quiet corner of a consulting room: a desk, two chairs, a plant and a window; a jacket draped over a chair; nobody.
+23. nefr-04-badanie-krwi.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: SALMON | section: "Przewlekła choroba nerek (PChN)"
+   IDEA: Gloved hands gently holding a dog's front paw on a cream blanket; a capped sample tube and gauze on a small tray beside it. No needle, no syringe, no blood, no label text.
+
+--- OPHTHALMOLOGY page ---
+24. oko-04-pas-gabinet.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Najczęstsze choroby oczu u psów i kotów"
+   IDEA: An eye-exam room: a slit lamp on a small table, a round stool, a plant by the window; nobody; casual phone snap.
+25. oko-02-badanie-lampa.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: SALMON | section: "Jak wygląda badanie okulistyczne"
+   IDEA: A dog resting its chin on the slit-lamp chin rest, muzzle in focus, a hand steadying the lamp (no face); warm light from the side.
+26. oko-03-oko-pies.jpg | slot: wide 8:5 | canvas: landscape 1536x1024 | palette: MIST | section: "Jak dbać o zdrowie oczu swojego psyjaciela?"
+   IDEA: An extreme close portrait of a dog's face with one clear bright eye catching the window light, whiskers soft, shallow depth of field, like a phone portrait-mode shot.
+
+--- BLOOD-PRESSURE MEASUREMENT page ---
+27. cis-02-pomiar-kot.jpg | slot: wide 8:5 | canvas: landscape 1536x1024 | palette: SAGE | section: "Jak przygotować zwierzę do pomiaru"
+   IDEA: A calm grey tabby cat on a folded cream towel on an exam table, a small soft blood-pressure cuff (fabric with a velcro strap and a thin tube) wrapped around its front leg; hands in cream knit sleeves hold it gently, no faces. The cat may look at the camera.
+28. cis-03-pas-gabinet.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Jak przygotować zwierzę do pomiaru"
+   IDEA: An empty quiet examination room, wide: a small wooden exam table with a folded blanket and a blood-pressure cuff resting on it, a wooden stool, a window with light curtains, a houseplant; sun patches on the floor. Important objects only in the middle band.
+29. cis-04-pomiar-pies.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: SALMON | section: "Jak wygląda pomiar"
+   IDEA: A calm golden labrador-type dog lying on its side on a cream blanket, a small blood-pressure cuff on its front leg, one hand in a white-coat sleeve resting on its shoulder (no face); a small grey handheld device with a dark blank screen blurred in the foreground.
+
+--- DENTISTRY page ---
+30. stom-02-zabieg.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: SALMON | section: "Czym grozi brak leczenia"
+   IDEA: A dental corner: a tray with clean small instruments (mirror, scaler) beside a wall lamp and a stool; a sleeping dog's paw peeking from a blanket in the corner. No open mouths, no blood.
+31. stom-03-mozaika-a.jpg | slot: narrow PORTRAIT 4:5 | canvas: portrait 1024x1536 | palette: SALMON | section: "Czym grozi brak leczenia"
+   IDEA: A happy dog sitting on a wooden floor with a rubber chew toy in its mouth, looking at the camera, slightly blurred by motion. Same session as the next two frames.
+32. stom-03-mozaika-b.jpg | slot: small 3:2 (one of three frames shown together as a mosaic) | canvas: landscape 1536x1024 | palette: SALMON | section: "Czym grozi brak leczenia"
+   IDEA: A pet toothbrush and a tube of pet toothpaste (no readable print) on a shelf beside a small plant; close, shallow focus.
+33. stom-03-mozaika-c.jpg | slot: small 3:2 (one of three frames shown together as a mosaic) | canvas: landscape 1536x1024 | palette: SALMON | section: "Czym grozi brak leczenia"
+   IDEA: A cat caught mid-yawn on a blanket, teeth visible, eyes squeezed shut; looks like an accidental snap.
+
+--- VACCINATION AND PARASITE PREVENTION page ---
+34. szcz-01-szczepienie.jpg | slot: wide 8:5 | canvas: landscape 1536x1024 | palette: SAGE | section: "Profilaktyka przeciw­pasożytnicza psów i kotów"
+   IDEA: Gloved hands preparing a vaccination: a small capped vial and a syringe still in its sealed wrapper on a tray, a dog sitting blurred behind; no needle visible.
+35. szcz-04-pas-pies-kot.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Profilaktyka przeciw­pasożytnicza psów i kotów"
+   IDEA: A beagle and a grey cat sitting side by side on a wooden waiting bench against a sage-green wall, looking in different directions.
+
+--- UROLOGY page ---
+36. uro-02-kot-kuweta.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: SALMON | section: "Jak wygląda diagnostyka"
+   IDEA: A grey tabby cat sitting next to a clean, open (no lid) light-coloured litter tray with fresh pale litter in a tidy bright corner; the cat looks away from the camera; warm floor.
+37. uro-03-pas.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: PEACH | section: "Jak zmniejszyć ryzyko nawrotów"
+   IDEA: A bright, airy room: a small round wooden table with a glass water carafe and two glasses, two chairs, sheer curtains, patches of sunlight on the floor; nobody.
+
+--- PET PASSPORT page ---
+38. pasz-02-stempel.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: SAGE | section: "Jak przebiega wizyta w sprawie paszportu"
+   IDEA: A wooden-handled rubber stamp beside a closed ink pad, a small open booklet in the pet-passport style (the pages show only blurred ruled lines and illegible scribbles, no readable words, numbers, flags or logos), a pen and a cream ceramic mug on a light-wood desk; a hand in a white-coat sleeve at the frame edge holds the pen (no face).
+39. pasz-03-podroz.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Jak przebiega wizyta w sprawie paszportu"
+   IDEA: A cream or tan vintage-style suitcase beside a forest-green plastic pet carrier with a wire door, side by side on a wooden floor in front of a wall and a sunny window with sheer curtains; a coiled leash on the suitcase. No stickers, labels or text. Objects only in the middle band.
+40. pasz-04-pies-kot-walizka.jpg | slot: narrow PORTRAIT 4:5 | canvas: portrait 1024x1536 | palette: SALMON | section: "Co zabrać na wizytę"
+   IDEA: A calm cream-and-brown terrier-mix dog sitting upright next to a closed cream suitcase on a light wooden floor, a leash looped over the handle; a window with autumn trees at the upper left, a leafy plant in a pot. The dog looks toward the camera.
+
+--- SERVICES OVERVIEW page ---
+41. uslugi-02-gabinet.jpg | slot: panoramic STRIP 21:9 | canvas: landscape 1536x1024 | palette: SAGE | section: "Diagnostyka"
+   IDEA: A treatment room from the doorway: a pale exam table with a folded blanket, a trolley, a window with plants; nobody.
+42. uslugi-03-mozaika-a.jpg | slot: narrow PORTRAIT 4:5 | canvas: portrait 1024x1536 | palette: SALMON | section: "Konsultacje specjalistyczne"
+   IDEA: A calm medium-sized dog standing on an exam table with a vet's hand resting on its back (white sleeve, no face), shot from the dog's eye level. Same session as the next two frames.
+43. uslugi-03-mozaika-b.jpg | slot: small 3:2 (one of three frames shown together as a mosaic) | canvas: landscape 1536x1024 | palette: SALMON | section: "Konsultacje specjalistyczne"
+   IDEA: A cat peeking out of an open fabric pet carrier lined with a blanket, one paw on the rim.
+44. uslugi-03-mozaika-c.jpg | slot: small 3:2 (one of three frames shown together as a mosaic) | canvas: landscape 1536x1024 | palette: SALMON | section: "Konsultacje specjalistyczne"
+   IDEA: Hands holding a small blank booklet and a pen at a desk (no readable text on the cover or the pages).
+45. uslugi-01-recepcja.jpg | slot: wide 3:2 | canvas: landscape 1536x1024 | palette: IVORY | section: "Nie wiesz, którą usługę wybrać?"
+   IDEA: A reception counter seen from the client's side: a plant, a small bowl of dog treats, a blank clipboard (no text), a leash hanging on a hook; nobody; the counter edge crooked in the foreground.
+
+START NOW
+Answer with the 5-line confirmation and generate item 1.

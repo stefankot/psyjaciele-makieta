@@ -268,6 +268,13 @@ class Home:
             break
         self.svg_filters_raw = body_svg
 
+        def svg_with(fid):
+            """Cały <svg> z definicją filtra `fid` (np. service-light-ink leży w sekcji usług, thick-2 na początku body)."""
+            i = n.html.index(f'<filter id="{fid}"')
+            return n.html[n.html.rindex('<svg', 0, i):n.html.index('</svg>', i) + 6]
+        # kafle usług (bento) potrzebują filtrów koloru rysunków i pogrubienia strzałki; na Home są poza svg_filters_raw
+        self.svg_bento_raw = svg_with('service-light-ink') + svg_with('thick-2')
+
         # sekcje
         def sec(i):
             r = n.by_id('section', i)

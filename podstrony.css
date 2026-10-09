@@ -25,6 +25,13 @@ html.bar body.subpage { --sticky-top: calc(var(--hdr-h, 64px) + var(--s3)); }
 body.subpage main > section { min-width: 0; }
 body.subpage main .section-stack > * { min-width: 0; }
 
+/* Odstępy w stosie sekcji — jedna wartość na wszystkich podstronach. Stary styl Home (.services/.team/.reviews/.clinic > .wrap { gap: 88 px })
+   działał też tu, więc ta sama relacja miała 88, 64 albo 32 px zależnie od klasy palety. Teraz: między dużymi blokami --group-gap (64 px),
+   nagłówek → tabela oraz podrozdział po bloku — 32 px (--s4), jak wewnątrz układu split-feature. */
+body.subpage main section > .wrap.section-stack { row-gap: var(--group-gap, 64px); }
+body.subpage main .section-stack > .section-head + :is(.ruled-table, p),
+body.subpage main .section-stack > * + .sub-chapter { margin-block-start: calc(var(--s4) - var(--group-gap, 64px)); }
+
 /* każdy akapit w treści bez własnych marginesów — odstępy daje siatka kontenera */
 body.subpage main :is(.split-body, .rail-body, .faq-answer, .sub-chapter, .callout, .legal-prose) p { margin: 0; }
 body.subpage main :is(.split-body, .rail-body, .sub-chapter) p { max-inline-size: 62ch; text-wrap: pretty; }
@@ -287,7 +294,7 @@ body.subpage .key-values dt { font-size: 16px; line-height: 24px; letter-spacing
 body.subpage .key-values dd { margin: 0; }
 @media (max-width: 700px) { body.subpage .key-values > div { grid-template-columns: 1fr; gap: var(--s1); } }
 
-body.subpage .legal-prose { counter-reset: lp; max-inline-size: 66ch; display: grid; gap: var(--s3); }
+body.subpage .legal-prose { counter-reset: lp; max-inline-size: none; display: grid; gap: var(--s3); }   /* 8 kolumn artykułu; miarę tekstu (66ch) ogranicza akapit */
 body.subpage .legal-prose h2 { font-size: clamp(24px, 2.2vw, 32px); line-height: 32px; line-height: round(up, 1.15em, 8px); margin: var(--s5) 0 var(--s1); }
 body.subpage .legal-prose h3 { font-size: 20px; line-height: 32px; margin: var(--s3) 0 0; }
 body.subpage .legal-prose :is(ol, ul) { padding-inline-start: var(--s4); margin: 0; display: grid; gap: var(--s1); }
@@ -302,7 +309,8 @@ body.subpage .chooser > li > p {
 body.subpage .chooser .type-arrow { flex: none; }
 body.subpage .chooser a { text-underline-offset: .22em; }
 
-body.subpage .related-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(224px, 1fr)); gap: var(--gap); }
+body.subpage .related-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }   /* dwie kafle po 4 kolumny siatki (było 3 × 260 px, poza siatką) */
+@media (max-width: 560px) { body.subpage .related-tiles { grid-template-columns: minmax(0, 1fr); } }
 body.subpage .related-tiles > article { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: none; align-content: start; gap: var(--s2); min-width: 0; }
 body.subpage .related-tiles > article > * { grid-column: 1; grid-row: auto; }
 body.subpage .related-tiles h3 { font-size: 24px; margin: 0; }
@@ -564,7 +572,10 @@ body.subpage .profile-portrait .portrait-blob img {
   body.subpage .profile, body.subpage .profile.is-reversed { grid-template-columns: minmax(0, 1fr); }
   body.subpage .profile > .profile-portrait, body.subpage .profile.is-reversed > .profile-portrait, body.subpage .profile > .profile-main, body.subpage .profile.is-reversed > .profile-main { grid-column: 1; grid-row: auto; }
   body.subpage .profile-main { padding-bottom: var(--s4); }
-  body.subpage .profile-portrait { max-inline-size: 200px; order: 2; }
+  body.subpage .profile-portrait { max-inline-size: calc((100% - 11 * var(--gap)) / 12 * 3 + 2 * var(--gap)); order: 2; }   /* 3 kolumny siatki (było 200 px) */
+}
+@media (max-width: 700px) {
+  body.subpage .profile-portrait { max-inline-size: calc((100% - 11 * var(--gap)) / 12 * 6 + 5 * var(--gap)); }   /* telefon: 6 kolumn */
 }
 /* profile: etykieta nad wartością (kolumna tekstu jest wąska), poprawiony skok linii nazwiska */
 body.subpage .profile-body .key-values > div { grid-template-columns: minmax(0, 1fr); row-gap: var(--s1); }
@@ -790,19 +801,13 @@ html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile
 /* hub: ilustracja zawsze nad tytułem (w kafelkach 1 i 3 układ Home ustawiał ją inaczej) */
 html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile > :is(.service-art, img.service-art) { order: -1 !important; }
 html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile > :is(h3, p) { order: 0 !important; }
+/* hub: rysunek zawsze w szerokości swojej kolumny (reguła telefonu z Home dawała 60vw i ujemny margines: rysunki wychodziły poza ekran i nakładały się na sąsiednią kolumnę) */
+html body.book-type.subpage .page-columns .services .bento.ruled-columns > .tile > img.service-art { width: 100%; max-width: 100%; margin: 0; aspect-ratio: 1.2 / 1; }   /* ta sama proporcja we wszystkich kaflach: tytuły w rzędzie na jednej linii (kafle 1 i 3 miały 1∶1 z układu Home) */
 
-/* nawigacja (dane kontaktowe) zaczyna się na osi 7 siatki (pionowa linia środka strony, jak lead w hero): pierwsza kolumna nagłówka
-   ma szerokość „do osi”; środek viewportu = 50 % siatki nagłówka, oś 7 = środek + pół rynny; 34 px = wcięcie nagłówka, 21 px = odstęp kolumn.
-   1440–1599 px: żeby dane i przycisk zmieściły się na prawo od osi, przycisk traci strzałkę, a odstępy w danych są ciaśniejsze. */
-@media (min-width: 1440px) {
-  body.subpage .site-header.site-header .header-grid { grid-template-columns: calc(50% + var(--gap) / 2 - 21px) auto auto; column-gap: 21px; }
-  body.subpage .site-header.site-header .header-info { column-gap: 18px; }
-  body.subpage .site-header.site-header .header-actions > .button .type-arrow { display: none; }
-}
-@media (min-width: 1600px) {
-  body.subpage .site-header.site-header .header-info { column-gap: 24px; }
-  body.subpage .site-header.site-header .header-actions > .button .type-arrow { display: inline; }
-}
+/* Podpisy opinii pismem Rialto jak na Home (uwaga 9.10): na podstronach --font-emphasis jest Satoshi, więc krój podany wprost. */
+html body.book-type.subpage .reviews .quote .review-author { font-family: Rialto, Georgia, serif; }
+
+/* Nagłówek podstron wygląda zawsze jak na Home (uwaga 9.10): dawne przesunięcie danych kontaktowych na oś 7 i ukrywanie strzałki przy 1440–1599 px usunięte. */
 
 /* --- uwagi z przeglądu (8.10.2026), paczka 1 --- */
 /* 23: cały blok rezerwacji jednym rozmiarem (akapit 16/24) */
@@ -1097,6 +1102,12 @@ html body.book-type.subpage main .alert-band a.button > .phone-status {
   color: var(--surface); font-size: 16px; line-height: 24px; font-weight: 900; white-space: nowrap;   /* kolor jak tło przycisku */
 }
 
+/* Wąski ekran: status otwarcia pod przyciskiem (jak w hero), nie jako przedłużenie po prawej — to wystawało poza ekran. */
+@media (max-width: 700px) {
+  html body.book-type.subpage main .alert-band a.button:has(> .phone-status) { margin-block-end: calc(var(--status-gap, 16px) + 24px); }
+  html body.book-type.subpage main .alert-band a.button > .phone-status { inset-inline-start: 0; inset-block-start: 100%; inset-block-end: auto; margin: var(--status-gap, 16px) 0 0; padding: 0; border: 0; font-weight: 700; }
+}
+
 /* Uwagi 9.10 (4, 5): rezerwacja w gridzie artykułu — tytuł na 8 kol., niżej tekst (4 kol.) i przyciski (4 kol.); lecznice całodobowe w 3 kolumnach, gdy się mieszczą. */
 @media (min-width: 1001px) {
   html body.book-type.subpage #zapraszamy .booking-copy { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap, 32px); row-gap: var(--s3); align-content: start; align-items: start; }
@@ -1168,7 +1179,7 @@ body.subpage .info-points4 { display: none; }
 }
 
 /* Uwagi 9.10 (chirurgia): lead z więcej niż jednym akapitem — font mniejszy o ok. 20%; zdjęcia (foto) w ramce 8 kolumn wypełniają ją (cover, kadr z --ph-pos). */
-body.subpage .page-hero .poster-copy:has(> p:nth-of-type(2)) > p { font-size: calc(var(--lead-size) * .8); line-height: calc(var(--lead-lh) * .8); }
+body.subpage .page-hero .poster-copy:has(> p:nth-of-type(2)) > p { font-size: calc(var(--lead-size) * .8); line-height: calc(var(--lead-lh) * .8); line-height: round(nearest, calc(var(--lead-lh) * .8), 8px); }   /* interlinia na siatce 8 px (było 25,6 px przy 390/1000) */
 body.subpage .page-columns .photo-frame.is-narrow.has-image[data-kind="foto"] > img { object-fit: cover; object-position: var(--ph-pos, 50% 40%); }
 @media (min-width: 1001px) {
   body.subpage .page-columns .split-feature:not(.is-faq):not(.is-short):has(.split-body > :is(.callout:first-child, :first-child + :is(p, .sub-chapter))) > .split-aside > .photo-frame.has-image[data-kind="foto"] > img { object-position: var(--ph-pos, 50% 40%); }

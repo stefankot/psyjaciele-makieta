@@ -607,10 +607,14 @@ def photo_frame(ctx, ph_id, variant='', ratio=None, role=''):
         pass
     arr = {'foto': 'Zdjęcie', 'pas': 'Pas', 'wycinek': 'Wycinek', 'ilustracja': 'Ilustracja', 'diagram': 'Diagram', 'ikona': 'Ikona'}[kind]
     bw = 'kolor, retro' if kind in ('foto', 'pas') else ('liniowa' if kind in ('diagram', 'ilustracja') else 'czarna kreska na białym tle')
-    return (f'<figure class="{cls}" data-ph="{ph_id}" data-kind="{kind}" data-src="{fn}" '
+    # Plik istnieje → data-src wskazuje go wprost (AVIF, jeśli jest); brak pliku → data-brak (podstrony.js nie sonduje, więc bez 404 w konsoli).
+    f_ = _ROOT / fn
+    found = fn.rsplit('.', 1)[0] + '.avif' if f_.with_suffix('.avif').exists() else (fn if f_.exists() else None)
+    src_attr = f'data-src="{found}" data-resolved="1"' if found else f'data-brak="{fn}"'
+    return (f'<figure class="{cls}" data-ph="{ph_id}" data-kind="{kind}" {src_attr} '
             f'data-alt="{esc(spec["alt"])}" style="--ph-ratio:{r}' + (f';--ph-ratio-wide:{wide}' if wide else '') + (f';--ph-pos:{PH_POS[ph_id]}' if ph_id in PH_POS else '') + '">'
             f'<figcaption><strong>{esc(spec["title"])}</strong><span>{arr} {ratio.replace("/", "∶")} · {bw}</span></figcaption></figure>'
-            f'<!-- Podmiana: wgraj plik {fn} i odśwież stronę — podstrony.js podmieni ramkę bez edycji HTML. -->')
+            f'<!-- Podmiana: wgraj plik {fn} (lub .avif) i uruchom build.py — ramka dostanie obraz bez edycji HTML. -->')
 
 
 def figure_band(ctx, ph_id, callout_html=''):
@@ -686,7 +690,7 @@ def bento(ctx):
     ctx.use('bento')
     ctx.svg_needed = True
     raw = ctx.home.bento_raw
-    return ctx.rw.fragment(raw)
+    return ctx.rw.fragment(ctx.home.svg_bento_raw + raw)   # filtry koloru rysunków (service-light-ink, service-hover-ink) i thick-2 jak na Home
 
 
 def photo_pets_note():

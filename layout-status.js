@@ -46,6 +46,7 @@
     return s;
   });
 
+  let heroHref0 = null;
   function render() {
     const st = current();
     if (hero) {
@@ -54,7 +55,10 @@
       else text = st.state === 'closing' ? `Otwarte jeszcze do ${fmt(st.close)}` : `Otwarte teraz — do ${fmt(st.close)}`;
       hero.textContent = text;
       hero.dataset.state = st.state;
-      hero.setAttribute('href', st.state === 'closed' ? '#after-hours-title' : (document.getElementById('zapraszamy') ? '#zapraszamy' : '#kontakt'));
+      if (heroHref0 === null) heroHref0 = hero.getAttribute('href');
+      const target = st.state === 'closed' ? '#after-hours-title' : (document.getElementById('zapraszamy') ? '#zapraszamy' : '#kontakt');
+      /* cel musi istnieć na tej stronie; inaczej zostaje adres z generatora (np. ../index.html#kontakt na polityce) */
+      hero.setAttribute('href', document.getElementById(target.slice(1)) ? target : heroHref0);
       hero.hidden = false;
     }
     const word = st.state === 'closed' ? `zamknięte — ${st.label} od ${fmt(st.from)}` : (st.state === 'closing' ? `otwarte jeszcze do ${fmt(st.close)}` : `otwarte do ${fmt(st.close)}`);

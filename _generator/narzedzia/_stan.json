@@ -1,7 +1,7 @@
 {
  "uslugi-weterynaryjne": {
   "file": "uslugi-weterynaryjne/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
@@ -101,7 +101,7 @@
  },
  "choroby-wewnetrzne-u-psow-i-kotow": {
   "file": "uslugi-weterynaryjne/choroby-wewnetrzne-u-psow-i-kotow/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
@@ -184,7 +184,7 @@
  },
  "diagnostyka-laboratoryjna-weterynaryjna": {
   "file": "uslugi-weterynaryjne/diagnostyka-laboratoryjna-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
@@ -254,7 +254,7 @@
  },
  "szczepienia-oraz-profilaktyka-przeciwpasozytnicza": {
   "file": "uslugi-weterynaryjne/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
@@ -322,7 +322,7 @@
  },
  "chirurgia-weterynaryjna-tkanek-miekkich": {
   "file": "uslugi-weterynaryjne/chirurgia-weterynaryjna-tkanek-miekkich/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
@@ -401,7 +401,7 @@
  },
  "kardiologia-weterynaryjna": {
   "file": "uslugi-weterynaryjne/kardiologia-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
@@ -499,7 +499,7 @@
  },
  "diagnostyka-obrazowa-psow-i-kotow": {
   "file": "uslugi-weterynaryjne/diagnostyka-obrazowa-psow-i-kotow/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
@@ -575,7 +575,7 @@
  },
  "okulistyka-weterynaryjna": {
   "file": "uslugi-weterynaryjne/okulistyka-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
@@ -735,7 +735,7 @@
  },
  "stomatologia-weterynaryjna": {
   "file": "uslugi-weterynaryjne/stomatologia-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
@@ -1157,7 +1157,7 @@
  },
  "czipowanie-psow-i-kotow": {
   "file": "uslugi-weterynaryjne/czipowanie-psow-i-kotow/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
@@ -1245,7 +1245,7 @@
  },
  "zespol": {
   "file": "zespol/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "soft-a",
@@ -1280,7 +1280,7 @@
  },
  "polityka-prywatnosci": {
   "file": "polityka-prywatnosci/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "soft-a"
