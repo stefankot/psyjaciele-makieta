@@ -51,6 +51,7 @@ html body.book-type:not(.subpage) #przygotowanie .detail-columns > div:nth-child
 html body.book-type:not(.subpage) #przygotowanie .detail-columns > div:nth-child(3){--ic:var(--ico-list-l)}
 html body.book-type:not(.subpage) #przygotowanie .detail-columns > div:nth-child(4){--ic:var(--ico-chat-bubble-question-l)}
 html body.book-type:not(.subpage) #przygotowanie .detail-columns > div:nth-child(5){--ic:var(--ico-shield-check-l)}
+html body.book-type:not(.subpage) #przygotowanie .detail-columns > div:nth-child(6){--ic:url(assets/icons/paw-heart-l.png)} /* łapa z sercem — narysowana przez OpenAI, linia pogrubiona do grubości ikon Iconoir */
 /* menu rozwijane: adres, godziny, telefon, e-mail */
 html body.book-type .site-nav :is(.nav-address,.nav-hours){position:relative;padding-inline-start:32px}
 html body.book-type .site-nav :is(.nav-address,.nav-hours)::before{content:"";display:inline-block;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}

@@ -77,10 +77,11 @@ html body.book-type .hero .hero-greeting {
   line-height: round(nearest, 1.04em, 8px) !important;
 }
 html body.book-type :is(p, li, nav) a { line-height: inherit !important; }
-/* hero: rozmiar tekstu bez zmian, tylko interlinia dosunięta do siatki */
+/* hero: interlinia zależy od liczby znaków w wierszu (im krótszy wiersz, tym krótsza interlinia) — ustawia ją nowa-header.js
+   (interlinia po mierze); poniżej wartość zapasowa na siatce 8 px, gdy skrypt nie działa */
 html body.book-type .hero .hero-links {
-  line-height: 56px;
-  line-height: round(up, 1.8em, 8px);
+  line-height: 32px;
+  line-height: round(nearest, 1.4em, 8px);
 }
 
 html body.book-type :is(a, button, summary, [tabindex]):focus-visible {
@@ -272,7 +273,7 @@ html body.book-type .services .tile:hover h3::after { opacity: 1; }
     grid-column: span 2 !important;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-areas: "art title" "art desc";
+    grid-template-areas: "title art" "desc art";
     grid-template-rows: auto 1fr;
     column-gap: 32px;
     row-gap: 16px;
@@ -289,13 +290,13 @@ html body.book-type .services .tile:hover h3::after { opacity: 1; }
   html body.book-type .services .tile:nth-child(1) p,
   html body.book-type .services .tile:nth-child(3) p { grid-area: desc; margin-top: 0; font-size: 20px; line-height: 32px; }
 }
-/* telefon: ilustracja po lewej, duża; może wychodzić poza ekran do ok. 20 % szerokości */
+/* telefon: ilustracja po prawej, duża; może wychodzić poza ekran do ok. 20 % szerokości */
 @media (max-width: 759px) {
   html body.book-type .services .bento { grid-template-columns: minmax(0, 1fr) !important; row-gap: 0; }
   html body.book-type .services .tile {
     display: grid;
-    grid-template-columns: minmax(0, 42vw) minmax(0, 1fr);
-    grid-template-areas: "art title" "art desc";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 42vw);
+    grid-template-areas: "title art" "desc art";
     grid-template-rows: auto 1fr;
     column-gap: 8px;
     row-gap: 8px;
@@ -310,7 +311,8 @@ html body.book-type .services .tile:hover h3::after { opacity: 1; }
     width: 60vw;
     max-width: none;
     aspect-ratio: 1;
-    margin: -8px 0 0 -15vw; /* ok. 14 % szerokości rysunku poza lewą krawędzią (część to przezroczysty margines PNG) */
+    margin: -8px -15vw 0 0; /* ilustracja zawsze po prawej; ok. 14 % jej szerokości może wyjść poza prawą krawędź (część to przezroczysty margines PNG) */
+    justify-self: end;
   }
   html body.book-type .services .tile h3 { grid-area: title; margin-top: 0; }
   html body.book-type .services .tile p { grid-area: desc; margin-top: 0; }
@@ -840,3 +842,46 @@ html body.book-type a:not(:is(.button,.hero-btn,.booking-cta,.social-promo-cta,.
 html body.book-type .team .people .person figure .person-echo{position:absolute;inset:0;inline-size:100%;block-size:100%;z-index:0;opacity:0;pointer-events:none;transition:opacity .3s ease;color:var(--team-overlay-ink,var(--accent))}
 html body.book-type .team .people .person.has-echo:focus-within figure .person-echo{opacity:1}
 @media(hover:hover) and (pointer:fine){html body.book-type .team .people .person.has-echo:hover figure .person-echo{opacity:1}}
+
+/* =========================================================
+   Poprawki telefonu i statusu telefonu (uwagi 10.10.2026)
+   ========================================================= */
+/* status „otwarte jeszcze do…”: tekst zaczyna się w tej samej linii co tekst numeru nad nim (ikona 1,25 em + odstęp 0,5 em) */
+html body.book-type.book-type a.booking-phone .phone-status { gap: 0; }
+html body.book-type.book-type a.booking-phone .phone-status::before { margin-inline: calc((1.25em - 10px) / 2) calc((1.25em - 10px) / 2 + .5em); }
+
+@media (max-width: 759px) {
+  /* usługi: kolumna z opisem zajmuje co najmniej połowę szerokości strony */
+  html body.book-type .services .tile { grid-template-columns: minmax(0, 1fr) minmax(0, 34vw); column-gap: 16px; }
+  html body.book-type .services .tile .service-art { width: 52vw; }
+}
+@media (max-width: 700px) {
+  /* „O nas”: mniej pustego miejsca nad zdjęciem (pętla zwierząt zostaje w sekcji) */
+  html body.book-type #onas > .wrap.grid { padding-top: var(--s6, 89px); }
+
+  /* stopka: kolejność Na stronie → Usługi → Zespół; Usługi i Zespół zwijane (przycisk dodaje nowa-header.js) */
+  html body.book-type footer .foot-links.footer-nav { grid-column: 1 / -1; }
+  /* „Na stronie” i „Śledź nas” (dwa bloki jednego kontenera) stają się osobnymi elementami siatki: Na stronie → Usługi → Zespół → Śledź nas */
+  html body.book-type footer .foot-links.footer-nav-strona { display: contents; }
+  html body.book-type footer .foot-links.footer-nav-strona > div { grid-column: 1 / -1; }
+  html body.book-type footer .foot-links.footer-nav-strona > div:nth-child(1) { order: 1; }
+  html body.book-type footer .foot-links.footer-nav-uslugi { order: 2; }
+  html body.book-type footer .foot-links.footer-nav-zespol { order: 3; }
+  html body.book-type footer .foot-links.footer-nav-strona > div:nth-child(2) { order: 4; }
+  html body.book-type footer .credit { order: 9; }
+  html body.book-type footer .foot-group.is-collapsible > h2 { display: flex; align-items: center; justify-content: space-between; gap: var(--s2, 13px); }
+  html body.book-type footer .foot-group.is-collapsible:not(.is-open) > nav { display: none; }
+  html body.book-type footer .foot-toggle {
+    display: inline-grid; place-items: center; flex: none; inline-size: 44px; block-size: 44px; margin: -10px -10px -10px 0; padding: 0; border: 0; background: none; color: inherit; cursor: pointer;
+  }
+  html body.book-type footer .foot-toggle .ico { inline-size: 24px; block-size: 24px; rotate: 90deg; transition: rotate .2s ease-out; }
+  html body.book-type footer .foot-group.is-open .foot-toggle .ico { rotate: -90deg; }
+  html body.book-type footer .foot-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; }
+}
+@media (min-width: 701px) { html body.book-type footer .foot-toggle { display: none; } }
+
+/* menu na telefonie / w trybie paska (html.bar): przycisk „Umów wizytę” jest już w pasku nagłówka, więc w menu go nie powtarzamy;
+   numer w jednym wierszu, a informacja o otwarciu ciasno pod nim */
+html.bar body.book-type.book-type .site-header .site-nav .nav-col a.nav-book { display: none; }
+html.bar body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone { display: grid; grid-template-columns: minmax(0, max-content); justify-items: start; row-gap: 0; white-space: nowrap; }
+html.bar body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone .phone-status { margin: 0; margin-inline-start: 0; }

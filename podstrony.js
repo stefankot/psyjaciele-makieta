@@ -510,9 +510,39 @@
     if (q) on = q[1] === "1";
     set(on);
     document.addEventListener("keydown", function (e) {
-      if ((e.key === "g" || e.key === "G") && !e.metaKey && !e.ctrlKey && !e.altKey && !/^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || ""))) set(!b.classList.contains("show-grid"));
+      if ((e.key === "g" || e.key === "G") && !e.shiftKey && !e.metaKey && !e.ctrlKey && !e.altKey && !/^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || ""))) set(!b.classList.contains("show-grid"));
     });
   });
 
   // inspektor uwag (klawisz „I”, ?uwagi=1): patrz inspektor.js w korzeniu makiety
+})();
+
+/* Baner „Praca”: obraz 8 × 8 pacjentów kadrowany do 4 × 4 (1/4 obrazu); co sekundę jeden widoczny kafelek zamienia się na niewidoczny (też na desktopie). */
+(function () {
+  document.querySelectorAll("img.join-grid").forEach(function (img) {
+    var host = img.parentNode, m = (img.getAttribute("srcset") || "").match(/(\S+)\s+1254w/), src = (m ? m[1] : img.getAttribute("src")).replace("join-pacjenci-1254", "join-pacjenci-1256");   // 1256 = 8 × 157 px: kafelki co do piksela, bez zachodzenia sąsiednich zdjęć
+    var live = document.createElement("div"), cells = [], hidden = [], r, c;
+    live.className = "join-live"; live.setAttribute("role", "img"); live.setAttribute("aria-label", img.alt || "");
+    for (r = 0; r < 8; r++) for (c = 0; c < 8; c++) { if (r < 4 && c < 4) { var cell = document.createElement("span"); cell.className = "jt"; cell.style.backgroundImage = "url(" + src + ")"; cell.dataset.t = r * 8 + c; set(cell, r * 8 + c); cells.push(cell); live.appendChild(cell); } else hidden.push(r * 8 + c); }
+    function set(cell, t) { cell.dataset.t = t; cell.style.setProperty("--tr", Math.floor(t / 8)); cell.style.setProperty("--tc", t % 8); }
+    host.classList.add("has-live"); host.appendChild(live);
+    // siatka kafelków ma leżeć dokładnie na pełnych pikselach: przesuwamy ją o ułamek, żeby cięcie szło równo po krawędziach zdjęć
+    function snap() {
+      live.style.translate = "";
+      var b = live.getBoundingClientRect(), x = b.left + scrollX, y = b.top + scrollY;
+      live.style.translate = (Math.round(x) - x) + "px " + (Math.round(y) - y) + "px";
+    }
+    snap(); addEventListener("resize", snap, { passive: true }); addEventListener("load", snap);
+    if ("ResizeObserver" in window) new ResizeObserver(snap).observe(document.body);
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var visible = true, timer = null;
+    function swap() {
+      if (!visible || document.hidden) return;
+      var cell = cells[Math.floor(Math.random() * cells.length)], i = Math.floor(Math.random() * hidden.length), next = hidden[i];
+      cell.classList.add("is-out");
+      setTimeout(function () { hidden[i] = +cell.dataset.t; set(cell, next); cell.classList.remove("is-out"); }, 360);
+    }
+    timer = setInterval(swap, 1000);
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(host);
+  });
 })();

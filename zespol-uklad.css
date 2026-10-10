@@ -1,0 +1,64 @@
+/* Zespół na stronie głównej — zdjęcie zbiorcze (kwadrat) w łuku, po bokach okrągłe miniatury z imieniem, nazwiskiem i specjalizacjami.
+   Zdjęcie na 8 kolumn (3–10), po bokach po 2 kolumny: lewa — osoby stojące, prawa — siedzące; miniatura nad imieniem. Miniatury (promień 32 px) bez animacji; po najechaniu podkreśla się imię i nazwisko. */
+html body.book-type.book-type .team .team-arch { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap, 32px); align-items: end; margin-block-start: var(--s5, 55px); }
+html body.book-type.book-type .team .ta-photo { grid-column: 3 / span 8; grid-row: 1; margin: 0; border-radius: 999px 999px 0 0; overflow: hidden; aspect-ratio: 1536 / 1311; }
+html body.book-type.book-type .team .ta-photo img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+html body.book-type.book-type .team .ta-lists { display: contents; }
+html body.book-type.book-type .team .ta-left { grid-column: 1 / span 2; grid-row: 1; align-self: end; }
+html body.book-type.book-type .team .ta-right { grid-column: 11 / span 2; grid-row: 1; align-self: end; }
+html body.book-type.book-type .team .ta-left .ta-label { text-align: right; }
+html body.book-type.book-type .team .ta-col.ta-left a { justify-items: end; text-align: right; }
+html body.book-type.book-type .team .ta-label { margin: 0 0 var(--s3, 21px); font-size: 16px; line-height: 24px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--small-ink); }
+html body.book-type.book-type .team .ta-col ol { list-style: none; margin: 0; padding: 0; display: grid; row-gap: var(--s4, 34px); }
+html body.book-type.book-type .team .ta-col a { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: var(--s1, 8px); justify-items: start; align-items: start; color: inherit; text-decoration: none; }
+html body.book-type.book-type .team .ta-name { display: block; font-size: 18px; line-height: 24px; hyphens: auto; -webkit-hyphens: auto; font-weight: 700; color: var(--ink); text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: .18em; transition: text-decoration-color .25s ease-out; }
+html body.book-type.book-type .team .ta-spec { display: grid; }
+html body.book-type.book-type .team .ta-spec span { font-size: 16px; line-height: 24px; color: var(--small-ink); }
+html body.book-type.book-type .team .ta-thumb { position: relative; inline-size: 64px; block-size: 64px; border-radius: 32px; overflow: hidden; background: var(--accent); }
+html body.book-type.book-type .team .ta-thumb img { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; border-radius: 32px; object-fit: cover; object-position: 50% 12%; transform: scale(1.5); transform-origin: 50% 18%; }
+html body.book-type.book-type .team .ta-col a:is(:hover, :focus-visible) .ta-name { text-decoration-color: var(--ink); }
+html body.book-type.book-type .team .ta-col a:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; }
+
+@media (max-width: 1000px) {
+  html body.book-type.book-type .team .team-arch { row-gap: var(--s4, 34px); }
+  html body.book-type.book-type .team .ta-photo { grid-column: 1 / -1; grid-row: auto; }
+  html body.book-type.book-type .team .ta-lists { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap, 32px); align-items: start; }
+  html body.book-type.book-type .team .ta-left, html body.book-type.book-type .team .ta-right { grid-column: auto; grid-row: auto; }
+  html body.book-type.book-type .team .ta-left .ta-label { text-align: left; }
+  html body.book-type.book-type .team .ta-col a, html body.book-type.book-type .team .ta-col.ta-left a { grid-template-columns: 64px minmax(0, 1fr); column-gap: var(--s2, 13px); align-items: center; justify-items: stretch; text-align: left; }
+  html body.book-type.book-type .team .ta-col ol { row-gap: var(--s3, 21px); }
+}
+@media (max-width: 560px) {
+  html body.book-type.book-type .team .ta-lists { grid-template-columns: minmax(0, 1fr); row-gap: var(--s4, 34px); }
+}
+
+/* aureola: po najechaniu na osobę w liście nad jej głową na zdjęciu pojawia się biała aureola z samej kreski.
+   Domyślnie: promienisty wieniec dwóch pierścieni kresek wokół głowy. Tryb god mode (Shift+G, klasa html.god): owalny pierścień nad głową (jak na ikonie). Bez cienia. */
+html body.book-type.book-type .team .ta-photo { position: relative; }
+html body.book-type.book-type .team .ta-aur { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; pointer-events: none; overflow: hidden; fill: none; stroke: #fff; stroke-linecap: round; stroke-width: 7; }
+html body.book-type.book-type .team .ta-aur :is(ellipse, line) { fill: none !important; }
+html body.book-type.book-type .team .ta-aur > g { opacity: 0; transition: opacity .2s ease-out; }
+html body.book-type.book-type .team .ta-aur .a-ring { display: none; }
+html body.book-type.book-type .team .ta-aur .a-rays { stroke-width: 5.5; }
+html.god body.book-type.book-type .team .ta-aur .a-ring { display: inline; }
+html.god body.book-type.book-type .team .ta-aur .a-rays { display: none; }
+html body.book-type.book-type .team:has(.ta-left li:nth-child(1) a:is(:hover, :focus-visible)) .ta-aur .p1 { opacity: 1; }
+html body.book-type.book-type .team:has(.ta-left li:nth-child(2) a:is(:hover, :focus-visible)) .ta-aur .p2 { opacity: 1; }
+html body.book-type.book-type .team:has(.ta-left li:nth-child(3) a:is(:hover, :focus-visible)) .ta-aur .p3 { opacity: 1; }
+html body.book-type.book-type .team:has(.ta-left li:nth-child(4) a:is(:hover, :focus-visible)) .ta-aur .p4 { opacity: 1; }
+html body.book-type.book-type .team:has(.ta-right li:nth-child(1) a:is(:hover, :focus-visible)) .ta-aur .p5 { opacity: 1; }
+html body.book-type.book-type .team:has(.ta-right li:nth-child(2) a:is(:hover, :focus-visible)) .ta-aur .p6 { opacity: 1; }
+html body.book-type.book-type .team:has(.ta-right li:nth-child(3) a:is(:hover, :focus-visible)) .ta-aur .p7 { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { html body.book-type.book-type .team .ta-aur > g { transition: none; } }
+
+/* fakty o zespole: wyśrodkowane nad zdjęciem, zachodzą na wierzch łuku (tam jest tylko ściana) */
+html body.book-type.book-type .team .team-arch { position: relative; }
+html body.book-type.book-type .team .ta-facts { position: absolute; z-index: 3; inset-inline-start: 50%; inset-block-start: calc(-1 * var(--s3, 21px)); translate: -50% 0; margin: 0; column-gap: calc(var(--s4, 34px) + 15px); }
+@media (max-width: 1000px) { html body.book-type.book-type .team .ta-facts { position: static; translate: none; grid-column: 1 / -1; justify-self: start; } }
+
+/* maski sylwetek (alfa 0 w sylwetkach): aureola tylnego rzędu chowa się za wszystkimi osobami, aureola przedniego rzędu tylko za osobami z przedniego rzędu,
+   więc przy Magdzie, Oldze i Kindze widać ją także na osobach z tyłu */
+html body.book-type.book-type .team .ta-aur-tyl { -webkit-mask: url(assets/zespol-sylwetki-maska-tyl.png) center / 100% 100% no-repeat; mask: url(assets/zespol-sylwetki-maska-tyl.png) center / 100% 100% no-repeat; }
+html body.book-type.book-type .team .ta-aur-przod { -webkit-mask: url(assets/zespol-sylwetki-maska-przod.png) center / 100% 100% no-repeat; mask: url(assets/zespol-sylwetki-maska-przod.png) center / 100% 100% no-repeat; }
+
+

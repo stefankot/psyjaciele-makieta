@@ -23,11 +23,12 @@ import home as H  # noqa: E402
 import obrazy  # noqa: E402
 import manifest  # noqa: E402
 import plany  # noqa: E402
+import mobile_skala  # noqa: E402
 import strony  # noqa: E402
 
 MARK = '<!-- generated: psyjaciele-podstrony -->'
-CSS_V = '139'
-JS_V = '23'
+CSS_V = '153'
+JS_V = '27'
 
 
 def esc(s):
@@ -93,8 +94,11 @@ def head_html(home, pages, P, ld):
     for pl in home.head_preloads:
         parts.append(rw.fragment(pl))
     for href in home.head_stylesheets:
+        if href.startswith('mobile-skala'):
+            continue
         parts.append(f'<link rel="stylesheet" href="{rw.home_url(href)}">')
     parts.append(f'<link rel="stylesheet" href="{R}podstrony.css?v={CSS_V}">')
+    parts.append(f'<link rel="stylesheet" href="{R}mobile-skala-podstrony.css?v={CSS_V}">')
     parts.append(f'<script type="application/ld+json">{ld}</script>')
     return '\n'.join(parts)
 
@@ -175,8 +179,11 @@ def simple_head(home, rw, title, desc):
     for pl in home.head_preloads:
         parts.append(rw.fragment(pl))
     for href in home.head_stylesheets:
+        if href.startswith('mobile-skala'):
+            continue
         parts.append(f'<link rel="stylesheet" href="{rw.home_url(href)}">')
     parts.append(f'<link rel="stylesheet" href="{R}podstrony.css?v={CSS_V}">')
+    parts.append(f'<link rel="stylesheet" href="{R}mobile-skala-podstrony.css?v={CSS_V}">')
     return '\n'.join(parts)
 
 
@@ -247,6 +254,7 @@ def write(path: Path, content: str, dry=False):
 
 
 def main():
+    mobile_skala.generate()
     ap = argparse.ArgumentParser()
     ap.add_argument('--only')
     ap.add_argument('--root', default=str(HERE.parents[1]))

@@ -1,0 +1,152 @@
+{
+ "chir-os-dzien-zabiegu": {
+  "m": {
+   "ratio": 1.6229,
+   "shift": -6.8,
+   "t": 1.8,
+   "w": 324.5
+  },
+  "ratio": 4.118,
+  "y": 42.22
+ },
+ "cisn-os-leczenie": {
+  "m": {
+   "ratio": 1.5135,
+   "shift": -6.7,
+   "t": 1.6,
+   "w": 321.1
+  },
+  "ratio": 4.16,
+  "y": 42.59
+ },
+ "cisn-os-pomiar": {
+  "m": {
+   "ratio": 1.0819,
+   "shift": -6.9,
+   "t": 1.6,
+   "w": 257.7
+  },
+  "ratio": 4.16,
+  "y": 42.59
+ },
+ "czip-os-czipowanie": {
+  "m": {
+   "ratio": 1.097,
+   "shift": -6.8,
+   "t": 1.3,
+   "w": 253.0
+  },
+  "ratio": 4.16,
+  "y": 42.59
+ },
+ "czip-os-po": {
+  "m": {
+   "ratio": 1.4443,
+   "shift": -6.8,
+   "t": 1.8,
+   "w": 300.0
+  },
+  "ratio": 4.16,
+  "y": 42.59
+ },
+ "interna-os-wizyta": {
+  "m": {
+   "ratio": 1.3801,
+   "shift": -6.8,
+   "t": 1.8,
+   "w": 309.7
+  },
+  "ratio": 3.459,
+  "y": 34.41
+ },
+ "kard-os-konsultacja": {
+  "m": {
+   "ratio": 1.5927,
+   "shift": -6.8,
+   "t": 1.8,
+   "w": 341.6
+  },
+  "ratio": 3.8,
+  "y": 39.03
+ },
+ "kard-os-oddechy": {
+  "m": {
+   "ratio": 1.5598,
+   "shift": -6.8,
+   "t": 1.8,
+   "w": 342.0
+  },
+  "ratio": 3.967,
+  "y": 40.81
+ },
+ "oko-os-badanie": {
+  "m": {
+   "ratio": 1.2559,
+   "shift": -8.9,
+   "t": 1.8,
+   "w": 289.6
+  },
+  "ratio": 4.128,
+  "y": 42.31
+ },
+ "pasz-os-wizyta": {
+  "m": {
+   "ratio": 1.2386,
+   "shift": -6.8,
+   "t": 1.8,
+   "w": 288.9
+  },
+  "ratio": 3.977,
+  "y": 40.91
+ },
+ "pasz-os-wyjazd": {
+  "m": {
+   "ratio": 1.1823,
+   "shift": -6.7,
+   "t": 1.6,
+   "w": 268.1
+  },
+  "ratio": 4.16,
+  "y": 42.59
+ },
+ "stom-os-zabieg": {
+  "m": {
+   "ratio": 1.2637,
+   "shift": -6.8,
+   "t": 1.8,
+   "w": 287.8
+  },
+  "ratio": 3.91,
+  "y": 40.23
+ },
+ "szcz-os-wizyta": {
+  "m": {
+   "ratio": 1.1859,
+   "shift": -6.7,
+   "t": 1.6,
+   "w": 258.7
+  },
+  "ratio": 3.827,
+  "y": 39.33
+ },
+ "uro-os-diagnostyka": {
+  "m": {
+   "ratio": 1.4071,
+   "shift": -6.7,
+   "t": 1.6,
+   "w": 342.0
+  },
+  "ratio": 4.16,
+  "y": 42.59
+ },
+ "usg-os-badanie": {
+  "m": {
+   "ratio": 1.2523,
+   "shift": -6.8,
+   "t": 1.8,
+   "w": 281.3
+  },
+  "ratio": 4.16,
+  "y": 42.59
+ }
+}

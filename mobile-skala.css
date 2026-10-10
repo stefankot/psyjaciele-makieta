@@ -1,0 +1,245 @@
+/* GENEROWANE przez _generator/narzedzia/mobile_skala.py — nie edytuj ręcznie. Telefon (≤700 px): baza 14 px = 16 px × 0.875, wszystkie rozmiary i interlinie w px/vw skalowane ×0.875. */
+@media (max-width:700px){
+h1{font-size:clamp(51px,6.825vw,98px);line-height:.98}
+h2{font-size:clamp(42px,5.075vw,70px);line-height:1.03}
+h3{font-size:20px;line-height:26px}
+.button,.placeholder figcaption,.site-nav,footer h2,.header-email{font-size:10.5px;line-height:18.5px}
+.about-copy{line-height:1.05;line-height:16px}
+.about-note,.bento .tile p,.header-hours dl{font-size:10.5px;line-height:16px}
+.about-names{font-size:9px;line-height:14px}
+.heading{font-size:14px;line-height:23px}
+.person figure+p,.quote cite,.header-label{font-size:9px}
+.person figure+p{line-height:16px}
+.person figure+p+p{font-size:19px;line-height:24.5px}
+.kicker{font-size:9px;line-height:11.5px}
+.placeholder{font-size:9.5px;line-height:16px}
+.quote{line-height:16px}
+.contact-copy h2{font-size:clamp(35px,4.375vw,56px)}
+.contact-hours{font-size:9.5px}
+footer{font-size:9.5px;line-height:16px;font-size:9px;line-height:16px}& .icon{width:126px}
+.hero-subtitle{font-size:clamp(23px,2.625vw,35px);line-height:1.2}
+.bento{line-height:1.12;line-height:1.05;font-size:13px;line-height:21px}
+.header-location{font-size:11.5px;line-height:18.5px}
+.header-label{line-height:11.5px}
+.header-phone{font-size:17.5px;line-height:23px}
+@media(max-width:1000px){.bento .major{line-height:18.5px}}
+@media(max-width:700px){h1{font-size:clamp(37.5px,9.188vw,59.5px)}}
+@media(max-width:700px){h2{font-size:clamp(31.5px,7vw,45.5px)}}
+@media(max-width:700px){h3{font-size:17.5px;line-height:23px}}
+@media(max-width:700px){.about-copy h2{font-size:30px}}
+@media(max-width:700px){.heading>:is(p,h3){font-size:13px;line-height:21px}}
+@media(max-width:700px){.contact-hours td{font-size:11.5px}}
+@media(max-width:700px){.header-grid>.button{font-size:9px}}
+@media(max-width:700px){.menu-toggle{font-size:9.5px}}
+@media(max-width:700px){.site-nav{font-size:10.5px}}
+@media(max-width:700px){.bento{line-height:18.5px}& .tile:not(.major) .icon{width:48px}}
+@media(max-width:700px){.header-phone{font-size:16px;line-height:20px}}
+@media(max-width:700px){.header-email{font-size:9.5px;line-height:16px}}
+@media(max-width:700px){.header-location{font-size:10.5px;line-height:17.5px}}
+@media(max-width:700px){.header-hours dl{font-size:9.5px}}
+@media(max-width:700px){.header-label{font-size:8px}}
+@media(max-width:360px){.bento .major{line-height:16px}}}
+.site-header{font-size:9.5px;line-height:14px;font-size:9.5px;font-size:9.5px;line-height:16px;font-size:9.5px;line-height:16px;line-height:11.5px;line-height:18.5px}& .header-email{font-size:9px;line-height:16px}& .menu-toggle{display:none}&.is-compact{padding-block:var(--s2)}
+@media(max-width:700px){.site-header{font-size:9px}& .menu-toggle{display:grid;font-size:8px;font-size:9px;line-height:14px}& .header-location .header-hours{display:none}& .header-location .header-label{display:none}& .header-contact{grid-column:9/span 4;line-height:14px;font-size:10.5px;line-height:18.5px}}
+.hero-copy h1{font-size:clamp(28px,min(6.825vw,9svh),98px)}
+.hero-subtitle{font-size:clamp(16px,min(2.625vw,3.5svh),35px)}
+@media(max-width:700px){.site-header .header-grid>.button{font-size:8px}}
+@media(max-width:700px){.hero-copy h1{font-size:clamp(26px,min(9.188vw,7svh),59.5px)}}
+h2{font-size:clamp(35px,4.375vw,63px);line-height:1.06}
+.heading>:is(p,h3){line-height:1.6}
+.contact-copy h2{font-size:clamp(35px,4.2vw,56px)}
+@media(max-width:700px){h2{font-size:clamp(31.5px,7.438vw,45.5px);line-height:1.08}}
+:root{--type-h1:78px;--type-h2:48px;--type-h3:30px;--type-h4:18.5px;--type-h5:14px;--type-h6:14px;--type-body:14px;--leading-body:23px;--type-small:11.5px;--leading-small:18.5px}
+body{font-size:var(--type-body);line-height:var(--leading-body)}
+h1{font-size:var(--type-h1);line-height:1.03}
+h2{font-size:var(--type-h2);line-height:1.08}
+h3{font-size:var(--type-h3);line-height:1.15}
+h4{font-size:var(--type-h4);line-height:1.24}
+h5{font-size:var(--type-h5);line-height:1.625}
+h6{font-size:var(--type-h6);line-height:1.625}
+.hero-copy h1{font-size:clamp(30px,min(6.825vw,9svh),var(--type-h1))}
+.hero-subtitle{font-size:var(--type-h3);line-height:1.24}
+:is(.about-copy,.contact-copy) h2{font-size:var(--type-h2);line-height:1.08}
+main p,:is(.about-copy,.about-note,.heading,.section-heading,.bento .tile,.bento .major,.person,.contact-copy,.contact-details,.arrival-copy,.after-hours,.review-source,.quote) p{font-size:var(--type-body);line-height:var(--leading-body)}
+.bento .tile h3{font-size:var(--type-h4);line-height:1.24}
+.bento .major h3{font-size:var(--type-h3);line-height:1.15}
+.person figure+p,.about-copy p,.about-label,.about-names,.kicker,.quote cite,.placeholder figcaption,.placeholder figcaption span{font-size:var(--type-small);line-height:var(--leading-small)}
+.person figure+p+p{font-size:var(--type-h4);line-height:1.24}
+.about-note>p{font-size:var(--type-body);line-height:var(--leading-body)}
+footer h2{font-size:var(--type-h4);line-height:1.24}
+footer p,main td{font-size:var(--type-body);line-height:var(--leading-body)}
+@media(max-width:700px){:root{--type-h1:48px;--type-h2:30px;--type-h3:18.5px}}
+@media(max-width:700px){.hero-copy h1{font-size:clamp(30px,min(9.188vw,7svh),var(--type-h1))}}
+@media(max-width:700px){.hero-subtitle{font-size:var(--type-h4)}}
+.contact-hours{font-size:var(--type-h2);line-height:1}
+:root{--type-small:14px;--leading-small:23px}
+footer{line-height:var(--leading-body)}& h2{font-size:var(--type-h4);line-height:1.24}& ul{gap:var(--s2)}& .credit{font-size:var(--type-body)}}
+.button{font-size:var(--type-body);line-height:var(--leading-body)}
+.site-header{line-height:18.5px}& .header-phone{font-size:14px;line-height:23px}}
+@media(max-width:700px){.site-header{line-height:18.5px}& .site-nav{font-size:14px;line-height:23px}}}
+.foot-brand{line-height:1.4;line-height:1.15}
+.foot-brand p a{font-size:inherit;line-height:inherit}
+:is(h1,h2,h3,h4,h5,h6) em{font-size:calc(1em * var(--rialto-scale));line-height:.9}
+.booking-copy .booking-subtitle{font-size:var(--type-h3);line-height:1.24}
+.bento{font-size:var(--type-h4);line-height:1.24;font-size:var(--type-body);line-height:var(--leading-body)}}}
+.site-header :is(.site-nav,.header-location,.header-hours dl,.header-email,.header-label,.header-phone,.menu-toggle,.header-grid>.button){font-size:14px;line-height:23px}
+:root{--roman-size-factor:.7}
+:is(h1,h2) .heading-roman{font-size:calc(1em * var(--roman-heading-scale) * var(--roman-size-factor));line-height:1.08}
+.sample-photo{font-size:var(--type-body);line-height:var(--leading-body)}
+.people .person-role.small-caps{font-size:11.5px;line-height:18.5px}
+.person-name{font-size:var(--type-h4);line-height:1.24;font-size:30px;line-height:1.15}
+.hero-copy .hero-subtitle{font-size:var(--type-body);line-height:var(--leading-body)}
+.founder-hover{font-size:11.5px;line-height:18.5px}
+.people{font-size:var(--type-body);line-height:var(--leading-body)}
+.booking{font-size:var(--type-h4);line-height:1.4}
+@media(max-width:700px){.booking .booking-copy{line-height:1.6}}}
+.booking .booking-copy{font-size:var(--type-body)}
+.button,.site-header .header-grid>.button,.menu-toggle,.booking .booking-copy .booking-cta{font-size:var(--paragraph-size,var(--type-body));line-height:var(--paragraph-leading,var(--leading-body))}
+:root{--mixed-title-size:clamp(30px,3.062vw,42px)}
+:is(h1,h2):has(.heading-roman):has(em){font-size:var(--mixed-title-size);line-height:1.08;line-height:1.12}& em{font-size:calc(var(--mixed-title-size) * var(--rialto-scale));line-height:1.02}}
+@media(max-width:700px){:root{--mixed-title-size:clamp(17.5px,4.375vw,30px)}}
+:root{--paragraph-size:var(--type-body)}
+.booking .booking-copy{--paragraph-size:var(--type-h4)}
+@media(max-width:700px){.booking .booking-copy{--paragraph-size:var(--type-body)}}
+.quote .review-author{font-size:var(--type-body);line-height:var(--leading-body)}
+.emergency-clinics{font-size:var(--type-h3,23px);line-height:1.2}& .clinic-links{display:grid}
+.site-header.site-header{font-size:14px;line-height:19px}
+ & .brand{border-left:0;font-size:var(--type-body);line-height:19px;font-size:14px;line-height:23px}
+@media(max-width:1140px){.site-header.site-header{line-height:17.5px}& .brand{grid-column:1}}
+@media(max-width:600px){.site-header.site-header{font-size:14px;line-height:16px}& .brand{padding:0 var(--header-cell-space)}}
+.type-arrow{line-height:1}
+.type-arrow{font-size:1.3em}
+.foot-links a{font-size:17.5px}}
+.booking-cta .type-arrow{font-size:1.4em}
+.people .person .specializations{font-size:1em}}
+.hero-links{font-size:var(--type-body);line-height:var(--leading-body)}
+@media(max-width:700px){.contact-copy h2{font-size:clamp(24.5px,7vw,var(--type-h2))}}
+@media(max-width:700px){.contact .poster-heading h2{font-size:clamp(24.5px,7vw,var(--type-h2))}}
+.site-header.site-header{font-size:14px;line-height:19px;font-size:14px;line-height:19px}
+.booking-social{font-size:var(--paragraph-size,var(--type-body));line-height:var(--paragraph-leading,var(--leading-body))}
+.hero-links:has(.hero-inline-pet){line-height:2.35}
+.hero-intro .hero-links{font-size:clamp(19px,1.969vw,26px);line-height:1.8}
+.hero-links .hero-greeting{font-size:2em;line-height:1.08}
+footer .foot-brand>div>p:first-of-type{font-size:var(--type-h4);line-height:1.4}
+.emergency-steps h4{font-size:var(--type-h4);line-height:1.3}
+.emergency-steps h4::before{font-size:12px;line-height:1}
+#onas .founder-names{font-size:var(--type-small);line-height:var(--leading-small)}
+.pet-name-tooltip{font-size:12px;line-height:18.5px}
+:where(.book-type, .book-prose){line-height:1.6}
+@supports (container-type: inline-size){@container book-copy (inline-size < 38ch){:where(.book-prose :is(p, li, dd, blockquote)){line-height:1.5}}}
+@supports (container-type: inline-size){@container book-copy (38ch <= inline-size < 55ch){:where(.book-prose :is(p, li, dd, blockquote)){line-height:1.6}}}
+@supports (container-type: inline-size){@container book-copy (55ch <= inline-size < 72ch){:where(.book-prose :is(p, li, dd, blockquote)){line-height:1.68}}}
+@supports (container-type: inline-size){@container book-copy (inline-size >= 72ch){:where(.book-prose :is(p, li, dd, blockquote)){line-height:1.75}}}
+:where(.book-type, .book-prose) :where(h1, h2, h3, h4, h5, h6){line-height:1.15}
+:where(.book-prose blockquote cite){font-size:0.9em}
+:where(.book-prose figcaption){font-size:0.9em;line-height:1.5}
+:root .team .people .person::after{font-size:var(--type-h4);line-height:1}
+footer .footer-team .people{font-size:clamp(17.5px,2.012vw,25.5px);line-height:1.95}
+footer .footer-team .person .person-name{font-size:1em;line-height:inherit}
+footer .footer-team .person .person-name em{font-size:1.28em;line-height:1}
+footer .footer-team .person .specializations{font-size:1em;line-height:inherit}
+footer .footer-team .people{font-size:14px;line-height:1.95}
+#obserwuj-nas .social-promo-copy h2{font-size:var(--type-h2);line-height:1.08}
+.social-promo-subtitle{font-size:var(--type-h4);line-height:1.4}
+.social-promo-social{font-size:var(--type-h4);line-height:1.4}
+.social-promo-cta{font-size:var(--type-h4);line-height:1.4}
+@media(max-width:700px){#obserwuj-nas .social-promo-copy h2{font-size:clamp(23px,5.25vw,37px)}}
+@media(max-width:700px){.social-promo-subtitle{font-size:12px;line-height:1.5}}
+@media(max-width:700px){.social-promo-social{font-size:14px}}
+@media(max-width:700px){.social-promo-cta{font-size:14px}}
+@media(max-width:700px){#obserwuj-nas .social-promo-subtitle{font-size:12px;line-height:1.4}}
+#obserwuj-nas .social-promo-copy h2{line-height:1.08}
+#obserwuj-nas .social-promo-kicker{font-size:clamp(14px,1.488vw,21px);line-height:1.12}
+#obserwuj-nas .social-promo-copy h2 em{font-size:clamp(30px,3.85vw,56px);line-height:1.02}
+@media(max-width:700px){#obserwuj-nas .social-promo-kicker{font-size:12px}}
+@media(max-width:700px){#obserwuj-nas .social-promo-copy h2 em{font-size:clamp(21px,5.25vw,37px)}}
+.detail-columns h3,.equipment-grid h3,.contact-columns h3{font-size:23px;line-height:1.2}
+footer .footer-team .people{line-height:2}
+@media(max-width:700px){.hero-intro .hero-links{font-size:19px;line-height:1.7}}
+@media(max-width:700px){.detail-columns h3,.equipment-grid h3,.contact-columns h3{font-size:21px}}
+@media(max-width:700px){:root .team .people .person .person-name>span{font-size:14px}}
+@media(max-width:700px){:root .team .people .person .person-name>em{font-size:clamp(18.5px,5.25vw,26px)}}
+@media(max-width:700px){#obserwuj-nas .social-promo-subtitle{font-size:14px;line-height:1.5}}
+@media(max-width:600px){.site-header.site-header .header-info>*{font-size:12px;line-height:17.5px}}
+:root{--wp--preset--font-size--small:12px;--wp--preset--font-size--body:14px;--wp--preset--font-size--medium:18.5px;--wp--preset--font-size--large:30px;--wp--preset--font-size--x-large:48px;--wp--preset--font-size--xx-large:78px}
+main .poster-facts strong{font-size:17.5px;line-height:1}
+main .poster-facts span{font-size:14px;line-height:21px}
+@media (max-width: 700px){main .poster-facts strong{font-size:14px}}
+html.bar body.book-type .site-header .header-info > *{font-size:14px;line-height:21px}
+html.bar body.book-type .site-header .header-phone span:last-child{font-size:14px;line-height:21px}
+html.bar body.book-type .site-header .header-actions .button{font-size:14px;line-height:1}
+html.bar body.book-type .site-header .site-nav a{font-size:17.5px;line-height:28px}
+@media (max-width: 700px){html.bar body.book-type .site-header .header-actions .button{font-size:14px}}
+@media (max-width: 700px){html.bar body.book-type .site-header .site-nav a{font-size:21px}}
+@media (max-width: 370px){html.bar body.book-type .site-header .header-actions .button{font-size:14px}}
+html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header-phone span, .header-grid > .button, .site-nav a, .header-actions .button, .type-arrow-glyph){line-height:21px !important}
+:root{--type-small:14px;--type-h1:77px;--type-h2:49px;--type-h3:28px;--type-h4:17.5px;--leading-body:21px;--leading-small:21px}
+@media (max-width: 700px){:root{--type-h1:49px;--type-h2:28px;--type-h3:21px}}
+html body.book-type main :is(p, li, dt, dd, blockquote, figcaption, address, summary, label){line-height:21px;line-height:round(nearest, 1.5em, 7px)}
+html body.book-type main :is(h3, h4){line-height:28px;line-height:round(up, 1.15em, 7px)}
+html body.book-type main h2{line-height:1.04;line-height:round(up, 1.04em, 7px)}
+html body.book-type :is(main, header, footer) :is(a, span, strong, b, small){line-height:inherit}
+html body.book-type main em{line-height:1;line-height:round(nearest, 1.04em, 7px)}
+html body.book-type :is(h1, h2, h3) :is(em, span, a),
+html body.book-type .hero .hero-greeting{line-height:1.04 !important;line-height:round(nearest, 1.04em, 7px) !important}
+html body.book-type :is(p, li, nav) a{line-height:inherit !important}
+html body.book-type .hero .hero-links{line-height:28px;line-height:round(nearest, 1.4em, 7px)}
+.hero-actions .hero-btn{font-size:16px;line-height:21px}
+.hero-status{font-size:16px;line-height:21px}
+.hero-meta{font-size:14px;line-height:21px}
+html body.book-type main .section-header .poster-bottom p{font-size:17.5px;line-height:28px}
+html body.book-type main .section-header .poster-heading h2{font-size:clamp(42px, 4.2vw, 63px)}
+@media (max-width: 700px){html body.book-type main .section-header .poster-heading h2{font-size:clamp(35px, 9.625vw, 49px)}}
+html body.book-type .services .tile h3::after{font-size:.8em}
+html body.book-type .services .tile p{font-size:14px}
+html body.book-type #zapraszamy .booking-subtitle{font-size:17.5px;line-height:28px}
+html body.book-type #zapraszamy .booking-subtitle p{font-size:inherit;line-height:inherit}
+html body.book-type #zapraszamy .booking-cta{font-size:16px;line-height:21px}
+html body.book-type #zapraszamy .booking-phone{font-size:14px;line-height:21px}
+html body.book-type #zapraszamy .booking-note{font-size:14px;line-height:21px}
+html body.book-type #przychodnia .equipment-grid h3::before{font-size:14px;line-height:1}
+html body.book-type #przychodnia .equipment-grid h3{font-size:21px;line-height:28px}
+html body.book-type #przychodnia .equipment-grid p{font-size:14px}
+html body.book-type #przychodnia .equipment-grid .clinic-lead{font-size:17.5px;line-height:28px}
+html body.book-type .reviews .quote blockquote p:not(.review-author){font-size:14px}
+html body.book-type .reviews .quote .review-author{font-size:28px;line-height:35px}
+html body.book-type .emergency-clinics a[href^="tel:"]{font-size:21px;line-height:28px}
+html body.book-type #obserwuj-nas .social-promo-cta{font-size:16px;line-height:21px}
+html body.book-type #obserwuj-nas .social-promo-kicker{font-size:max(14px, clamp(14px, 1.488vw, 21px))}
+html body.book-type #obserwuj-nas .social-promo-subtitle{font-size:17.5px;line-height:28px}
+@media (max-width: 700px){html body.book-type #obserwuj-nas .social-promo-subtitle{font-size:17.5px;line-height:28px}}
+@media (max-width: 700px){html body.book-type #obserwuj-nas .social-promo-social{font-size:14px;line-height:21px}}
+html body.book-type .founder-hover [role="tooltip"]{font-size:14px;line-height:21px}
+@media (max-width: 700px){html body.book-type :is(#onas, #zapraszamy) h2 .heading-roman{font-size:14px;line-height:21px}}
+html body.book-type :is(.social-promo-social, .foot-brand p){line-height:28px !important}
+.psy{font-size:calc(1em * var(--psy-scale)) !important;line-height:0}
+body:not(.subpage) :is(em, .heading-roman) .psy{font-size:1em !important;line-height:inherit}
+.phone-status{font-size:14px;line-height:21px}
+html body.book-type.book-type .site-header .site-nav .nav-col a{font-size:14px;line-height:21px}
+html body.book-type.book-type .site-header .site-nav .nav-col :is(a.nav-title, p.nav-title){font-size:21px;line-height:28px}
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-book{font-size:28px;line-height:35px}
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone{font-size:35px;line-height:42px}
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone .phone-status{font-size:14px}
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-mail{font-size:17.5px;line-height:28px}
+.site-nav .nav-address{font-size:14px;line-height:21px}
+.site-nav .nav-hours{font-size:14px;line-height:21px}
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-urgent{font-size:17.5px;line-height:28px}
+.site-nav .nav-team small{font-size:14px;line-height:21px}
+@media (max-width: 700px){html body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone{font-size:28px;line-height:35px}}
+@media (max-width: 700px){html body.book-type.book-type .site-header .site-nav .nav-col a.nav-book{font-size:21px;line-height:28px}}
+@media (max-width: 700px){html body.book-type.book-type .site-header .site-nav .nav-col :is(a.nav-title, p.nav-title){font-size:21px;line-height:28px}}
+html body.book-type.book-type footer .footer-team .person .person-name em{font-size:1em;line-height:inherit}
+html body.book-type.book-type .site-header .site-nav .nav-col a.nav-title,
+html body.book-type.book-type .site-header .site-nav .nav-col p.nav-title{font-size:21px !important;line-height:28px !important}
+html body.book-type :is(footer h2, .bento .tile h3){line-height:21px}
+html body.book-type .bento .major h3{line-height:round(down,1.24em,7px)}
+html body.book-type :is(main .section-header .poster-heading h2, #onas h2){line-height:round(up,1.04em,7px)!important}
+html body.book-type :is(main .section-header .poster-heading h2, #onas h2) em{line-height:inherit!important}
+html body.book-type :is(main .section-header .poster-heading h2, #onas h2) .heading-roman{line-height:round(nearest,1.12em,7px)!important}
+html body.book-type footer .foot-brand p{font-size:14px;line-height:21px!important}
+html body.book-type .type-arrow.ico{font-size:1em!important;line-height:1}
+html body.book-type .services .tile h3::after{font-size:inherit}
+html body.book-type.book-type .team .ta-label{font-size:14px;line-height:21px}
+html body.book-type.book-type .team .ta-name{font-size:16px;line-height:21px}
+html body.book-type.book-type .team .ta-spec span{font-size:14px;line-height:21px}
+}

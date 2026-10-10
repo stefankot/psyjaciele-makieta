@@ -32,3 +32,16 @@ main :is(#uslugi,#dojazd,#nagle-przypadki) .section-header .poster-media{scale:1
 }
 /* Emergency artwork is now a still illustration. */
 main #nagle-przypadki .section-header .poster-art{animation:none!important;translate:none!important}
+
+/* skrócone fakty (Zespół): w jednej linii, każdy fakt to okrągły znacznik z liczbą (jak punktor, tylko większy) i podpis obok */
+main .poster-facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: nowrap; align-items: center; justify-content: center; column-gap: var(--s4, 34px); }
+main .poster-facts li { display: flex; align-items: center; gap: var(--s2, 13px); padding: 0; border: 0; white-space: nowrap; }
+main .poster-facts strong { display: grid; place-items: center; flex: none; inline-size: 44px; block-size: 44px; background: var(--ink); border-radius: 50%; font-size: 20px; line-height: 1; font-weight: 700; color: var(--surface); font-variant-numeric: tabular-nums; }
+main .poster-facts span { font-size: 16px; line-height: 24px; font-weight: 700; color: var(--ink); }
+@media (max-width: 700px) { main .poster-facts { flex-wrap: wrap; row-gap: var(--s2, 13px); justify-content: flex-start; } main .poster-facts strong { inline-size: 36px; block-size: 36px; font-size: 16px; } }
+
+/* Zespół i Nasze usługi: niższy nagłówek (500 px zamiast 60vh) — treść pod nim zaczyna się wyżej */
+@media(min-width:701px){
+ main :is(#zespol,#uslugi) .section-header{height:500px;min-height:500px}
+ main :is(#zespol,#uslugi) .section-header .poster-media{width:min(calc(100% * var(--illustration-scale,1)),calc(500px * var(--illustration-ratio,1)))}
+}

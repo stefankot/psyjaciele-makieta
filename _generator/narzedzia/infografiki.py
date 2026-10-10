@@ -157,8 +157,11 @@ PLAN = {
 
 
 # --- baner „W nagłym przypadku zadzwoń” (okulistyka): kafle w różnych kolorach, tekst u góry i na dole, ikona ---
+import json
 import re
 from pathlib import Path
+
+import osie
 
 _ICON = Path(__file__).resolve().parents[2] / 'assets' / 'icons' / 'emergency.svg'
 _EMERGENCY_P = re.compile(r'<p>W nagłym przypadku zadzwoń: <a href="(tel:[^"]+)">([^<]+)</a>\. (Gdy mamy zamknięte, jedź do lecznicy całodobowej\.)</p>')
@@ -213,8 +216,10 @@ def alert_banner(html, root='../../', slug=''):
 
 def inject(slug, html):
     html = alert_banner(html, '../' if slug in ('uslugi-weterynaryjne', 'zespol', 'polityka-prywatnosci') else '../../', slug)
+    osie_ids = {o['hid'] for o in osie.dla_strony(slug)}
+    road = 'jak-wyglada-czipowanie' not in osie_ids   # z gotowym rysunkiem „drogę” czipowania zastępuje oś kroków
     for (s, hid), fn in PLAN.items():
-        if s != slug:
+        if s != slug or (fn is road_czip and not road):
             continue
         i = html.find(f'<h2 id="{hid}"')
         if i < 0:
@@ -228,14 +233,14 @@ def inject(slug, html):
             if tag not in html:
                 raise SystemExit(f'infografiki: brak nagłówka {wid} na stronie {slug}')
             html = html.replace(tag, f'<h2 id="{wid}" class="has-warn">{WARN_SIGN}', 1)
-    if slug == 'czipowanie-psow-i-kotow':
+    if slug == 'czipowanie-psow-i-kotow' and road:
         ol = '<ol class="step-list is-stacked" style="--steps:4">'
         if html.count(ol) != 1:
             raise SystemExit('infografiki: oczekiwano jednej listy kroków czipowania')
         html = html.replace(ol, '<ol class="step-list is-stacked is-road-source" style="--steps:4">', 1)
     if slug == 'szczepienia-oraz-profilaktyka-przeciwpasozytnicza':
         html = timeline_art(html, 'assets/podstrony/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/szcz-03-kalendarz.avif')
-    return html
+    return osie_inject(slug, html)
 
 
 _TL_FILTER = ('<svg width="0" height="0" aria-hidden="true" style="position:absolute"><filter id="tl-ink" color-interpolation-filters="sRGB">'
@@ -250,3 +255,69 @@ def timeline_art(html, img):
         raise SystemExit('infografiki: brak osi czasu z 5 fazami')
     new = _TL_FILTER + f'<ol class="phase-timeline has-art" style="--phases:5;--tl-img:url({img})">'
     return html.replace(old, new, 1)
+
+
+# --- oś kroków (plan: osie.py): lista procesu jako oś z kółkami i rysunkiem; na desktopie zastępuje listę, poniżej 1001 px zostaje lista ---
+_LIST = re.compile(r'<(ol|ul)\b([^>]*)>')
+_LI = re.compile(r'<li[^>]*>(.*?)</li>', re.S)
+_H3 = re.compile(r'^<h3 class="step-title">(.*?)</h3>\s*(.*)$', re.S)
+_STRONG = re.compile(r'^<strong>(.*?)</strong>\s*[.:]?\s*(?:(?:&nbsp;|\s)*—\s*)?(.*)$', re.S)
+_ZDANIE = re.compile(r'^(.{40,}?[.!?])\s+(\S.*)$', re.S)
+TL_MAX = 170   # dłuższy opis kroku: na osi zostaje pierwsze zdanie, reszta schodzi do akapitu pod osią
+
+
+def _kroki(body):
+    out = []
+    for li in _LI.findall(body):
+        li = li.strip()
+        if li.startswith('<p>') and li.endswith('</p>') and li.count('<p>') == 1:
+            li = li[3:-4]
+        m = _H3.match(li) or _STRONG.match(li)
+        if m:
+            t, rest = m.group(1).rstrip('.:'), m.group(2)
+            rest = rest[3:-4] if rest.startswith('<p>') and rest.endswith('</p>') else rest
+            out.append((t, rest))
+        else:
+            out.append((None, li))
+    return out
+
+
+def osie_inject(slug, html):
+    stan_p = Path(__file__).with_name('_osie.json')
+    stan = json.loads(stan_p.read_text(encoding='utf8')) if stan_p.is_file() else {}
+    for o in osie.dla_strony(slug):
+        i = html.find(f'id="{o["hid"]}"')
+        if i < 0:
+            raise SystemExit(f'osie: brak nagłówka {o["hid"]} na stronie {slug}')
+        m = _LIST.search(html, i)
+        nxt = re.search(r'<h[23]\b', html[i:])
+        if not m or (nxt and i + nxt.start() < m.start()):
+            raise SystemExit(f'osie: brak listy kroków pod nagłówkiem {o["hid"]} ({slug})')
+        end = html.find(f'</{m.group(1)}>', m.end())
+        stale = o.get('stale')
+        kroki = stale or _kroki(html[m.end():end])
+        if o.get('hasla'):
+            kroki = [(t, txt) for t, (_, txt) in zip(o['hasla'], kroki)]
+        if len(kroki) != o['n'] or any(not t for t, _ in kroki):
+            raise SystemExit(f'osie: {o["id"]} — oczekiwano {o["n"]} kroków z hasłami, jest {[t for t, _ in kroki]}')
+        lis, reszta = [], []
+        for t, txt in kroki:
+            z = _ZDANIE.match(txt) if len(re.sub(r'<[^>]+>|&nbsp;', ' ', txt)) > TL_MAX else None
+            if z:
+                txt = z.group(1)
+                reszta.append(z.group(2))
+            lis.append(f'<li><p class="tl-title">{t}</p><p>{txt}</p></li>')
+        g = stan.get(o['id'])
+        pole = f';--tl-ratio:{g["ratio"]};--tl-y:{g["y"]}%' if g and 'ratio' in g else ''
+        mob = g.get('m') if g and osie.gotowa_m(o) else None      # wariant na komórkę: rysunek, z którego wychodzi oś listy
+        hm = ' has-m' if mob else ''
+        pole_m = (f';--m-img:url({osie.plik_m(o)});--m-w:{mob["w"]}px;--m-ratio:{mob["ratio"]};--m-shift:{mob["shift"]}px;--m-t:{mob["t"]}px' if mob else '')
+        ol = (f'<ol class="phase-timeline has-art is-steps{hm}{(" is-m-" + o["m"]["typ"]) if mob else ""}"{" aria-hidden=\"true\"" if stale else ""} '
+              f'style="--phases:{o["n"]};--tl-img:url({osie.plik(o)}){pole}{pole_m}">{"".join(lis)}</ol>')
+        os_html = ('' if 'id="tl-ink"' in html else _TL_FILTER) + ol + ''.join(f'<p class="tl-rest{hm}">{r}</p>' for r in reszta)
+        attrs = m.group(2)
+        if 'class="' not in attrs:
+            raise SystemExit(f'osie: lista pod {o["hid"]} bez klasy')
+        tag = f'<{m.group(1)}{attrs}>'.replace('class="', f'class="is-tl-source{" has-m-src" if mob else ""} ', 1)
+        html = html[:m.start()] + os_html + tag + html[m.end():]
+    return html

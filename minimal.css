@@ -763,7 +763,7 @@ main .button,main .button *{--weight-text:900;font-weight:900!important}
 #zapraszamy .booking-pets-front{z-index:5!important}
 
 /* Logo nawigacji: małe kontury o 20% cieńsze od wcześniejszej kompensacji. */
-.site-header.site-header .brand .nav-logo{background:none;mask:none;fill:currentColor;stroke:currentColor;stroke-width:0;stroke-linejoin:round;paint-order:stroke fill;transition:width .25s ease,height .25s ease,color 180ms ease-out,stroke-width .25s ease}
+.site-header.site-header .brand .nav-logo{background:none;mask:none;fill:currentColor;stroke:currentColor;stroke-width:0;stroke-linejoin:round;paint-order:stroke fill;transition:width .25s ease,height .25s ease,color 180ms ease-out}
 .site-header.site-header.is-scrolling-down .brand .nav-logo{stroke-width:.46px}
 @media(prefers-reduced-motion:reduce){.site-header.site-header .brand .nav-logo{transition:none}}
 

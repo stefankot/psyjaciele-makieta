@@ -1157,14 +1157,50 @@ html body.book-type.subpage main .step4 p { color: inherit !important; }
 @media (min-width: 1001px) {
   body.subpage .phase-timeline.has-art { position: relative; gap: 0; padding-top: 0; }
   body.subpage .phase-timeline.has-art::before {
-    content: ""; grid-column: 1 / -1; grid-row: 1; aspect-ratio: 4.16 / 1; margin-block-end: var(--s3); filter: url(#tl-ink);
-    background: var(--tl-img) 51.2% 42.64% / 94.67% auto no-repeat;
+    content: ""; grid-column: 1 / -1; grid-row: 1; aspect-ratio: var(--tl-ratio, 4.16) / 1; margin-block-end: var(--s3); filter: url(#tl-ink);
+    background: var(--tl-img) calc(80.1% - 938.1% / var(--phases, 5)) var(--tl-y, 42.64%) / 94.67% auto no-repeat;   /* lewa krawędź kółka = lewa krawędź kolumny z opisem */
   }
-  body.subpage .phase-timeline.has-art > li { grid-row: 2; border-top: 0; padding: 0 var(--s1); text-align: center; justify-items: center; }
+  body.subpage .phase-timeline.has-art > li { grid-row: 2; border-top: 0; padding: 0 var(--s2) 0 0; text-align: start; justify-items: start; }
   body.subpage .phase-timeline.has-art > li::before { content: none; }
   body.subpage .phase-timeline.has-art h4 { font-size: 20px; line-height: 24px; }
   body.subpage .phase-timeline.has-art .phase-when { font-size: 20px; line-height: 28px; }
   body.subpage .phase-timeline.has-art p { font-size: 16px; line-height: 24px; }
+}
+/* Oś kroków (osie.py): proces z listy jako oś z kółkami i rysunkiem nad nią. Tylko desktop — poniżej 1001 px zostaje lista źródłowa. */
+body.subpage .phase-timeline.is-steps, body.subpage .tl-rest { display: none; }
+@media (min-width: 1001px) {
+  body.subpage .phase-timeline.is-steps { display: grid; }
+  body.subpage .tl-rest { display: block; }
+  body.subpage .is-tl-source { display: none !important; }
+  body.subpage .phase-timeline.has-art .tl-title { font-size: 20px; line-height: 24px; font-weight: 700; text-wrap: balance; hyphens: manual; overflow-wrap: break-word; }
+}
+/* Oś kroków na komórce (os_mobilna.py): rysunek nad (is-m-gora) lub pod (is-m-dol) listą, z którego kreska przechodzi w pionową oś; lista ma pełną szerokość.
+   Oś to lewe obramowanie pozycji (nie całej listy), żeby nie biegła obok rysunku; --m-shift ustawia kreskę rysunku dokładnie nad osią. */
+@media (max-width: 1000px) {
+  body.subpage .phase-timeline.is-steps.has-m { display: grid; gap: 0; margin: 0; border-inline-start: 0; }
+  body.subpage .phase-timeline.has-m.is-m-gora::before, body.subpage .phase-timeline.has-m.is-m-dol::after {
+    content: ""; display: block; inline-size: var(--m-w); max-inline-size: 100%; aspect-ratio: var(--m-ratio); margin-inline-start: var(--m-shift);
+    background: var(--m-img) left top / 100% auto no-repeat; filter: url(#tl-ink);
+  }
+  body.subpage .phase-timeline.has-m > li { display: grid; gap: var(--s1); border-inline-start: 2px solid var(--ink); padding: 0 0 var(--s4) var(--s4); }
+  body.subpage .phase-timeline.has-m > li::before { top: 6px; inset-inline-start: -9px; box-sizing: border-box; width: 16px; height: 16px; border: 2px solid var(--ink); border-radius: 50%; background: var(--surface); z-index: 1; }   /* nad klinem, który zachodzi na pierwsze kółko */
+  /* Klin na styku rysunku i osi: narysowana kreska (--m-t) nie ma dokładnie grubości osi (2 px). Wysoki trójkąt w kolorze osi:
+     po stronie rysunku zaczyna się ostrzem na środku kreski i rozszerza do styku (do grubszej z obu), po stronie listy schodzi do grubości osi.
+     Widać zawsze grubszą z dwóch warstw, więc grubość przechodzi płynnie, czy kreska jest cieńsza, czy grubsza od osi. */
+  body.subpage .phase-timeline.has-m.is-m-gora > li:first-child::after, body.subpage .phase-timeline.has-m.is-m-dol > li:last-child::after {
+    --m-b: 2px; --m-max: max(var(--m-t, 2px), var(--m-b)); --m-klin: 40px;
+    content: ""; position: absolute; inline-size: var(--m-max); block-size: calc(2 * var(--m-klin)); inset-inline-start: calc(-1px - var(--m-max) / 2); background: var(--ink);
+    clip-path: polygon(50% 0, 100% 50%, calc(50% + var(--m-b) / 2) 100%, calc(50% - var(--m-b) / 2) 100%, 0 50%);
+  }
+  body.subpage .phase-timeline.has-m.is-m-gora > li:first-child::after { inset-block-start: calc(-1 * var(--m-klin)); }
+  body.subpage .phase-timeline.has-m.is-m-dol > li:last-child::after { inset-block-end: calc(-1 * var(--m-klin)); transform: scaleY(-1); }
+  body.subpage .phase-timeline.has-m.is-m-gora > li:first-child { padding-block-start: var(--s3); }
+  body.subpage .phase-timeline.has-m.is-m-gora > li:first-child::before { top: calc(var(--s3) + 6px); }
+  body.subpage .phase-timeline.has-m.is-m-gora > li:last-child { padding-block-end: 0; }
+  body.subpage .phase-timeline.has-m .tl-title { font-size: 20px; line-height: 28px; font-weight: 700; }
+  body.subpage .phase-timeline.has-m p { margin: 0; }
+  body.subpage .has-m-src { display: none !important; }
+  body.subpage .tl-rest.has-m { display: block; }
 }
 body.subpage .figure-mosaic > :only-child { grid-column: 1 / -1; grid-row: auto; }
 
@@ -1281,3 +1317,19 @@ html body.book-type.subpage #zapraszamy .booking-subtitle p::before {
   content: ""; border: 0; border-radius: 0; font-size: 0; display: block; background: currentColor;
   -webkit-mask: var(--ico-info-circle) center / contain no-repeat; mask: var(--ico-info-circle) center / contain no-repeat;
 }
+
+/* infografika „zbieżna” (źródła → internista) na telefonie: szersza kolumna z etykietami, żeby teksty się nie nakładały */
+@media (max-width: 700px) {
+  body.subpage .info-converge { grid-template-columns: minmax(0, 1.15fr) 24px minmax(0, .75fr); }
+  body.subpage .info-sources li { min-inline-size: 0; white-space: normal; hyphens: manual; overflow-wrap: normal; }
+  body.subpage .info-sources li::after { flex: 0 0 var(--s2); min-inline-size: 0; }
+  body.subpage .info-target { padding-inline-start: var(--s2); }
+}
+
+/* baner „Praca”: 4 × 4 kafelki z obrazu 8 × 8 (1/4 obrazu); skrypt w podstrony.js co sekundę wymienia jeden widoczny kafelek na ukryty */
+body.subpage .join-art.has-live { display: grid; justify-items: center; align-items: start; padding: var(--s4) var(--s4) 0; aspect-ratio: auto; block-size: auto; }
+html body.book-type.subpage main a.join-banner .join-art.has-live > img.join-grid { display: none; }
+body.subpage .join-live { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); inline-size: min(100%, 389px); inline-size: round(down, min(100%, 389px), 4px); aspect-ratio: 1 / 1; gap: 0; }   /* szerokość = wielokrotność 4 px → kafelek ma całkowitą liczbę pikseli i tnie równo po krawędziach zdjęć */
+body.subpage .join-live .jt { background-repeat: no-repeat; background-size: 800% 800%; background-position: calc(var(--tc) * 100% / 7) calc(var(--tr) * 100% / 7); transition: opacity .35s ease; }
+body.subpage .join-live .jt.is-out { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { body.subpage .join-live .jt { transition: none; } }
