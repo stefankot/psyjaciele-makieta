@@ -27,8 +27,8 @@ import mobile_skala  # noqa: E402
 import strony  # noqa: E402
 
 MARK = '<!-- generated: psyjaciele-podstrony -->'
-CSS_V = '155'
-JS_V = '28'
+CSS_V = '163'
+JS_V = '32'
 
 
 def esc(s):

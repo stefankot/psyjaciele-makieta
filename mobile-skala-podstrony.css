@@ -345,7 +345,7 @@ body.subpage .breath-counter .bc-result{font-size:17.5px;line-height:28px}
 body.subpage .alert-banner:not(.has-art) .ab-closed .ab-top{font-size:17.5px;line-height:28px}
 @media (max-width: 700px){html body.book-type.subpage main .alert-band::after{font-size:21px}}
 body.subpage .duo > .duo-vs{font-size:24.5px;line-height:1}
-body.subpage .duo > .duo-vs em{line-height:1}
+html body.book-type.subpage main .duo > .duo-vs em{font-size:21px;line-height:1}
 body.subpage .info-row4 .pt4-num{font-size:42px;line-height:1}
 body.subpage .info-row4 .pt4-who{font-size:14px;line-height:21px}
 body.subpage .info-row4 .pt4 p{font-size:14px;line-height:21px}

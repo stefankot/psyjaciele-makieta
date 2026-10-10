@@ -78,6 +78,27 @@
       var cs = getComputedStyle(sec);
       var c = (cs.getPropertyValue(sec === hero ? "--ink" : "--small-ink").trim() || cs.getPropertyValue("--ink").trim());
       header.style.setProperty("--nav-ink", c);
+      groupInk();
+    }
+    /* kolor każdej grupy nagłówka (logo, menu, informacje, przyciski) wg tego, co faktycznie leży pod nią: nagłówek bywa nad dwiema sekcjami
+       naraz (jasne tło po lewej, ciemna ramka po prawej), więc jeden kolor dla całego paska dawał jasny napis na jasnym tle */
+    function lum(rgb) { var m = /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/.exec(rgb); if (!m) return null; if (m[4] !== undefined && +m[4] === 0) return null; return (0.2126 * +m[1] + 0.7152 * +m[2] + 0.0722 * +m[3]) / 255; }
+    function groupInk() {
+      [".brand", ".menu-toggle", ".header-info", ".header-actions"].forEach(function (sel) {
+        var el = header.querySelector(sel); if (!el) return;
+        var r = el.getBoundingClientRect(); if (!r.width) return;
+        var x = r.left + r.width / 2, y = r.top + Math.min(r.height / 2, 30), bgEl = null, bgLum = null;
+        var hits = document.elementsFromPoint(x, y);
+        for (var i = 0; i < hits.length && bgLum === null; i++) {
+          if (header.contains(hits[i]) || hits[i] === backdrop || (backdrop && backdrop.contains(hits[i]))) continue;
+          for (var e = hits[i]; e && bgLum === null; e = e.parentElement) { var l = lum(getComputedStyle(e).backgroundColor); if (l !== null) { bgLum = l; bgEl = e; } }
+        }
+        if (bgLum === null) return;
+        var ink;
+        if (bgLum > 0.55) ink = "#124e2c";
+        else { var tl = lum(getComputedStyle(bgEl).color); ink = tl !== null && tl > 0.5 ? getComputedStyle(bgEl).color : "#f7f3ee"; }
+        ["--nav-ink", "--ink", "--small-ink", "color"].forEach(function (k) { el.style.setProperty(k, ink); });
+      });
     }
     function update() {
       scheduled = false;
@@ -322,6 +343,7 @@
       if (t) items.push({ a: a, t: t });
     });
     var secs = $$(":scope > section", cols), sched = false;
+    var rows = $$(".kicker, .toc-entry, .toc-link, .toc-entry ul li", box);
     /* kreski spisu: szerokość = najdłuższa linia liter (pozycje główne i wcięte podpunkty) */
     function trimRules() {
       var list = $(".toc-list", box); if (!list) return;
@@ -351,10 +373,29 @@
         box.style.color = light && /rgba?\((2[0-9]{2})/.test(cs.color) ? "#124e2c" : cs.color;
         box.style.setProperty("--accent", cs.getPropertyValue("--accent"));   // linie spisu w kolorze akcentu sekcji pod spisem
       }
+      /* kolor każdego wiersza spisu (napis, kreska, strzałka) wg sekcji, nad którą ten wiersz akurat stoi — spis zajmuje wiele sekcji naraz,
+         więc jeden kolor dla całości dawał niedopuszczalne zestawy (np. ciemna zieleń na niebieskim tle) */
+      var cache = new Map();
+      function inkFor(yy) {
+        var sec = null;
+        secs.forEach(function (sc) { var r = sc.getBoundingClientRect(); if (r.top <= yy && r.bottom > yy) sec = sc; });
+        if (!sec) return null;
+        if (cache.has(sec)) return cache.get(sec);
+        var c = getComputedStyle(sec), mm = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(c.backgroundColor);
+        var lt = mm && (0.2126 * +mm[1] + 0.7152 * +mm[2] + 0.0722 * +mm[3]) / 255 > 0.6;
+        var ink = lt && /rgba?\((2[0-9]{2})/.test(c.color) ? "#124e2c" : c.color;
+        cache.set(sec, ink); return ink;
+      }
+      rows.forEach(function (el) {
+        var r = el.getBoundingClientRect(), ink = inkFor(r.top + Math.min(r.height / 2, 18));
+        if (ink) { el.style.color = ink; el.style.setProperty("--ink", ink); }
+      });
     }
     function schedule() { if (!sched) { sched = true; raf(update); } }
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
+    window.addEventListener("load", schedule);   // zmiany układu bez przewijania (doładowane obrazy, rozwinięte pytania) też przeliczają aktywną pozycję
+    if ("ResizeObserver" in window) new ResizeObserver(schedule).observe(document.body);
     update();
   });
 

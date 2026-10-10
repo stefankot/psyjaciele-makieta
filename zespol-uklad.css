@@ -62,3 +62,14 @@ html body.book-type.book-type .team .ta-aur-tyl { -webkit-mask: url(assets/zespo
 html body.book-type.book-type .team .ta-aur-przod { -webkit-mask: url(assets/zespol-sylwetki-maska-przod.png) center / 100% 100% no-repeat; mask: url(assets/zespol-sylwetki-maska-przod.png) center / 100% 100% no-repeat; }
 
 
+
+/* tablet i telefon: bez „kropek” z faktami nad zdjęciem */
+@media (max-width: 1000px) { html body.book-type.book-type .team .ta-facts { display: none; } }
+
+/* telefon: zdjęcie bez łuku, kadr „od osoby do osoby” (x 250–1250 z 1536, y od 300 w dół) na całą szerokość ekranu — większe niż w pełnym kadrze;
+   aureole (desktopowe) są tu wyłączone, bo pasują do pełnego kadru */
+@media (max-width: 700px) {
+  html body.book-type.book-type .team .ta-photo { border-radius: 0; aspect-ratio: 1000 / 1011; margin-inline: calc(-1 * var(--gutter, 24px)); inline-size: auto; grid-column: 1 / -1; }
+  html body.book-type.book-type .team .ta-photo > img:first-child { position: absolute; inset-inline-start: -25%; inset-block-start: -29.7%; inline-size: 153.6%; block-size: auto; max-inline-size: none; }
+  html body.book-type.book-type .team .ta-aur { display: none; }
+}

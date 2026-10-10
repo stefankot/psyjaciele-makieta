@@ -1269,7 +1269,7 @@ body.subpage .duo > .duo-vs {
   inline-size: 56px; block-size: 56px; display: grid; place-items: center; align-self: center; justify-self: center; box-sizing: border-box;
   border: 2px solid var(--ink); border-radius: 50%; background: var(--ink); color: var(--surface); font-size: 28px; line-height: 1;
 }
-body.subpage .duo > .duo-vs em { display: block; line-height: 1; margin-top: -4px; }
+html body.book-type.subpage main .duo > .duo-vs em { display: block; font-size: 24px; line-height: 1; margin: 0; padding: 0; text-align: center; }   /* mniejsze „vs” (globalna reguła em dawała 47 px) i bez ujemnego marginesu: środek w kółku */
 
 /* Uwagi 9.10 (ciśnienie): akapit wprowadzający do listy zostaje przy liście — zdjęcie z kolumny bocznej leży pod listą. */
 html body.book-type.subpage main .split-feature:not(.is-faq):has(> .split-body > p:first-child + :is(ul, ol)) > .split-aside > .photo-frame { order: 4; }
@@ -1335,3 +1335,28 @@ body.subpage .join-live.is-wide { grid-template-columns: repeat(8, minmax(0, 1fr
 body.subpage .join-live .jt { background-repeat: no-repeat; background-size: 800% 800%; background-position: calc(var(--tc) * 100% / 7) calc(var(--tr) * 100% / 7); transition: opacity .35s ease; }
 body.subpage .join-live .jt.is-out { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { body.subpage .join-live .jt { transition: none; } }
+
+/* Sekcje „emergency” na podstronach: nagłówek ma wysokość swojej treści (nie 60vh), mniejsze odstępy między nagłówkiem, infografiką i ramką — mniej pustego miejsca */
+@media (min-width: 701px) {
+  body.subpage main section.emergency .section-header { height: auto; min-height: 0; }
+  body.subpage main section.emergency > .wrap.section-stack { row-gap: var(--s5, 55px); }
+  body.subpage main section.emergency .emergency-guide { margin-block-start: 0; }
+  /* tytuł po lewej, ilustracja obok (zamiast pod tytułem): nagłówek ma wysokość ilustracji, nie tytuł + ilustracja */
+  body.subpage main section.emergency .section-header { grid-template-rows: auto; align-items: center; margin-block-end: 0; }
+  body.subpage main section.emergency .section-header > .poster-copy { grid-column: 1 / span 4; grid-row: 1; }
+  body.subpage main section.emergency .section-header > .poster-art { grid-column: 5 / span 4; grid-row: 1; }
+}
+
+/* spis treści w treści strony (tablet i telefon, .toc-index): podpunkty bez strzałek-punktorów, tylko wcięcie */
+body.subpage .toc-index .toc-entry ul li::before { content: none !important; display: none !important; }
+body.subpage .toc-index .toc-entry ul li { padding-inline-start: var(--s3, 21px); }
+
+/* Znaczniki (i): przy wąskiej kolumnie tekstu ikona stoi NAD kolumną, nie obok niej (reguła dla wszystkich takich znaczników).
+   Rezerwacja (#zapraszamy): akapit jest zawsze w wąskiej kolumnie, więc ikona jest nad akapitem. */
+html body.book-type.subpage #zapraszamy .booking-subtitle p { padding-inline-start: 0; }
+html body.book-type.subpage #zapraszamy .booking-subtitle p::before { position: static; display: grid; margin-block-end: var(--s2, 13px); }
+/* Alert „Pilne”: na telefonie (wąska kolumna) ikona w lewym górnym rogu nad tekstem, tekst na całą szerokość */
+@media (max-width: 700px) {
+  html body.book-type.subpage main .alert-band { padding-block-start: calc(var(--s4, 34px) + 40px + var(--s2, 13px)); padding-inline-end: var(--s3, 21px); }
+  html body.book-type.subpage main .alert-band::after { inset-inline-start: var(--s3, 21px); inset-inline-end: auto; }
+}
