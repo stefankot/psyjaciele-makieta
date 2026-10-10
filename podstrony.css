@@ -1099,7 +1099,7 @@ html body.book-type.subpage main .alert-band a.button:has(> .phone-status) { mar
 html body.book-type.subpage main .alert-band a.button > .phone-status {
   position: absolute; inset-inline-start: calc(100% + 1px); inset-block: -1px; margin: 0; display: flex; align-items: center; box-sizing: border-box;
   padding: 0 var(--s3, 21px); border: 2px solid currentColor; border-inline-start: 0; background: transparent;
-  color: var(--surface); font-size: 16px; line-height: 24px; font-weight: 900; white-space: nowrap;   /* kolor jak tło przycisku */
+  color: var(--surface); font-size: 16px; line-height: 24px; font-weight: 900; white-space: nowrap; max-inline-size: none;   /* kolor jak tło przycisku; bez limitu 100 % szerokości przycisku, żeby ramka objęła cały napis */
 }
 
 /* Wąski ekran: status otwarcia pod przyciskiem (jak w hero), nie jako przedłużenie po prawej — to wystawało poza ekran. */
@@ -1329,7 +1329,9 @@ html body.book-type.subpage #zapraszamy .booking-subtitle p::before {
 /* baner „Praca”: 4 × 4 kafelki z obrazu 8 × 8 (1/4 obrazu); skrypt w podstrony.js co sekundę wymienia jeden widoczny kafelek na ukryty */
 body.subpage .join-art.has-live { display: grid; justify-items: center; align-items: start; padding: var(--s4) var(--s4) 0; aspect-ratio: auto; block-size: auto; }
 html body.book-type.subpage main a.join-banner .join-art.has-live > img.join-grid { display: none; }
-body.subpage .join-live { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); inline-size: min(100%, 389px); inline-size: round(down, min(100%, 389px), 4px); aspect-ratio: 1 / 1; gap: 0; }   /* szerokość = wielokrotność 4 px → kafelek ma całkowitą liczbę pikseli i tnie równo po krawędziach zdjęć */
+body.subpage .join-live { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); inline-size: min(100%, 389px); inline-size: round(down, min(100%, 389px), 4px); aspect-ratio: 1 / 1; gap: 0; }
+/* desktop: pełna szerokość banera — 8 kolumn × 4 rzędy zdjęć (kafelek ma całkowitą liczbę pikseli: szerokość = wielokrotność 8 px) */
+body.subpage .join-live.is-wide { grid-template-columns: repeat(8, minmax(0, 1fr)); inline-size: 100%; inline-size: round(down, 100%, 8px); aspect-ratio: 2 / 1; }   /* szerokość = wielokrotność 4 px → kafelek ma całkowitą liczbę pikseli i tnie równo po krawędziach zdjęć */
 body.subpage .join-live .jt { background-repeat: no-repeat; background-size: 800% 800%; background-position: calc(var(--tc) * 100% / 7) calc(var(--tr) * 100% / 7); transition: opacity .35s ease; }
 body.subpage .join-live .jt.is-out { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { body.subpage .join-live .jt { transition: none; } }
