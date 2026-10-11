@@ -405,46 +405,61 @@ body,body :not(:is(em,i,cite)):not(:is(em,i,cite) *){font-weight:var(--weight-te
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   PALETA — kompozycja 5: Zielone ściany
-   Najdłuższa sekcja (usługi) na zielonej ścianie z szałwiowymi kartami; zieleń także w zaproszeniu i nagłych przypadkach.
+   PALETA — klasyczne zestawienia z mody i wnętrz (11.10.2026)
+   Stała: Zieleń Psyjaciół (hero, stopka). Reszta dobrana tematycznie i pod konwersję:
+     hero          szmaragd i szampan        marka, zaufanie
+     o nas         róż pudrowy i burgund     ciepło, ludzie (karnacje na różu wyglądają naturalnie)
+     usługi        ecru i zieleń             najdłuższa sekcja: spokojny, czytelny katalog
+     rezerwacja    terakota i krem           najmocniejszy kontrast na stronie = wezwanie do działania
+     przychodnia   błękit pudrowy i granat   klinicznie, rzeczowo
+     zespół        granat i piasek           wytworna oprawa dla portretów
+     opinie        wielbłąd i czekolada      ciepło i prestiż (dowód społeczny)
+     nagłe         burgund i róż             powaga bez krzyku
+     przygotowanie ecru i zieleń             praktyczne listy
+     dojazd        błękit pudrowy i granat   trasa, mapa
+     pytania       greige i węgiel           spokojne zamknięcie treści
+     obserwuj nas  róż pudrowy i burgund     (social-promo.css)
+     kontakt       granat i piasek           zaproszenie
+     stopka        szmaragd i szampan        spięcie z hero
    Role w każdej sekcji:
      --surface    tło sekcji
      --ink        tekst główny, tytuły, rysunki, przyciski
      --small-ink  tekst mały (akapity, podpisy) — wyższy kontrast
      --accent     uzupełniający: wariacja tła (karty, ramka godzin, kształty, kropki)
-   Stała: ciemna zieleń var(--wp--preset--color--green).
    ════════════════════════════════════════════════════════════════════ */
 :root{--paper:var(--wp--preset--color--paper);--ink:var(--wp--preset--color--green)}
 /* Kolory rysunków wstawianych jako <img>: muszą leżeć w :root, bo filtry SVG są poza sekcjami. */
-:root{--hero-art-ink:var(--wp--preset--color--peach);--service-art-ink:var(--wp--preset--color--green);--service-hover-ink:var(--wp--preset--color--blue);--contact-art-ink:var(--wp--preset--color--peach)}
+:root{--hero-art-ink:var(--wp--preset--color--champagne);--service-art-ink:var(--wp--preset--color--green);--service-hover-ink:var(--wp--preset--color--terracotta);--contact-art-ink:var(--wp--preset--color--sand)}
 #hero-color feFlood{flood-color:var(--ink)}#service-light-ink feFlood{flood-color:var(--ink)}#service-hover-ink feFlood{flood-color:var(--hover-ink)}#contact-ink feFlood{flood-color:var(--ink)}
 /* Menu: po otwarciu nagłówek przestaje mieszać się z tłem — pełne tło, czytelne pozycje. */
-.site-header.site-header.site-header.menu-open{--ink:var(--wp--preset--color--peach-light);mix-blend-mode:normal;background:var(--wp--preset--color--green);color:var(--wp--preset--color--peach-light)}
-.site-header.site-header.site-header.menu-open .site-nav{background:var(--wp--preset--color--green);color:var(--wp--preset--color--peach-light)}
+.site-header.site-header.site-header.menu-open{--ink:var(--wp--preset--color--champagne);mix-blend-mode:normal;background:var(--wp--preset--color--green);color:var(--wp--preset--color--champagne)}
+.site-header.site-header.site-header.menu-open .site-nav{background:var(--wp--preset--color--green);color:var(--wp--preset--color--champagne)}
 /* Hero */
-.hero{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--peach);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--green-soft)}
+.hero{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--champagne);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--green-soft)}
 /* Założycielki */
-.about{--surface:var(--wp--preset--color--peach-light);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--peach)}
+.about{--surface:var(--wp--preset--color--blush);--ink:var(--wp--preset--color--burgundy);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--blush-deep)}
 /* Usługi */
-.services{--surface:var(--wp--preset--color--sage);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--sage-light);--hover-ink:var(--wp--preset--color--blue)}
+.services{--surface:var(--wp--preset--color--ecru);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--ecru-deep);--hover-ink:var(--wp--preset--color--terracotta)}
 /* Zaproszenie */
-.booking{--surface:var(--wp--preset--color--peach);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--peach-light);--hover-ink:color-mix(in srgb,var(--wp--preset--color--green) 86%,#000);--hover-accent:var(--wp--preset--color--peach)}
+.booking{--surface:var(--wp--preset--color--terracotta);--ink:var(--wp--preset--color--cream);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--terracotta-soft);--hover-ink:color-mix(in srgb,var(--ink) 86%,#fff);--hover-accent:var(--wp--preset--color--terracotta)}
 /* Przychodnia i sprzęt */
-.clinic{--surface:var(--wp--preset--color--paper);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--peach-light)}
+.clinic{--surface:var(--wp--preset--color--powder);--ink:var(--wp--preset--color--navy);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--powder-deep)}
 /* Zespół */
-.team{--surface:var(--wp--preset--color--peach);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--peach-light);--hover-ink:var(--wp--preset--color--green-deep);--hover-accent:var(--wp--preset--color--paper)}
+.team{--surface:var(--wp--preset--color--navy);--ink:var(--wp--preset--color--sand);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--navy-soft);--hover-ink:var(--wp--preset--color--champagne);--hover-accent:var(--wp--preset--color--ecru)}
 /* Rekomendacje */
-.reviews{--surface:var(--wp--preset--color--sage-light);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--sage)}
+.reviews{--surface:var(--wp--preset--color--camel);--ink:var(--wp--preset--color--chocolate);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--camel-deep)}
 /* Nagłe przypadki */
-.emergency{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--emergency-peach);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--green-soft)}
-/* Przed wizytą */
-.arrival.preparation{--surface:var(--wp--preset--color--paper);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--sage-light)}
+.emergency{--surface:var(--wp--preset--color--burgundy);--ink:var(--wp--preset--color--rose);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--burgundy-soft)}
+/* Przed wizytą (i Częste pytania, niżej własna paleta) */
+.arrival.preparation{--surface:var(--wp--preset--color--ecru);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--ecru-deep)}
 /* Jak do nas trafić */
-.arrival:not(.preparation){--surface:var(--wp--preset--color--peach-light);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--peach)}
+.arrival:not(.preparation){--surface:var(--wp--preset--color--powder);--ink:var(--wp--preset--color--navy);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--powder-deep)}
+/* Częste pytania */
+.arrival.preparation.faq{--surface:var(--wp--preset--color--greige);--ink:var(--wp--preset--color--charcoal);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--greige-deep)}
 /* Kontakt */
-.contact{--surface:var(--wp--preset--color--blue);--ink:var(--wp--preset--color--peach);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--blue-deep)}
+.contact{--surface:var(--wp--preset--color--navy);--ink:var(--wp--preset--color--sand);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--navy-soft)}
 /* Stopka */
-footer{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--sage);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--green-soft)}
+footer{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--champagne);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--green-soft)}
 /* Service artwork: dark green linework; multiply removes white against the card. */
 .bento .tile:has(img.service-art){aspect-ratio:auto;min-height:0;grid-template-rows:auto auto minmax(calc(4 * var(--leading-body)),1fr);gap:var(--s1);& h3{min-height:calc(2 * var(--type-h4) * 1.24)}}
 .bento .tile img.service-art{width:calc(100% + 2 * var(--s3));max-width:none;height:auto;aspect-ratio:1;object-fit:contain;background:none;mask:none;filter:url(#service-light-ink);mix-blend-mode:normal}
@@ -654,7 +669,7 @@ footer .foot-links h2{margin:0}
 
 /* Nawigacja przejmuje rzeczywisty kolor tekstu sekcji pod nią. */
 .site-header.site-header{mix-blend-mode:normal}
-.site-header.site-header:not(.menu-open){--ink:var(--nav-ink,var(--wp--preset--color--peach));--small-ink:var(--nav-ink,var(--wp--preset--color--peach));color:var(--nav-ink,var(--wp--preset--color--peach))}
+.site-header.site-header:not(.menu-open){--ink:var(--nav-ink,var(--wp--preset--color--champagne));--small-ink:var(--nav-ink,var(--wp--preset--color--champagne));color:var(--nav-ink,var(--wp--preset--color--champagne))}
 
 /* Krótkie przejście barwy tekstu, logo i hamburgera między sekcjami. */
 .site-header.site-header{transition:color 180ms ease-out}

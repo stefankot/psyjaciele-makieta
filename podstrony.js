@@ -95,7 +95,7 @@
         }
         if (bgLum === null) return;
         var ink;
-        if (bgLum > 0.55) ink = "#124e2c";
+        if (bgLum > 0.55) ink = "#124e36";
         else { var tl = lum(getComputedStyle(bgEl).color); ink = tl !== null && tl > 0.5 ? getComputedStyle(bgEl).color : "#f7f3ee"; }
         ["--nav-ink", "--ink", "--small-ink", "color"].forEach(function (k) { el.style.setProperty(k, ink); });
       });
@@ -370,7 +370,7 @@
         var cs = getComputedStyle(hit), m = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(cs.backgroundColor);
         var light = m && (0.2126 * +m[1] + 0.7152 * +m[2] + 0.0722 * +m[3]) / 255 > 0.6;
         // sekcja o jasnym tle, ale z jasnym kolorem tekstu (np. rezerwacja z zielonym blokiem w środku) → spis w zieleni marki
-        box.style.color = light && /rgba?\((2[0-9]{2})/.test(cs.color) ? "#124e2c" : cs.color;
+        box.style.color = light && /rgba?\((2[0-9]{2})/.test(cs.color) ? "#124e36" : cs.color;
         box.style.setProperty("--accent", cs.getPropertyValue("--accent"));   // linie spisu w kolorze akcentu sekcji pod spisem
       }
       /* kolor każdego wiersza spisu (napis, kreska, strzałka) wg sekcji, nad którą ten wiersz akurat stoi — spis zajmuje wiele sekcji naraz,
@@ -383,7 +383,7 @@
         if (cache.has(sec)) return cache.get(sec);
         var c = getComputedStyle(sec), mm = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(c.backgroundColor);
         var lt = mm && (0.2126 * +mm[1] + 0.7152 * +mm[2] + 0.0722 * +mm[3]) / 255 > 0.6;
-        var ink = lt && /rgba?\((2[0-9]{2})/.test(c.color) ? "#124e2c" : c.color;
+        var ink = lt && /rgba?\((2[0-9]{2})/.test(c.color) ? "#124e36" : c.color;
         cache.set(sec, ink); return ink;
       }
       rows.forEach(function (el) {

@@ -15,57 +15,137 @@
         {
           "slug": "green",
           "name": "Zieleń Psyjaciół",
-          "color": "#124e2c"
+          "color": "#124e36"
         },
         {
           "slug": "green-deep",
           "name": "Zieleń — drobny tekst",
-          "color": "#0b3a20"
-        },
-        {
-          "slug": "peach",
-          "name": "Brzoskwinia",
-          "color": "#f6b08f"
-        },
-        {
-          "slug": "peach-light",
-          "name": "Jasna brzoskwinia",
-          "color": "#fbd9c6"
-        },
-        {
-          "slug": "sage",
-          "name": "Szałwia",
-          "color": "#a9c296"
-        },
-        {
-          "slug": "sage-light",
-          "name": "Jasna szałwia",
-          "color": "#cfdcc3"
-        },
-        {
-          "slug": "blue",
-          "name": "Kobalt",
-          "color": "#2233b0"
-        },
-        {
-          "slug": "orange",
-          "name": "Pomarańczowy",
-          "color": "#f0764a"
+          "color": "#0b3a27"
         },
         {
           "slug": "green-soft",
           "name": "Zieleń dodatkowa",
-          "color": "#1d6a3e"
+          "color": "#1d6a4b"
         },
         {
-          "slug": "emergency-peach",
-          "name": "Brzoskwinia — pilna pomoc",
-          "color": "#f8b393"
+          "slug": "champagne",
+          "name": "Szampan",
+          "color": "#f0e4cc"
         },
         {
-          "slug": "blue-deep",
-          "name": "Głęboki kobalt",
-          "color": "#1a2890"
+          "slug": "ecru",
+          "name": "Ecru",
+          "color": "#f3ecdc"
+        },
+        {
+          "slug": "ecru-deep",
+          "name": "Ecru — akcent",
+          "color": "#e5dac1"
+        },
+        {
+          "slug": "camel",
+          "name": "Wielbłąd",
+          "color": "#d8bc94"
+        },
+        {
+          "slug": "camel-deep",
+          "name": "Wielbłąd — akcent",
+          "color": "#c8a87a"
+        },
+        {
+          "slug": "chocolate",
+          "name": "Czekolada",
+          "color": "#3a2216"
+        },
+        {
+          "slug": "sand",
+          "name": "Piasek",
+          "color": "#e2c79c"
+        },
+        {
+          "slug": "burgundy",
+          "name": "Burgund",
+          "color": "#5a1828"
+        },
+        {
+          "slug": "burgundy-soft",
+          "name": "Burgund — akcent",
+          "color": "#74293b"
+        },
+        {
+          "slug": "rose",
+          "name": "Róż — tekst na burgundzie",
+          "color": "#f4dad2"
+        },
+        {
+          "slug": "blush",
+          "name": "Róż pudrowy",
+          "color": "#f1dcd4"
+        },
+        {
+          "slug": "blush-deep",
+          "name": "Róż pudrowy — akcent",
+          "color": "#e6c5bc"
+        },
+        {
+          "slug": "terracotta",
+          "name": "Terakota",
+          "color": "#9c4326"
+        },
+        {
+          "slug": "terracotta-soft",
+          "name": "Terakota — akcent",
+          "color": "#af5434"
+        },
+        {
+          "slug": "cream",
+          "name": "Krem",
+          "color": "#fcf0e2"
+        },
+        {
+          "slug": "navy",
+          "name": "Granat",
+          "color": "#14213d"
+        },
+        {
+          "slug": "navy-soft",
+          "name": "Granat — akcent",
+          "color": "#1f3358"
+        },
+        {
+          "slug": "powder",
+          "name": "Błękit pudrowy",
+          "color": "#c9d6e3"
+        },
+        {
+          "slug": "powder-deep",
+          "name": "Błękit pudrowy — akcent",
+          "color": "#b6c7d8"
+        },
+        {
+          "slug": "greige",
+          "name": "Greige",
+          "color": "#d6ccbe"
+        },
+        {
+          "slug": "greige-deep",
+          "name": "Greige — akcent",
+          "color": "#c6baaa"
+        },
+        {
+          "slug": "charcoal",
+          "name": "Węgiel",
+          "color": "#1e1a17"
+        },
+        {
+          "slug": "orange",
+          "name": "Pomarańczowy",
+          "color": "#e8672f"
+        },
+        {
+          "slug": "sage",
+          "name": "Szałwia (kropka „otwarte”)",
+          "color": "#a9c296"
         },
         {
           "slug": "base",
@@ -75,47 +155,47 @@
         {
           "slug": "base-2",
           "name": "Zgodność: base-2",
-          "color": "#fbd9c6"
+          "color": "#f1dcd4"
         },
         {
           "slug": "contrast",
           "name": "Zgodność: contrast",
-          "color": "#124e2c"
+          "color": "#124e36"
         },
         {
           "slug": "contrast-2",
           "name": "Zgodność: contrast-2",
-          "color": "#0b3a20"
+          "color": "#0b3a27"
         },
         {
           "slug": "contrast-3",
           "name": "Zgodność: contrast-3",
-          "color": "#0b3a20"
+          "color": "#0b3a27"
         },
         {
           "slug": "accent",
           "name": "Zgodność: accent",
-          "color": "#f6b08f"
+          "color": "#e2c79c"
         },
         {
           "slug": "accent-2",
           "name": "Zgodność: accent-2",
-          "color": "#f0764a"
+          "color": "#e8672f"
         },
         {
           "slug": "accent-3",
           "name": "Zgodność: accent-3",
-          "color": "#124e2c"
+          "color": "#124e36"
         },
         {
           "slug": "accent-4",
           "name": "Zgodność: accent-4",
-          "color": "#cfdcc3"
+          "color": "#e5dac1"
         },
         {
           "slug": "accent-5",
           "name": "Zgodność: accent-5",
-          "color": "#a9c296"
+          "color": "#d8bc94"
         }
       ]
     },

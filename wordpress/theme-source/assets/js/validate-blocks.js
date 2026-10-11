@@ -21,6 +21,6 @@
   output.id = 'psy-block-validation';
   output.dataset.report = JSON.stringify(report);
   output.textContent = report.error || `Gutenberg: ${report.total} bloków, ${report.invalid.length} niepoprawnych`;
-  output.style.cssText = 'position:fixed;bottom:70px;left:12px;z-index:100001;background:#fff;color:#124e2c;padding:12px;font:14px/1.4 Arial,sans-serif;max-width:calc(100vw - 24px)';
+  output.style.cssText = 'position:fixed;bottom:70px;left:12px;z-index:100001;background:#fff;color:#124e36;padding:12px;font:14px/1.4 Arial,sans-serif;max-width:calc(100vw - 24px)';
   document.body.append(output);
 })();

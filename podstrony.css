@@ -602,10 +602,10 @@ body.subpage .alert-band { padding-inline-start: var(--s5); }
 
 body.subpage a[href^="tel:"] { white-space: nowrap; }
 
-/* hero: łososiowe tło (zmienne sekcji z palety .team), większa ilustracja, więcej miejsca pod przyciskami */
+/* hero: różowe tło (zmienne sekcji z palety .about), większa ilustracja, więcej miejsca pod przyciskami */
 body.subpage .hero.page-hero {
-  --surface: var(--wp--preset--color--peach); --ink: var(--wp--preset--color--green); --small-ink: color-mix(in srgb, var(--ink) 86%, #000);
-  --accent: var(--wp--preset--color--peach-light); --hover-ink: var(--wp--preset--color--green-deep); --hover-accent: var(--wp--preset--color--paper);
+  --surface: var(--wp--preset--color--blush); --ink: var(--wp--preset--color--burgundy); --small-ink: color-mix(in srgb, var(--ink) 86%, #000);
+  --accent: var(--wp--preset--color--blush-deep); --hover-ink: var(--wp--preset--color--burgundy-soft); --hover-accent: var(--wp--preset--color--paper);
   padding-block-end: var(--section-space);
 }
 body.subpage .page-hero .hero-actions .hero-btn--solid { background: var(--ink); color: var(--surface); border-color: var(--ink); }
@@ -987,13 +987,13 @@ body.subpage .lane-arrow { align-self: flex-end; inline-size: 32px; block-size: 
 /* --- baner „Praca w Psyjaciołach” (8.10.2026): cały baner to link mailto; szary pies z kulkami u góry, apla w kolorze kulek, bez zaokrągleń --- */
 body.subpage a.join-banner {
   display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 0; padding: 0; border-radius: 0; overflow: hidden; position: relative;
-  background: var(--lay-orange, #f0764a); color: #fff; text-decoration: none; inline-size: 100%;   /* biały tekst na prośbę właściciela (kontrast ≈ 2,9:1) */
+  background: var(--lay-orange, #e8672f); color: #fff; text-decoration: none; inline-size: 100%;   /* biały tekst na prośbę właściciela (kontrast ≈ 2,9:1) */
 }
 body.subpage a.join-banner :is(p, h2) { color: inherit; }
 body.subpage .join-art { position: relative; aspect-ratio: auto; block-size: 300px; background: #d8d8d8; overflow: hidden; }
 body.subpage .join-dog { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; object-position: 50% 12%; filter: grayscale(1) contrast(.92); }
 body.subpage .join-balls { position: absolute; inset: 0; pointer-events: none; }
-body.subpage .join-ball { position: absolute; inset-inline-start: 0; inset-block-start: 0; border-radius: 50%; background: var(--lay-orange, #f0764a); will-change: transform; }
+body.subpage .join-ball { position: absolute; inset-inline-start: 0; inset-block-start: 0; border-radius: 50%; background: var(--lay-orange, #e8672f); will-change: transform; }
 body.subpage a.join-banner .join-copy { min-block-size: 300px; block-size: 300px; padding: var(--s4); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: var(--s3); }
 body.subpage a.join-banner .join-text h2 { margin: 0; overflow-wrap: anywhere; }
 body.subpage a.join-banner .join-copy p { font-size: 20px; line-height: 32px; font-weight: 700; max-inline-size: 36ch; text-wrap: balance; margin: 0; }
@@ -1031,7 +1031,7 @@ body.subpage .ab-tile { padding: var(--s4); min-width: 0; display: flex; flex-di
 body.subpage .ab-art { padding: 0; background: var(--accent); }
 body.subpage .ab-art .photo-frame { margin: 0; inline-size: 100%; block-size: 100%; aspect-ratio: 1; border: 0; background-image: none; }
 body.subpage .ab-call { background: var(--ink); color: var(--surface); min-block-size: 405px; }
-body.subpage .ab-closed { grid-column: 1 / -1; background: var(--lay-orange, #f0764a); color: var(--lay-green-deep, #0b3a20); min-block-size: 264px; }
+body.subpage .ab-closed { grid-column: 1 / -1; background: var(--lay-orange, #e8672f); color: var(--lay-green-deep, #0b3a27); min-block-size: 264px; }
 body.subpage .alert-banner:not(.has-art) .ab-call { grid-column: 1; }
 body.subpage .ab-top { display: block; margin: 0; font-size: 20px; line-height: 32px; font-weight: 700; max-inline-size: 22ch; }
 body.subpage .ab-closed .ab-top { font-size: 32px; line-height: 40px; max-inline-size: 24ch; }
@@ -1074,12 +1074,12 @@ body.subpage .page-columns .after-hours .emergency-clinics { grid-template-colum
   body.subpage .ab-art .photo-frame { flex: none; aspect-ratio: 1; block-size: auto; }
 }
 
-/* Baner „Praca w Psyjaciołach” (9.10.2026): łososiowa karta z kobaltowym tekstem, bez zaokrągleń; u góry na całą szerokość siatka 8×8 zdjęć pacjentów (zdjęcie 640×640,
+/* Baner „Praca w Psyjaciołach” (9.10.2026): karta w kolorze wielbłąda z granatowym tekstem, bez zaokrągleń; u góry na całą szerokość siatka 8×8 zdjęć pacjentów (zdjęcie 640×640,
    komórki 80×80; na desktopie przycięte do 400 px wysokości), pod nią tytuł „Praca” (40 px, 2× paragraf) w lewej kolumnie i krótki tekst w prawej;
-   tytuł i tekst tym samym krojem i rozmiarem. Aplą jest łososiowy (peach), tekst kobaltowy; wokół siatki ramka w kolorze tła o szerokości paddingu tekstu. */
+   tytuł i tekst tym samym krojem i rozmiarem. Aplą jest wielbłąd (camel), tekst granatowy; wokół siatki ramka w kolorze tła o szerokości paddingu tekstu. */
 html body.book-type.subpage main a.join-banner {
-  --cobalt: #0047ab;
-  display: flex; flex-direction: column; padding: 0; border-radius: 0; background: var(--wp--preset--color--peach, #f6b08f); color: var(--cobalt); overflow: hidden;
+  --join-ink: var(--wp--preset--color--navy);
+  display: flex; flex-direction: column; padding: 0; border-radius: 0; background: var(--wp--preset--color--camel, #d8bc94); color: var(--join-ink); overflow: hidden;
 }
 html body.book-type.subpage main a.join-banner::before { content: none; }
 html body.book-type.subpage main a.join-banner .join-art { order: 0; position: relative; inline-size: 100%; block-size: auto; aspect-ratio: auto; margin: 0; padding: var(--s4) var(--s4) 0; box-sizing: border-box; background: transparent; }
@@ -1087,8 +1087,8 @@ html body.book-type.subpage main a.join-banner .join-art::after { content: none;
 html body.book-type.subpage main a.join-banner .join-grid { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 50%; }
 @media (min-width: 701px) { html body.book-type.subpage main a.join-banner .join-grid { block-size: auto; aspect-ratio: 2 / 1; object-position: 50% 50%; } }   /* 4 pełne rzędy z 8 (kadr = wielokrotność komórki), cięcie wzdłuż linii zdjęć */
 html body.book-type.subpage main a.join-banner .join-copy { order: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap, 32px); grid-template-rows: minmax(0, 1fr); align-items: start; block-size: auto; min-block-size: 260px; padding: var(--s4); box-sizing: border-box; text-align: left; }
-html body.book-type.subpage main a.join-banner .join-copy .join-text h2 { font-size: 40px !important; line-height: 48px !important; font-weight: 700; margin: 0; color: var(--cobalt); }
-html body.book-type.subpage main a.join-banner .join-copy p { font-size: 20px !important; line-height: 32px !important; font-weight: 700; margin: 0; max-inline-size: 40ch; text-wrap: balance; color: var(--cobalt); align-self: end; }
+html body.book-type.subpage main a.join-banner .join-copy .join-text h2 { font-size: 40px !important; line-height: 48px !important; font-weight: 700; margin: 0; color: var(--join-ink); }
+html body.book-type.subpage main a.join-banner .join-copy p { font-size: 20px !important; line-height: 32px !important; font-weight: 700; margin: 0; max-inline-size: 40ch; text-wrap: balance; color: var(--join-ink); align-self: end; }
 html body.book-type.subpage main a.join-banner .join-text { align-self: flex-start; }
 @media (max-width: 700px) { html body.book-type.subpage main a.join-banner .join-copy { grid-template-columns: minmax(0, 1fr); row-gap: var(--s3); padding: var(--s3); } }
 
@@ -1131,9 +1131,9 @@ html body.book-type.subpage #zapraszamy .booking-subtitle p::before {
 /* kropla w statystyce bliżej lewej krawędzi (para „Gdzie wykonujemy badania” wróciła do prostego układu bez ramek i apli) */
 body.subpage .info-drop { inline-size: 48px; block-size: 66px; }
 
-/* Uwagi 9.10 (rezerwacja): sekcja w jasnym kolorze, blok 8 kolumn zdecydowany (zielony) z paddingiem; więcej światła pod „Psyjaciele”. */
-html body.book-type.subpage #zapraszamy { background: var(--wp--preset--color--peach-light, #fbd9c6); padding-block: var(--s6); }
-html body.book-type.subpage #zapraszamy .booking-copy { background: var(--wp--preset--color--green, #124e2c); padding: var(--s5); }
+/* Uwagi 9.10 (rezerwacja): sekcja w jasnym kolorze, blok 8 kolumn zdecydowany (terakota) z paddingiem; więcej światła pod „Psyjaciele”. */
+html body.book-type.subpage #zapraszamy { background: var(--wp--preset--color--blush, #f1dcd4); padding-block: var(--s6); }
+html body.book-type.subpage #zapraszamy .booking-copy { background: var(--wp--preset--color--terracotta, #9c4326); padding: var(--s5); }
 @media (min-width: 1001px) {
   html body.book-type.subpage #zapraszamy .booking-copy { padding: var(--s5); }
   html body.book-type.subpage #zapraszamy .booking-copy > h2 { margin-block-end: var(--s7, 144px); }
@@ -1276,8 +1276,8 @@ html body.book-type.subpage main .split-feature:not(.is-faq):has(> .split-body >
 body.subpage .book-prose > .duo { max-inline-size: none; inline-size: 100%; }
 body.subpage .book-prose:has(> .duo) { max-inline-size: none; }
 
-/* Uwagi 9.10: sekcja z banerem „Praca” — tło wokół jaśniejsze niż sam baner (peach-light), bez nadmiarowych odstępów pionowych. */
-html body.book-type.subpage main section:has(> .wrap > a.join-banner:only-child) { background: var(--wp--preset--color--peach-light, #fbd9c6); padding-block: var(--s5); }
+/* Uwagi 9.10: sekcja z banerem „Praca” — tło wokół jaśniejsze niż sam baner (ecru), bez nadmiarowych odstępów pionowych. */
+html body.book-type.subpage main section:has(> .wrap > a.join-banner:only-child) { background: var(--wp--preset--color--ecru, #f3ecdc); padding-block: var(--s5); }
 html body.book-type.subpage main section:has(> .wrap > a.join-banner:only-child) > .wrap { padding-block: 0; row-gap: 0; }
 
 /* „Sam czip nie wystarczy”: cztery punkty w rzędzie (jak „Jak wygląda czipowanie”) — numer, wykonawca, tekst; na wąskich ekranach jedna kolumna. */

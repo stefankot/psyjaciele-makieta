@@ -1,5 +1,5 @@
 /* Obserwuj nas: niezależny układ, bez siatki starego zaproszenia. */
-.social-promo-section{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--peach);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--social-promo-left-ink:var(--ink);--social-promo-right-ink:var(--wp--preset--color--green);padding:0;background:var(--surface);color:var(--ink)}
+.social-promo-section{--surface:var(--wp--preset--color--green);--ink:var(--wp--preset--color--champagne);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--social-promo-left-ink:var(--ink);--social-promo-right-ink:var(--wp--preset--color--green);padding:0;background:var(--surface);color:var(--ink)}
 .social-promo-section>.social-promo-composition{position:relative;display:block;width:100%;max-width:none;margin:0;padding:0;block-size:clamp(680px,calc(100svh - var(--floating-header-height)),960px);isolation:isolate}
 .social-promo-composition::before{display:none!important}
 #obserwuj-nas .social-promo-copy{position:absolute;inset:0 50% 0 0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:180px;min-width:0;padding:var(--s6) var(--gutter) 140px;background:var(--surface);color:var(--social-promo-left-ink);box-sizing:border-box}
@@ -11,7 +11,7 @@
 .social-promo-subtitle a:hover{text-decoration:underline;text-underline-offset:.2em}
 #obserwuj-nas .social-promo-photo{position:absolute;inset:0 0 0 50%;margin:0;overflow:hidden;z-index:0}
 #obserwuj-nas .social-promo-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(1) contrast(.92)}
-.social-promo-photo::after{content:"";position:absolute;inset:65% 0 0;background:linear-gradient(transparent,#fbd9c6e6);pointer-events:none}
+.social-promo-photo::after{content:"";position:absolute;inset:65% 0 0;background:linear-gradient(transparent,#f1dcd4e6);pointer-events:none}
 #obserwuj-nas .social-promo-actions{position:absolute;inset:auto var(--gutter) var(--s5);z-index:4;display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3)}
 .social-promo-social{display:flex;gap:var(--s3);align-items:baseline;color:var(--social-promo-left-ink);font-size:var(--type-h4);line-height:1.4}
 .social-promo-social a,.social-promo-cta{color:inherit;text-decoration:underline;text-underline-offset:4px;font-weight:500}
@@ -50,8 +50,8 @@
 @media(max-width:700px){#obserwuj-nas>.social-promo-composition{height:clamp(420px,140vw,600px);min-height:420px}#obserwuj-nas .social-promo-logo{width:160px}#obserwuj-nas .social-promo-actions{inset:auto var(--s2) var(--s4)}}
 @media(prefers-reduced-motion:reduce){#obserwuj-nas .social-promo-ring{animation:none}}
 
-/* Paleta identyczna jak w sekcji Zespół. */
-#obserwuj-nas{--surface:var(--wp--preset--color--peach);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--peach-light);--social-promo-left-ink:var(--ink);--social-promo-right-ink:var(--ink)}
+/* Paleta identyczna jak w sekcji „O nas” (róż pudrowy i burgund). */
+#obserwuj-nas{--surface:var(--wp--preset--color--blush);--ink:var(--wp--preset--color--burgundy);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--wp--preset--color--blush-deep);--social-promo-left-ink:var(--ink);--social-promo-right-ink:var(--ink)}
 #obserwuj-nas .social-promo-photo::after{content:none;display:none}
 
 /* Cała sekcja 4:3, połowa ze zdjęciem 2:3: obraz wypełnia kolumny bez pasów. */

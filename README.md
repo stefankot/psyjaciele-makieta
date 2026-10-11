@@ -63,7 +63,7 @@ Każda sekcja (`.hero`, `.about`, `.services`, … w `minimal.css`) ma cztery zm
 Pomocniczo: `--hover-ink`, `--hover-accent`. Globalna reguła w końcu `layout-nowa.css` ustawia kolor tekstu z tych zmiennych (wyjątki: bloki odwrócone, przyciski, menu, panel „poza godzinami”).
 
 ## Nakładka palet (klawisz K)
-- **K** na dowolnej stronie (lokalnie) włącza nakładkę: najedź na sekcję i kliknij — panel pokazuje 12 gotowych palet z kolorów strony, cztery własne kolory (tło, tekst, tekst mały, akcent), „Odwróć”, „Przywróć sekcję/wszystko” i „Kopiuj zmiany” (Markdown do rozmowy). Ponowne **K** lub **Esc** zamyka nakładkę.
+- **K** na dowolnej stronie (lokalnie) włącza nakładkę: najedź na sekcję i kliknij — panel pokazuje 12 gotowych palet (klasyczne zestawienia z mody: szmaragd i szampan, granat i wielbłąd, burgund i róż, czerń i kość słoniowa…; zieleń hero #124e36 jest stała), cztery własne kolory (tło, tekst, tekst mały, akcent), „Odwróć”, „Przywróć sekcję/wszystko” i „Kopiuj zmiany” (Markdown do rozmowy). Ponowne **K** lub **Esc** zamyka nakładkę.
 - Zmiany to zmienne CSS sekcji ustawione inline (`--surface`, `--ink`, `--small-ink`, `--accent`, `--hover-ink`, `--hover-accent`); po odświeżeniu znikają. Kod: `_generator/narzedzia/paleta.js`, ładowany z `inspektor.js`.
 
 ## Zespół (Home #zespol i „Kto przyjmuje” na podstronach)

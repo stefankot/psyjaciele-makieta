@@ -119,14 +119,14 @@ html.bar body.book-type .site-header .header-actions .button {
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
-  background: var(--nav-ink, var(--lay-peach));
+  background: var(--nav-ink, var(--lay-champagne));
   color: var(--header-bg, var(--lay-green));
-  border: 2px solid var(--nav-ink, var(--lay-peach));
+  border: 2px solid var(--nav-ink, var(--lay-champagne));
   transition: background-color .18s ease, color .18s ease;
 }
 html.bar body.book-type .site-header .header-actions .button:hover {
   background: transparent;
-  color: var(--nav-ink, var(--lay-peach));
+  color: var(--nav-ink, var(--lay-champagne));
 }
 html.bar body.book-type .site-header .header-call {
   display: none;
@@ -148,8 +148,8 @@ html.bar body.book-type .site-header .site-nav {
   margin: 0;
   padding: 8px max(var(--gutter), calc((100% - 1280px) / 2)) 32px;
   background: var(--lay-green);
-  color: var(--lay-peach-light);
-  border-top: 1px solid color-mix(in srgb, var(--lay-peach-light) 25%, transparent);
+  color: var(--lay-champagne);
+  border-top: 1px solid color-mix(in srgb, var(--lay-champagne) 25%, transparent);
 }
 html.bar body.book-type .site-header .site-nav a { font-size: 20px; line-height: 32px; padding-block: 8px; }
 
@@ -202,7 +202,7 @@ html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header
     transition: background-color .25s ease, color .18s ease;
   }
   html.bar body.book-type .site-header .header-actions .button { flex: 1 1 auto; min-width: 0; }
-  html.bar body.book-type .site-header .header-actions .header-call { flex: 0 0 auto; width: 48px; height: 48px; display: inline-flex; border-color: var(--nav-ink, var(--lay-peach)); color: var(--nav-ink, var(--lay-peach)); }
+  html.bar body.book-type .site-header .header-actions .header-call { flex: 0 0 auto; width: 48px; height: 48px; display: inline-flex; border-color: var(--nav-ink, var(--lay-champagne)); color: var(--nav-ink, var(--lay-champagne)); }
   html.bar body.book-type { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
 }
 
@@ -247,7 +247,7 @@ html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header
 
 /* Telefon: lewy przycisk dolnego paska bez ramki — tylko linia u góry oddzielająca go od treści */
 @media (max-width: 700px) {
-  html.bar body.book-type .site-header .header-actions .header-call { border: 0; border-block-start: 1px solid var(--nav-ink, var(--lay-peach)); }
+  html.bar body.book-type .site-header .header-actions .header-call { border: 0; border-block-start: 1px solid var(--nav-ink, var(--lay-champagne)); }
 }
 
 /* Telefon: większa etykieta przycisku „Dzwoń” (16 px jak „Umów wizytę”); dłuższy tekst poza godzinami zawija się do dwóch linii */
@@ -258,10 +258,10 @@ html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header
 
 /* Telefon: przyciski dolnego paska mają własne kolory (nie kolor sekcji pod paskiem), dzięki czemu oba są zawsze wyraźnie widoczne */
 @media (max-width: 700px) {
-  html.bar body.book-type .site-header .header-actions .header-call { background: #f7f3ee; color: #124e2c; border: 0; border-block-start: 1px solid #124e2c; }
-  html.bar body.book-type .site-header .header-actions .header-call .hc-label, html.bar body.book-type .site-header .header-actions .header-call .ico { color: #124e2c; }
-  html.bar body.book-type .site-header .header-actions .button { background: #f0764a; color: #0b3a20; border: 0; }
-  html.bar body.book-type .site-header .header-actions .button:hover { background: #f0764a; color: #0b3a20; }
+  html.bar body.book-type .site-header .header-actions .header-call { background: #f7f3ee; color: #124e36; border: 0; border-block-start: 1px solid #124e36; }
+  html.bar body.book-type .site-header .header-actions .header-call .hc-label, html.bar body.book-type .site-header .header-actions .header-call .ico { color: #124e36; }
+  html.bar body.book-type .site-header .header-actions .button { background: #e8672f; color: #0b3a27; border: 0; }
+  html.bar body.book-type .site-header .header-actions .button:hover { background: #e8672f; color: #0b3a27; }
 }
 
 /* Telefon: elastyczna szerokość przycisków — domyślnie po 50 %, ale „Dzwoń” rozszerza się do szerokości swojej etykiety (np. „Dzwoń · jutro od 10:00” poza godzinami),
@@ -274,7 +274,7 @@ html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header
 /* potwierdzenie po kliknięciu rezerwacji (nowa-header.js) */
 .booking-toast {
   position: fixed; z-index: 120; inset-inline: var(--gutter, 24px); inset-block-end: 24px; max-inline-size: 520px; margin-inline: auto;
-  display: flex; align-items: flex-start; gap: 13px; padding: 13px 16px; background: #124e2c; color: #fbd9c6;
+  display: flex; align-items: flex-start; gap: 13px; padding: 13px 16px; background: #124e36; color: #f0e4cc;
   font-size: 16px; line-height: 24px; font-weight: 700;
 }
 .booking-toast a { color: inherit; text-decoration: underline; text-underline-offset: .2em; white-space: nowrap; }
@@ -285,20 +285,20 @@ html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header
 /* piktogram ciasteczka (zgoda na statystyki) w prawym dolnym rogu */
 .cookie-btn { position: fixed; z-index: 130; inset-inline-end: 16px; inset-block-end: 16px; inline-size: 56px; block-size: 56px; padding: 0; border: 0; background: none; cursor: pointer; transform-origin: 50% 90%; }
 .cookie-btn svg { display: block; inline-size: 100%; block-size: 100%; overflow: visible; }
-.cookie-btn .ck-body { fill: #fbd9c6; stroke: #124e2c; stroke-width: 3; stroke-linejoin: round; }
-.cookie-btn .ck-chip { fill: #124e2c; }
-.cookie-btn .ck-eye { fill: #124e2c; }
-.cookie-btn .ck-smile { fill: none; stroke: #124e2c; stroke-width: 2.4; stroke-linecap: round; }
+.cookie-btn .ck-body { fill: #f0e4cc; stroke: #124e36; stroke-width: 3; stroke-linejoin: round; }
+.cookie-btn .ck-chip { fill: #124e36; }
+.cookie-btn .ck-eye { fill: #124e36; }
+.cookie-btn .ck-smile { fill: none; stroke: #124e36; stroke-width: 2.4; stroke-linecap: round; }
 .cookie-btn:hover { rotate: -8deg; }
-.cookie-btn:focus-visible { outline: 2px solid #124e2c; outline-offset: 4px; border-radius: 50%; }
+.cookie-btn:focus-visible { outline: 2px solid #124e36; outline-offset: 4px; border-radius: 50%; }
 
 @keyframes ck-hop { 0%, 80%, 100% { translate: 0 0; } 88% { translate: 0 -10px; } 94% { translate: 0 0; } }
 @media (prefers-reduced-motion: reduce) { .cookie-btn:hover { rotate: none; } }
-.cookie-panel { position: fixed; z-index: 131; inset-inline-end: 16px; inset-block-end: 84px; inline-size: min(320px, calc(100vw - 32px)); box-sizing: border-box; padding: 16px; background: #124e2c; color: #fbd9c6; border: 1px solid #fbd9c6; font-size: 16px; line-height: 24px; font-weight: 700; }
+.cookie-panel { position: fixed; z-index: 131; inset-inline-end: 16px; inset-block-end: 84px; inline-size: min(320px, calc(100vw - 32px)); box-sizing: border-box; padding: 16px; background: #124e36; color: #f0e4cc; border: 1px solid #f0e4cc; font-size: 16px; line-height: 24px; font-weight: 700; }
 .cookie-panel[hidden] { display: none; }
 .cookie-panel p { margin: 0 0 13px; }
 .cookie-panel a { color: inherit; text-decoration: underline; text-underline-offset: .2em; }
 .cookie-panel div { display: flex; gap: 8px; }
-.cookie-panel button { flex: 1 1 0; min-block-size: 48px; border: 2px solid #fbd9c6; background: #fbd9c6; color: #124e2c; font: 700 16px/1 Satoshi, Arial, sans-serif; cursor: pointer; }
-.cookie-panel button[data-z="nie"] { background: none; color: #fbd9c6; }
+.cookie-panel button { flex: 1 1 0; min-block-size: 48px; border: 2px solid #f0e4cc; background: #f0e4cc; color: #124e36; font: 700 16px/1 Satoshi, Arial, sans-serif; cursor: pointer; }
+.cookie-panel button[data-z="nie"] { background: none; color: #f0e4cc; }
 @media (max-width: 700px) { html.bar .cookie-btn { inset-block-end: calc(56px + 16px + env(safe-area-inset-bottom, 0px)); inline-size: 48px; block-size: 48px; } html.bar .cookie-panel { inset-block-end: calc(56px + 16px + 48px + 13px + env(safe-area-inset-bottom, 0px)); } }

@@ -1,17 +1,17 @@
 {
  "uslugi-weterynaryjne": {
   "file": "uslugi-weterynaryjne/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
    "mid-a",
    "soft-a",
-   "mid-a",
    "mid-c",
    "mid-b",
    "paper",
    "soft-b",
+   "mid-a",
    "alarm",
    "paper",
    "mid-b",
@@ -101,21 +101,21 @@
  },
  "choroby-wewnetrzne-u-psow-i-kotow": {
   "file": "uslugi-weterynaryjne/choroby-wewnetrzne-u-psow-i-kotow/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "soft-b",
    "paper",
    "mid-b",
-   "soft-a",
+   "mid-a",
    "booking",
    "end",
-   "mid-a"
+   "soft-a"
   ],
   "uses": [
    "after-hours",
@@ -184,12 +184,12 @@
  },
  "diagnostyka-laboratoryjna-weterynaryjna": {
   "file": "uslugi-weterynaryjne/diagnostyka-laboratoryjna-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "paper",
@@ -254,15 +254,15 @@
  },
  "szczepienia-oraz-profilaktyka-przeciwpasozytnicza": {
   "file": "uslugi-weterynaryjne/szczepienia-oraz-profilaktyka-przeciwpasozytnicza/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "paper",
    "mid-b",
-   "paper",
+   "mid-c",
    "booking",
    "end"
   ],
@@ -322,18 +322,18 @@
  },
  "chirurgia-weterynaryjna-tkanek-miekkich": {
   "file": "uslugi-weterynaryjne/chirurgia-weterynaryjna-tkanek-miekkich/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "soft-b",
    "paper",
    "mid-c",
-   "soft-a",
+   "mid-a",
    "end"
   ],
   "uses": [
@@ -401,18 +401,18 @@
  },
  "kardiologia-weterynaryjna": {
   "file": "uslugi-weterynaryjne/kardiologia-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "soft-b",
    "paper",
    "mid-c",
-   "soft-a",
+   "mid-a",
    "end"
   ],
   "uses": [
@@ -499,12 +499,12 @@
  },
  "diagnostyka-obrazowa-psow-i-kotow": {
   "file": "uslugi-weterynaryjne/diagnostyka-obrazowa-psow-i-kotow/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "paper",
@@ -575,12 +575,12 @@
  },
  "okulistyka-weterynaryjna": {
   "file": "uslugi-weterynaryjne/okulistyka-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "paper",
@@ -655,12 +655,12 @@
  },
  "dermatologia-weterynaryjna": {
   "file": "uslugi-weterynaryjne/dermatologia-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "paper",
@@ -669,7 +669,7 @@
    "soft-a",
    "booking",
    "end",
-   "mid-a"
+   "mid-b"
   ],
   "uses": [
    "after-hours",
@@ -735,18 +735,18 @@
  },
  "stomatologia-weterynaryjna": {
   "file": "uslugi-weterynaryjne/stomatologia-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "soft-b",
    "paper",
    "mid-c",
-   "soft-a",
+   "mid-a",
    "booking",
    "end"
   ],
@@ -832,17 +832,17 @@
  },
  "nefrologia-weterynaryjna": {
   "file": "uslugi-weterynaryjne/nefrologia-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "paper",
    "soft-b",
-   "mid-a",
+   "soft-a",
    "paper",
    "mid-c",
    "mid-b",
@@ -917,13 +917,13 @@
  },
  "urologia-weterynaryjna": {
   "file": "uslugi-weterynaryjne/urologia-weterynaryjna/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
-   "alarm",
    "mid-a",
+   "alarm",
+   "soft-a",
    "mid-c",
    "mid-b",
    "soft-b",
@@ -931,7 +931,7 @@
    "soft-a",
    "booking",
    "end",
-   "mid-a"
+   "mid-b"
   ],
   "uses": [
    "after-hours",
@@ -997,12 +997,12 @@
  },
  "pomiar-cisnienia-psow-i-kotow": {
   "file": "uslugi-weterynaryjne/pomiar-cisnienia-psow-i-kotow/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "paper",
@@ -1076,18 +1076,18 @@
  },
  "wystawianie-paszportow-psom-i-kotom": {
   "file": "uslugi-weterynaryjne/wystawianie-paszportow-psom-i-kotom/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "mid-b",
    "soft-b",
    "paper",
    "mid-c",
-   "soft-a",
+   "mid-a",
    "booking",
    "end"
   ],
@@ -1157,12 +1157,12 @@
  },
  "czipowanie-psow-i-kotow": {
   "file": "uslugi-weterynaryjne/czipowanie-psow-i-kotow/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
    "toc",
-   "soft-a",
    "mid-a",
+   "soft-a",
    "mid-c",
    "alarm",
    "mid-b",
@@ -1245,13 +1245,13 @@
  },
  "zespol": {
   "file": "zespol/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
-   "soft-a",
    "mid-a",
-   "soft-a",
    "mid-c",
+   "soft-a",
+   "mid-b",
    "paper",
    "mid-b",
    "end",
@@ -1280,10 +1280,10 @@
  },
  "polityka-prywatnosci": {
   "file": "polityka-prywatnosci/index.html",
-  "changed": true,
+  "changed": false,
   "roles": [
    "top",
-   "soft-a"
+   "mid-a"
   ],
   "uses": [
    "back-link",

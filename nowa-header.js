@@ -11,7 +11,7 @@
   const hero = document.querySelector('.hero');
   const sections = [...document.querySelectorAll('main > section, main > .page-columns > section, body > footer')];
   const PAPER = '#f7f3ee';
-  const GREEN = '#124e2c';
+  const GREEN = '#124e36';
   const flat = ['booking', 'social-promo-section'];
   let ticking = false;
 
@@ -177,7 +177,7 @@
     var t = document.createElement("div");
     t.textContent = on ? "God mode: wł." : "God mode: wył.";
     t.setAttribute("role", "status");
-    t.style.cssText = "position:fixed;left:24px;bottom:24px;z-index:9999;padding:8px 16px;background:#124e2c;color:#fbd9c6;font:700 16px/24px Satoshi,Arial,sans-serif";
+    t.style.cssText = "position:fixed;left:24px;bottom:24px;z-index:9999;padding:8px 16px;background:#124e36;color:#f0e4cc;font:700 16px/24px Satoshi,Arial,sans-serif";
     document.body.appendChild(t); setTimeout(function () { t.remove(); }, 1400);
   });
 })();
@@ -199,13 +199,13 @@
     }
     if (bgLum === null) return;
     var bg = getComputedStyle(bgEl).backgroundColor, ink;
-    if (bgLum > 0.55) ink = "#124e2c";
+    if (bgLum > 0.55) ink = "#124e36";
     else { var tl = lum(getComputedStyle(bgEl).color); ink = tl !== null && tl > 0.5 ? getComputedStyle(bgEl).color : "#f7f3ee"; }
     bar.style.setProperty("--header-bg", bg); bar.style.setProperty("--nav-ink", ink); bar.style.setProperty("color", ink);
     /* przyciski dolnego paska zawsze w kolorach innych niż sekcja pod spodem: „Umów wizytę” pomarańczowy (jak w menu), „Dzwoń” zielony na jasnym tle albo papierowy na ciemnym */
     var light = bgLum > 0.55;
-    bar.style.setProperty("--call-bg", light ? "#124e2c" : "#f7f3ee");
-    bar.style.setProperty("--call-ink", light ? "#fbd9c6" : "#124e2c");
+    bar.style.setProperty("--call-bg", light ? "#124e36" : "#f7f3ee");
+    bar.style.setProperty("--call-ink", light ? "#f0e4cc" : "#124e36");
   }
   function schedule() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
   addEventListener("scroll", schedule, { passive: true }); addEventListener("resize", schedule); addEventListener("load", schedule);

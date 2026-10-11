@@ -43,7 +43,7 @@ RELATED = {
     'czipowanie-psow-i-kotow': ['szczepienia-oraz-profilaktyka-przeciwpasozytnicza', 'wystawianie-paszportow-psom-i-kotom'],
 }
 
-CYCLE = ['soft-a', 'mid-a', 'mid-c', 'mid-b', 'paper', 'soft-b']
+CYCLE = ['mid-a', 'soft-a', 'mid-c', 'mid-b', 'paper', 'soft-b']   # pierwsza pozycja ≠ paleta hero podstrony (różowa = soft-a)
 GREEN_ROLES = ('alarm', 'booking')
 
 
@@ -219,7 +219,7 @@ class PB:
     def surface(self, role):
         r = self.home.roles
         if role == 'social':
-            return r['mid-c']['--surface']
+            return r['soft-a']['--surface']   # Obserwuj nas: ta sama paleta co „O nas” (social-promo.css)
         return r[role]['--surface']
 
     def finish(self):

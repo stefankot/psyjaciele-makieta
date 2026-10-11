@@ -1,27 +1,28 @@
 /* paleta.js — nakładka do zmiany palety kolorów całej sekcji (klawisz K, ładowana przez inspektor.js).
-   Jak inspektor: najedź i kliknij sekcję → panel z paletami (gotowe zestawy z kolorów strony + własne kolory + „Odwróć”).
+   Jak inspektor: najedź i kliknij sekcję → panel z paletami (12 klasycznych zestawień + własne kolory + „Odwróć”).
    Zmiany to zmienne CSS sekcji (--surface, --ink, --small-ink, --accent, --hover-ink, --hover-accent) ustawione inline,
    więc nie dotykają plików; „Kopiuj zmiany” daje Markdown do wklejenia w rozmowie. Esc / K zamyka nakładkę (zmiany zostają do odświeżenia). */
 (function () {
   "use strict";
   if (window.__paleta) return;
 
-  var C = { green: "#124e2c", greenDeep: "#0b3a20", greenSoft: "#1d6a3e", peach: "#f6b08f", peachLight: "#fbd9c6", sage: "#a9c296", sageLight: "#cfdcc3",
-    paper: "#f7f3ee", orange: "#f0764a", blue: "#2233b0", cobalt: "#0047ab", mint: "#9cf0c6" };
-  // surface = tło, ink = tekst/rysunek, small = tekst mały, accent = tło uzupełniające, hover = kolor po najechaniu
+  // Klasyczne zestawienia z mody i wnętrz (dwanaście; kolejność = rzędy po trzy: jasna/ciemna na przemian). Te same kolory są tokenami w theme.json.
+  // Zieleń Psyjaciół (#124e36, tło hero) jest stała — pierwsza paleta ma ją jako tło. Kontrast tekst/tło ≥ 5,7:1, tekst/akcent ≥ 4,5:1 (pomiar WCAG 2.x).
+  // [nazwa, surface = tło, ink = tekst/rysunek, small = tekst mały (ink 14 % w stronę czerni/bieli; panel i tak liczy to sam),
+  //  accent = tło uzupełniające (karty, kształty), hover = kolor po najechaniu (panel używa small)]
   var PRESETS = [
-    ["Zieleń", C.green, C.peach, C.peachLight, C.greenSoft, C.peachLight],
-    ["Łosoś", C.peach, C.green, C.greenDeep, C.peachLight, C.greenDeep],
-    ["Jasny łosoś", C.peachLight, C.green, C.greenDeep, C.peach, C.greenDeep],
-    ["Szałwia", C.sage, C.green, C.greenDeep, C.sageLight, C.blue],
-    ["Jasna szałwia", C.sageLight, C.green, C.greenDeep, C.sage, C.greenDeep],
-    ["Papier", C.paper, C.green, C.greenDeep, C.peachLight, C.greenDeep],
-    ["Pomarańcz", C.orange, C.greenDeep, C.greenDeep, C.peach, C.paper],
-    ["Kobalt", C.cobalt, C.peachLight, C.paper, "#1a5fd0", C.mint],
-    ["Jasny kobalt", C.paper, C.cobalt, C.cobalt, C.peachLight, C.greenDeep],
-    ["Mięta", C.mint, C.greenDeep, C.greenDeep, C.sageLight, C.cobalt],
-    ["Głęboka zieleń", C.greenDeep, C.sageLight, C.paper, C.green, C.peach],
-    ["Granat", "#14213d", C.peachLight, C.paper, "#233a66", C.peach]
+    ["Szmaragd i szampan",       "#124e36", "#f0e4cc", "#f2e8d3", "#1d6a4b", "#f2e8d3"],
+    ["Ecru i zieleń",            "#f3ecdc", "#124e36", "#0f432e", "#e5dac1", "#0f432e"],
+    ["Wielbłąd i czekolada",  "#d8bc94", "#3a2216", "#321d13", "#c8a87a", "#321d13"],
+    ["Burgund i róż",         "#5a1828", "#f4dad2", "#f6dfd8", "#74293b", "#f6dfd8"],
+    ["Róż pudrowy i burgund", "#f1dcd4", "#5a1828", "#4d1522", "#e6c5bc", "#4d1522"],
+    ["Terakota i krem",       "#9c4326", "#fcf0e2", "#fcf2e6", "#af5434", "#fcf2e6"],
+    ["Granat i wielbłąd",     "#14213d", "#e2c79c", "#e6cfaa", "#1f3358", "#e6cfaa"],
+    ["Błękit i granat",          "#c9d6e3", "#14213d", "#111c34", "#b6c7d8", "#111c34"],
+    ["Oliwka i kość słoniowa","#51542b", "#f5f0e0", "#f6f2e4", "#626637", "#f6f2e4"],
+    ["Czerń i kość słoniowa", "#181513", "#f1eadb", "#f3ede0", "#2b2724", "#f3ede0"],
+    ["Greige i czerń",        "#d6ccbe", "#1e1a17", "#1a1614", "#c6baaa", "#1a1614"],
+    ["Bakłażan i róż",        "#3b1f40", "#ebd5d8", "#eedbdd", "#512f58", "#eedbdd"]
   ];
   var VARS = ["--surface", "--ink", "--small-ink", "--accent", "--hover-ink", "--hover-accent"];
   var LABELS = ["Tło", "Tekst", "Tekst mały", "Akcent (karty, kształty)"];

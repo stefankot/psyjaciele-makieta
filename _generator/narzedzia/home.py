@@ -380,7 +380,7 @@ class Home:
         self.roles['mid-a'] = rules['.services']
         self.roles['mid-b'] = rules['.reviews']
         self.roles['mid-c'] = rules['.team']
-        self.roles['top'] = rules['.team']   # hero podstron: łososiowe (zmienne palety .team)
+        self.roles['top'] = rules['.about']   # hero podstron: różowe (zmienne palety .about; zob. podstrony.css)
         self.roles['toc'] = rules['.clinic']
         self.roles['alarm'] = rules['.emergency']
         # klasy sekcji dla ról
