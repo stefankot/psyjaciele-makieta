@@ -10,8 +10,8 @@
   if (!header) return;
   const hero = document.querySelector('.hero');
   const sections = [...document.querySelectorAll('main > section, main > .page-columns > section, body > footer')];
-  const PAPER = '#f7f3ee';
-  const GREEN = '#124e36';
+  // kolory marki z tokenów aktywnego zestawu palet (palety-zestawy.css); czytane przy każdej aktualizacji, bo zestaw można zmienić w locie (K)
+  const tok = (n, fb) => (getComputedStyle(root).getPropertyValue('--wp--preset--color--' + n) || '').trim() || fb;
   const flat = ['booking', 'social-promo-section'];
   let ticking = false;
 
@@ -29,8 +29,8 @@
       : sections.find(s => { const r = s.getBoundingClientRect(); return r.top <= probe && r.bottom > probe; }) || hero;
     let bg = section ? solidBg(section) : null;
     if (!bg || (section && flat.some(c => section.classList.contains(c)))) {
-      bg = PAPER;
-      header.style.setProperty('--nav-ink', GREEN);
+      bg = tok('paper', '#f7f3ee');
+      header.style.setProperty('--nav-ink', tok('green', '#124e36'));
     }
     root.style.setProperty('--header-bg', bg);
   }
@@ -199,13 +199,14 @@
     }
     if (bgLum === null) return;
     var bg = getComputedStyle(bgEl).backgroundColor, ink;
-    if (bgLum > 0.55) ink = "#124e36";
-    else { var tl = lum(getComputedStyle(bgEl).color); ink = tl !== null && tl > 0.5 ? getComputedStyle(bgEl).color : "#f7f3ee"; }
+    var T = function (n, fb) { return (getComputedStyle(document.documentElement).getPropertyValue("--wp--preset--color--" + n) || "").trim() || fb; };
+    if (bgLum > 0.55) ink = T("green", "#124e36");
+    else { var tl = lum(getComputedStyle(bgEl).color); ink = tl !== null && tl > 0.5 ? getComputedStyle(bgEl).color : T("paper", "#f7f3ee"); }
     bar.style.setProperty("--header-bg", bg); bar.style.setProperty("--nav-ink", ink); bar.style.setProperty("color", ink);
     /* przyciski dolnego paska zawsze w kolorach innych niż sekcja pod spodem: „Umów wizytę” pomarańczowy (jak w menu), „Dzwoń” zielony na jasnym tle albo papierowy na ciemnym */
     var light = bgLum > 0.55;
-    bar.style.setProperty("--call-bg", light ? "#124e36" : "#f7f3ee");
-    bar.style.setProperty("--call-ink", light ? "#f0e4cc" : "#124e36");
+    bar.style.setProperty("--call-bg", light ? T("green", "#124e36") : T("paper", "#f7f3ee"));
+    bar.style.setProperty("--call-ink", light ? T("champagne", "#f0e4cc") : T("green", "#124e36"));
   }
   function schedule() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
   addEventListener("scroll", schedule, { passive: true }); addEventListener("resize", schedule); addEventListener("load", schedule);

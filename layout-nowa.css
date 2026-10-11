@@ -33,7 +33,7 @@
   --lay-green-deep: var(--wp--preset--color--green-deep, #0b3a27);
   --lay-orange: var(--wp--preset--color--orange, #e8672f);
   --lay-paper: var(--wp--preset--color--paper, #f7f3ee);
-  --lay-focus: #e8672f;
+  --lay-focus: var(--lay-orange);
   --lead-cols: 4;
   --hero-space: 32px;
 }

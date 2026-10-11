@@ -325,6 +325,7 @@ class Home:
         self.social_raw = self.sections['obserwuj-nas']
         # paleta
         self._palettes()
+        self._set_surfaces()
         # NAP
         v = self.jsonld_vet
         self.nap = {'name': v['name'], 'tel_disp': '537 821 345', 'tel': v['telephone'], 'email': v['email'],
@@ -397,8 +398,82 @@ class Home:
             a = attrs_of(m.group(1))
             self.palette_label.setdefault(a.get('class', ''), a.get('data-palette', ''))
 
+    # --- zestawy palet ---------------------------------------------------------------------------------------
+    SET_IDS = ('szlachetna', 'poprzednia', 'fac')   # kolejność = krotka powierzchni; „szlachetna” to zestaw domyślny (minimal.css…)
+    # rola → selektor reguły palety (bez prefiksu zestawu i bez wiodącego „html ”)
+    ROLE_SEL = {'hero': '.hero', 'about': '.about', 'soft-a': '.about', 'services': '.services', 'mid-a': '.services', 'clinic': '.clinic', 'toc': '.clinic',
+                'team': '.team', 'mid-c': '.team', 'reviews': '.reviews', 'mid-b': '.reviews', 'emergency': '.emergency', 'alarm': '.emergency',
+                'paper': '.arrival.preparation', 'soft-b': '.arrival:not(.preparation)', 'end': '.contact', 'social': '#obserwuj-nas',
+                'top': 'body.subpage .hero.page-hero'}
+    BOOKING_SEL = 'body.book-type.subpage #zapraszamy'   # na podstronach tło sekcji rezerwacji ustawia podstrony.css (nie paleta .booking)
+
+    def _set_surfaces(self):
+        """Powierzchnie (tła) ról we wszystkich zestawach palet. Generator pilnuje, żeby sąsiednie sekcje nie miały tego samego tła
+        w ŻADNYM zestawie (nakładka K przełącza zestawy na gotowych stronach). Zestawy: palety-zestawy.css."""
+        def strip(t):
+            return re.sub(r'/\*.*?\*/', '', t, flags=re.S)
+        def norm(sel):
+            sel = re.sub(r'\s+', ' ', sel.strip())
+            return re.sub(r'^html ', '', sel)
+        def rules_of(text):
+            out = {}
+            for m in re.finditer(r'([^{}]+)\{([^{}]*)\}', text):
+                body = dict((k, v.strip()) for k, v in re.findall(r'([\w-]+)\s*:\s*([^;]+)', m.group(2)))
+                for part in m.group(1).split(','):
+                    out.setdefault(norm(part), {}).update(body)
+            return out
+        base = {}
+        for f in ('minimal.css', 'social-promo.css', 'podstrony.css'):
+            for k, v in rules_of(strip((self.root / f).read_text(encoding='utf-8'))).items():
+                base.setdefault(k, {}).update(v)
+        css = strip((self.root / 'palety-zestawy.css').read_text(encoding='utf-8'))
+        sets = {'szlachetna': (base, {})}
+        for sid in self.SET_IDS[1:]:
+            pre = f'html[data-paleta="{sid}"]'
+            rules, local = {}, {}
+            for m in re.finditer(r'([^{}]+)\{([^{}]*)\}', css):
+                body = dict((k, v.strip()) for k, v in re.findall(r'([\w-]+)\s*:\s*([^;]+)', m.group(2)))
+                for part in m.group(1).split(','):
+                    part = re.sub(r'\s+', ' ', part.strip())
+                    if part == pre:
+                        local.update(body)
+                    elif part.startswith(pre + ' '):
+                        rules.setdefault(norm(part[len(pre) + 1:]), {}).update(body)
+            sets[sid] = (rules, local)
+
+        def res(v, local):
+            v = (v or '').strip()
+            m = re.match(r'var\((--[\w-]+)\s*(?:,\s*(.+))?\)$', v)
+            if m:
+                name, fb = m.group(1), m.group(2)
+                if name in local:
+                    return res(local[name], local)
+                return self.tokens.get(name) or (res(fb, local) if fb else None)
+            return v if re.match(r'#[0-9a-fA-F]{6}$', v) else None
+
+        def surf(sid, role):
+            rules, local = sets[sid]
+            if role == 'booking':
+                sel, prop = self.BOOKING_SEL, 'background'
+            else:
+                sel, prop = self.ROLE_SEL[role], '--surface'
+            decl = rules.get(sel, {})
+            if prop not in decl:                     # zestaw nie definiuje tej reguły → wartość zestawu domyślnego
+                decl = sets['szlachetna'][0].get(sel, {})
+                local = {}
+            val = res(decl.get(prop), local if sid != 'szlachetna' and decl is rules.get(sel) else {})
+            assert val, f'zestaw {sid}: nie udało się odczytać tła roli „{role}” ({sel})'
+            return val.lower()
+        self.surfaces = {role: tuple(surf(sid, role) for sid in self.SET_IDS) for role in list(self.ROLE_SEL) + ['booking']}
+
     def surface(self, role):
-        return self.roles[role]['--surface']
+        """Krotka teł roli — po jednym na zestaw palet (SET_IDS). Porównuj przez clash()."""
+        return self.surfaces[role]
+
+    @staticmethod
+    def clash(a, b):
+        """True, gdy w którymkolwiek zestawie obie powierzchnie mają to samo tło."""
+        return a is not None and b is not None and any(x == y for x, y in zip(a, b))
 
     def label_for(self, cls):
         return self.palette_label.get(cls) or self.palette_label.get(cls.split()[0], '')

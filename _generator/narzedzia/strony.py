@@ -217,10 +217,11 @@ class PB:
 
     # --- palety ------------------------------------------------------------
     def surface(self, role):
-        r = self.home.roles
-        if role == 'social':
-            return r['soft-a']['--surface']   # Obserwuj nas: ta sama paleta co „O nas” (social-promo.css)
-        return r[role]['--surface']
+        """Krotka teł roli we wszystkich zestawach palet (home.SET_IDS); „social” i „booking” liczone z faktycznych reguł CSS."""
+        return self.home.surface(role)
+
+    def clash(self, a, b):
+        return self.home.clash(a, b)
 
     def finish(self):
         items = self.items
@@ -240,14 +241,14 @@ class PB:
             for k in range(len(CYCLE)):
                 cand = CYCLE[(ptr + k) % len(CYCLE)]
                 s = self.surface(cand)
-                if s != prev and s != nxt:
+                if not self.clash(s, prev) and not self.clash(s, nxt):
                     it.role = cand
                     ptr = (ptr + k + 1) % len(CYCLE)
                     break
             else:
                 raise RuntimeError(f'{self.slug}: brak palety dla sekcji {i}')
         for a, b in zip(items, items[1:]):
-            assert self.surface(a.role) != self.surface(b.role), f'{self.slug}: sąsiednie sekcje o tej samej powierzchni ({a.role}/{b.role})'
+            assert not self.clash(self.surface(a.role), self.surface(b.role)), f'{self.slug}: sąsiednie sekcje o tej samej powierzchni w którymś zestawie palet ({a.role}/{b.role})'
         # spis treści: wpis „Opinie opiekunów” po „Najczęstsze pytania” (sekcja jest w kolumnie artykułu)
         if any(it.kind in ('reviews', 'after-hours') for it in items) and any(it.kind == 'toc' for it in items):
             toc2 = []
@@ -295,7 +296,7 @@ class PB:
         # na desktopie (toc ukryty) pierwsza sekcja po hero nie może mieć tej samej powierzchni co hero
         vis = [it for it in items if it.kind != 'toc']
         for a, b in zip(vis, vis[1:]):
-            assert self.surface(a.role) != self.surface(b.role), f'{self.slug}: po ukryciu spisu sąsiednie sekcje o tej samej powierzchni ({a.role}/{b.role})'
+            assert not self.clash(self.surface(a.role), self.surface(b.role)), f'{self.slug}: po ukryciu spisu sąsiednie sekcje o tej samej powierzchni w którymś zestawie palet ({a.role}/{b.role})'
         out = res
         self.roles_used = [it.role for it in items]
         return '\n'.join(out)

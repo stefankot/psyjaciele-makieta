@@ -28,7 +28,7 @@ import strony  # noqa: E402
 
 MARK = '<!-- generated: psyjaciele-podstrony -->'
 CSS_V = '164'
-JS_V = '33'
+JS_V = '34'
 
 
 def esc(s):

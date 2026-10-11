@@ -1,0 +1,97 @@
+/* ════════════════════════════════════════════════════════════════════
+   ZESTAWY PALET (wybór: klawisz K → „Zestaw palet”, albo ?paleta=poprzednia | fac | szlachetna w adresie)
+
+   Zestaw = komplet palet wszystkich sekcji + kolory marki używane poza sekcjami (nagłówek, dolny pasek, cookies).
+   • szlachetna  — domyślny (bez atrybutu): palety w minimal.css, social-promo.css, podstrony.css, tokeny w design-tokens.css
+   • poprzednia  — palety sprzed 11.10.2026 (zielone ściany, brzoskwinia, szałwia, kobalt)
+   • fac         — oparta na stronie Feminist Art Coalition (feministartcoalition.org)
+   Zestaw włącza atrybut html[data-paleta="…"] (ustawia go skrypt w <head>; wartość pamięta localStorage „psyjaciele-paleta”).
+   Każda reguła deklaruje wszystkie zmienne sekcji, bo bez tego zostałaby wartość z zestawu domyślnego (np. --hover-ink).
+   Kolory zestawu mieszkają tylko tutaj: nowy zestaw = nowy blok z tymi samymi selektorami.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────── POPRZEDNIA ───────────────────────── */
+html[data-paleta="poprzednia"]{
+  /* tokeny marki (theme.json sprzed zmiany): zieleń, pomarańcz; „szampan” = dawna jasna brzoskwinia, „piasek” = dawna brzoskwinia */
+  --wp--preset--color--paper:#f7f3ee;
+  --wp--preset--color--green:#124e2c;--wp--preset--color--green-deep:#0b3a20;--wp--preset--color--green-soft:#1d6a3e;
+  --wp--preset--color--orange:#f0764a;--wp--preset--color--sage:#a9c296;
+  --wp--preset--color--champagne:#fbd9c6;--wp--preset--color--sand:#f6b08f;
+  /* kolory własne zestawu */
+  --pz-peach:#f6b08f;--pz-peach-light:#fbd9c6;--pz-sage:#a9c296;--pz-sage-light:#cfdcc3;--pz-blue:#2233b0;--pz-blue-deep:#1a2890;--pz-emergency:#f8b393;--pz-cobalt:#0047ab;
+  --hero-art-ink:var(--pz-peach);--service-art-ink:var(--wp--preset--color--green);--service-hover-ink:var(--pz-blue);--contact-art-ink:var(--pz-peach);
+}
+html[data-paleta="poprzednia"] .hero{--surface:var(--wp--preset--color--green);--ink:var(--pz-peach);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--green-soft);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="poprzednia"] .about{--surface:var(--pz-peach-light);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--pz-peach);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="poprzednia"] .services{--surface:var(--pz-sage);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--pz-sage-light);--hover-ink:var(--pz-blue);--hover-accent:initial}
+html[data-paleta="poprzednia"] .booking{--surface:var(--pz-peach);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--pz-peach-light);--hover-ink:color-mix(in srgb,var(--wp--preset--color--green) 86%,#000);--hover-accent:var(--pz-peach)}
+html[data-paleta="poprzednia"] .clinic{--surface:var(--wp--preset--color--paper);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--pz-peach-light);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="poprzednia"] .team{--surface:var(--pz-peach);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--pz-peach-light);--hover-ink:var(--wp--preset--color--green-deep);--hover-accent:var(--wp--preset--color--paper)}
+html[data-paleta="poprzednia"] .reviews{--surface:var(--pz-sage-light);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--pz-sage);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="poprzednia"] .emergency{--surface:var(--wp--preset--color--green);--ink:var(--pz-emergency);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--green-soft);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="poprzednia"] .arrival.preparation,
+html[data-paleta="poprzednia"] .arrival.preparation.faq{--surface:var(--wp--preset--color--paper);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--pz-sage-light);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="poprzednia"] .arrival:not(.preparation){--surface:var(--pz-peach-light);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--pz-peach);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="poprzednia"] .contact{--surface:var(--pz-blue);--ink:var(--pz-peach);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--pz-blue-deep);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="poprzednia"] footer{--surface:var(--wp--preset--color--green);--ink:var(--pz-sage);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--wp--preset--color--green-soft);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="poprzednia"] #obserwuj-nas{--surface:var(--pz-peach);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--pz-peach-light);--hover-ink:initial;--hover-accent:initial}
+/* podstrony: hero (paleta jak Zespół), baner „Praca”, blok rezerwacji */
+html[data-paleta="poprzednia"] body.subpage .hero.page-hero{--surface:var(--pz-peach);--ink:var(--wp--preset--color--green);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--pz-peach-light);--hover-ink:var(--wp--preset--color--green-deep);--hover-accent:var(--wp--preset--color--paper)}
+html[data-paleta="poprzednia"] body.book-type.subpage main a.join-banner{--join-ink:var(--pz-cobalt);background:var(--pz-peach)}
+html[data-paleta="poprzednia"] body.book-type.subpage #zapraszamy{background:var(--pz-peach-light)}
+/* w oryginale blok miał zielone tło i zielony tekst, logo i pierścień (nieczytelne) — tu zmienne sekcji odwrócone: zieleń + brzoskwinia */
+html[data-paleta="poprzednia"] body.book-type.subpage #zapraszamy{--surface:var(--wp--preset--color--green);--ink:var(--pz-peach);--small-ink:color-mix(in srgb,var(--pz-peach) 86%,#fff);--accent:var(--wp--preset--color--green-soft)}
+html[data-paleta="poprzednia"] body.book-type.subpage #zapraszamy .booking-copy{background:var(--wp--preset--color--green)}
+/* w oryginale tło sekcji z banerem było brzoskwiniowe jak „O nas” (na stronie Zespół zlewały się) — tu kolor sekcji Opinie */
+html[data-paleta="poprzednia"] body.book-type.subpage main section:has(> .wrap > a.join-banner:only-child){background:var(--pz-sage-light)}
+/* menu: pozycja „Umów wizytę” po najechaniu była brzoskwiniowa */
+html[data-paleta="poprzednia"] body.book-type.book-type .site-header .site-nav .nav-col a.nav-book:hover{background:var(--pz-peach)}
+
+/* ─────────────── FEMINIST ART COALITION (feministartcoalition.org) ───────────────
+   Kolory strony: krem #FAF5EA (tło), głęboka zieleń #0E433A (tekst, linki), mięta #4FAB72 (przycisk), koral #FF9575 (przycisk)
+   — odczytane z wyliczonych stylów dwóch podstron (Firecrawl), nie z arkusza CSS; wartości pośrednie (tinty) są dobrane do nich.
+   Zieleń marki: tu #0E433A (FAC) zamiast #124e36 — chłodniejsza, ten sam charakter; zmiana = zmienna --wp--preset--color--green poniżej.
+     hero          zieleń                       marka
+     usługi        mięta blada                  świeży, czytelny katalog
+     rezerwacja    koral                        wezwanie do działania (kolor przycisków FAC)
+     o nas         krem                         ciepło, ludzie
+     przychodnia   koral blady                  spokojny kontrast z miętą zespołu
+     zespół        mięta                        portrety (karnacje i różowe stroje na zieleni)
+     opinie        koral blady
+     nagłe         zieleń ciemna + koral        powaga bez krzyku
+     przygotowanie krem                         praktyczne listy
+     dojazd        koral blady
+     pytania       mięta blada ciemniejsza      spokojne zamknięcie treści
+     kontakt       koral                        zaproszenie
+     stopka        zieleń                       spięcie z hero
+   ──────────────────────────────────────────────────────────────────── */
+html[data-paleta="fac"]{
+  --wp--preset--color--paper:#faf5ea;
+  --wp--preset--color--green:#0e433a;--wp--preset--color--green-deep:#082b25;--wp--preset--color--green-soft:#1b5a4d;
+  --wp--preset--color--orange:#e56b4f;        /* koral przyciemniony: biały tekst ≥ 3:1, ciemna zieleń ≥ 4,5:1 */
+  --wp--preset--color--sage:#4fab72;
+  --wp--preset--color--champagne:#faf5ea;--wp--preset--color--sand:#ffddcf;
+  --fac-cream:#faf5ea;--fac-forest:#0e433a;--fac-forest-deep:#082b25;--fac-forest-soft:#1b5a4d;
+  --fac-mint:#4fab72;--fac-mint-light:#62bc84;--fac-mint-pale:#dceee2;--fac-mint-pale-deep:#c9e5d3;--fac-mint-faq:#b9dcc7;
+  --fac-coral:#ff9575;--fac-coral-soft:#ffa68d;--fac-coral-pale:#ffddcf;--fac-coral-pale-deep:#ffc9b5;--fac-coral-ink:#a93a24;
+  --hero-art-ink:var(--fac-cream);--service-art-ink:var(--fac-forest);--service-hover-ink:var(--fac-coral-ink);--contact-art-ink:var(--fac-forest);
+}
+html[data-paleta="fac"] .hero{--surface:var(--fac-forest);--ink:var(--fac-cream);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--fac-forest-soft);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] .about{--surface:var(--fac-cream);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-coral-pale);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] .services{--surface:var(--fac-mint-pale);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-mint-pale-deep);--hover-ink:var(--fac-coral-ink);--hover-accent:initial}
+html[data-paleta="fac"] .booking{--surface:var(--fac-coral);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-coral-soft);--hover-ink:var(--fac-forest-deep);--hover-accent:var(--fac-coral)}
+html[data-paleta="fac"] .clinic{--surface:var(--fac-coral-pale);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-coral-pale-deep);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] .team{--surface:var(--fac-mint);--ink:var(--fac-forest-deep);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-mint-light);--hover-ink:var(--fac-cream);--hover-accent:var(--fac-cream)}
+html[data-paleta="fac"] .reviews{--surface:var(--fac-coral-pale);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-coral-pale-deep);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] .emergency{--surface:var(--fac-forest-deep);--ink:var(--fac-coral);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:#123c35;--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] .arrival.preparation{--surface:var(--fac-cream);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-mint-pale);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] .arrival:not(.preparation){--surface:var(--fac-coral-pale);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-coral-pale-deep);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] .arrival.preparation.faq{--surface:var(--fac-mint-pale-deep);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-mint-faq);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] .contact{--surface:var(--fac-coral);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-coral-soft);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] footer{--surface:var(--fac-forest);--ink:var(--fac-cream);--small-ink:color-mix(in srgb,var(--ink) 86%,#fff);--accent:var(--fac-forest-soft);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] #obserwuj-nas{--surface:var(--fac-cream);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-coral-pale);--hover-ink:initial;--hover-accent:initial}
+html[data-paleta="fac"] body.subpage .hero.page-hero{--surface:var(--fac-cream);--ink:var(--fac-forest);--small-ink:color-mix(in srgb,var(--ink) 86%,#000);--accent:var(--fac-coral-pale);--hover-ink:var(--fac-coral-ink);--hover-accent:var(--fac-cream)}
+html[data-paleta="fac"] body.book-type.subpage main a.join-banner{--join-ink:var(--fac-forest);background:var(--fac-mint)}
+html[data-paleta="fac"] body.book-type.subpage #zapraszamy{background:var(--fac-cream)}
+html[data-paleta="fac"] body.book-type.subpage #zapraszamy .booking-copy{background:var(--fac-coral)}
+html[data-paleta="fac"] body.book-type.subpage main section:has(> .wrap > a.join-banner:only-child){background:var(--fac-mint-pale)}

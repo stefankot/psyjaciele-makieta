@@ -258,10 +258,10 @@ html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header
 
 /* Telefon: przyciski dolnego paska mają własne kolory (nie kolor sekcji pod paskiem), dzięki czemu oba są zawsze wyraźnie widoczne */
 @media (max-width: 700px) {
-  html.bar body.book-type .site-header .header-actions .header-call { background: #f7f3ee; color: #124e36; border: 0; border-block-start: 1px solid #124e36; }
-  html.bar body.book-type .site-header .header-actions .header-call .hc-label, html.bar body.book-type .site-header .header-actions .header-call .ico { color: #124e36; }
-  html.bar body.book-type .site-header .header-actions .button { background: #e8672f; color: #0b3a27; border: 0; }
-  html.bar body.book-type .site-header .header-actions .button:hover { background: #e8672f; color: #0b3a27; }
+  html.bar body.book-type .site-header .header-actions .header-call { background: var(--wp--preset--color--paper,#f7f3ee); color: var(--wp--preset--color--green,#124e36); border: 0; border-block-start: 1px solid var(--wp--preset--color--green,#124e36); }
+  html.bar body.book-type .site-header .header-actions .header-call .hc-label, html.bar body.book-type .site-header .header-actions .header-call .ico { color: var(--wp--preset--color--green,#124e36); }
+  html.bar body.book-type .site-header .header-actions .button { background: var(--wp--preset--color--orange,#e8672f); color: var(--wp--preset--color--green-deep,#0b3a27); border: 0; }
+  html.bar body.book-type .site-header .header-actions .button:hover { background: var(--wp--preset--color--orange,#e8672f); color: var(--wp--preset--color--green-deep,#0b3a27); }
 }
 
 /* Telefon: elastyczna szerokość przycisków — domyślnie po 50 %, ale „Dzwoń” rozszerza się do szerokości swojej etykiety (np. „Dzwoń · jutro od 10:00” poza godzinami),
@@ -274,7 +274,7 @@ html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header
 /* potwierdzenie po kliknięciu rezerwacji (nowa-header.js) */
 .booking-toast {
   position: fixed; z-index: 120; inset-inline: var(--gutter, 24px); inset-block-end: 24px; max-inline-size: 520px; margin-inline: auto;
-  display: flex; align-items: flex-start; gap: 13px; padding: 13px 16px; background: #124e36; color: #f0e4cc;
+  display: flex; align-items: flex-start; gap: 13px; padding: 13px 16px; background: var(--wp--preset--color--green,#124e36); color: var(--wp--preset--color--champagne,#f0e4cc);
   font-size: 16px; line-height: 24px; font-weight: 700;
 }
 .booking-toast a { color: inherit; text-decoration: underline; text-underline-offset: .2em; white-space: nowrap; }
@@ -285,20 +285,20 @@ html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header
 /* piktogram ciasteczka (zgoda na statystyki) w prawym dolnym rogu */
 .cookie-btn { position: fixed; z-index: 130; inset-inline-end: 16px; inset-block-end: 16px; inline-size: 56px; block-size: 56px; padding: 0; border: 0; background: none; cursor: pointer; transform-origin: 50% 90%; }
 .cookie-btn svg { display: block; inline-size: 100%; block-size: 100%; overflow: visible; }
-.cookie-btn .ck-body { fill: #f0e4cc; stroke: #124e36; stroke-width: 3; stroke-linejoin: round; }
-.cookie-btn .ck-chip { fill: #124e36; }
-.cookie-btn .ck-eye { fill: #124e36; }
-.cookie-btn .ck-smile { fill: none; stroke: #124e36; stroke-width: 2.4; stroke-linecap: round; }
+.cookie-btn .ck-body { fill: var(--wp--preset--color--champagne,#f0e4cc); stroke: var(--wp--preset--color--green,#124e36); stroke-width: 3; stroke-linejoin: round; }
+.cookie-btn .ck-chip { fill: var(--wp--preset--color--green,#124e36); }
+.cookie-btn .ck-eye { fill: var(--wp--preset--color--green,#124e36); }
+.cookie-btn .ck-smile { fill: none; stroke: var(--wp--preset--color--green,#124e36); stroke-width: 2.4; stroke-linecap: round; }
 .cookie-btn:hover { rotate: -8deg; }
-.cookie-btn:focus-visible { outline: 2px solid #124e36; outline-offset: 4px; border-radius: 50%; }
+.cookie-btn:focus-visible { outline: 2px solid var(--wp--preset--color--green,#124e36); outline-offset: 4px; border-radius: 50%; }
 
 @keyframes ck-hop { 0%, 80%, 100% { translate: 0 0; } 88% { translate: 0 -10px; } 94% { translate: 0 0; } }
 @media (prefers-reduced-motion: reduce) { .cookie-btn:hover { rotate: none; } }
-.cookie-panel { position: fixed; z-index: 131; inset-inline-end: 16px; inset-block-end: 84px; inline-size: min(320px, calc(100vw - 32px)); box-sizing: border-box; padding: 16px; background: #124e36; color: #f0e4cc; border: 1px solid #f0e4cc; font-size: 16px; line-height: 24px; font-weight: 700; }
+.cookie-panel { position: fixed; z-index: 131; inset-inline-end: 16px; inset-block-end: 84px; inline-size: min(320px, calc(100vw - 32px)); box-sizing: border-box; padding: 16px; background: var(--wp--preset--color--green,#124e36); color: var(--wp--preset--color--champagne,#f0e4cc); border: 1px solid var(--wp--preset--color--champagne,#f0e4cc); font-size: 16px; line-height: 24px; font-weight: 700; }
 .cookie-panel[hidden] { display: none; }
 .cookie-panel p { margin: 0 0 13px; }
 .cookie-panel a { color: inherit; text-decoration: underline; text-underline-offset: .2em; }
 .cookie-panel div { display: flex; gap: 8px; }
-.cookie-panel button { flex: 1 1 0; min-block-size: 48px; border: 2px solid #f0e4cc; background: #f0e4cc; color: #124e36; font: 700 16px/1 Satoshi, Arial, sans-serif; cursor: pointer; }
-.cookie-panel button[data-z="nie"] { background: none; color: #f0e4cc; }
+.cookie-panel button { flex: 1 1 0; min-block-size: 48px; border: 2px solid var(--wp--preset--color--champagne,#f0e4cc); background: var(--wp--preset--color--champagne,#f0e4cc); color: var(--wp--preset--color--green,#124e36); font: 700 16px/1 Satoshi, Arial, sans-serif; cursor: pointer; }
+.cookie-panel button[data-z="nie"] { background: none; color: var(--wp--preset--color--champagne,#f0e4cc); }
 @media (max-width: 700px) { html.bar .cookie-btn { inset-block-end: calc(56px + 16px + env(safe-area-inset-bottom, 0px)); inline-size: 48px; block-size: 48px; } html.bar .cookie-panel { inset-block-end: calc(56px + 16px + 48px + 13px + env(safe-area-inset-bottom, 0px)); } }

@@ -1,5 +1,8 @@
-/* paleta.js — nakładka do zmiany palety kolorów całej sekcji (klawisz K, ładowana przez inspektor.js).
-   Jak inspektor: najedź i kliknij sekcję → panel z paletami (12 klasycznych zestawień + własne kolory + „Odwróć”).
+/* paleta.js — nakładka do zmiany palet kolorów (klawisz K, ładowana przez inspektor.js).
+   1) ZESTAW PALET całej strony (u góry panelu): szlachetna (domyślna) / poprzednia / Feminist Art Coalition. Zestaw to atrybut
+      html[data-paleta] (definicje: palety-zestawy.css), pamiętany w localStorage „psyjaciele-paleta” i ustawiany też przez ?paleta=… w adresie.
+      Podglądy zestawów i palety sekcji aktywnego zestawu są czytane z CSS (bez własnej kopii kolorów).
+   2) PALETA JEDNEJ SEKCJI: najedź i kliknij sekcję → panel z paletami aktywnego zestawu + 12 klasycznych zestawień + własne kolory + „Odwróć”.
    Zmiany to zmienne CSS sekcji (--surface, --ink, --small-ink, --accent, --hover-ink, --hover-accent) ustawione inline,
    więc nie dotykają plików; „Kopiuj zmiany” daje Markdown do wklejenia w rozmowie. Esc / K zamyka nakładkę (zmiany zostają do odświeżenia). */
 (function () {
@@ -25,6 +28,18 @@
     ["Bakłażan i róż",        "#3b1f40", "#ebd5d8", "#eedbdd", "#512f58", "#eedbdd"]
   ];
   var VARS = ["--surface", "--ink", "--small-ink", "--accent", "--hover-ink", "--hover-accent"];
+  // Zestawy palet całej strony. id = wartość html[data-paleta] (szlachetna = brak atrybutu); kolory są w palety-zestawy.css i style sekcji.
+  var SETS = [
+    { id: "szlachetna", name: "Szlachetna", desc: "szmaragd, ecru, terakota, granat — klasyka z mody (domyślna)" },
+    { id: "poprzednia", name: "Poprzednia", desc: "zielone ściany, brzoskwinia, szałwia, kobalt" },
+    { id: "fac", name: "Feminist Art Coalition", desc: "krem, głęboka zieleń, mięta, koral" }
+  ];
+  var SET_KEY = "psyjaciele-paleta";
+  // Role sekcji, z których składa się zestaw: [etykieta, klasy, znacznik]. Klasy dają te same reguły palet co prawdziwe sekcje.
+  var ROLES = [["Hero", "hero"], ["Usługi", "services"], ["Zaproszenie", "booking"], ["O nas", "about"], ["Przychodnia", "clinic"], ["Zespół", "team"],
+    ["Opinie", "reviews"], ["Nagłe przypadki", "emergency"], ["Przed wizytą", "arrival preparation"], ["Dojazd", "arrival"], ["Pytania", "arrival preparation faq"],
+    ["Kontakt", "contact"], ["Stopka", "", "footer"]];
+  var STRIP = [0, 1, 2, 3, 5, 11, 12];   // role pokazane w podglądzie zestawu: hero, usługi, zaproszenie, o nas, zespół, kontakt, stopka
   var LABELS = ["Tło", "Tekst", "Tekst mały", "Akcent (karty, kształty)"];
 
   var on = false, sel = null, hot = null, changes = [], box, label, panel;
@@ -37,7 +52,7 @@
       ".pl-box.is-sel{border-style:solid;border-color:#00b7ff}" +
       ".pl-tag{position:fixed;z-index:2147483001;pointer-events:none;background:#ff2d95;color:#fff;font:600 12px/1 system-ui,sans-serif;padding:5px 8px;display:none}" +
       ".pl-panel{position:fixed;z-index:2147483002;left:16px;bottom:16px;width:340px;max-height:calc(100vh - 32px);overflow:auto;background:#111;color:#fff;font:13px/1.35 system-ui,sans-serif;padding:14px;box-shadow:0 8px 32px rgba(0,0,0,.4)}" +
-      ".pl-panel *{box-sizing:border-box}.pl-panel h4{margin:0 0 4px;font-size:14px}.pl-panel p{margin:0 0 10px;color:#bbb}" +
+      ".pl-panel *{box-sizing:border-box}.pl-panel h4{margin:0 0 8px;font-size:14px;color:#fff}.pl-panel p{margin:0 0 10px;color:#bbb}" +
       ".pl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}" +
       ".pl-sw{border:2px solid #444;background:none;color:#fff;cursor:pointer;padding:0;text-align:left;font:inherit}.pl-sw:hover,.pl-sw:focus-visible{border-color:#fff;outline:0}" +
       ".pl-sw i{display:block;height:34px;position:relative}.pl-sw i b{position:absolute;left:8px;top:8px;width:18px;height:18px;border-radius:50%}.pl-sw i u{position:absolute;right:8px;bottom:6px;width:14px;height:14px}" +
@@ -45,6 +60,12 @@
       ".pl-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}.pl-row label{display:grid;gap:3px;font-size:11px;color:#bbb}" +
       ".pl-row input{width:100%;height:30px;padding:0;border:2px solid #444;background:none;cursor:pointer}" +
       ".pl-btns{display:flex;flex-wrap:wrap;gap:6px}.pl-btns button{background:#2a2a2a;color:#fff;border:0;padding:7px 10px;cursor:pointer;font:inherit}.pl-btns button:hover{background:#444}" +
+      ".pl-panel [hidden]{display:none!important}" +
+      ".pl-h{margin:10px 0 6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#888}.pl-h:first-of-type{margin-top:0}" +
+      ".pl-sets{display:grid;gap:6px;margin-bottom:4px}" +
+      ".pl-set{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;border:2px solid #444;background:none;color:#fff;cursor:pointer;padding:6px;text-align:left;font:inherit}.pl-set:hover,.pl-set:focus-visible{border-color:#fff;outline:0}.pl-set.is-on{border-color:#00b7ff}" +
+      ".pl-chips{display:flex}.pl-chips i{display:block;width:13px;height:32px}" +
+      ".pl-set b{display:block;font-size:12px}.pl-set small{display:block;color:#aaa;font-size:11px;line-height:1.3}" +
       ".pl-msg{margin-top:8px;color:#7ee787;min-height:16px}";
     document.head.appendChild(s);
   }
@@ -122,7 +143,7 @@
     changes = []; refreshInputs();
   }
   function copyAll() {
-    var out = ["# Zmiany palet", ""];
+    var out = ["# Zmiany palet", "", "zestaw palet: **" + setName(curSet()) + "** (`?paleta=" + curSet() + "`)", ""];
     changes.forEach(function (r, i) {
       out.push((i + 1) + ". **" + selectorOf(r.el) + "** (" + nameOf(r.el) + ")");
       VARS.forEach(function (v) { var x = r.el.style.getPropertyValue(v); if (x) out.push("   - `" + v + ": " + x + "`"); });
@@ -135,6 +156,64 @@
   }
   function msg(t) { var m = panel.querySelector(".pl-msg"); if (m) m.textContent = t; }
 
+  // ── zestawy palet ──────────────────────────────────────────────────────────────
+  var tmp;
+  function hexOf(v) {   // dowolny zapis koloru z CSS → #rrggbb
+    v = (v || "").trim(); if (!v) return "#000000";
+    if (v.charAt(0) === "#") return toHex(v);
+    if (!tmp) { tmp = document.createElement("i"); tmp.style.cssText = "position:absolute;left:-9999px;visibility:hidden"; }
+    document.body.appendChild(tmp); tmp.style.color = ""; tmp.style.color = v;
+    var c = getComputedStyle(tmp).color; document.body.removeChild(tmp);
+    return toHex(c);
+  }
+  function curSet() { return document.documentElement.getAttribute("data-paleta") || "szlachetna"; }
+  function setName(id) { for (var i = 0; i < SETS.length; i++) if (SETS[i].id === id) return SETS[i].name; return id; }
+  function writeAttr(id) { var r = document.documentElement; id === "szlachetna" ? r.removeAttribute("data-paleta") : r.setAttribute("data-paleta", id); }
+  // Palety wszystkich ról danego zestawu: atrybut jest ustawiany, kolory czytane z niewidocznych próbek i atrybut wraca — w jednym kroku, bez przemalowania.
+  function probe(id) {
+    var prev = curSet(); writeAttr(id);
+    var host = document.createElement("div");
+    host.style.cssText = "position:absolute;left:-9999px;top:0;width:10px;height:10px;visibility:hidden;pointer-events:none";
+    document.body.appendChild(host);
+    var out = ROLES.map(function (r) {
+      var el = document.createElement(r[2] || "section"); el.className = r[1]; host.appendChild(el);
+      var cs = getComputedStyle(el);
+      return [r[0], hexOf(cs.getPropertyValue("--surface")), hexOf(cs.getPropertyValue("--ink")), hexOf(cs.getPropertyValue("--accent"))];
+    });
+    document.body.removeChild(host); writeAttr(prev);
+    return out;
+  }
+  var setPresets = [];
+  function renderSets() {
+    if (!panel) return;
+    var now = curSet();
+    panel.querySelector(".pl-sets").innerHTML = SETS.map(function (st) {
+      var chips = probe(st.id), strip = STRIP.map(function (i) { return '<i style="background:' + chips[i][1] + '"></i>'; }).join("");
+      return '<button type="button" class="pl-set' + (st.id === now ? " is-on" : "") + '" data-set="' + st.id + '" aria-pressed="' + (st.id === now) + '"><span class="pl-chips">' + strip + "</span><span><b>" + st.name + (st.id === now ? " ✓" : "") + "</b><small>" + st.desc + "</small></span></button>";
+    }).join("");
+    // palety sekcji aktywnego zestawu (dla domyślnego pomijamy — to te same kolory co w klasycznych dwunastu)
+    var box2 = panel.querySelector(".pl-setgrid"), head = panel.querySelector(".pl-sethead");
+    setPresets = [];
+    if (now !== "szlachetna") {
+      var seen = {};
+      probe(now).forEach(function (r) { var k = r[1] + r[2]; if (!seen[k]) { seen[k] = 1; setPresets.push([r[0], r[1], r[2], "", r[3]]); } });
+    }
+    head.hidden = box2.hidden = !setPresets.length;
+    head.textContent = "Palety sekcji — zestaw „" + setName(now) + "”";
+    box2.innerHTML = setPresets.map(function (p, i) {
+      return '<button type="button" class="pl-sw" data-sp="' + i + '" title="' + p[0] + '"><i style="background:' + p[1] + '"><b style="background:' + p[2] + '"></b><u style="background:' + p[4] + '"></u></i><span>' + p[0] + "</span></button>";
+    }).join("");
+  }
+  function setSet(id) {
+    if (curSet() === id) return;
+    resetAll();   // zmiany ręczne dotyczyły poprzedniego zestawu
+    writeAttr(id);
+    try { id === "szlachetna" ? localStorage.removeItem(SET_KEY) : localStorage.setItem(SET_KEY, id); } catch (e) {}
+    renderSets(); refreshInputs();
+    window.dispatchEvent(new Event("scroll")); window.dispatchEvent(new Event("resize"));   // nagłówek i dolny pasek liczą kolory od nowa
+    msg("Zestaw: " + setName(id) + ".");
+  }
+
   function buildPanel() {
     panel = document.createElement("div");
     panel.className = "pl-panel";
@@ -142,13 +221,18 @@
       return '<button type="button" class="pl-sw" data-i="' + i + '" title="' + p[0] + '"><i style="background:' + p[1] + '"><b style="background:' + p[2] + '"></b><u style="background:' + p[4] + '"></u></i><span>' + p[0] + "</span></button>";
     }).join("");
     var inputs = LABELS.map(function (l, i) { return '<label>' + l + '<input type="color" data-v="' + i + '"></label>'; }).join("");
-    panel.innerHTML = '<h4>Palety sekcji <small style="color:#888">(K)</small></h4><p class="pl-name">Najedź na sekcję i kliknij, żeby ją wybrać.</p>' +
-      '<div class="pl-grid">' + sw + '</div><div class="pl-row">' + inputs + '</div>' +
+    panel.innerHTML = '<h4>Palety <small style="color:#888">(K)</small></h4>' +
+      '<div class="pl-h">Zestaw palet całej strony</div><div class="pl-sets"></div>' +
+      '<div class="pl-h">Wybrana sekcja</div><p class="pl-name">Najedź na sekcję i kliknij, żeby ją wybrać.</p>' +
+      '<div class="pl-h pl-sethead" hidden></div><div class="pl-grid pl-setgrid" hidden></div>' +
+      '<div class="pl-h">Klasyczne zestawienia</div><div class="pl-grid">' + sw + '</div><div class="pl-row">' + inputs + '</div>' +
       '<div class="pl-btns"><button type="button" data-a="invert">Odwróć</button><button type="button" data-a="one">Przywróć sekcję</button><button type="button" data-a="all">Przywróć wszystko</button><button type="button" data-a="copy">Kopiuj zmiany</button><button type="button" data-a="close">Zamknij (K)</button></div><div class="pl-msg"></div>';
     document.body.appendChild(panel);
     panel.addEventListener("click", function (e) {
       var b = e.target.closest("button"); if (!b) return;
-      if (b.hasAttribute("data-i")) apply(PRESETS[+b.getAttribute("data-i")]);
+      if (b.hasAttribute("data-set")) setSet(b.getAttribute("data-set"));
+      else if (b.hasAttribute("data-sp")) apply(setPresets[+b.getAttribute("data-sp")]);
+      else if (b.hasAttribute("data-i")) apply(PRESETS[+b.getAttribute("data-i")]);
       else { var a = b.getAttribute("data-a"); if (a === "invert") invert(); else if (a === "one") resetOne(); else if (a === "all") resetAll(); else if (a === "copy") copyAll(); else if (a === "close") api.destroy(); }
     });
     panel.addEventListener("input", function (e) {
@@ -191,7 +275,7 @@
       css();
       box = document.createElement("div"); box.className = "pl-box"; label = document.createElement("div"); label.className = "pl-tag";
       document.body.appendChild(box); document.body.appendChild(label);
-      buildPanel(); refreshInputs();
+      buildPanel(); renderSets(); refreshInputs();
       document.addEventListener("mousemove", onMove, true);
       document.addEventListener("click", onClick, true);
       document.addEventListener("keydown", onKey, true);
@@ -209,6 +293,7 @@
       sel = hot = null;
     },
     toggle: function () { on ? api.destroy() : api.start(); },
+    setSet: setSet,
     isOn: function () { return on; }
   };
   window.__paleta = api;

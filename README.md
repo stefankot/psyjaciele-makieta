@@ -19,7 +19,7 @@ makieta/
 ├── polityka-prywatnosci/       polityka prywatności            (generowane)
 │
 ├── minimal.css, typography-book.css, animacje.css, section-headings.css,
-│   design-tokens.css, layout-editorial.css, social-promo.css,
+│   design-tokens.css, palety-zestawy.css, layout-editorial.css, social-promo.css,
 │   zespol-rejestr.css, zespol-stopka.css      style bazowe strony głównej
 ├── nowa-bar.css, layout-nowa.css              warstwa „nowa” (nagłówek, hero, układ sekcji)
 ├── podstrony.css, podstrony.js                style i skrypty wyłącznie podstron
@@ -62,9 +62,18 @@ Każda sekcja (`.hero`, `.about`, `.services`, … w `minimal.css`) ma cztery zm
 - `--accent` — tło kart, pasów i kształty (elementy graficzne); linie dzielące są w kolorze `--ink` (nie `--accent`).
 Pomocniczo: `--hover-ink`, `--hover-accent`. Globalna reguła w końcu `layout-nowa.css` ustawia kolor tekstu z tych zmiennych (wyjątki: bloki odwrócone, przyciski, menu, panel „poza godzinami”).
 
+## Zestawy palet (cała strona)
+Strona ma trzy komplety palet; domyślny to „szlachetna”, pozostałe włącza atrybut `html[data-paleta]`:
+- **szlachetna** (domyślna, bez atrybutu) — palety w `minimal.css`, `social-promo.css`, `podstrony.css`, tokeny w `design-tokens.css` (źródło: `wordpress/theme-source/theme.json`); zieleń hero `#124e36`.
+- **poprzednia** (`?paleta=poprzednia`) — palety sprzed 11.10.2026: zielone ściany, brzoskwinia, szałwia, kobalt (zieleń `#124e2c`). Dwie różnice względem oryginału: blok rezerwacji na podstronach ma czytelny tekst (w oryginale zielony na zielonym), a sekcja z banerem „Praca” ma kolor sekcji Opinie (w oryginale zlewała się z „O nas”).
+- **fac** (`?paleta=fac`) — oparta na stronie Feminist Art Coalition: krem `#FAF5EA`, głęboka zieleń `#0E433A` (tu zieleń hero), mięta `#4FAB72`, koral `#FF9575` oraz ich tinty. Cztery kolory odczytane z wyliczonych stylów dwóch podstron serwisu (nie z arkusza CSS); pozostałe odcienie są dobrane do nich.
+Definicje zestawów (komplet reguł palet sekcji + kolory marki: zieleń, pomarańcz, „szampan”, „piasek”, papier) są w jednym pliku: **`palety-zestawy.css`**. Nowy zestaw = nowy blok z tymi samymi selektorami; każda reguła deklaruje wszystkie zmienne sekcji (inaczej zostałaby wartość z zestawu domyślnego). Kolory marki w pasku telefonu, cookies i nagłówku czytają tokeny `--wp--preset--color--*`, więc zmieniają się razem z zestawem.
+Wybór: nakładka K (u góry panelu) albo `?paleta=…` w adresie (`?paleta=szlachetna` wraca do domyślnego); wybór pamięta `localStorage` („psyjaciele-paleta”), a ustawia go skrypt w `<head>` (`nowa-readability.js`), więc kolory nie mrugają. Generator (`home.py::_set_surfaces`) czyta tła ról ze wszystkich zestawów i dba, żeby na podstronach sąsiednie sekcje nie miały tego samego tła w żadnym z nich.
+
 ## Nakładka palet (klawisz K)
-- **K** na dowolnej stronie (lokalnie) włącza nakładkę: najedź na sekcję i kliknij — panel pokazuje 12 gotowych palet (klasyczne zestawienia z mody: szmaragd i szampan, granat i wielbłąd, burgund i róż, czerń i kość słoniowa…; zieleń hero #124e36 jest stała), cztery własne kolory (tło, tekst, tekst mały, akcent), „Odwróć”, „Przywróć sekcję/wszystko” i „Kopiuj zmiany” (Markdown do rozmowy). Ponowne **K** lub **Esc** zamyka nakładkę.
-- Zmiany to zmienne CSS sekcji ustawione inline (`--surface`, `--ink`, `--small-ink`, `--accent`, `--hover-ink`, `--hover-accent`); po odświeżeniu znikają. Kod: `_generator/narzedzia/paleta.js`, ładowany z `inspektor.js`.
+- **K** na dowolnej stronie (lokalnie albo z `?uwagi=1`) włącza nakładkę. U góry panelu jest **wybór zestawu palet** całej strony (podgląd siedmiu kolorów każdego zestawu); wybór zeruje ręczne zmiany sekcji.
+- Najedź na sekcję i kliknij — panel pokazuje palety sekcji aktywnego zestawu (czytane z CSS, więc zawsze zgodne z zestawem), 12 klasycznych zestawień z mody (szmaragd i szampan, granat i wielbłąd, burgund i róż, czerń i kość słoniowa…), cztery własne kolory (tło, tekst, tekst mały, akcent), „Odwróć”, „Przywróć sekcję/wszystko” i „Kopiuj zmiany” (Markdown do rozmowy, z nazwą zestawu). Ponowne **K** lub **Esc** zamyka nakładkę.
+- Zmiany sekcji to zmienne CSS ustawione inline (`--surface`, `--ink`, `--small-ink`, `--accent`, `--hover-ink`, `--hover-accent`); po odświeżeniu znikają (zestaw zostaje). Kod: `_generator/narzedzia/paleta.js`, ładowany z `inspektor.js`.
 
 ## Zespół (Home #zespol i „Kto przyjmuje” na podstronach)
 Karty osób: kwadratowa komórka na 4 kolumnach w kolorze akcentowym sekcji (Home: 3 w rzędzie; podstrony: 2 w rzędzie w kolumnie artykułu; poniżej 560 px jedna). Hover/fokus pokazuje linie wokół sylwetki:

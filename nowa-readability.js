@@ -31,3 +31,18 @@
   contrast.addEventListener('change', apply);
   window.addEventListener('resize', apply, { passive: true });
 })();
+
+/*
+  Zestaw palet (nakładka K → „Zestaw palet całej strony”): ?paleta=poprzednia | fac | szlachetna w adresie albo wartość zapamiętana w localStorage
+  → html[data-paleta]. Brak atrybutu = zestaw domyślny (szlachetna). Ustawiane tu, synchronicznie w <head>, żeby kolory nie „mrugały”.
+  Definicje zestawów: palety-zestawy.css.
+*/
+(() => {
+  const KEY = 'psyjaciele-paleta';
+  try {
+    const q = new URLSearchParams(location.search).get('paleta');
+    if (q !== null) { q === '' || q === 'szlachetna' ? localStorage.removeItem(KEY) : localStorage.setItem(KEY, q); }
+    const v = q !== null ? q : localStorage.getItem(KEY);
+    if (v && v !== 'szlachetna' && /^[a-z0-9-]{2,24}$/.test(v)) document.documentElement.setAttribute('data-paleta', v);
+  } catch (e) { /* localStorage zablokowany: zestaw domyślny */ }
+})();
