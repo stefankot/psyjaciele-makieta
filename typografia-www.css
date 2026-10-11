@@ -1,0 +1,21 @@
+/* typografia-www.css — luki makiety względem reguł CSS z biblioteki typografia-www (kategoria 1, punkty P1-xx).
+   Pozostałe reguły P1 makieta ma już w minimal.css i layout-nowa.css: kerning i ligatury (P1-07, 09), cyfry lining (P1-08),
+   text-wrap pretty/balance (P1-10, 11), dzielenie wyrazów z limitami (P1-12), widows/orphans (P1-22), siatka 12 kolumn (P1-21),
+   interlinia 24 i rytm 8 px (P1-02, 03), kapitaliki jako rozstrzelone wersaliki (P1-06).
+   Warstwa @layer typo: każda deklaracja makiety wygrywa niezależnie od kolejności arkuszy, więc plik niczego nie nadpisuje,
+   tylko uzupełnia to, czego makieta jeszcze nie deklaruje. */
+@layer typo {
+  html {
+    text-rendering: optimizeLegibility;   /* P1-09 (M-118): kerning metryczny także w małych rozmiarach */
+    hanging-punctuation: first;           /* P1-14: wiszący cudzysłów otwierający (działa w Safari; gdzie indziej bez efektu) */
+  }
+  :lang(pl) {
+    quotes: "„" "”" "«" "»";              /* P1-16 (K-08): <q> i ::before/::after w polskich cudzysłowach, wewnątrz «…» */
+  }
+  th, td, time {
+    font-variant-numeric: lining-nums tabular-nums;   /* P1-08, P1-18: liczby w tabelach i godziny w jednej szerokości */
+  }
+  li::marker {
+    font-variant-numeric: tabular-nums;   /* P1-18: numery list jednej szerokości */
+  }
+}

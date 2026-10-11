@@ -17,6 +17,7 @@ sys.path.insert(0, str(HERE))
 import infografiki  # noqa: E402
 import nbsp  # noqa: E402
 import psy  # noqa: E402
+import typo  # noqa: E402
 
 import bloki as B  # noqa: E402
 import home as H  # noqa: E402
@@ -27,7 +28,7 @@ import mobile_skala  # noqa: E402
 import strony  # noqa: E402
 
 MARK = '<!-- generated: psyjaciele-podstrony -->'
-CSS_V = '164'
+CSS_V = '165'
 JS_V = '34'
 
 
@@ -240,6 +241,7 @@ def write(path: Path, content: str, dry=False):
         content = infografiki.inject(path.parent.name, content)   # infografiki po nagłówkach wskazanych sekcji
         content = psy.wrap(content)   # słowo „Psyjaciele” zawsze krojem Rialto (.psy)
         content = nbsp.fix(content)   # twarda spacja po a/i/o/u/w/z i przed pauzą (bez „sierotek” na końcu wiersza)
+        content = typo.fix(content)   # typografia z biblioteki typografia-www: znaki, półpauza, jednostki, skróty, telefony, wdowy
     if path.exists():
         old = path.read_text(encoding='utf-8')
         if 'generated: psyjaciele-podstrony' not in old[:400] and '"_generated": "psyjaciele-podstrony"' not in old[:400]:
