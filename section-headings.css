@@ -45,3 +45,9 @@ main .poster-facts span { font-size: 16px; line-height: 24px; font-weight: 700; 
  main :is(#zespol,#uslugi) .section-header{height:500px;min-height:500px}
  main :is(#zespol,#uslugi) .section-header .poster-media{width:min(calc(100% * var(--illustration-scale,1)),calc(500px * var(--illustration-ratio,1)))}
 }
+
+/* fakty jako linki: ten sam wygląd co bez linku; najechanie podkreśla podpis, kółko się wypełnia odwrotnie */
+main .poster-facts li > a { display: flex; align-items: center; gap: var(--s2, 13px); color: inherit; text-decoration: none; }
+main .poster-facts li > a:hover span, main .poster-facts li > a:focus-visible span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+main .poster-facts li > a:hover strong, main .poster-facts li > a:focus-visible strong { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+main .poster-facts li > a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }

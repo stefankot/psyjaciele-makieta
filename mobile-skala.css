@@ -4,25 +4,30 @@ h1{font-size:clamp(51px,6.825vw,98px);line-height:.98}
 h2{font-size:clamp(42px,5.075vw,70px);line-height:1.03}
 h3{font-size:20px;line-height:26px}
 .button,.placeholder figcaption,.site-nav,footer h2,.header-email{font-size:10.5px;line-height:18.5px}
-.about-copy{line-height:1.05;line-height:16px}
+.about-copy h2{font-size:clamp(23px,2.712vw,38.5px);line-height:1.05}
+.about-copy p{font-size:10.5px;line-height:16px}
 .about-note,.bento .tile p,.header-hours dl{font-size:10.5px;line-height:16px}
 .about-names{font-size:9px;line-height:14px}
-.heading{font-size:14px;line-height:23px}
+.heading>:is(p,.heading h3){font-size:14px;line-height:23px}
 .person figure+p,.quote cite,.header-label{font-size:9px}
 .person figure+p{line-height:16px}
 .person figure+p+p{font-size:19px;line-height:24.5px}
 .kicker{font-size:9px;line-height:11.5px}
-.placeholder{font-size:9.5px;line-height:16px}
-.quote{line-height:16px}
+.placeholder figcaption span{font-size:9.5px;line-height:16px}
+.quote cite{line-height:16px}
 .contact-copy h2{font-size:clamp(35px,4.375vw,56px)}
-.contact-hours{font-size:9.5px}
-footer{font-size:9.5px;line-height:16px;font-size:9px;line-height:16px}& .icon{width:126px}
+.contact-hours td{font-size:9.5px}
+footer ul{font-size:9.5px;line-height:16px}
+footer .credit{font-size:9px;line-height:16px}
 .hero-subtitle{font-size:clamp(23px,2.625vw,35px);line-height:1.2}
-.bento{line-height:1.12;line-height:1.05;font-size:13px;line-height:21px}
+.bento .tile h3{font-size:clamp(15px,1.575vw,20px);line-height:1.12}
+.bento .major h3{font-size:clamp(26px,2.887vw,38.5px);line-height:1.05}
+.bento .major p{font-size:13px;line-height:21px}
 .header-location{font-size:11.5px;line-height:18.5px}
 .header-label{line-height:11.5px}
 .header-phone{font-size:17.5px;line-height:23px}
-@media(max-width:1000px){.bento .major{line-height:18.5px}}
+@media(max-width:1000px){.bento .major h3{font-size:26px}}
+@media(max-width:1000px){.bento .major p{font-size:11.5px;line-height:18.5px}}
 @media(max-width:700px){h1{font-size:clamp(37.5px,9.188vw,59.5px)}}
 @media(max-width:700px){h2{font-size:clamp(31.5px,7vw,45.5px)}}
 @media(max-width:700px){h3{font-size:17.5px;line-height:23px}}
@@ -32,15 +37,27 @@ footer{font-size:9.5px;line-height:16px;font-size:9px;line-height:16px}& .icon{w
 @media(max-width:700px){.header-grid>.button{font-size:9px}}
 @media(max-width:700px){.menu-toggle{font-size:9.5px}}
 @media(max-width:700px){.site-nav{font-size:10.5px}}
-@media(max-width:700px){.bento{line-height:18.5px}& .tile:not(.major) .icon{width:48px}}
+@media(max-width:700px){.bento .major h3{font-size:26px}}
+@media(max-width:700px){.bento .major p{font-size:12px;line-height:18.5px}}
 @media(max-width:700px){.header-phone{font-size:16px;line-height:20px}}
 @media(max-width:700px){.header-email{font-size:9.5px;line-height:16px}}
 @media(max-width:700px){.header-location{font-size:10.5px;line-height:17.5px}}
 @media(max-width:700px){.header-hours dl{font-size:9.5px}}
 @media(max-width:700px){.header-label{font-size:8px}}
-@media(max-width:360px){.bento .major{line-height:16px}}}
-.site-header{font-size:9.5px;line-height:14px;font-size:9.5px;font-size:9.5px;line-height:16px;font-size:9.5px;line-height:16px;line-height:11.5px;line-height:18.5px}& .header-email{font-size:9px;line-height:16px}& .menu-toggle{display:none}&.is-compact{padding-block:var(--s2)}
-@media(max-width:700px){.site-header{font-size:9px}& .menu-toggle{display:grid;font-size:8px;font-size:9px;line-height:14px}& .header-location .header-hours{display:none}& .header-location .header-label{display:none}& .header-contact{grid-column:9/span 4;line-height:14px;font-size:10.5px;line-height:18.5px}}
+@media(max-width:360px){.bento .major h3{font-size:23px}}
+@media(max-width:360px){.bento .major p{font-size:10.5px;line-height:16px}}
+.site-header .site-nav{font-size:9.5px;line-height:14px}
+.site-header .header-grid>.button{font-size:9.5px}
+.site-header .header-location{font-size:9.5px;line-height:16px}
+.site-header .header-hours dl{font-size:9.5px;line-height:16px}
+.site-header .header-label{font-size:8px;line-height:11.5px}
+.site-header .header-phone{font-size:14px;line-height:18.5px}
+.site-header .header-email{font-size:9px;line-height:16px}
+@media(max-width:700px){.site-header .header-grid>.button{font-size:9px}}
+@media(max-width:700px){.site-header .menu-toggle{font-size:8px}}
+@media(max-width:700px){.site-header .header-location{font-size:9px;line-height:14px}}
+@media(max-width:700px){.site-header .header-phone{font-size:10.5px;line-height:14px}}
+@media(max-width:700px){.site-header .site-nav{font-size:10.5px;line-height:18.5px}}
 .hero-copy h1{font-size:clamp(28px,min(6.825vw,9svh),98px)}
 .hero-subtitle{font-size:clamp(16px,min(2.625vw,3.5svh),35px)}
 @media(max-width:700px){.site-header .header-grid>.button{font-size:8px}}
@@ -71,51 +88,73 @@ footer p,main td{font-size:var(--type-body);line-height:var(--leading-body)}
 @media(max-width:700px){:root{--type-h1:48px;--type-h2:30px;--type-h3:18.5px}}
 @media(max-width:700px){.hero-copy h1{font-size:clamp(30px,min(9.188vw,7svh),var(--type-h1))}}
 @media(max-width:700px){.hero-subtitle{font-size:var(--type-h4)}}
-.contact-hours{font-size:var(--type-h2);line-height:1}
+.contact-hours h3{font-size:var(--type-h4)}
+.contact-hours .opening-hours dt{font-size:var(--type-h4)}
+.contact-hours .opening-hours dd{font-size:var(--type-h2);line-height:1}
+@media(max-width:700px){.contact-hours .opening-hours dd{font-size:48px}}
 :root{--type-small:14px;--leading-small:23px}
-footer{line-height:var(--leading-body)}& h2{font-size:var(--type-h4);line-height:1.24}& ul{gap:var(--s2)}& .credit{font-size:var(--type-body)}}
+footer :is(p,footer li,footer a,footer ul,footer .credit){font-size:var(--type-body);line-height:var(--leading-body)}
+footer h2{font-size:var(--type-h4);line-height:1.24}
+footer .credit{font-size:var(--type-body)}
 .button{font-size:var(--type-body);line-height:var(--leading-body)}
-.site-header{line-height:18.5px}& .header-phone{font-size:14px;line-height:23px}}
-@media(max-width:700px){.site-header{line-height:18.5px}& .site-nav{font-size:14px;line-height:23px}}}
-.foot-brand{line-height:1.4;line-height:1.15}
+.site-header :is(.site-nav,.site-header .header-location,.site-header .header-hours dl,.site-header .header-email,.site-header .header-label,.site-header .menu-toggle,.site-header .header-grid>.button){font-size:11.5px;line-height:18.5px}
+.site-header .header-phone{font-size:14px;line-height:23px}
+@media(max-width:700px){.site-header .header-grid>.button{font-size:11.5px}}
+@media(max-width:700px){.site-header .header-phone{font-size:11.5px;line-height:18.5px}}
+@media(max-width:700px){.site-header .site-nav{font-size:14px;line-height:23px}}
+.contact-hours .opening-hours dd{font-size:48px}
+.foot-brand p{font-size:var(--type-h4);line-height:1.4}
+.foot-brand p:first-of-type{font-size:var(--type-h3);line-height:1.15}
 .foot-brand p a{font-size:inherit;line-height:inherit}
+@media(max-width:700px){.clinic-gallery figcaption span{line-height:18.5px}}
 :is(h1,h2,h3,h4,h5,h6) em{font-size:calc(1em * var(--rialto-scale));line-height:.9}
+@media(max-width:700px){.contact-hours .opening-hours dd{font-size:var(--type-h2)}}
 .booking-copy .booking-subtitle{font-size:var(--type-h3);line-height:1.24}
-.bento{font-size:var(--type-h4);line-height:1.24;font-size:var(--type-body);line-height:var(--leading-body)}}}
+.bento .tile h3{font-size:var(--type-h4);line-height:1.24}
+.bento .tile p.tile-description{font-size:var(--type-body);line-height:var(--leading-body)}
 .site-header :is(.site-nav,.header-location,.header-hours dl,.header-email,.header-label,.header-phone,.menu-toggle,.header-grid>.button){font-size:14px;line-height:23px}
 :root{--roman-size-factor:.7}
 :is(h1,h2) .heading-roman{font-size:calc(1em * var(--roman-heading-scale) * var(--roman-size-factor));line-height:1.08}
-.sample-photo{font-size:var(--type-body);line-height:var(--leading-body)}
+.sample-photo figcaption{font-size:var(--type-body);line-height:var(--leading-body)}
 .people .person-role.small-caps{font-size:11.5px;line-height:18.5px}
-.person-name{font-size:var(--type-h4);line-height:1.24;font-size:30px;line-height:1.15}
+.person-name{font-size:var(--type-h4);line-height:1.24}
+.person-name em{font-size:30px;line-height:1.15}
 .hero-copy .hero-subtitle{font-size:var(--type-body);line-height:var(--leading-body)}
 .founder-hover{font-size:11.5px;line-height:18.5px}
-.people{font-size:var(--type-body);line-height:var(--leading-body)}
-.booking{font-size:var(--type-h4);line-height:1.4}
-@media(max-width:700px){.booking .booking-copy{line-height:1.6}}}
-.booking .booking-copy{font-size:var(--type-body)}
+.people .person .person-name em{font-size:var(--type-h3)}
+.people .person .specializations{font-size:var(--type-body);line-height:var(--leading-body)}
+.booking .booking-copy .booking-subtitle{font-size:var(--type-h4);line-height:1.4}
+@media(max-width:700px){.booking .booking-copy .booking-subtitle{font-size:14px;line-height:1.6}}
+.contact-hours .opening-hours dt{font-size:clamp(14px,16cqw,21px)}
+.contact-hours .opening-hours dd{font-size:clamp(21px,28cqw,48px)}
+.booking .booking-copy .booking-cta{font-size:var(--type-body)}
 .button,.site-header .header-grid>.button,.menu-toggle,.booking .booking-copy .booking-cta{font-size:var(--paragraph-size,var(--type-body));line-height:var(--paragraph-leading,var(--leading-body))}
 :root{--mixed-title-size:clamp(30px,3.062vw,42px)}
-:is(h1,h2):has(.heading-roman):has(em){font-size:var(--mixed-title-size);line-height:1.08;line-height:1.12}& em{font-size:calc(var(--mixed-title-size) * var(--rialto-scale));line-height:1.02}}
+:is(h1,h2):has(.heading-roman):has(em){font-size:var(--mixed-title-size);line-height:1.08}
+:is(h1 .heading-roman,h2):has(.heading-roman):has(em) .heading-roman{font-size:calc(var(--mixed-title-size) * var(--mixed-roman-scale));line-height:1.12}
+:is(h1 em,h2):has(.heading-roman):has(em) em{font-size:calc(var(--mixed-title-size) * var(--rialto-scale));line-height:1.02}
 @media(max-width:700px){:root{--mixed-title-size:clamp(17.5px,4.375vw,30px)}}
 :root{--paragraph-size:var(--type-body)}
 .booking .booking-copy{--paragraph-size:var(--type-h4)}
 @media(max-width:700px){.booking .booking-copy{--paragraph-size:var(--type-body)}}
 .quote .review-author{font-size:var(--type-body);line-height:var(--leading-body)}
-.emergency-clinics{font-size:var(--type-h3,23px);line-height:1.2}& .clinic-links{display:grid}
-.site-header.site-header{font-size:14px;line-height:19px}
- & .brand{border-left:0;font-size:var(--type-body);line-height:19px;font-size:14px;line-height:23px}
-@media(max-width:1140px){.site-header.site-header{line-height:17.5px}& .brand{grid-column:1}}
-@media(max-width:600px){.site-header.site-header{font-size:14px;line-height:16px}& .brand{padding:0 var(--header-cell-space)}}
+.emergency-clinics h4{font-size:var(--type-h3,23px);line-height:1.2}
+.site-header.site-header .header-grid>*{font-size:14px;line-height:19px}
+.site-header.site-header .header-grid>.button{font-size:var(--type-body);line-height:19px}
+.site-header.site-header .site-nav{font-size:14px;line-height:23px}
+@media(max-width:1140px){.site-header.site-header .header-grid>*{line-height:17.5px}}
+@media(max-width:600px){.site-header.site-header .header-grid>*{font-size:14px;line-height:16px}}
 .type-arrow{line-height:1}
 .type-arrow{font-size:1.3em}
-.foot-links a{font-size:17.5px}}
+.site-header .site-nav a .type-arrow{font-size:23px}
+.foot-links a .type-arrow{font-size:17.5px}
 .booking-cta .type-arrow{font-size:1.4em}
-.people .person .specializations{font-size:1em}}
+.people .person .specializations li+li::before{font-size:1em}
 .hero-links{font-size:var(--type-body);line-height:var(--leading-body)}
 @media(max-width:700px){.contact-copy h2{font-size:clamp(24.5px,7vw,var(--type-h2))}}
 @media(max-width:700px){.contact .poster-heading h2{font-size:clamp(24.5px,7vw,var(--type-h2))}}
-.site-header.site-header{font-size:14px;line-height:19px;font-size:14px;line-height:19px}
+.site-header.site-header .header-info>*{font-size:14px;line-height:19px}
+.site-header.site-header .header-actions>.button{font-size:14px;line-height:19px}
 .booking-social{font-size:var(--paragraph-size,var(--type-body));line-height:var(--paragraph-leading,var(--leading-body))}
 .hero-links:has(.hero-inline-pet){line-height:2.35}
 .hero-intro .hero-links{font-size:clamp(19px,1.969vw,26px);line-height:1.8}
@@ -173,6 +212,10 @@ html.bar body.book-type .site-header .site-nav a{font-size:17.5px;line-height:28
 @media (max-width: 700px){html.bar body.book-type .site-header .site-nav a{font-size:21px}}
 @media (max-width: 370px){html.bar body.book-type .site-header .header-actions .button{font-size:14px}}
 html:not(.bar) body.book-type .site-header :is(.header-location, dt, dd, .header-phone span, .header-grid > .button, .site-nav a, .header-actions .button, .type-arrow-glyph){line-height:21px !important}
+@media (max-width: 700px){html.bar body.book-type .site-header .header-actions .header-call .hc-label{font-size:12px;line-height:1}}
+@media (max-width: 700px){html.bar body.book-type .site-header .header-actions .header-call .hc-label{font-size:14px;line-height:17.5px}}
+.booking-toast{font-size:14px;line-height:21px}
+.cookie-panel{font-size:14px;line-height:21px}
 :root{--type-small:14px;--type-h1:77px;--type-h2:49px;--type-h3:28px;--type-h4:17.5px;--leading-body:21px;--leading-small:21px}
 @media (max-width: 700px){:root{--type-h1:49px;--type-h2:28px;--type-h3:21px}}
 html body.book-type main :is(p, li, dt, dd, blockquote, figcaption, address, summary, label){line-height:21px;line-height:round(nearest, 1.5em, 7px)}
@@ -237,6 +280,12 @@ html body.book-type :is(main .section-header .poster-heading h2, #onas h2){line-
 html body.book-type :is(main .section-header .poster-heading h2, #onas h2) em{line-height:inherit!important}
 html body.book-type :is(main .section-header .poster-heading h2, #onas h2) .heading-roman{line-height:round(nearest,1.12em,7px)!important}
 html body.book-type footer .foot-brand p{font-size:14px;line-height:21px!important}
+html body.book-type #onas .about-link{font-size:14px;line-height:21px}
+html body.book-type main .next-step{font-size:14px;line-height:21px}
+html body.book-type #zapraszamy .booking-table > a{font-size:17.5px;line-height:28px}
+html body.book-type #zapraszamy .booking-table .phone-status{font-size:17.5px;line-height:28px}
+@media (max-width: 700px){html body.book-type #zapraszamy .booking-table > a{font-size:14px;line-height:21px}}
+@media (max-width: 700px){html body.book-type #zapraszamy .booking-table .phone-status{font-size:14px;line-height:21px}}
 html body.book-type .type-arrow.ico{font-size:1em!important;line-height:1}
 html body.book-type .services .tile h3::after{font-size:inherit}
 html body.book-type.book-type .team .ta-label{font-size:14px;line-height:21px}

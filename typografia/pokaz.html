@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="pl" data-z="" data-n="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pokaz zasad typografii</title>
+<meta name="description" content="Tekst demonstracyjny z panelem, w którym każdą zasadę typografii z katalogu włączasz i wyłączasz na żywo.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdn.jsdelivr.net/gh/adobe-fonts/source-serif@4.005R/WOFF2/VAR/SourceSerif4Variable-Roman.ttf.woff2">
+<style>
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:200 900;font-display:swap;src:url("https://cdn.jsdelivr.net/gh/adobe-fonts/source-serif@4.005R/WOFF2/VAR/SourceSerif4Variable-Roman.ttf.woff2") format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:200 900;font-display:swap;src:url("https://cdn.jsdelivr.net/gh/adobe-fonts/source-serif@4.005R/WOFF2/VAR/SourceSerif4Variable-Italic.ttf.woff2") format("woff2")}
+
+@layer baza, reguly, narzedzia, panel;
+
+:root{
+  --paper:#faf7f0;--sheet:#fffdf8;--tint:#efe9db;--ink:#1c1a17;--soft:#4a453c;--accent:#8a1c1c;--mid:#f1dfa6;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --panel-w:296px;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#16150f;--sheet:#1d1b15;--tint:#26231b;--ink:#efeadc;--soft:#c3bca9;--accent:#f0a79a;--mid:#5a4a14}
+}
+
+/* ====================================================================================
+   BAZA: stan „wszystkie reguły wyłączone”. Kerning, ligatury i inne funkcje fontu są tu
+   jawnie wyłączone, żeby przełączniki były widoczne (przeglądarki włączają je domyślnie).
+   ==================================================================================== */
+@layer baza{
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif)}
+  .skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:8px 16px;z-index:100;font-family:var(--sans)}
+  .skip:focus{left:0}
+  .strona{padding:24px clamp(16px,4vw,48px) 96px;overflow-x:clip}
+  @media (min-width:1200px){.strona{padding-inline-end:calc(var(--panel-w) + 48px)}}
+
+  .dokument{
+    container-type:inline-size;container-name:dokument;position:relative;
+    max-inline-size:860px;margin-inline:auto;
+    font-size:16px;line-height:1.25;text-align:left;
+    font-kerning:none;font-variant-ligatures:none;text-rendering:optimizeSpeed;
+    font-variant-numeric:lining-nums proportional-nums;
+    hyphens:manual;text-wrap:wrap;
+  }
+  .pole{position:relative}
+  .dokument :is(h1,h2,h3,h4,p,ul,ol,table,figure,blockquote){margin-block:0}
+  .dokument p{margin-block-end:1em}
+  .dokument em{font-style:italic}
+  .dokument a{color:var(--accent)}
+
+  /* nagłówki: w stanie surowym każdy poziom ma inną formę i kilka sygnałów naraz */
+  .dokument h1{font-size:2em;font-weight:700;margin-block:.67em}
+  .dokument h2{font-size:1.5em;font-weight:700;margin-block:.83em;text-align:center;text-transform:uppercase}
+  .dokument h3{font-size:1.17em;font-weight:700;margin-block:1em;text-align:right;text-decoration:underline}
+  .dokument h4{font-size:1em;font-weight:700;margin-block:1.33em;font-style:italic;color:var(--accent)}
+  .dokument .etykieta{text-transform:uppercase;font-size:.8em}
+  .dokument .lead{font-size:1.25em}
+  .dokument .motto{font-size:2.25em;text-align:center;line-height:1.1;margin-block:.5em}
+
+  .dokument blockquote{margin:1em 2.5em;padding-inline-start:1em;border-inline-start:4px solid var(--accent);font-weight:700;font-style:italic;font-size:1.1em}
+  .dokument blockquote p{margin:0}
+  .dokument blockquote footer{font-size:.85em;font-weight:400;font-style:normal}
+  .dokument .wiersz{text-align:center;margin-block:1em}
+  .dokument .wiersz p{margin:0}
+  .dokument table{border:1px solid var(--soft);border-collapse:collapse;margin-block:1em}
+  .dokument th,.dokument td{border:1px solid var(--soft);padding:2px 8px;text-align:center}
+  .dokument th{font-weight:800;text-transform:uppercase;font-size:.9em}
+  .dokument ol{list-style-position:inside;padding:0;margin-block-end:1em}
+  .dokument figure.obr{margin:1em 0;border:1px solid var(--ink);background:var(--tint);display:grid;place-items:center;font-size:.85em}
+  .dokument .odsylacz{font-size:.75em;line-height:0;vertical-align:baseline;position:relative;inset-block-start:-.5em}   /* przesunięcie zamiast vertical-align: nie rozpycha wiersza */
+  .dokument .przypis{font-size:.85em;font-style:italic;line-height:0}   /* wstawka w mniejszym stopniu nie rozpycha wiersza */
+  .dokument .przypis::before{content:" [przypis: "}
+  .dokument .przypis::after{content:"]"}
+  .dokument .sub,.dokument .sup{font-size:.75em;line-height:0;vertical-align:baseline;position:relative;inset-block-start:-.4em}
+  .dokument .sub{inset-block-start:.25em}
+  .dokument .nb{background:var(--mid);outline:1px solid var(--soft);outline-offset:-1px}
+
+  .nakladki{position:absolute;inset:0;pointer-events:none;z-index:4}
+}
+
+/* ====================================================================================
+   REGUŁY KATEGORII 1: każda włączana tokenem w data-z na <html> (:root[data-z~="P1-nn"]).
+   Kolejność bloków = kolejność ID; przy wspólnych właściwościach wygrywa blok późniejszy.
+   ==================================================================================== */
+@layer reguly{
+
+/* P1-01 miara */
+:root[data-z~="P1-01"] .dokument :is(p,li,dd,blockquote){max-inline-size:min(64ch,100%)}
+
+/* P1-02 interlinia */
+:root[data-z~="P1-02"] .dokument{line-height:1.5}
+:root[data-z~="P1-02"] .dokument :is(h1,h2,h3,h4,.motto){line-height:1.2}
+
+/* P1-03 rytm pionowy na siatce 8 px */
+:root[data-z~="P1-03"] .dokument{--u:8px;line-height:calc(var(--u)*3)}
+:root[data-z~="P1-03"] .dokument :is(h1,.motto){line-height:calc(var(--u)*8)}
+:root[data-z~="P1-03"] .dokument :is(h2,h3){line-height:calc(var(--u)*5)}
+:root[data-z~="P1-03"] .dokument h4{line-height:calc(var(--u)*3)}
+:root[data-z~="P1-03"] .dokument .lead{line-height:calc(var(--u)*4)}
+@supports (line-height:round(up,1em,1px)){
+  :root[data-z~="P1-03"] .dokument :is(h1,.motto){line-height:round(up,1.15em,var(--u))}
+  :root[data-z~="P1-03"] .dokument :is(h2,h3){line-height:round(up,1.2em,var(--u))}
+  :root[data-z~="P1-03"] .dokument h4{line-height:round(up,1.5em,var(--u))}
+  :root[data-z~="P1-03"] .dokument .lead{line-height:round(up,1.3em,var(--u))}
+}
+:root[data-z~="P1-03"] .dokument :is(h1,h2,h3,h4){margin-block:calc(var(--u)*3) var(--u)}
+:root[data-z~="P1-03"] .dokument .motto{margin-block:calc(var(--u)*3)}
+:root[data-z~="P1-03"] .dokument :is(p,ol,table,.wiersz){margin-block:0 calc(var(--u)*3)}
+:root[data-z~="P1-03"] .dokument :is(blockquote,figure.obr){margin-block:calc(var(--u)*3)}
+:root[data-z~="P1-03"] .dokument :is(th,td){padding-block:4px}
+
+/* P1-04 skala rozmiarów 1 : 1,5 */
+:root[data-z~="P1-04"] .dokument{--r:1.5;--s0:1em;--s1:calc(var(--s0)*var(--r));--s2:calc(var(--s1)*var(--r))}
+:root[data-z~="P1-04"] .dokument h4{font-size:var(--s0)}
+:root[data-z~="P1-04"] .dokument h3{font-size:var(--s1)}
+:root[data-z~="P1-04"] .dokument h2{font-size:var(--s2)}
+:root[data-z~="P1-04"] .dokument h1{font-size:clamp(var(--s2),1.4em + 2.2vw,3.375em)}
+
+/* P1-05 jeden parametr na raz: duży = lekki, mały = cięższy */
+:root[data-z~="P1-05"] .dokument h1{font-weight:350}
+:root[data-z~="P1-05"] .dokument h2{font-weight:450}
+:root[data-z~="P1-05"] .dokument h3{font-weight:550}
+:root[data-z~="P1-05"] .dokument h4{font-weight:650}
+:root[data-z~="P1-05"] .dokument .motto{font-weight:350}
+:root[data-z~="P1-05"] .dokument blockquote{font-weight:400}
+:root[data-z~="P1-05"] .dokument th{font-weight:600}
+
+/* P1-06 prawdziwe kapitaliki i spacjowanie wersalików */
+:root[data-z~="P1-06"] .dokument .etykieta{
+  text-transform:none;font-size:1em;
+  font-variant-caps:all-small-caps;letter-spacing:.08em;
+  font-feature-settings:"case";font-synthesis-small-caps:none;
+}
+:root[data-z~="P1-06"] .dokument th{text-transform:none;font-variant-caps:all-small-caps;letter-spacing:.06em;font-size:1em}
+
+/* P1-07 ligatury */
+:root[data-z~="P1-07"] .dokument{font-variant-ligatures:common-ligatures}
+
+/* P1-08 cyfry tekstowe i tabelaryczne, ułamki, indeksy */
+:root[data-z~="P1-08"] .dokument{font-variant-numeric:oldstyle-nums proportional-nums}
+:root[data-z~="P1-08"] .dokument .u{font-variant-numeric:diagonal-fractions}   /* tylko na ułamkach: frac w tym foncie psuje przecinki i cyfry w całym tekście */
+:root[data-z~="P1-08"] .dokument :is(table,.motto){font-variant-numeric:lining-nums tabular-nums}
+:root[data-z~="P1-08"] .dokument .sup{font-size:inherit;position:static;line-height:inherit;font-variant-position:super}
+:root[data-z~="P1-08"] .dokument .sub{font-size:inherit;position:static;line-height:inherit;font-variant-position:sub}
+
+/* P1-09 kerning i odstęp międzywyrazowy */
+:root[data-z~="P1-09"] .dokument{font-kerning:normal;text-rendering:optimizeLegibility}
+:root[data-z~="P1-09"] .dokument :is(h1,.motto){letter-spacing:-.01em;word-spacing:-.05em}
+
+/* P1-10 text-wrap: balance */
+:root[data-z~="P1-10"] .dokument :is(h1,h2,h3,h4,.motto,.lead){text-wrap:balance}
+
+/* P1-11 text-wrap: pretty */
+:root[data-z~="P1-11"] .dokument p{text-wrap:pretty}
+
+/* P1-12 dzielenie wyrazów w przeglądarce */
+:root[data-z~="P1-12"] .dokument p{hyphens:auto;hyphenate-limit-chars:6 3 3}
+
+/* P1-13 justowanie tylko w szerokim kontenerze */
+@container dokument (min-width:36ch){
+  :root[data-z~="P1-13"] .dokument .glowny p{text-align:justify;text-justify:inter-word}
+}
+
+/* P1-14 wiszące znaki interpunkcyjne */
+:root[data-z~="P1-14"] .dokument p{hanging-punctuation:first}
+@supports not (hanging-punctuation:first){
+  :root[data-z~="P1-14"] .dokument .glowny p.zacyt{text-indent:-.42em}
+}
+
+/* P1-15 wcięcia akapitów zamiast odstępów */
+:root[data-z~="P1-15"] .dokument .glowny p{margin-block-end:0}
+:root[data-z~="P1-15"] .dokument .glowny p + p{text-indent:1em}
+:root[data-z~="P1-15"] .dokument .glowny :is(h2,h3,h4,figure,table,blockquote,.wiersz,ol) + p{text-indent:0}
+:root[data-z~="P1-15"] .dokument .glowny :is(h2,h3,h4) + p{margin-block-start:0}
+@supports not (hanging-punctuation:first){
+  :root[data-z~="P1-14"][data-z~="P1-15"] .dokument .glowny p + p.zacyt{text-indent:calc(1em - .42em)}
+}
+
+/* P1-16 cytaty blokowe i wierszowane */
+:root[data-z~="P1-16"] .dokument blockquote{margin:24px 0 24px 2em;padding:0;border:0;font-weight:400;font-size:1em;font-style:italic}
+:root[data-z~="P1-16"] .dokument blockquote footer{font-style:normal;font-size:.9em}
+:root[data-z~="P1-16"] .dokument .wiersz{width:fit-content;margin:24px auto;text-align:left}
+
+/* P1-17 inicjał i otwarcie akapitu */
+:root[data-z~="P1-17"] .dokument .glowny > section:first-of-type > p:first-of-type::first-letter{
+  -webkit-initial-letter:3;initial-letter:3;margin-inline-end:.12em;font-weight:600;
+}
+:root[data-z~="P1-17"] .dokument .glowny > section:first-of-type > p:first-of-type::first-line{font-variant-caps:all-small-caps;letter-spacing:.06em}
+@supports not ((initial-letter:3) or (-webkit-initial-letter:3)){
+  :root[data-z~="P1-17"] .dokument .glowny > section:first-of-type > p:first-of-type::first-letter{float:left;font-size:3.1em;line-height:.85;padding-inline-end:.1em}
+}
+
+/* P1-18 tabele i listy */
+:root[data-z~="P1-18"] .dokument table{border:0;inline-size:100%;font-variant-numeric:lining-nums tabular-nums}
+:root[data-z~="P1-18"] .dokument :is(th,td){border:0;padding:4px 8px 4px 0;text-align:left}
+:root[data-z~="P1-18"] .dokument th{font-weight:600;text-transform:none;font-size:1em;border-block-end:1px solid currentColor}
+:root[data-z~="P1-18"] .dokument :is(th,td).r{text-align:right}
+:root[data-z~="P1-18"] .dokument table.tytuly tbody tr:nth-child(even){background:var(--tint)}
+:root[data-z~="P1-18"] .dokument table.wartosci{inline-size:auto;min-inline-size:50%}
+:root[data-z~="P1-18"] .dokument ol{padding-inline-start:2em;list-style-position:outside}
+:root[data-z~="P1-18"] .dokument li::marker{font-variant-numeric:tabular-nums;color:var(--soft)}
+
+/* P1-19 kanon Villarda (strona 2:3, margines s : t : e : f = 2 : 3 : 4 : 6) */
+:root[data-z~="P1-19"] .dokument{aspect-ratio:2/3;background:var(--sheet);border:1px solid var(--ink)}
+:root[data-z~="P1-19"] .dokument .pole{margin:16.667% 22.222% 33.333% 11.111%}
+
+/* P1-20 strona ISO 1 : √2 z polem złotego podziału (s = t = w/9, e = f = 2s) */
+:root[data-z~="P1-20"] .dokument{aspect-ratio:1/1.4142;background:var(--sheet);border:1px solid var(--ink)}
+:root[data-z~="P1-20"] .dokument .pole{margin:11.111% 22.222% 22.222% 11.111%}
+
+/* P1-21 siatka 12 kolumn z podsiatką */
+:root[data-z~="P1-21"] .dokument .pole{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:16px}
+:root[data-z~="P1-21"] .dokument .nagl{grid-column:3/11}
+:root[data-z~="P1-21"] .dokument .glowny{grid-column:1/-1;display:grid;grid-template-columns:subgrid}
+:root[data-z~="P1-21"] .dokument .glowny > section{grid-column:1/-1;display:grid;grid-template-columns:subgrid;align-content:start}
+:root[data-z~="P1-21"] .dokument .glowny > nav{grid-column:3/11}
+:root[data-z~="P1-21"] .dokument .glowny > section > *{grid-column:3/11}
+:root[data-z~="P1-21"] .dokument .glowny > section > figure{grid-column:2/12}
+:root[data-z~="P1-21"] .dokument .zywa{grid-column:1/-1}
+@supports not (grid-template-columns:subgrid){
+  :root[data-z~="P1-21"] .dokument .glowny{grid-column:3/11;display:block}
+  :root[data-z~="P1-21"] .dokument .glowny > section{display:block}
+}
+@container dokument (max-width:640px){
+  :root[data-z~="P1-21"] .dokument .nagl,
+  :root[data-z~="P1-21"] .dokument .glowny > nav,
+  :root[data-z~="P1-21"] .dokument .glowny > section > *,
+  :root[data-z~="P1-21"] .dokument .glowny > section > figure{grid-column:1/-1}
+}
+
+/* P1-22 kolumny tekstu, przypisy boczne przy odsyłaczu */
+:root[data-z~="P1-22"] .dokument .pole{padding-inline-end:34%}
+:root[data-z~="P1-22"] .dokument .glowny{column-width:16em;column-gap:2em;column-rule:1px solid var(--ink);widows:2;orphans:2}
+:root[data-z~="P1-22"] .dokument .glowny :is(h2,h3){column-span:all}
+:root[data-z~="P1-22"] .dokument :is(blockquote,figure,table,.wiersz){break-inside:avoid}
+:root[data-z~="P1-22"] .dokument :is(h2,h3,h4){break-after:avoid}
+:root[data-z~="P1-22"] .dokument .odsylacz{font-size:.75em}
+:root[data-z~="P1-22"] .dokument .przypis{position:absolute;top:anchor(top);inset-inline-end:0;inline-size:30%;font-style:normal;font-size:.85em;line-height:24px}
+:root[data-z~="P1-22"] .dokument .przypis::before{content:attr(data-n) " ";font-weight:700}
+:root[data-z~="P1-22"] .dokument .przypis::after{content:none}
+@supports not (top:anchor(top)){
+  :root[data-z~="P1-22"] .dokument .przypis{position:static;inline-size:auto;display:block;margin-block:8px}
+}
+@container dokument (max-width:720px){
+  :root[data-z~="P1-22"] .dokument .pole{padding-inline-end:0}
+  :root[data-z~="P1-22"] .dokument .glowny{column-width:auto;column-count:1;column-rule:0}
+  :root[data-z~="P1-22"] .dokument .przypis{position:static;inline-size:auto;display:block;margin-block:8px}
+}
+
+/* P1-23 rozkładówka (przybliżenie): dwie strony obok siebie poniżej progu jedna */
+:root[data-z~="P1-23"] .dokument{aspect-ratio:4/3;background:var(--sheet);border:1px solid var(--ink)}
+:root[data-z~="P1-23"] .dokument .pole{margin:8% 11.111% 12%}
+@container dokument (min-width:640px){
+  :root[data-z~="P1-23"] .dokument .pole{margin:8cqw 11.111cqw 12cqw;column-count:2;column-gap:11.111cqw;column-rule:1px solid var(--ink)}
+  :root[data-z~="P1-23"] .dokument .glowny{display:contents}
+  :root[data-z~="P1-23"] .dokument :is(blockquote,figure,table,.wiersz){break-inside:avoid}
+  :root[data-z~="P1-23"] .dokument :is(h2,h3,h4){break-after:avoid}
+  :root[data-z~="P1-23"] .dokument .przypis{font-size:.85em}
+}
+
+/* P1-24 hierarchia nagłówków: jedna forma, do trzech sygnałów na poziom, warstwy @layer */
+@layer ogolne, naglowki;
+@layer ogolne{
+  :root[data-z~="P1-24"] .dokument :is(h1,h2,h3,h4){text-align:left;text-transform:none;text-decoration:none;font-style:normal;color:inherit}
+}
+@layer naglowki{
+  :root[data-z~="P1-24"] .dokument h4{font-variant-caps:all-small-caps;letter-spacing:.08em}
+}
+
+/* ===== reguły kategorii 2: CSS pomocniczy dla elementów tworzonych skryptami ===== */
+/* P2-10 */
+.dokument abbr.akr{font-variant-caps:all-small-caps;letter-spacing:.06em;text-decoration:none}
+/* P2-14 */
+:root[data-z~="P2-14"] .dokument .glowny p{text-align:justify}
+/* P2-18 */
+:root[data-z~="P2-18"] .dokument .pole{padding-inline-end:34%}
+:root[data-z~="P2-18"][data-z~="P1-21"] .dokument .pole{padding-inline-end:0}
+:root[data-z~="P2-18"][data-z~="P1-19"] .dokument .pole,
+:root[data-z~="P2-18"][data-z~="P1-20"] .dokument .pole{padding-inline-end:0}
+.dokument .nota{position:absolute;inset-inline-end:0;inline-size:30%;font-size:.85em;line-height:24px}
+/* przy kanonach strony przypisy stoją w zewnętrznym marginesie, poza polem składu */
+:root[data-z~="P1-19"] .dokument .nota,
+:root[data-z~="P1-20"] .dokument .nota{inset-inline-end:auto;inset-inline-start:calc(100% + 1.5rem);inline-size:calc(22.222cqw - 2.5rem)}
+/* przy siatce 12 kolumn: ostatnie dwie kolumny pola */
+:root[data-z~="P1-21"] .dokument .nota{inset-inline-start:calc(83.333% + 8px);inset-inline-end:auto;inline-size:max(16%,7.5rem)}
+@container dokument (max-width:640px){
+  :root[data-z~="P2-18"] .dokument .pole{padding-inline-end:0}
+  .dokument .nota,
+  :root[data-z~="P1-19"] .dokument .nota,
+  :root[data-z~="P1-20"] .dokument .nota,
+  :root[data-z~="P1-21"] .dokument .nota{position:static;inline-size:auto;inset:auto;margin-block:8px}
+}
+.dokument .nr{font-size:.75em;line-height:0}
+/* P2-19 */
+.dokument .liczba{text-align:right}
+.dokument .liczba .u{display:inline-block;min-inline-size:var(--u,0);text-align:left}
+/* P2-20 */
+.dokument .zywa{position:sticky;top:0;z-index:5;background:var(--paper);border-block-end:1px solid var(--ink);font-variant-caps:all-small-caps;letter-spacing:.08em;padding:4px 0;line-height:24px;font-size:1em}
+:root[data-z~="P1-19"] .dokument .zywa,:root[data-z~="P1-20"] .dokument .zywa,:root[data-z~="P1-23"] .dokument .zywa{background:var(--sheet)}
+/* P2-21 */
+.dokument nav.spis{margin-block-end:1em}
+.dokument nav.spis ol{margin:0;padding-inline-start:2em;list-style-position:outside}
+/* P2-16, P2-22 */
+.nakladki .cnt{position:absolute;inline-size:28px;text-align:right;font:600 11px/24px var(--mono);color:var(--accent)}
+.nakladki .kr{position:absolute;inline-size:6px;background:var(--accent)}
+}
+
+/* ====================================================================================
+   NARZĘDZIA: nakładki (nie są regułami typograficznymi)
+   ==================================================================================== */
+@layer narzedzia{
+  :root[data-n~="baza"] .dokument .pole::before{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:3;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M0 7.5h8' stroke='%23c0392b' stroke-opacity='.4' stroke-width='1'/%3E%3C/svg%3E");
+    background-size:8px 8px;
+  }
+  .nakladki .ov-kol{position:absolute;background:var(--accent);opacity:.14}
+  .nakladki svg.ov-kanon{position:absolute;fill:none;stroke:var(--accent);stroke-width:1px}
+  .nakladki svg.ov-kanon path{vector-effect:non-scaling-stroke}
+}
+
+/* ====================================================================================
+   PANEL: odrębne klasy .p-*, nie dotyka treści; płaski, bez cieni, zaokrągleń i gradientów
+   ==================================================================================== */
+@layer panel{
+  .p-toggle,.p-panel,.p-panel *{font-family:var(--sans)}
+  .p-toggle{
+    position:fixed;z-index:60;inset-block-end:16px;inset-inline-end:16px;min-block-size:48px;padding:0 16px;
+    font-size:14px;line-height:24px;background:var(--ink);color:var(--paper);border:1px solid var(--ink);cursor:pointer;
+  }
+  .p-toggle:hover{background:var(--soft)}
+  .p-panel{
+    position:fixed;z-index:50;background:var(--sheet);color:var(--ink);border:1px solid var(--ink);
+    font-size:14px;line-height:24px;overflow:auto;overscroll-behavior:contain;
+    inset-block:0;inset-inline-end:0;inline-size:var(--panel-w);max-inline-size:100vw;
+    transition:transform .2s ease;
+  }
+  .p-panel[hidden]{display:block;transform:translateX(100%);visibility:hidden;transition:transform .2s ease,visibility 0s .2s}
+  @media (max-width:1199px){
+    .p-panel{inset-block:auto 0;inset-inline:0;inline-size:auto;max-inline-size:none;block-size:min(72vh,560px);border-inline:0;border-block-end:0}
+    .p-panel[hidden]{transform:translateY(100%)}
+    .p-toggle{inset-block-end:16px}
+  }
+  @media (min-width:1200px){.p-toggle{inset-block-start:16px;inset-block-end:auto}
+    .p-toggle[aria-expanded="true"]{display:none}}
+  @media (prefers-reduced-motion:reduce){.p-panel,.p-panel[hidden]{transition:none}}
+  .p-panel h2{font-size:16px;line-height:24px;font-weight:700;margin:0}
+  .p-nagl{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 16px;border-block-end:1px solid var(--ink);position:sticky;top:0;background:var(--sheet);z-index:2}
+  .p-panel button{font:inherit;font-size:13px;line-height:24px;padding:4px 12px;min-block-size:40px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer}
+  .p-panel button:hover{background:var(--tint)}
+  .p-panel button:disabled{opacity:.5;cursor:not-allowed}
+  .p-akcje{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px 8px}
+  .p-url{padding:0 16px 8px;margin:0}
+  .p-url input{inline-size:100%;font:12px/24px var(--mono);padding:4px 8px;border:1px solid var(--ink);background:var(--paper);color:var(--ink)}
+  .p-status{margin:0;padding:4px 16px 8px;font-size:13px;color:var(--soft);min-block-size:32px}
+  .p-diag{list-style:none;margin:0;padding:0 16px 8px;font-size:12px;line-height:20px;color:var(--soft)}
+  .p-grupa{border:0;margin:0;padding:0 16px 8px;min-inline-size:0}
+  .p-grupa legend{float:left;inline-size:100%;box-sizing:border-box;border-block-start:1px solid var(--ink);padding:8px 0 0;margin-inline:-0px;font-weight:700;font-variant-caps:all-small-caps;letter-spacing:.08em}
+  .p-grupa ul{clear:both;list-style:none;margin:0;padding:0}
+  .p-grupa li{border-block-start:1px solid color-mix(in srgb,var(--ink) 18%,transparent);padding:2px 0}
+  .p-grupa li:first-child{border-block-start:0}
+  .p-regula{display:grid;grid-template-columns:24px 1fr auto;gap:0 8px;align-items:start}
+  .p-regula input{inline-size:20px;block-size:20px;margin:2px 0 0;accent-color:var(--accent)}
+  .p-regula label{cursor:pointer;display:block;padding:0}
+  .p-regula label .pid{font:600 11px/24px var(--mono);margin-inline-end:6px;color:var(--soft)}
+  .p-regula a{font-size:12px;color:var(--accent);padding:0 0 0 4px}
+  .p-regula .blok{grid-column:2/-1;font-size:12px;line-height:18px;color:var(--accent);margin:0 0 4px}
+  .p-regula input:disabled + label{opacity:.6;cursor:not-allowed}
+  .p-stopka{margin:0;padding:8px 16px 24px;font-size:12px;line-height:18px;color:var(--soft)}
+  .p-panel :focus-visible,.p-toggle:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .p-panel button:focus-visible{outline-offset:-3px}
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#dokument">Przejdź do treści</a>
+<div class="strona">
+<article class="dokument" id="dokument" lang="pl">
+<div class="pole" id="pole">
+<!-- tekst własny: wymyślony na potrzeby pokazu; zawiera celowe błędy składu (proste cudzysłowy, dywizy zamiast myślników, spacje przed przecinkami), które naprawiają reguły kategorii 2 -->
+<header class="nagl">
+<p class="etykieta">Katalog pracowni nr 12 - wydanie drugie (1998-2004)</p>
+<h1>Dobra strona zaczyna się od decyzji, których nikt nie zauważa</h1>
+<p class="lead">Notatki zecera o tym, jak miara, interlinia i drobne znaki decydują o tym, czy długi tekst da się przeczytać do końca.</p>
+<p class="motto">AVATAR To Wałęsa Tyrolka Yeti</p>
+</header>
+<div class="glowny">
+<section>
+<h2>Miara i rytm</h2>
+<p>Dobra strona zaczyna się od decyzji, których czytelnik nie zauważa. Nikt nie zatrzymuje się nad szerokością łamu ani nad odstępem między wierszami, a jednak to one decydują, czy długi tekst da się przeczytać do końca. Dawny zecer wiedział o tym z doświadczenia: zbyt ciasna interlinia męczyła oczy po kilku stronach, a zbyt szeroka miara gubiła wzrok w drodze do następnego wiersza.<sup class="odsylacz" style="anchor-name:--p1">1</sup><span class="przypis" data-n="1" style="position-anchor:--p1">Miara to szerokość wiersza; w książkach przyjmuje się około 66 znaków.</span> Dzisiejsza przeglądarka wykonuje tę pracę za nas, ale tylko wtedy, gdy ją o to poprosimy.</p>
+<h3>Cudzysłowy i myślniki</h3>
+<p>"Typografia istnieje po to, żeby tekst dało się czytać" - mówił zecer - "a nie po to, żeby ją podziwiano". W jego pracowni a także w sąsiedniej drukarni nikt nie pytał, ile kosztuje jeden wiersz, tylko czy się mieści. Filtr, flaga, oficyna i afisz: wszystkie te słowa mają w sobie litery, które lubią się zlewać, jeśli nikt ich nie rozdzieli.</p>
+<h4>Dwie uwagi o dzieleniu</h4>
+<p>Nieprzejednany przedstawiciel rozmaitości konstytucyjnych bezpardonowo odrzucił jednoznacznie sformułowaną propozycję, a pracownia zecerska przystąpiła do sporządzania sprawozdania z tego, co się właściwie stało. Zecer sprawdzał ostatni wiersz każdego akapitu, bo to właśnie tam skład zdradza pośpiech i brak uwagi, i nic nie dawało mu spokoju, więc</p>
+</section>
+<section>
+<h2>Znaki i spacje</h2>
+<p>Korektorka powiedziała: "Nie ma reguł bez wyjątków", a zecer dodał: "Każdy wyjątek to "reguła" pisana innym ołówkiem". Mówili też o rock'n'rollu i o panu O'Brienie, a o świcie i o zmierzchu wracali do tego samego stołu. Pracownia - choć niewielka - drukowała dużo, a autor -- co ciekawe -- nie lubił kursywy, choć redaktor nie lubił autora.<sup class="odsylacz" style="anchor-name:--p2">2</sup><span class="przypis" data-n="2" style="position-anchor:--p2">Półpauza ze spacjami oddziela wtrącenie; w zakresach stoi bez spacji.</span></p>
+<h3>Zakresy, znaki i jednostki</h3>
+<p>Zob. str. 12-18, lata 1998-2004, godz. 9:00-17:30 oraz 2026-10-11 (data ISO), tel. 22-555-12-34. Czekali... i czekali.... Koniec!!! Naprawdę?? Format 10 x 5 cm, tolerancja 50 +- 2 mm, warunek a != b, <span class="u">1/2</span> szklanki mąki i <span class="u">3/4</span> nakładu, temperatura -5 stopni, a w piecu 20 C.</p>
+<p>Wzrost 5'2", (c) 2026 Pracownia, nazwa(tm), długość 6,2 mm, cena 12 zł, w 2026 r., nakład 2,4 tys. egz., rozdz. 5, ul. Kwiatowa 7, § 5 ust. 2. H<span class="sub">2</span>O i m<span class="sup">2</span> także mają swoje miejsce na stronie.</p>
+<h3>Skróty, inicjały i nawiasy</h3>
+<p>Według ONZ i UE oraz NATO, a także PKP i PAN, UNESCO wspiera nie tylko kulturę. Rozmawiali o USA, UK i PL, o J. R. R. Tolkienie, W. B. Yeatsie i M. Konopnickiej, i o tym, czy J. K. Rowling pisze inaczej niż reszta.<sup class="odsylacz" style="anchor-name:--p3">3</sup><span class="przypis" data-n="3" style="position-anchor:--p3">Akronimy składa się kapitalikami, żeby nie świeciły w szarości strony.</span></p>
+<p class="zacyt">„Typografia istnieje po to, żeby tekst dało się czytać”, mówił zecer, i dodawał jeszcze jedną uwagę, która zajmowała kilka wierszy, żeby było widać, jak zaczyna się akapit od cudzysłowu.</p>
+<p class="zacyt">(Nawias otwierający także może wisieć w marginesie, jeśli tylko przeglądarka albo skrypt na to pozwolą.)</p>
+<p>Zecer  ,który pracował  tu od  lat ,  nie lubił podwójnych  spacji ,  tabulatorów ani spacji przed przecinkiem ( jak i tych w nawiasach )  oraz  zbędnych spacji .</p>
+</section>
+<section>
+<h2>Liczby, tabele i listy</h2>
+<p>Pracownia drukowała około 40 tytułów rocznie, a jej katalog z 1998 roku liczył 144 strony. Cena egzemplarza wynosiła 12,50 zł, nakład wyniósł 1250000 egzemplarzy, budżet 12345678 zł, tel. 225551234 lub 601234567, kod 00-950. W 1998 r. kosztowało to 2400 zł, a w 2010 r. już 12100 zł.</p>
+<table class="tytuly">
+<thead><tr><th>Tytuł</th><th class="r">Rok</th><th class="r">Nakład</th><th class="r">Cena</th></tr></thead>
+<tbody>
+<tr><td>Szkic o dobrej stronie</td><td class="r">1998</td><td class="r">2400</td><td class="r">12,50 zł</td></tr>
+<tr><td>Zecer przy skrzyni</td><td class="r">2004</td><td class="r">1800</td><td class="r">9,90 zł</td></tr>
+<tr><td>Miara i rytm</td><td class="r">2011</td><td class="r">12000</td><td class="r">24,00 zł</td></tr>
+</tbody>
+</table>
+<table class="wartosci">
+<thead><tr><th>Pozycja</th><th class="liczba">Wartość</th></tr></thead>
+<tbody>
+<tr><td>Nakład</td><td class="liczba">2 400</td></tr>
+<tr><td>Cena</td><td class="liczba">12,5</td></tr>
+<tr><td>Rabat</td><td class="liczba">3,25</td></tr>
+<tr><td>Waga</td><td class="liczba">118</td></tr>
+<tr><td>Tolerancja</td><td class="liczba">0,075</td></tr>
+</tbody>
+</table>
+<ol>
+<li>Wybierz krój do tekstu, nie do tematu.</li>
+<li>Ustal miarę i interlinię.</li>
+<li>Dopiero potem dobieraj nagłówki.</li>
+</ol>
+</section>
+<section>
+<h2>Cytat i obraz</h2>
+<p>Notatki z pracowni zachowały kilka zdań, które powtarzano przy stole zecerskim, żeby nikt nie zapomniał, po co to wszystko.</p>
+<blockquote><p>„Typografia istnieje po to, żeby tekst dało się czytać, a nie po to, żeby ją podziwiano.”</p><footer>z notatek pracowni</footer></blockquote>
+<div class="wiersz"><p>Ciche są litery w skrzyni,<br>nim je ktoś ułoży w słowo;<br>każda ma swoje miejsce<br>i żadna nie mówi pierwsza.</p></div>
+<figure class="obr" style="height:83px"><span>ilustracja 83 px</span></figure>
+<p>Akapit po obrazie, który nie mieści się w całych wierszach, jeśli nikt nie dopełni jego wysokości.</p>
+<figure class="obr" style="height:117px"><span>ilustracja 117 px</span></figure>
+<p>Nikt nie liczył godzin dopasowywania jednego wiersza, ale wszyscy zgadzali się, że warto było je poświęcić na to, co tu</p>
+</section>
+</div>
+
+</div>
+<div class="nakladki" id="nakladki" aria-hidden="true"></div>
+</article>
+</div>
+<button class="p-toggle" id="p-przycisk" type="button" aria-expanded="true" aria-controls="panel" aria-keyshortcuts="P">Zasady <span>0/48</span></button>
+<aside class="p-panel" id="panel" aria-label="Panel zasad typografii" hidden>
+<header class="p-nagl"><h2>Zasady typografii (<span id="p-licznik">0 / 48</span>)</h2><button class="p-zwin" type="button" aria-keyshortcuts="Escape">Zwiń</button></header>
+<div class="p-akcje">
+<button type="button" data-akcja="wszystkie">Włącz wszystkie</button>
+<button type="button" data-akcja="zadne">Wyłącz wszystkie</button>
+<button type="button" data-akcja="url">Zapisz stan w URL</button>
+</div>
+<p class="p-url"><input id="p-url" type="text" readonly hidden aria-label="Adres strony ze stanem przełączników"></p>
+<p class="p-status" id="p-status" role="status" aria-live="polite"></p>
+<ul class="p-diag" id="p-diag" aria-label="Wyniki narzędzi pomiarowych"></ul>
+<div id="p-grupy"></div>
+<p class="p-stopka">Stan wyłączony to celowo surowy skład: kerning, ligatury i inne funkcje fontu są w nim jawnie wyłączone, żeby przełączniki były widoczne. Skróty: P otwiera i zamyka panel, Esc zwija. „karta” prowadzi do punktu w zasady.html.</p>
+</aside>
+<noscript><p style="font-family:sans-serif;padding:16px">Panel zasad wymaga JavaScriptu. Tekst poniżej pokazano w stanie surowym.</p></noscript>
+<script>
+const LIB = {
+  typograf: { src: ["https://cdn.jsdelivr.net/npm/typograf@7.8.0/dist/typograf.all.min.js"] },
+  hyphenopoly: { src: ["https://cdn.jsdelivr.net/npm/hyphenopoly@6.1.0/min/Hyphenopoly_Loader.js"], init: function () {
+Hyphenopoly.config({
+  require: { pl: 'FORCEHYPHENOPOLY' },            // zawsze własne wzorce, nie natywne
+  paths: {
+    maindir: 'https://cdn.jsdelivr.net/npm/hyphenopoly@6.1.0/min/',
+    patterndir: 'https://cdn.jsdelivr.net/npm/hyphenopoly@6.1.0/min/patterns/',
+  },
+  setup: {
+    CORScredentials: 'omit',                        // CDN odpowiada z Access-Control-Allow-Origin: *
+    hide: 'none',
+    selectors: { '.hyph': { minWordLength: 5, leftmin: 2, rightmin: 3 } },
+  },
+});
+  } },
+  texlinebreak: { src: ["https://cdn.jsdelivr.net/npm/tex-linebreak@0.9.0/dist/lib.js"] },
+  opentype: { src: ["https://cdn.jsdelivr.net/npm/opentype.js@2.0.0/dist/opentype.min.js"] },
+};
+const RULES = [
+  { id: "P1-01", n: "Miara w znakach (66 ch)", lvl: "mikro", cat: 1, attr: "P1-01", opis: "Zbyt długi wiersz gubi oko w drodze do następnego, zbyt krótki rwie rytm czytania.", on: null, off: null },
+  { id: "P1-02", n: "Interlinia zależna od miary i kroju", lvl: "mikro", cat: 1, attr: "P1-02", opis: "Ciasna interlinia zlewa wiersze, zbyt luźna rozrywa akapit na pasy.", on: null, off: null },
+  { id: "P1-03", n: "Rytm pionowy na siatce 8 px", lvl: "makro", cat: 1, attr: "P1-03", opis: "Jeśli wszystkie wysokości (interlinia, nagłówki, odstępy) są wielokrotnością jednej jednostki, wiersze sąsiednich kolumn leżą na wspólnych liniach, a układ zyskuje stały rytm pionowy.", on: null, off: null },
+  { id: "P1-04", n: "Skala rozmiarów i kontrast poziomów", lvl: "mikro", cat: 1, attr: "P1-04", opis: "Rozmiary kroju powinny tworzyć skalę o stałej proporcji (np.", on: null, off: null },
+  { id: "P1-05", n: "Jeden parametr na raz i waga przy rozmiarze", lvl: "mikro", cat: 1, attr: "P1-05", opis: "Zmiana kilku cech naraz (rozmiar, waga, kursywa, kolor, wersaliki) sprawia, że nagłówek krzyczy, a nie porządkuje.", on: null, off: null },
+  { id: "P1-06", n: "Prawdziwe kapitaliki, spacjowanie wersalików", lvl: "mikro", cat: 1, attr: "P1-06", opis: "Prawdziwe kapitaliki mają grubość kreski dopasowaną do tekstu, a pomniejszone wersaliki są zbyt jasne i ciasne.", on: null, off: null },
+  { id: "P1-07", n: "Ligatury", lvl: "mikro", cat: 1, attr: "P1-07", opis: "Ligatury eliminują kolizję liter w sekwencjach typu „fi” i „fl”, w których zakrzywiony górny element jednej litery zderza się z kropką lub szyjką drugiej.", on: null, off: null },
+  { id: "P1-08", n: "Cyfry tekstowe i tabelaryczne, ułamki, indeksy", lvl: "mikro", cat: 1, attr: "P1-08", opis: "Cyfry oldstyle wtapiają się w tekst, cyfry tabelaryczne ustawiają kolumny liczb jedna pod drugą, a prawdziwe ułamki i indeksy mają wagę kreski pasującą do reszty tekstu.", on: null, off: null },
+  { id: "P1-09", n: "Kerning i odstęp międzywyrazowy", lvl: "mikro", cat: 1, attr: "P1-09", opis: "Kerning (podcinanie par liter) usuwa dziury w parach typu „AV” czy „To”;", on: null, off: null },
+  { id: "P1-10", n: "Balans wierszy nagłówków i tekstu wyśrodkowanego", lvl: "mikro", cat: 1, attr: "P1-10", opis: "Nagłówek, który łamie się na wiersz pełny i wiersz z jednym wyrazem, wygląda na nieskończony.", on: null, off: null },
+  { id: "P1-11", n: "Ładne łamanie akapitu", lvl: "mikro", cat: 1, attr: "P1-11", opis: "Samotny krótki wyraz w ostatnim wierszu akapitu psuje kształt akapitu.", on: null, off: null },
+  { id: "P1-12", n: "Dzielenie wyrazów w przeglądarce", lvl: "mikro", cat: 1, attr: "P1-12", opis: "W wąskiej kolumnie długie polskie wyrazy dają rwany rag albo wystające linie;", on: null, off: null },
+  { id: "P1-13", n: "Ragged czy justowanie, dzielenie warunkowe", lvl: "mikro", cat: 1, attr: "P1-13", opis: "Justowanie w wąskiej kolumnie rozciąga odstępy i tworzy „rzeki”;", on: null, off: null },
+  { id: "P1-14", n: "Wiszące znaki interpunkcyjne", lvl: "mikro", cat: 1, attr: "P1-14", opis: "Cudzysłów lub nawias otwierający na początku akapitu przesuwa wizualnie krawędź tekstu do środka;", on: null, off: null },
+  { id: "P1-15", n: "Wcięcia akapitów", lvl: "mikro", cat: 1, attr: "P1-15", opis: "Wcięcie albo odstęp: nie oba naraz (rozstrzygnięcie K-02).", on: null, off: null },
+  { id: "P1-16", n: "Cytaty blokowe i wierszowane", lvl: "mikro", cat: 1, attr: "P1-16", opis: "Cytat blokowy odróżnia się od tekstu jednym sygnałem (kursywa albo wcięcie albo rozmiar), a wiersze wierszowane są ustawione jako blok na osi strony, ale wyrównane do lewej, a nie wyśrodkowane linia po linii.", on: null, off: null },
+  { id: "P1-17", n: "Inicjał i otwarcie akapitu", lvl: "mikro", cat: 1, attr: "P1-17", opis: "Inicjał i kapitaliki w pierwszym wierszu oznaczają początek rozdziału;", on: null, off: null },
+  { id: "P1-18", n: "Tabele i listy", lvl: "własne", cat: 1, attr: "P1-18", opis: "Tabelę składa się jak tekst: nagłówki poziomo, minimum linii, cyfry tabelaryczne wyrównane do prawej;", on: null, off: null },
+  { id: "P1-19", n: "Kanon strony i marginesy (Villard, Aldus)", lvl: "makro", cat: 1, attr: "P1-19", opis: "Marginesy robią około połowy charakteru strony: spinają pole składu ze stroną i zostawiają miejsce na kciuk.", on: null, off: null },
+  { id: "P1-20", n: "Proporcje strony i pola składu (złoty podział, ISO)", lvl: "makro", cat: 1, attr: "P1-20", opis: "Strona i pole składu powinny się różnić proporcją wyraźnie, a nie przypadkiem (A-10).", on: null, off: null },
+  { id: "P1-21", n: "Siatka kolumnowa i modułowa z nakładką", lvl: "makro", cat: 1, attr: "P1-21", opis: "Siatka kolumnowa jest regulatorem proporcji: elementy zajmują jedną lub kilka kolumn, a krawędzie tekstu, obrazów i podpisów powtarzają się.", on: null, off: null },
+  { id: "P1-22", n: "Kolumny, marginalia i przypisy boczne", lvl: "makro", cat: 1, attr: "P1-22", opis: "Tekst w kilku kolumnach ma wiersze 40–50 znaków;", on: null, off: null },
+  { id: "P1-23", n: "Rozkładówka (przybliżenie)", lvl: "makro", cat: 1, attr: "P1-23", opis: "Strony sąsiednie są jednostką projektu: marginesy zewnętrzne szersze od wewnętrznych, a lustro (strona lewa i prawa) powtarza układ.", on: null, off: null },
+  { id: "P1-24", n: "Hierarchia nagłówków", lvl: "makro", cat: 1, attr: "P1-24", opis: "Każdy poziom nagłówków ma mieć nie więcej niż trzy sygnały odróżniające (K-07) i jedną dominującą formę (K-09);", on: null, off: null },
+  { id: "P2-01", n: "Spójniki jednoliterowe niełamliwe", lvl: "mikro", cat: 2, attr: "P2-01", opis: "Jednoliterowy spójnik lub przyimek na końcu wiersza (a, i, o, u, w, z) jest polskim błędem składu;", faza: "tekst", order: 100, libs: ["typograf"],
+    on: function (el) {
+  const tp = new Typograf({ locale: ['pl'] });
+  tp.disableRule('*');                                   // tylko reguły wybrane niżej
+  tp.enableRule('common/nbsp/afterShortWord');
+  tp.setSetting('common/nbsp/afterShortWord', 'lengthShortWord', 1);   // tylko wyrazy jednoliterowe
+  el.innerHTML = tp.execute(el.innerHTML);
+}, off: null },
+  { id: "P2-02", n: "Cudzysłowy typograficzne i apostrof", lvl: "mikro", cat: 2, attr: "P2-02", opis: "Proste cudzysłowy z klawiatury i apostrofy nie są znakami typograficznymi.", faza: "tekst", order: 70, libs: ["typograf"],
+    on: function (el) {
+  const tp = new Typograf({ locale: ['pl'] });
+  tp.disableRule('*');
+  tp.enableRule('common/punctuation/quote');         // "…" → „…”, wewnętrzne «…»
+  tp.enableRule('common/punctuation/apostrophe');    // ' → ’ między literami
+  el.innerHTML = tp.execute(el.innerHTML);
+  mapText(el, s => s.replace(/(\p{L})'(?=\p{L})/gu, '$1\u2019'));   // apostrofy, których reguła nie złapała
+}, off: null },
+  { id: "P2-03", n: "Pauza we wtrąceniach i półpauza", lvl: "mikro", cat: 2, attr: "P2-03", opis: "Wtrącenie oddziela się półpauzą ze spacjami (rozstrzygnięcie K-01);", faza: "tekst", order: 20, libs: [],
+    on: function (el) {
+  mapText(el, s => s.replace(/\s(?:-{1,2}|\u2014)\s/g, '\u00A0\u2013 '));   // „ - ”, „ -- ”, „ — ” → „ – ”
+}, off: null },
+  { id: "P2-04", n: "Półpauza w zakresach", lvl: "mikro", cat: 2, attr: "P2-04", opis: "Zakresy liczb (strony, lata, godziny) oddziela półpauza bez spacji, nie dywiz.", faza: "tekst", order: 30, libs: [],
+    on: function (el) {
+  const ZAKRES = /(?<![\d-])(?!\d{2}-\d{3}(?!\d))(\d+)\s?[-–—]\s?(\d+)(?![\d-])/g;   // dwie liczby; bez kodów pocztowych (00-950)
+  mapText(el, s => s.replace(ZAKRES, '$1–$2'));
+}, off: null },
+  { id: "P2-05", n: "Wielokropek i interpunkcja notacyjna", lvl: "mikro", cat: 2, attr: "P2-05", opis: "Trzy kropki to jeden znak, wielokrotne znaki wykrzyknienia i zapytania to interpunkcja notacyjna, której Bringhurst odradza (5.2.8).", faza: "tekst", order: 40, libs: ["typograf"],
+    on: function (el) {
+  const tp = new Typograf({ locale: ['pl'] });
+  tp.disableRule('*');
+  tp.enableRule('common/punctuation/hellip');                // ... → …
+  tp.enableRule('common/punctuation/delDoublePunctuation');  // ?? → ?
+  el.innerHTML = tp.execute(el.innerHTML);
+  mapText(el, s => s.replace(/!{2,}/g, '!'));   // wielokrotne wykrzykniki: własny wzór, tylko w tekście
+}, off: null },
+  { id: "P2-06", n: "Znaki ×, −, ±, ≠ i ułamki ½ ¼ ¾", lvl: "mikro", cat: 2, attr: "P2-06", opis: "Znak × (nie litera x), minus (−, nie dywiz), ± i ≠ oraz ułamki ½ ¼ ¾ są osobnymi znakami z fontu, nie przybliżeniami z klawiatury.", faza: "tekst", order: 50, libs: ["typograf"],
+    on: function (el) {
+  const tp = new Typograf({ locale: ['pl'] });
+  tp.disableRule('*');
+  ['common/number/times', 'common/number/mathSigns', 'common/number/fraction'].forEach(r => tp.enableRule(r));
+  el.innerHTML = tp.execute(el.innerHTML);
+  mapText(el, s => s.replace(/(^|\s)-(?=\d)/g, '$1\u2212'));   // minus przed liczbą, tylko w tekście
+}, off: null },
+  { id: "P2-07", n: "Stopień, prime i znaki prawne", lvl: "mikro", cat: 2, attr: "P2-07", opis: "Stopień (°), prime (′ ″ dla minut, cali), znaki ©, ® i ™ mają własne kody w foncie;", faza: "tekst", order: 60, libs: ["typograf"],
+    on: function (el) {
+  const tp = new Typograf({ locale: ['pl'] });
+  tp.disableRule('*');
+  ['common/symbols/cf', 'common/symbols/copy'].forEach(r => tp.enableRule(r));   // 20 C → 20 °C, (c) → ©
+  el.innerHTML = tp.execute(el.innerHTML);
+  mapText(el, s => s.replace(/(\d)'(?=\d)/g, '$1\u2032')      // 5'2" → 5′2″ (tylko w tekście, nie w atrybutach)
+                    .replace(/(\d)"/g, '$1\u2033'));
+}, off: null },
+  { id: "P2-08", n: "Twarde spacje: liczby, jednostki, skróty", lvl: "mikro", cat: 2, attr: "P2-08", opis: "Liczba oddzielona od jednostki, skrót od numeru i paragraf od liczby tworzą jedną jednostkę znaczeniową;", faza: "tekst", order: 80, libs: ["typograf"],
+    on: function (el) {
+  const tp = new Typograf({ locale: ['pl'] });
+  tp.disableRule('*');
+  ['common/nbsp/afterNumber', 'common/nbsp/afterSectionMark', 'common/nbsp/afterShortWord']
+    .forEach(r => tp.enableRule(r));
+  tp.setSetting('common/nbsp/afterShortWord', 'lengthShortWord', 1);
+  el.innerHTML = tp.execute(el.innerHTML);
+  const SKROTY = /\b(str|rozdz|ul|ust|pkt|poz|ok|np|tj|tys|mln)\.\s/g;                    // skrót + dalszy wyraz
+  const JEDNOSTKI = /(\d)\s(mm|cm|km|kg|g|m|l|ml|tys\.|mln|zł|r\.)(?!\p{L})/gu;            // liczba + jednostka
+  mapText(el, s => s.replace(SKROTY, '$1.\u00A0').replace(JEDNOSTKI, '$1\u00A0$2'));
+}, off: null },
+  { id: "P2-09", n: "Grupowanie cyfr i numery telefonów", lvl: "mikro", cat: 2, attr: "P2-09", opis: "Duże liczby grupuje się po trzy cyfry cienką spacją niełamliwą, żeby oko wychwytywało rząd wielkości;", faza: "tekst", order: 90, libs: ["typograf"],
+    on: function (el, ui) {
+  const tp = new Typograf({ locale: ['pl'] });
+  tp.disableRule('*');
+  tp.enableRule('common/number/digitGrouping');               // grupy po 3 cyfry, U+202F
+  el.innerHTML = tp.execute(el.innerHTML);
+  const f = new Intl.NumberFormat('pl-PL');
+  const v = n => f.format(n).replace(/\u00A0/g, '⍽').replace(/\u202F/g, '⸱');
+  ui.say('Intl.NumberFormat("pl-PL"): 2400 → "' + v(2400) + '", 12400 → "' + v(12400) + '", 1250000 → "' + v(1250000) + '"');
+}, off: null },
+  { id: "P2-10", n: "Akronimy w kapitalikach", lvl: "mikro", cat: 2, attr: "P2-10", opis: "Ciąg wersalików w tekście ciągłym jest zbyt ciężki;", faza: "tekst", order: 120, libs: [],
+    on: function (el) {
+  const WYJATKI = new Set(['PL', 'UK', 'US']);                       // kody krajów zostają wersalikami
+  const SKROT = /(?<!\p{L})\p{Lu}{2,}(?!\p{L})/gu;                   // 2+ wielkie litery obok siebie
+  el.querySelectorAll('.glowny p, .lead').forEach(p => {             // nagłówki i podpisy pomijamy
+    p.innerHTML = p.innerHTML.replace(/(>|^)([^<]+)/g, (m, g, txt) =>
+      g + txt.replace(SKROT, s => WYJATKI.has(s) ? s : '<abbr class="akr">' + s + '</abbr>'));
+  });
+}, off: null },
+  { id: "P2-11", n: "Inicjały osobowe", lvl: "mikro", cat: 2, attr: "P2-11", opis: "Inicjały imion składa się z cienką spacją między literami i spacją niełamliwą przed nazwiskiem, żeby nazwisko nie zostało oderwane od inicjałów.", faza: "tekst", order: 110, libs: [],
+    on: function (el) {
+  const INICJALY = /((?:\p{Lu}\.\s?)+)(?=\p{Lu}\p{Ll}+)/gu;            // „J. R. R. ” + nazwisko
+  mapText(el, s => s.replace(INICJALY,
+    m => m.replace(/\.\s?/g, '.\u202F').replace(/\u202F$/, '\u00A0')));  // cienka spacja wewnątrz, nbsp przed nazwiskiem
+}, off: null },
+  { id: "P2-12", n: "Wdowy wyrazowe w ostatnim wierszu", lvl: "mikro", cat: 2, attr: "P2-12", opis: "Ostatni wiersz akapitu z jednym krótkim wyrazem (spójnikiem lub zaimkiem) wygląda jak błąd.", faza: "tekst", order: 130, libs: [],
+    on: function (el) {
+  el.querySelectorAll('.glowny p, .lead').forEach(p => {
+    const t = p.lastChild;                                           // tylko gdy akapit kończy się tekstem
+    if (t && t.nodeType === 3) t.nodeValue = t.nodeValue.replace(/\s(\S{1,4})\s*$/, '\xA0$1');
+  });
+}, off: null },
+  { id: "P2-13", n: "Dzielenie wyrazów wg słownika polskiego (Hyphenopoly)", lvl: "mikro", cat: 2, attr: "P2-13", opis: "Justowany tekst w wąskiej kolumnie bez dzielenia wyrazów rozciąga odstępy;", faza: "tekst", order: 140, libs: ["hyphenopoly"],
+    on: async function (el) {
+  const h = await Hyphenopoly.hyphenators.pl;
+  el.querySelectorAll('.glowny p, .lead').forEach(p => {
+    const w = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+    for (let n; (n = w.nextNode()); ) n.nodeValue = h(n.nodeValue, '.hyph');   // wstawia U+00AD w środku wyrazów
+  });
+}, off: null },
+  { id: "P2-14", n: "Justowanie paragrafowe Knutha–Plassa", lvl: "mikro", cat: 2, attr: "P2-14", opis: "Algorytm Knutha–Plassa wybiera podział na wiersze dla całego akapitu naraz, nie wiersz po wierszu, więc justowanie ma równiejsze odstępy niż przeglądarka.", faza: "dom", order: 240, libs: ["hyphenopoly", "texlinebreak"],
+    on: async function (el) {
+  await document.fonts.ready;
+  const h = await Hyphenopoly.hyphenators.pl;
+  const hyphenate = w => h(w, '.hyph').split('\xAD');                        // sylaby dla tex-linebreak
+  const ps = [...el.querySelectorAll('.glowny p')].filter(p => !p.children.length);   // bez złożonego inline
+  const { justifyContent, unjustifyContent } = texLineBreak_lib;
+  justifyContent(ps, hyphenate);
+  let szer = el.clientWidth;
+  const ro = new ResizeObserver(() => {
+    if (el.clientWidth === szer) return;
+    szer = el.clientWidth;
+    ps.forEach(unjustifyContent);
+    justifyContent(ps, hyphenate);
+  });
+  ro.observe(el);
+  return () => { ro.disconnect(); ps.forEach(unjustifyContent); };
+}, off: null },
+  { id: "P2-15", n: "Wiszące znaki: zamiennik JS", lvl: "mikro", cat: 2, attr: "P2-15", opis: "Cudzysłów lub nawias otwierający na początku akapitu powinien wisieć w marginesie (M-74);", faza: "dom", order: 200, libs: [],
+    on: async function (el) {
+  await document.fonts.ready;
+  const ctx = document.createElement('canvas').getContext('2d');
+  const zmiany = [];
+  el.querySelectorAll('.glowny p, .lead').forEach(p => {
+    const t = p.firstChild;
+    const m = t && t.nodeType === 3 && /^[„"«(\[‚]/.exec(t.nodeValue);   // znak otwierający
+    if (!m) return;
+    const cs = getComputedStyle(p);
+    ctx.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+    const s = document.createElement('span');
+    s.className = 'wisi';
+    s.textContent = m[0];
+    s.style.marginInlineStart = -ctx.measureText(m[0]).width + 'px';        // szerokość znaku wystaje w margines
+    t.nodeValue = t.nodeValue.slice(1);
+    p.prepend(s);
+    zmiany.push([p, s, t, m[0]]);
+  });
+  return () => zmiany.forEach(([p, s, t, z]) => { t.nodeValue = z + t.nodeValue; s.remove(); });
+}, off: null },
+  { id: "P2-16", n: "Miernik miary (znaki w wierszu)", lvl: "mikro", cat: 2, attr: "P2-16", opis: "Miarę ocenia się liczbą znaków w wierszu, a nie szerokością w pikselach;", faza: "dom", order: 270, libs: [],
+    on: function (el, ui) {
+  const W = ui.layer;
+  const rysuj = () => {
+    W.querySelectorAll('.cnt').forEach(n => n.remove());
+    const baza = W.getBoundingClientRect();
+    const liczby = [];
+    el.querySelectorAll('.glowny p, .lead').forEach(p => {
+      const lh = parseFloat(getComputedStyle(p).lineHeight) || 24;
+      const wiersze = [];                                                   // { y, x, n }: pozycja pionowa, prawy brzeg, liczba znaków
+      const w = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+      const r = document.createRange();
+      for (let t; (t = w.nextNode()); ) {
+        for (let i = 0; i < t.length; i++) {
+          r.setStart(t, i); r.setEnd(t, i + 1);
+          const b = r.getClientRects()[0];
+          if (!b || b.height > lh * 1.6) continue;                          // pomijamy inicjał (kilka wierszy wysokości)
+          const o = wiersze[wiersze.length - 1];
+          const mid = b.top + b.height / 2;
+          if (o && Math.abs(o.mid - mid) < 10) { o.n++; o.x = Math.max(o.x, b.right); } else wiersze.push({ y: b.top, mid, x: b.right, n: 1 });   // indeksy górne zostają w swoim wierszu
+        }
+      }
+      wiersze.forEach((o, i) => {
+        const s = document.createElement('span');
+        s.className = 'cnt'; s.textContent = o.n;
+        s.style.top = (o.y - baza.top) + 'px'; s.style.left = (el.getBoundingClientRect().left - baza.left - 34) + 'px';   // w lewym marginesie, nie koliduje z przypisami
+        W.append(s);
+        if (i < wiersze.length - 1) liczby.push(o.n);                       // ostatni wiersz akapitu pomijamy
+      });
+    });
+    if (liczby.length) ui.say('znaków w wierszu: średnio ' + Math.round(liczby.reduce((a, b) => a + b, 0) / liczby.length) + ', zakres ' + Math.min(...liczby) + '–' + Math.max(...liczby));
+  };
+  rysuj();
+  const ro = new ResizeObserver(rysuj);
+  ro.observe(el);
+  return () => { ro.disconnect(); W.querySelectorAll('.cnt').forEach(n => n.remove()); };
+}, off: null },
+  { id: "P2-17", n: "Przyciąganie do siatki bazowej (obrazy, ramki)", lvl: "makro", cat: 2, attr: "P2-17", opis: "Obrazy i ramki o dowolnej wysokości przesuwają kolejne wiersze względem siatki bazowej.", faza: "dom", order: 250, libs: [],
+    on: function (el, ui) {
+  const U = 8;                                                              // moduł siatki bazowej
+  const dopasuj = () => {
+    el.querySelectorAll('figure.obr').forEach(f => {
+      f.style.marginBlockEnd = '0px';
+      const h = f.getBoundingClientRect().height;
+      f.style.marginBlockEnd = (Math.ceil(h / U) * U - h) + 'px';           // dopełnienie do wielokrotności U
+    });
+    const baza = el.getBoundingClientRect().top;
+    const dp = [...el.querySelectorAll('figure.obr + p')].map(p => Math.round((p.getBoundingClientRect().top - baza) % U));
+    ui.say('przesunięcie akapitów po obrazach względem siatki ' + U + ' px: ' + dp.join(' px, ') + ' px');
+  };
+  dopasuj();
+  let szer = el.clientWidth;
+  const ro = new ResizeObserver(() => { if (el.clientWidth !== szer) { szer = el.clientWidth; dopasuj(); } });
+  ro.observe(el);
+  return () => { ro.disconnect(); el.querySelectorAll('figure.obr').forEach(f => f.style.removeProperty('margin-block-end')); };
+}, off: null },
+  { id: "P2-18", n: "Przypisy: numeracja i rozmieszczenie bez kolizji", lvl: "makro", cat: 2, attr: "P2-18", opis: "Przypisy boczne czyta się bez przewracania strony, ale gdy kilka odsyłaczy leży blisko siebie, notatki zachodzą na siebie.", faza: "dom", order: 230, libs: [],
+    on: function (el) {
+  const nr = [];
+  el.querySelectorAll('.przypis').forEach((span, i) => {
+    const sup = span.previousElementSibling && span.previousElementSibling.classList.contains('odsylacz') ? span.previousElementSibling : null;
+    const nota = document.createElement('aside');
+    nota.className = 'nota'; nota.id = 'nota-' + (i + 1); nota.setAttribute('role', 'note');
+    nota.innerHTML = '<b>' + (i + 1) + '</b> ' + span.innerHTML;
+    if (sup) { sup.textContent = i + 1; sup.setAttribute('aria-describedby', nota.id); }   // numeracja i powiązanie dla czytników ekranu
+    span.hidden = true;
+    el.append(nota);
+    nr.push({ sup, nota, span });
+  });
+  const uloz = () => {
+    let dol = 0;
+    const baza = el.getBoundingClientRect().top;
+    nr.forEach(({ sup, nota }) => {
+      if (getComputedStyle(nota).position !== 'absolute') { nota.style.removeProperty('top'); return; }
+      const gora = Math.max(sup ? sup.getBoundingClientRect().top - baza : 0, dol + 8);   // nie zachodzi na poprzednią
+      nota.style.top = gora + 'px';
+      dol = gora + nota.offsetHeight;
+    });
+  };
+  uloz();
+  const ro = new ResizeObserver(uloz);
+  ro.observe(el);
+  return () => { ro.disconnect(); nr.forEach(({ nota, span }) => { nota.remove(); span.hidden = false; }); };
+}, off: null },
+  { id: "P2-19", n: "Wyrównanie do separatora dziesiętnego", lvl: "własne", cat: 2, attr: "P2-19", opis: "W tabeli liczb o różnej liczbie miejsc po przecinku wyrównanie do prawej nie ustawia przecinków jeden pod drugim.", faza: "dom", order: 210, libs: [],
+    on: function (el) {
+  const orig = [];
+  el.querySelectorAll('td.liczba').forEach(td => {
+    orig.push([td, td.innerHTML]);
+    const [c, u = ''] = td.textContent.trim().split(',');
+    td.innerHTML = '<span class="c">' + c + '</span><span class="u">' + (u ? ',' + u : '') + '</span>';
+  });
+  const szer = Math.max(0, ...[...el.querySelectorAll('.liczba .u')].map(s => s.getBoundingClientRect().width));
+  el.style.setProperty('--ulamek', szer + 'px');                             // wspólna szerokość części ułamkowej
+  return () => { el.style.removeProperty('--ulamek'); orig.forEach(([td, h]) => { td.innerHTML = h; }); };
+}, off: null },
+  { id: "P2-20", n: "Bieżąca żywa pagina i numer sekcji (przybliżenie folio)", lvl: "makro", cat: 2, attr: "P2-20", opis: "W długim dokumencie bieżąca „żywa pagina” (nazwa sekcji lub numer) orientuje czytelnika;", faza: "dom", order: 260, libs: [],
+    on: function (el) {
+  const zywa = document.createElement('div');
+  zywa.className = 'zywa';
+  zywa.setAttribute('aria-hidden', 'true');                                 // duplikat treści nagłówka
+  el.prepend(zywa);
+  const h = [...el.querySelectorAll('.glowny h2')];
+  let rAF = 0;
+  const ustaw = () => {
+    rAF = 0;
+    let i = 0;
+    h.forEach((x, k) => { if (x.getBoundingClientRect().top <= 96) i = k; });   // ostatni nagłówek nad górną krawędzią okna
+    zywa.textContent = '§ ' + (i + 1) + ' · ' + h[i].textContent;
+  };
+  const przy = () => { if (!rAF) rAF = requestAnimationFrame(ustaw); };
+  ustaw();
+  addEventListener('scroll', przy, { passive: true });
+  return () => { removeEventListener('scroll', przy); cancelAnimationFrame(rAF); zywa.remove(); };
+}, off: null },
+  { id: "P2-21", n: "Spis treści generowany z nagłówków", lvl: "makro", cat: 2, attr: "P2-21", opis: "Spis treści generowany z nagłówków nie rozjeżdża się z treścią i daje czytelnikowi plan dokumentu;", faza: "dom", order: 220, libs: [],
+    on: function (el) {
+  const nav = document.createElement('nav');
+  nav.className = 'spis';
+  nav.setAttribute('aria-label', 'Spis treści');
+  const ol = document.createElement('ol');
+  const nadane = [];
+  [...el.querySelectorAll('.glowny h2, .glowny h3')].forEach((h, i) => {
+    if (!h.id) { h.id = 'rozdz-' + (i + 1); nadane.push(h); }
+    const li = document.createElement('li');
+    li.innerHTML = '<a href="#' + h.id + '">' + h.textContent + '</a>';
+    if (h.tagName === 'H3') li.style.marginInlineStart = '1.5em';
+    ol.append(li);
+  });
+  nav.append(ol);
+  (el.querySelector('.glowny') || el).prepend(nav);
+  return () => { nav.remove(); nadane.forEach(h => h.removeAttribute('id')); };
+}, off: null },
+  { id: "P2-22", n: "Detektor złego ragu", lvl: "mikro", cat: 2, attr: "P2-22", opis: "Prawy brzeg tekstu wyrównanego do lewej ma mieć falisty, nieregularny kształt;", faza: "dom", order: 280, libs: [],
+    on: function (el, ui) {
+  const W = ui.layer;
+  const skanuj = () => {
+    W.querySelectorAll('.kr').forEach(n => n.remove());
+    const b0 = W.getBoundingClientRect();
+    let kliny = 0;
+    el.querySelectorAll('.glowny p').forEach(p => {
+      const r = document.createRange();
+      r.selectNodeContents(p);
+      const wiersze = [];                                                   // jeden wpis na wiersz: góra, wysokość i prawy brzeg
+      const lh = parseFloat(getComputedStyle(p).lineHeight) || 24;
+      [...r.getClientRects()].forEach(b => {
+        if (b.height > lh * 1.6) return;                                    // pomijamy inicjał
+        const mid = b.top + b.height / 2;
+        const w = wiersze.find(x => Math.abs(x.mid - mid) < 10);
+        if (w) w.right = Math.max(w.right, b.right); else wiersze.push({ top: b.top, mid, h: b.height, right: b.right });
+      });
+      const d = wiersze.map(x => x.right).slice(0, -1);                     // ostatni wiersz akapitu pomijamy
+      for (let i = 0, bieg = 1, znak = 0; i < d.length; i++) {
+        const z = i ? Math.sign(Math.round(d[i] - d[i - 1])) : 0;
+        if (z && z === znak) bieg++; else { bieg = z ? 2 : 1; znak = z; }
+        if (bieg >= 4 && (i + 1 === d.length || Math.sign(Math.round(d[i + 1] - d[i])) !== znak)) {
+          kliny++;                                                          // klin: ≥ 4 kolejne wiersze w jednym kierunku
+          for (let k = i - bieg + 1; k <= i; k++) {
+            const m = document.createElement('i');
+            m.className = 'kr';
+            m.style.top = (wiersze[k].top - b0.top) + 'px'; m.style.height = wiersze[k].h + 'px';
+            m.style.left = (wiersze[k].right - b0.left + 4) + 'px';
+            W.append(m);
+          }
+        }
+      }
+    });
+    ui.say('wykryte kliny (≥ 4 wiersze o monotonicznej długości): ' + kliny);
+  };
+  skanuj();
+  const ro = new ResizeObserver(skanuj);
+  ro.observe(el);
+  return () => { ro.disconnect(); W.querySelectorAll('.kr').forEach(n => n.remove()); };
+}, off: null },
+  { id: "P2-23", n: "Czyszczenie tekstu przed składem", lvl: "własne", cat: 2, attr: "P2-23", opis: "Zanim zacznie się składać, tekst trzeba oczyścić: podwójne spacje, tabulatory, spacje przed przecinkiem i kropką lub w nawiasie to ślady kopiowania, nie zamierzony skład.", faza: "tekst", order: 10, libs: ["typograf"],
+    on: function (el) {
+  const tp = new Typograf({ locale: ['pl'] });
+  tp.disableRule('*');
+  ['common/space/delRepeatSpace', 'common/space/replaceTab', 'common/space/delBeforePunctuation',
+   'common/space/delBeforeDot', 'common/space/afterComma', 'common/space/bracket']
+    .forEach(r => tp.enableRule(r));
+  el.innerHTML = tp.execute(el.innerHTML);
+  mapText(el, s => s.replace(/\s+([.,;:!?])/g, '$1'));           // spacja przed znakiem na końcu akapitu
+}, off: null },
+  { id: "P2-24", n: "Pokrycie glifów (diagnostyka fontu)", lvl: "własne", cat: 2, attr: "P2-24", opis: "Zanim wybierze się font, trzeba sprawdzić, czy ma polskie litery i znaki typograficzne;", faza: "diag", order: 290, libs: ["opentype"],
+    on: async function (el, ui) {
+  const buf = await (await fetch('https://cdn.jsdelivr.net/gh/adobe-fonts/source-serif@4.005R/WOFF/TTF/SourceSerif4-Regular.ttf.woff')).arrayBuffer();
+  const font = opentype.parse(buf);                                         // Source Serif 4 Regular, WOFF
+  const znaki = [...new Set(el.textContent.replace(/\s/g, ''))];
+  const brak = znaki.filter(c => font.charToGlyphIndex(c) === 0);
+  ui.say('znaków w dokumencie: ' + znaki.length + ', brakuje w foncie: ' + brak.length + (brak.length ? ' (' + brak.join(' ') + ')' : ''));
+}, off: null }
+];
+/* ---------- pokaz.html: silnik panelu ----------
+   Dane zasad (tablica RULES) i konfiguracja bibliotek (LIB) są wstawiane przez pokaz_build.py.
+   Zasada kategorii 1 to tylko token w data-z na <html> (CSS w @layer reguly).
+   Zasada kategorii 2 ma funkcję on(el, ctx): faza „tekst” działa na odłączonej kopii oryginału,
+   faza „dom” na żywej treści i zwraca funkcję sprzątającą (off), faza „diag” tylko raportuje.
+   Wyłączenie dowolnej zasady = przebudowa treści z oryginału z pozostałymi włączonymi. */
+(() => {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const root = document.documentElement;
+  const pole = $('#pole');
+  const dok = $('#dokument');
+  const warstwa = $('#nakladki');
+  const ORIG = pole.innerHTML;
+
+  const KONFLIKTY = [
+    { ids: ['P1-19', 'P1-20', 'P1-23'], why: 'jeden układ strony naraz (kanon 2:3, kanon ISO albo rozkładówka).' },
+    { ids: ['P1-21', 'P1-22', 'P1-23'], why: 'jeden układ treści naraz (siatka, kolumny albo rozkładówka).' },
+    { ids: ['P1-12', 'P2-13', 'P2-14'], why: 'jeden mechanizm dzielenia wyrazów naraz.' },
+    { ids: ['P1-13', 'P2-14'], why: 'justowanie CSS i algorytm Knutha–Plassa wykluczają się.' },
+    { ids: ['P1-14', 'P2-15'], why: 'wiszące znaki w CSS i w skrypcie wykluczają się.' },
+    { ids: ['P1-22', 'P2-18'], why: 'przypisy boczne w CSS i w skrypcie wykluczają się.' },
+  ];
+  const WYMAGA = { 'P2-17': ['P1-03'] };
+  const NARZEDZIA = [
+    { id: 'baza', n: 'Siatka bazowa 8 px' },
+    { id: 'kolumny', n: 'Siatka 12 kolumn', wymaga: ['P1-21'] },
+    { id: 'pole', n: 'Konstrukcja kanonu: przekątne i pole składu', wymagaJedna: ['P1-19', 'P1-20', 'P1-23'] },
+    { id: 'nbsp', n: 'Podświetl spacje niełamliwe i cienkie' },
+  ];
+
+  const on = new Set();
+  const tools = new Set();
+  const diag = new Map();
+  let otwarty = matchMedia('(min-width:1200px)').matches;
+  let czysty = true;
+
+  /* ---------- pomocnicze (używane przez zasady) ---------- */
+  window.mapText = (el, fn) => {
+    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    for (let n; (n = w.nextNode()); ) n.nodeValue = fn(n.nodeValue);
+  };
+  const markSpaces = h => h.replace(/(<[^>]*>)|(&nbsp;|[   ])/g, (m, tag, sp) => tag ? tag : '<span class="nb">' + sp + '</span>');
+
+  /* ---------- konflikty i zależności ---------- */
+  function blokada(id) {
+    for (const k of KONFLIKTY) {
+      if (!k.ids.includes(id)) continue;
+      const inny = k.ids.find(x => x !== id && on.has(x));
+      if (inny) return 'Koliduje z ' + inny + ' (włączone): ' + k.why;
+    }
+    const w = WYMAGA[id];
+    if (w) { const brak = w.find(x => !on.has(x)); if (brak) return 'Wymaga włączenia ' + brak + '.'; }
+    return '';
+  }
+  function blokadaNarz(t) {
+    if (t.wymaga) { const brak = t.wymaga.find(x => !on.has(x)); if (brak) return 'Wymaga włączenia ' + brak + '.'; }
+    if (t.wymagaJedna && !t.wymagaJedna.some(x => on.has(x))) return 'Wymaga jednej z reguł: ' + t.wymagaJedna.join(', ') + '.';
+    return '';
+  }
+  function kaskada() {
+    let zmiana = true;
+    while (zmiana) {
+      zmiana = false;
+      for (const [k, w] of Object.entries(WYMAGA)) {
+        if (on.has(k) && w.some(x => !on.has(x))) { on.delete(k); komunikat(k + ' wyłączona, bo wymaga ' + w.join(', ') + '.'); zmiana = true; }
+      }
+      for (const t of NARZEDZIA) {
+        if (tools.has(t.id) && blokadaNarz(t)) { tools.delete(t.id); komunikat('Nakładka „' + t.n + '” wyłączona: ' + blokadaNarz(t)); zmiana = true; }
+      }
+    }
+  }
+
+  /* ---------- stan i panel ---------- */
+  const panel = $('#panel');
+  const przycisk = $('#p-przycisk');
+  const status = $('#p-status');
+  const listaDiag = $('#p-diag');
+  const wejscia = new Map();
+
+  function komunikat(t) { status.textContent = t; }
+
+  function ustaw(id, v) {
+    if (v) {
+      const b = blokada(id);
+      if (b) { komunikat(id + ': ' + b); return false; }
+      on.add(id);
+    } else {
+      on.delete(id);
+    }
+    return true;
+  }
+
+  function odswiez() {
+    kaskada();
+    root.dataset.z = [...on].join(' ');
+    root.dataset.n = [...tools].join(' ');
+    for (const r of RULES) {
+      const w = wejscia.get(r.id);
+      const b = on.has(r.id) ? '' : blokada(r.id);
+      w.input.checked = on.has(r.id);
+      w.input.disabled = !!b;
+      w.blok.textContent = b;
+      w.blok.hidden = !b;
+      w.input.toggleAttribute('aria-describedby', false);
+      if (b) w.input.setAttribute('aria-describedby', w.blok.id);
+    }
+    for (const t of NARZEDZIA) {
+      const w = wejscia.get('n:' + t.id);
+      const b = tools.has(t.id) ? '' : blokadaNarz(t);
+      w.input.checked = tools.has(t.id);
+      w.input.disabled = !!b;
+      w.blok.textContent = b;
+      w.blok.hidden = !b;
+    }
+    $('#p-licznik').textContent = on.size + ' / ' + RULES.length;
+    przycisk.querySelector('span').textContent = on.size + '/' + RULES.length;
+    zapisz();
+    zaplanuj();
+  }
+
+  function budujPanel() {
+    const tresc = $('#p-grupy');
+    const poziomy = [['mikro', 'Mikro'], ['makro', 'Makro'], ['własne', 'Własne']];
+    for (const [lv, nazwa] of poziomy) {
+      const rs = RULES.filter(r => r.lvl === lv);
+      const fs = document.createElement('fieldset');
+      fs.className = 'p-grupa';
+      fs.innerHTML = '<legend>' + nazwa + ' (' + rs.length + ')</legend><ul></ul>';
+      const ul = $('ul', fs);
+      for (const r of rs) ul.append(wiersz(r.id, r.id + '', r.n, r.opis, 'zasady.html#' + r.id, r.cat, (v) => { if (ustaw(r.id, v)) odswiez(); else odswiez(); }, r.id));
+      tresc.append(fs);
+    }
+    const fn = document.createElement('fieldset');
+    fn.className = 'p-grupa';
+    fn.innerHTML = '<legend>Nakładki i narzędzia</legend><ul></ul>';
+    for (const t of NARZEDZIA) {
+      $('ul', fn).append(wiersz('n:' + t.id, 'nakładka', t.n, '', '', 0, (v) => { if (v) { if (!blokadaNarz(t)) tools.add(t.id); } else tools.delete(t.id); odswiez(); }, 'n-' + t.id));
+    }
+    tresc.append(fn);
+  }
+  function wiersz(klucz, etykietaId, nazwa, opis, href, cat, zmiana, idHtml) {
+    const li = document.createElement('li');
+    li.className = 'p-regula';
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.id = 'cb-' + idHtml;
+    const label = document.createElement('label');
+    label.htmlFor = input.id;
+    label.innerHTML = '<span class="pid">' + etykietaId + '</span>';
+    label.append(document.createTextNode(nazwa));
+    if (opis) label.title = opis;
+    li.append(input, label);
+    if (href) {
+      const a = document.createElement('a');
+      a.href = href; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = 'karta';
+      a.setAttribute('aria-label', 'Karta punktu ' + etykietaId + ' w zasady.html');
+      li.append(a);
+    } else li.append(document.createElement('span'));
+    const blok = document.createElement('p');
+    blok.className = 'blok';
+    blok.id = 'bl-' + idHtml;
+    blok.hidden = true;
+    li.append(blok);
+    input.addEventListener('change', () => { komunikat(''); zmiana(input.checked); });
+    wejscia.set(klucz, { input, blok });
+    return li;
+  }
+
+  /* ---------- zapis stanu: localStorage i URL ---------- */
+  const KLUCZ = 'pokaz-typografia-v1';
+  function zapisz() {
+    const dane = { z: [...on], n: [...tools] };
+    if (matchMedia('(min-width:1200px)').matches) dane.panel = otwarty;       // na wąskim ekranie panel zawsze startuje zwinięty
+    try { localStorage.setItem(KLUCZ, JSON.stringify(dane)); } catch (e) { /* tryb prywatny lub zablokowany magazyn */ }
+  }
+  function adresZeStanem() {
+    const p = new URLSearchParams();
+    if (on.size) p.set('z', [...on].join('.'));
+    if (tools.size) p.set('n', [...tools].join('.'));
+    const q = p.toString();
+    return location.origin + location.pathname + (q ? '?' + q.replace(/%2C/g, ',') : '');
+  }
+  function wczytaj() {
+    const q = new URLSearchParams(location.search);
+    if (q.has('z') || q.has('n')) {
+      return { z: (q.get('z') || '').split('.').filter(Boolean), n: (q.get('n') || '').split('.').filter(Boolean), zUrl: true };
+    }
+    try { const s = JSON.parse(localStorage.getItem(KLUCZ)); if (s && Array.isArray(s.z)) return s; } catch (e) { /* brak magazynu */ }
+    return null;
+  }
+  function zastosujStan(s) {
+    const znane = new Set(RULES.map(r => r.id));
+    const pominiete = [];
+    for (const id of s.z || []) { if (znane.has(id) && !ustaw(id, true)) pominiete.push(id); }
+    for (const id of s.n || []) { const t = NARZEDZIA.find(x => x.id === id); if (t && !blokadaNarz(t)) tools.add(id); }
+    if (pominiete.length) komunikat('Pominięto z powodu kolizji lub zależności: ' + pominiete.join(', ') + '.');
+  }
+
+  /* ---------- przyciski zbiorcze ---------- */
+  function wlaczWszystkie() {
+    on.clear();
+    const pominiete = [];
+    for (const r of RULES) { if (!ustaw(r.id, true)) pominiete.push(r.id); }
+    odswiez();
+    komunikat('Włączono ' + on.size + ' z ' + RULES.length + '. Pominięto ' + pominiete.length + ' (kolizje): ' + pominiete.join(', ') + '.');
+  }
+  function wylaczWszystkie() { on.clear(); tools.clear(); odswiez(); komunikat('Wyłączono wszystkie zasady i nakładki.'); }
+  async function zapiszUrl() {
+    const url = adresZeStanem();
+    history.replaceState(null, '', url);
+    const poleUrl = $('#p-url');
+    poleUrl.value = url;
+    poleUrl.hidden = false;
+    let skopiowano = false;
+    try { await navigator.clipboard.writeText(url); skopiowano = true; } catch (e) { poleUrl.select(); }
+    komunikat('Stan zapisany w adresie strony' + (skopiowano ? ' i skopiowany do schowka.' : '; skopiuj adres z pola poniżej.'));
+  }
+
+  /* ---------- otwieranie panelu ---------- */
+  function ustawPanel(v, fokus) {
+    otwarty = v;
+    panel.hidden = !v;
+    przycisk.setAttribute('aria-expanded', String(v));
+    zapisz();
+    if (fokus) { (v ? $('.p-zwin', panel) : przycisk).focus(); }
+  }
+
+  /* ---------- biblioteki ---------- */
+  const zaladowane = {};
+  const wczytajSkrypt = src => new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = src; s.async = true; s.onload = res;
+    s.onerror = () => rej(new Error('nie udało się załadować ' + src));
+    document.head.append(s);
+  });
+  const ensureLib = name => zaladowane[name] || (zaladowane[name] = (async () => {
+    for (const src of LIB[name].src) await wczytajSkrypt(src);
+    if (LIB[name].init) await LIB[name].init();
+  })().catch(e => { delete zaladowane[name]; throw e; }));
+
+  /* ---------- przebudowa treści ---------- */
+  let seq = 0;
+  let planowane = false;
+  const sprzatanie = [];
+  const kolejnosc = (a, b) => a.order - b.order;
+  function zaplanuj() {
+    if (planowane) return;
+    planowane = true;
+    requestAnimationFrame(() => { planowane = false; render(); });
+  }
+  function odswiezDiag() {
+    listaDiag.replaceChildren(...[...diag].map(([id, t]) => { const li = document.createElement('li'); li.textContent = id + ': ' + t; return li; }));
+  }
+  const kontekst = r => ({ id: r.id, layer: warstwa, say: t => { diag.set(r.id, t); odswiezDiag(); } });
+
+  async function render() {
+    const moj = ++seq;
+    while (sprzatanie.length) { try { sprzatanie.pop()(); } catch (e) { /* sprzątanie best effort */ } }
+    $$('.cnt,.kr', warstwa).forEach(n => n.remove());
+    diag.clear(); odswiezDiag();
+    const aktywne = RULES.filter(r => r.cat === 2 && on.has(r.id));
+    const tekst = aktywne.filter(r => r.faza === 'tekst').sort(kolejnosc);
+    const dom = aktywne.filter(r => r.faza === 'dom').sort(kolejnosc);
+    const diagnostyczne = aktywne.filter(r => r.faza === 'diag').sort(kolejnosc);
+    const przeksztalca = tekst.length || dom.length || tools.has('nbsp');
+    try {
+      const libs = [...new Set(aktywne.flatMap(r => r.libs || []))];
+      if (libs.length && libs.some(l => !zaladowane[l])) komunikat('Ładowanie bibliotek z CDN: ' + libs.join(', ') + '…');
+      await Promise.all(libs.map(ensureLib));
+      if (status.textContent.startsWith('Ładowanie')) komunikat('');
+      if (moj !== seq) return;
+      if (przeksztalca || !czysty) {
+        const kopia = document.createElement('div');
+        kopia.innerHTML = ORIG;
+        for (const r of tekst) { await r.on(kopia, kontekst(r)); if (moj !== seq) return; }
+        if (tools.has('nbsp')) kopia.innerHTML = markSpaces(kopia.innerHTML);
+        pole.replaceChildren(...kopia.childNodes);
+        czysty = !przeksztalca;
+      }
+      if (document.fonts) await document.fonts.ready;
+      if (moj !== seq) return;
+      for (const r of dom) {
+        const d = await r.on(pole, kontekst(r));
+        if (moj !== seq) { if (typeof d === 'function') d(); return; }
+        if (typeof d === 'function') sprzatanie.push(d);
+      }
+      for (const r of diagnostyczne) {
+        const d = await r.on(pole, kontekst(r));
+        if (moj !== seq) { if (typeof d === 'function') d(); return; }
+        if (typeof d === 'function') sprzatanie.push(d);
+      }
+    } catch (e) {
+      komunikat('Błąd: ' + e.message + '. Zasady wymagające tej biblioteki zostały wyłączone.');
+      const nazwy = Object.keys(LIB).filter(l => !zaladowane[l]);
+      for (const r of RULES) { if (on.has(r.id) && (r.libs || []).some(l => nazwy.includes(l))) on.delete(r.id); }
+      odswiez();
+      return;
+    }
+    rysujNakladki();
+  }
+
+  /* ---------- nakładki ---------- */
+  function rysujNakladki() {
+    $$('.ov', warstwa).forEach(n => n.remove());
+    const baza = warstwa.getBoundingClientRect();
+    if (tools.has('kolumny') && on.has('P1-21')) {
+      const cs = getComputedStyle(pole);
+      const r = pole.getBoundingClientRect();
+      const tory = cs.gridTemplateColumns.split(' ').map(parseFloat).filter(x => !isNaN(x));
+      const odstep = parseFloat(cs.columnGap) || 0;
+      let x = r.left - baza.left + parseFloat(cs.paddingLeft || 0);
+      for (const w of tory) {
+        const d = document.createElement('div');
+        d.className = 'ov ov-kol';
+        d.style.cssText = 'left:' + x + 'px;top:' + (r.top - baza.top) + 'px;width:' + w + 'px;height:' + r.height + 'px';
+        warstwa.append(d);
+        x += w + odstep;
+      }
+    }
+    if (tools.has('pole')) {
+      // konstrukcja pierwszej „strony” kanonu: przekątne strony i pole składu z marginesów .pole (dokument jest dłuższy niż jedna strona)
+      const csd = getComputedStyle(dok), csp = getComputedStyle(pole);
+      const W = dok.clientWidth;
+      const ar = csd.aspectRatio.split('/').map(parseFloat);
+      const Hp = W * (ar.length === 2 && ar[0] && ar[1] ? ar[1] / ar[0] : 1.5);
+      const x0 = parseFloat(csp.marginLeft) || 0, y0 = parseFloat(csp.marginTop) || 0;
+      const x1 = W - (parseFloat(csp.marginRight) || 0), y1 = Hp - (parseFloat(csp.marginBottom) || 0);
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('class', 'ov ov-kanon');
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + Hp);
+      svg.style.cssText = 'left:0;top:0;width:' + W + 'px;height:' + Hp + 'px';
+      const p1 = document.createElementNS(svg.namespaceURI, 'path');
+      p1.setAttribute('d', 'M0 0L' + W + ' ' + Hp + 'M' + W + ' 0L0 ' + Hp);
+      const p2 = document.createElementNS(svg.namespaceURI, 'path');
+      p2.setAttribute('d', 'M' + x0 + ' ' + y0 + 'H' + x1 + 'V' + y1 + 'H' + x0 + 'Z M' + x0 + ' ' + y0 + 'L' + x1 + ' ' + y1 + 'M' + x1 + ' ' + y0 + 'L' + x0 + ' ' + y1);
+      svg.append(p1, p2);
+      warstwa.append(svg);
+    }
+  }
+  new ResizeObserver(() => rysujNakladki()).observe(dok);
+
+  /* ---------- start ---------- */
+  budujPanel();
+  $('.p-zwin', panel).addEventListener('click', () => ustawPanel(false, true));
+  przycisk.addEventListener('click', () => ustawPanel(true, true));
+  $('[data-akcja="wszystkie"]').addEventListener('click', wlaczWszystkie);
+  $('[data-akcja="zadne"]').addEventListener('click', wylaczWszystkie);
+  $('[data-akcja="url"]').addEventListener('click', zapiszUrl);
+  document.addEventListener('keydown', e => {
+    if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === 'Escape' && otwarty && panel.contains(document.activeElement)) { ustawPanel(false, true); return; }
+    const t = e.target;
+    const pisze = t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) && t.type !== 'checkbox');
+    if ((e.key === 'p' || e.key === 'P') && !pisze) { ustawPanel(!otwarty, true); }
+  });
+
+  const zapamietany = wczytaj();
+  if (zapamietany) {
+    if (!zapamietany.zUrl && typeof zapamietany.panel === 'boolean' && matchMedia('(min-width:1200px)').matches) otwarty = zapamietany.panel;
+    zastosujStan(zapamietany);
+  }
+  ustawPanel(otwarty, false);
+  odswiez();
+  window.__pokaz = { on, tools, RULES, ustaw, odswiez, render, wlaczWszystkie, wylaczWszystkie, adresZeStanem, zastosujStan, KONFLIKTY, WYMAGA, diag, ORIG };
+})();
+
+</script>
+</body>
+</html>

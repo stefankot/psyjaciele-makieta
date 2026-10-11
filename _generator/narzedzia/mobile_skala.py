@@ -43,7 +43,8 @@ def find_close(s, i):
 
 
 def split_top(s, sep=';'):
-    out, cur, q, par = [], [], None, 0
+    """Dzieli ciało reguły na deklaracje i zagnieżdżone reguły (CSS nesting): koniec elementu = ';' albo '}' zamykające blok na poziomie 0."""
+    out, cur, q, par, br = [], [], None, 0, 0
     for c in s:
         if q:
             cur.append(c)
@@ -52,12 +53,33 @@ def split_top(s, sep=';'):
         if c in '"\'': q = c
         elif c == '(': par += 1
         elif c == ')': par -= 1
-        if c == sep and par <= 0 and not q:
-            out.append(''.join(cur)); cur = []
-        else:
-            cur.append(c)
+        elif c == '{': br += 1
+        elif c == '}': br -= 1
+        cur.append(c)
+        if par <= 0 and not q and ((c == sep and br == 0) or (c == '}' and br == 0)):
+            out.append(''.join(cur).rstrip(';')); cur = []
     if ''.join(cur).strip(): out.append(''.join(cur))
     return out
+
+
+def expand(sel, body):
+    """Zwraca listę (selektor, deklaracje do skalowania) dla reguły i jej zagnieżdżonych reguł (spłaszczone: & → selektor rodzica)."""
+    res, decls = [], []
+    for piece in split_top(body):
+        piece = piece.strip()
+        if not piece: continue
+        if '{' in piece:
+            i = piece.index('{'); nsel = piece[:i].strip(); nbody = piece[i + 1:piece.rindex('}')]
+            if nsel.startswith('@'): continue
+            parts = [x.strip() for x in nsel.split(',')]
+            psel = [x.strip() for x in sel.split(',')]
+            joined = ','.join((n.replace('&', p) if '&' in n else f'{p} {n}') for n in parts for p in psel)
+            res += expand(joined, nbody)
+        elif ':' in piece:
+            prop, val = piece.split(':', 1)
+            if relevant(prop): decls.append(f'{prop.strip()}:{scale_val(val.strip())}')
+    if decls: res.insert(0, (sel, ';'.join(decls)))
+    return res
 
 
 def walk(css, ctx, out):
@@ -123,16 +145,12 @@ def generate_sheet(css_files):
         walk(strip_comments(p.read_text(encoding='utf-8')), [], rules)
         for ctx, sel, body in rules:
             if not ctx_ok(ctx): continue
-            decls = []
-            for d in split_top(body):
-                if ':' not in d: continue
-                prop, val = d.split(':', 1)
-                # także wartości bez px (var(), em, %, unitless) kopiujemy bez zmian — zachowują kolejność kaskady względem skalowanych
-                if relevant(prop): decls.append(f'{prop.strip()}:{scale_val(val.strip())}')
-            if not decls: continue
-            txt = f'{sel}{{{";".join(decls)}}}'
-            for c in reversed(ctx): txt = f'{c}{{{txt}}}'
-            parts.append(txt)
+            exp = expand(sel, body)
+            if not exp: continue
+            for esel, edecl in exp:
+                txt = f'{esel}{{{edecl}}}'
+                for c in reversed(ctx): txt = f'{c}{{{txt}}}'
+                parts.append(txt)
     head = (f'/* GENEROWANE przez _generator/narzedzia/mobile_skala.py — nie edytuj ręcznie. Telefon (≤{MOBILE} px): baza 14 px = 16 px × {F}, '
             f'wszystkie rozmiary i interlinie w px/vw skalowane ×{F}. */\n')
     return head + f'@media (max-width:{MOBILE}px){{\n' + '\n'.join(parts) + '\n}\n', len(parts)

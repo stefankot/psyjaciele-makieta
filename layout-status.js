@@ -38,7 +38,7 @@
   }
 
   const hero = document.querySelector('[data-hero-status]');
-  const phones = Array.from(document.querySelectorAll(PHONE)).filter(a => !a.closest('.hero-actions, .sticky-cta') && !a.matches('.header-call, .header-phone') && !inRunningText(a));   // bez kropki przy numerze w pasku nawigacji
+  const phones = Array.from(document.querySelectorAll(PHONE)).filter(a => !a.closest('.hero-actions, .sticky-cta') && !a.matches('.header-call, .header-phone, [data-no-status], [data-booking-status]') && !inRunningText(a));   // bez kropki przy numerze w pasku nawigacji
   const tags = phones.map(a => {
     const s = document.createElement('span');
     s.className = 'phone-status';
@@ -63,6 +63,15 @@
     }
     const word = st.state === 'closed' ? `zamknięte — ${st.label} od ${fmt(st.from)}` : (st.state === 'closing' ? `otwarte jeszcze do ${fmt(st.close)}` : `otwarte do ${fmt(st.close)}`);
     const title = st.state === 'closed' ? `Przychodnia zamknięta — ${st.label} od ${fmt(st.from)}` : `Przychodnia otwarta do ${fmt(st.close)}`;
+    // dolny pasek na telefonie: przycisk dzwonienia z krótkim statusem („Dzwoń · do 14:00” / „Dzwoń · jutro od 10:00”)
+    const callWord = st.state === 'closed' ? `${st.label} od ${fmt(st.from)}` : `do ${fmt(st.close)}`;
+    document.querySelectorAll('.header-call').forEach(c => {
+      let l = c.querySelector('.hc-label');
+      if (!l) { l = document.createElement('span'); l.className = 'hc-label'; c.appendChild(l); }
+      l.textContent = `Dzwoń · ${callWord}`;
+      c.setAttribute('aria-label', `Zadzwoń: 537 821 345, przychodnia ${st.state === 'closed' ? 'zamknięta — ' + st.label + ' od ' + fmt(st.from) : 'otwarta do ' + fmt(st.close)}`);
+    });
+    document.querySelectorAll('[data-booking-status]').forEach(t => { t.textContent = word; t.dataset.state = st.state === 'closed' ? 'closed' : 'open'; t.title = title; });
     tags.forEach(t => { t.textContent = word; t.dataset.state = st.state === 'closed' ? 'closed' : 'open'; t.title = title; });
   }
   render();

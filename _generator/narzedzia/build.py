@@ -27,7 +27,7 @@ import mobile_skala  # noqa: E402
 import strony  # noqa: E402
 
 MARK = '<!-- generated: psyjaciele-podstrony -->'
-CSS_V = '163'
+CSS_V = '164'
 JS_V = '32'
 
 

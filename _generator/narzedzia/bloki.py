@@ -718,7 +718,9 @@ def social_section(ctx):
 
 def about_section(ctx):
     ctx.use('about')
-    return ctx.rw.fragment(ctx.home.about_raw)
+    import re as _re
+    raw = _re.sub(r'<a class="about-link"[^>]*>.*?</a>', '', ctx.home.about_raw, flags=_re.S)   # link „Poznaj cały zespół” tylko na stronie głównej
+    return ctx.rw.fragment(raw)
 
 
 def contact_section(ctx, sec):
@@ -822,10 +824,10 @@ def prose_nodes(ctx, nodes):
 def join_art_dog(ctx):
     """Obraz banera „Praca w Psyjaciołach”: siatka 8×8 kolorowych zdjęć pacjentów (psy i koty), komórki 80×80 px, całość 640×640 px."""
     ctx.use('join-banner')
-    s1 = ctx.rw.asset('assets/join-pacjenci-640.avif')
-    s2 = ctx.rw.asset('assets/join-pacjenci-1254.avif')
-    return (f'<img class="join-grid" src="{s1}" srcset="{s1} 640w, {s2} 1254w" sizes="(min-width: 1001px) 843px, 100vw" '
-            'alt="Pacjenci przychodni Psyjaciele — psy i koty" width="640" height="640" loading="lazy" decoding="async">')
+    s1 = ctx.rw.asset('assets/join-pacjenci-1024.avif')
+    s2 = ctx.rw.asset('assets/join-pacjenci-2048.avif')
+    return (f'<img class="join-grid" src="{s1}" srcset="{s1} 1024w, {s2} 2048w" sizes="(min-width: 1001px) 843px, 100vw" '
+            'alt="Pacjenci przychodni Psyjaciele — psy i koty" width="1024" height="1024" loading="lazy" decoding="async">')
 
 
 def join_art_shared(ctx):

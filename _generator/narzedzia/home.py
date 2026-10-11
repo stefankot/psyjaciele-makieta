@@ -170,6 +170,7 @@ class Rewriter:
         return self.asset(p) + (('?' + sp.query) if sp.query else '') + frag
 
     def fragment(self, raw, base='.', frag_to_home=False):
+        raw = re.sub(r'<p class="next-step">.*?</p>', '', raw, flags=re.S)   # linki „następny krok” tylko na stronie głównej
         def url_attr(m):
             val = m.group(3)
             if m.group(2) == 'srcset':

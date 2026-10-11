@@ -73,3 +73,16 @@ html body.book-type.book-type .team .ta-aur-przod { -webkit-mask: url(assets/zes
   html body.book-type.book-type .team .ta-photo > img:first-child { position: absolute; inset-inline-start: -25%; inset-block-start: -29.7%; inline-size: 153.6%; block-size: auto; max-inline-size: none; }
   html body.book-type.book-type .team .ta-aur { display: none; }
 }
+
+/* fakty stoją pod leadem w nagłówku sekcji (nie nad zdjęciem) */
+html body.book-type.book-type .team .section-header .poster-facts { position: static; translate: none; margin: var(--s4, 34px) 0 0; justify-content: flex-start; flex-wrap: wrap; row-gap: var(--s2, 13px); }
+
+/* filtr specjalizacji: pastylki nad zdjęciem; wybór przygasza osoby bez tej specjalizacji w listach po bokach */
+html body.book-type.book-type .team .team-specs { list-style: none; margin: var(--s5, 55px) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+html body.book-type.book-type .team .team-specs + .team-arch { margin-block-start: var(--s4, 34px); }
+html body.book-type.book-type .team .team-specs button { min-block-size: 40px; padding: 0 16px; border: 1px solid var(--ink); background: transparent; color: var(--ink); font: 700 16px/24px Satoshi, Arial, sans-serif; cursor: pointer; }
+html body.book-type.book-type .team .team-specs button:hover, html body.book-type.book-type .team .team-specs button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+html body.book-type.book-type .team .team-specs button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+html body.book-type.book-type .team .ta-col li { transition: opacity .2s ease-out; }
+html body.book-type.book-type .team .ta-col li.is-dim { opacity: .3; }
+@media (max-width: 1000px) { html body.book-type.book-type .team .team-specs { margin-block-start: var(--s4, 34px); } }

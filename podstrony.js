@@ -562,7 +562,7 @@
    Co sekundę jeden widoczny kafelek zamienia się na niewidoczny (też na desktopie). */
 (function () {
   document.querySelectorAll("img.join-grid").forEach(function (img) {
-    var host = img.parentNode, m = (img.getAttribute("srcset") || "").match(/(\S+)\s+1254w/), src = (m ? m[1] : img.getAttribute("src")).replace("join-pacjenci-1254", "join-pacjenci-1256");   // 1256 = 8 × 157 px: kafelki co do piksela, bez zachodzenia sąsiednich zdjęć
+    var host = img.parentNode, m = (img.getAttribute("srcset") || "").match(/(\S+)\s+2048w/), src = (m ? m[1] : img.getAttribute("src"));   // 2048 = 8 × 256 px: kafelki co do piksela
     var live = document.createElement("div"), cells = [], hidden = [], wide = null;
     live.className = "join-live"; live.setAttribute("role", "img"); live.setAttribute("aria-label", img.alt || "");
     function set(cell, t) { cell.dataset.t = t; cell.style.setProperty("--tr", Math.floor(t / 8)); cell.style.setProperty("--tc", t % 8); }

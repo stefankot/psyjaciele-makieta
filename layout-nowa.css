@@ -880,8 +880,180 @@ html body.book-type.book-type a.booking-phone .phone-status::before { margin-inl
 }
 @media (min-width: 701px) { html body.book-type footer .foot-toggle { display: none; } }
 
-/* menu na telefonie / w trybie paska (html.bar): przycisk „Umów wizytę” jest już w pasku nagłówka, więc w menu go nie powtarzamy;
-   numer w jednym wierszu, a informacja o otwarciu ciasno pod nim */
-html.bar body.book-type.book-type .site-header .site-nav .nav-col a.nav-book { display: none; }
+/* menu na telefonie / w trybie paska (html.bar): numer w jednym wierszu, a informacja o otwarciu ciasno pod nim */
 html.bar body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone { display: grid; grid-template-columns: minmax(0, max-content); justify-items: start; row-gap: 0; white-space: nowrap; }
 html.bar body.book-type.book-type .site-header .site-nav .nav-col a.nav-phone .phone-status { margin: 0; margin-inline-start: 0; }
+
+/* =========================================================
+   Hero: desktop — tekst i przyciski w 6 kolumnach z lewej, ilustracja w 6 kolumnach z prawej;
+   telefon — najpierw ilustracja, potem tekst i przyciski
+   ========================================================= */
+@media (min-width: 701px) {
+  html body.book-type .hero > .wrap.grid > .hero-copy,
+  html body.book-type .hero .hero-intro { grid-column: 1 / span 6; grid-row: 1 / span 2; }
+  html body.book-type main .hero .wrap .hero-art { grid-column: 7 / span 6; grid-row: 1 / span 2; }
+  html body.book-type .hero .hero-intro { max-inline-size: none; }
+  html body.book-type .hero .hero-actions { max-inline-size: 100%; flex-wrap: wrap; }
+}
+@media (max-width: 700px) {
+  html body.book-type .hero > .wrap.grid { grid-template-rows: auto auto; row-gap: var(--s3, 21px); }
+  html body.book-type main .hero .wrap .hero-art { grid-column: 1 / -1; grid-row: 1; height: clamp(200px, 56vw, 300px); margin-bottom: 0; align-self: center; }
+  html body.book-type .hero > .wrap.grid > .hero-copy,
+  html body.book-type .hero .hero-intro { grid-column: 1 / -1; grid-row: 2; }
+}
+
+/* telefon: ilustracja hero o 50 px bliżej nawigacji */
+@media (max-width: 700px) { html.bar body.book-type .hero { padding-top: calc(var(--hdr-h) + 48px - 50px); } }
+
+/* desktop: ilustracja hero wertykalnie na środku całego hero (a nie przy dolnej krawędzi pod nawigacją); --hero-lift = górny odstęp pod nawigacją (liczy nowa-header.js) */
+@media (min-width: 701px) {
+  html body.book-type main .hero .wrap .hero-art { margin-top: calc(-1 * var(--hero-lift, 0px)); margin-bottom: 0; height: auto; align-self: stretch; }
+  html body.book-type .hero .hero-art img { object-position: center center; }
+}
+
+/* telefon: przyciski „Umów wizytę” i „Zadzwoń” są w stałym pasku na dole ekranu, więc w hero ich nie powtarzamy (zostaje status otwarcia) */
+@media (max-width: 700px) {
+  html.bar body.book-type .hero .hero-actions .hero-btn { display: none; }
+  html.bar body.book-type .hero .hero-actions { row-gap: 0; }
+}
+
+/* telefon: status otwarcia przeniesiony na przycisk „Dzwoń” w dolnym pasku — z hero znika status, a adres z godzinami jest w menu */
+@media (max-width: 700px) {
+  html.bar body.book-type .hero .hero-actions, html.bar body.book-type .hero .hero-meta { display: none; }
+}
+
+/* Wysokość hero wynika z treści (nie ze sztywnych 96svh): na telefonie bez pustej przestrzeni pod tekstem, na desktopie wysokość dopasowana do tekstu i ilustracji */
+html body.book-type .hero { min-height: 0; height: auto; }
+@media (min-width: 701px) {
+  html body.book-type main .hero .wrap .hero-art { min-height: clamp(380px, 34vw, 520px); }
+}
+
+/* O nas na telefonie: portret Oli i Magdy na 80 % szerokości ekranu; zwierzęta 2× większe (rozmiar ustawia minimal-nowa.js) */
+@media (max-width: 700px) {
+  html body.book-type #onas .about-photo { grid-column: 1 / -1; justify-self: center; inline-size: 80vw; }
+}
+
+/* „O nas”: link do zespołu pod opisem założycielek */
+html body.book-type #onas .about-link { display: inline-flex; align-items: center; gap: .5em; margin-block-start: var(--s2, 13px); font-size: 16px; line-height: 24px; font-weight: 700; color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; justify-self: center; }
+html body.book-type #onas .about-link .ico { inline-size: 20px; block-size: 20px; transition: translate .2s ease-out; }
+html body.book-type #onas .about-link:hover .ico { translate: 4px 0; }
+
+/* „następny krok” na końcu sekcji (tylko strona główna): link w kolejną akcję */
+html body.book-type main .next-step { margin: 0; font-size: 16px; line-height: 24px; font-weight: 700; }
+html body.book-type main .next-step a { display: inline-flex; align-items: center; gap: .5em; color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; }
+html body.book-type main .next-step a .ico { inline-size: 20px; block-size: 20px; transition: translate .2s ease-out; }
+html body.book-type main .next-step a:hover .ico { translate: 4px 0; }
+html body.book-type #zespol .next-step { margin-block-start: var(--s5, 55px); }
+
+/* Rytm między hero a „Nasze usługi” (siatka 8 px): odstęp od ostatniego elementu hero do krawędzi sekcji = odstęp od krawędzi sekcji do tytułu usług.
+   Desktop: 88 px / 88 px (usługi: padding 48 px + 40 px, które dodaje nagłówek bez kickera). */
+@media (min-width: 701px) {
+  html body.book-type .hero { padding-bottom: 88px; }
+  html body.book-type #poczatek + #uslugi { padding-top: 48px; }
+}
+/* Telefon: 56 px / 56 px */
+@media (max-width: 700px) {
+  html body.book-type .hero { padding-bottom: 56px; }
+  html body.book-type #poczatek + #uslugi { padding-top: 56px; }
+}
+
+/* „Umów wizytę”: kropki na zdjęciu psa jasnoszare (neutralne, niezależne od palety sekcji), tło zdjęcia #d8d8d8 */
+html body.book-type #zapraszamy .booking-pet.solid { background: #ececec; }
+
+/* „następny krok” pod sekcją: kreska na całe 12 kolumn nad linkiem (linia w --ink jak inne linie dzielące), link 24 px pod nią */
+html body.book-type main .next-step { grid-column: 1 / -1; inline-size: 100%; max-inline-size: none; box-sizing: border-box; border-block-start: 1px solid var(--ink); padding-block-start: var(--s3, 21px); }
+
+/* Zespół: „Umów wizytę u wybranej lekarki” jako pusty przycisk (sam obrys, bez zaokrągleń) na dokładną szerokość zdjęcia (kolumny 3–10), pod zdjęciem */
+@media (min-width: 1001px) {
+  html body.book-type #zespol .next-step { inline-size: calc((100% - 11 * var(--gap, 32px)) / 12 * 8 + 7 * var(--gap, 32px)); margin-inline: calc((100% - 11 * var(--gap, 32px)) / 12 * 2 + 2 * var(--gap, 32px)) auto; }
+}
+html body.book-type #zespol .next-step { border-block-start: 0; padding-block-start: 0; margin-block-start: calc(56px - 64px); }   /* odstęp pod zdjęciem = wysokość przycisku (56 px); 64 px to odstęp siatki sekcji */
+html body.book-type #zespol .next-step a { display: flex; justify-content: center; align-items: center; inline-size: 100%; box-sizing: border-box; min-block-size: 56px; padding-inline: 24px; border: 2px solid var(--ink); border-radius: 0; background: transparent; text-decoration: none; transition: background-color .2s ease-out, color .2s ease-out; }
+html body.book-type #zespol .next-step a:hover, html body.book-type #zespol .next-step a:focus-visible { background: var(--ink); color: var(--surface); }
+html body.book-type #zespol .next-step a:hover .ico { translate: 4px 0; }
+
+/* =========================================================
+   Umów wizytę (#zapraszamy) — układ jak „Obserwuj nas”: dwie połowy na cały ekran, wirujące logo na środku,
+   a pod nimi jedna tabelka 1×3 (pierwsza komórka z pełnym tłem, pozostałe puste), wszystko jednym rozmiarem tekstu
+   ========================================================= */
+html body.book-type #zapraszamy > .wrap.booking-composition { grid-template-rows: minmax(0, 1fr) auto; min-height: 0; }
+html body.book-type #zapraszamy .booking-copy,
+html body.book-type #zapraszamy .booking-photo,
+html body.book-type #zapraszamy .booking-dog-foreground { grid-row: 1; min-height: clamp(520px, 62svh, 760px); }
+html body.book-type #zapraszamy .booking-subtitle { max-inline-size: 28ch; }
+html body.book-type #zapraszamy .booking-pets { inset: 0 0 var(--booking-table-h, 96px) 0; }
+html body.book-type #zapraszamy .booking-pets:not(.booking-pets-front) .booking-pet:nth-child(6),
+html body.book-type #zapraszamy .booking-pets-front .booking-pet:nth-child(-n+2) { display: none; }   /* kropki pod wirującym logo */
+html body.book-type #zapraszamy .booking-logo { position: absolute; z-index: 6; inset-inline-start: 50%; inset-block-start: calc((100% - var(--booking-table-h, 96px)) / 2); translate: -50% -50%; inline-size: clamp(220px, 25vw, 320px); aspect-ratio: 91.38 / 92.26; color: var(--ink); pointer-events: none; }
+html body.book-type #zapraszamy .booking-logo svg { display: block; inline-size: 100%; block-size: auto; fill: currentColor; overflow: visible; }
+html body.book-type #zapraszamy .booking-table { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); min-block-size: var(--booking-table-h, 96px); background: var(--surface); border-block-start: 1px solid var(--ink); z-index: 7; }
+html body.book-type #zapraszamy .booking-table > a {
+  display: flex; align-items: center; justify-content: center; gap: .5em; box-sizing: border-box; padding: 16px var(--gutter, 24px);
+  font-size: 20px; line-height: 32px; font-weight: 700; text-decoration: none; text-align: center; color: var(--ink); background: transparent; border: 0; border-inline-start: 1px solid var(--ink); margin: 0;
+}
+html body.book-type #zapraszamy .booking-table > a:first-child { background: var(--ink); color: var(--surface); border-inline-start: 0; }
+html body.book-type #zapraszamy .booking-table > a:first-child:hover { background: var(--small-ink); }
+html body.book-type #zapraszamy .booking-table > a:not(:first-child):hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; }
+html body.book-type #zapraszamy .booking-table .phone-status { position: static; inline-size: auto; margin: 0; font-size: 20px; line-height: 32px; }
+html body.book-type #zapraszamy .booking-table > a .ico { inline-size: 24px; block-size: 24px; flex: none; }
+@media (max-width: 700px) {
+  html body.book-type #zapraszamy > .wrap.booking-composition { grid-template-rows: auto auto auto; }
+  html body.book-type #zapraszamy .booking-table { grid-row: 3; grid-template-columns: minmax(0, 1fr); }
+  html body.book-type #zapraszamy .booking-table > a { border-inline-start: 0; border-block-start: 1px solid var(--ink); min-block-size: 56px; padding-block: 12px; font-size: 16px; line-height: 24px; }
+  html body.book-type #zapraszamy .booking-table > a:first-child { border-block-start: 0; }
+  html body.book-type #zapraszamy .booking-table .phone-status { font-size: 16px; line-height: 24px; }
+  html body.book-type #zapraszamy .booking-copy { grid-row: 1; min-block-size: 100vw; }
+  html body.book-type #zapraszamy .booking-photo, html body.book-type #zapraszamy .booking-dog-foreground { grid-row: 2; min-block-size: 0; }
+  html body.book-type #zapraszamy .booking-pets { inset: 100vw 0 168px 0; }
+  html body.book-type #zapraszamy .booking-logo { inset-block-start: 150vw; inline-size: 160px; }   /* środek zdjęcia psa (kwadrat tekstu 100 vw + pół kwadratu zdjęcia) */
+}
+html body.book-type #zapraszamy .social-promo-ring { transform-box: view-box; transform-origin: 50% 50%; animation: none; }
+html body.book-type #zapraszamy .booking-table > a { grid-area: auto; position: static; justify-self: stretch; align-self: stretch; inline-size: auto; max-inline-size: none; }
+
+/* Umów wizytę — dokładnie jak „Obserwuj nas”: dwie połowy o pełnej wysokości (jak wzór: clamp 680–960 px), logo na środku, a tabelka 1×3 NAKŁADA SIĘ na dolną część
+   (absolutnie, 56 px od dołu i od boków, wysokość 56 px — tak jak pasek .social-promo-actions we wzorze), a nie leży osobnym pasem pod sekcją */
+@media (min-width: 701px) {
+  html body.book-type #zapraszamy > .wrap.booking-composition { grid-template-rows: minmax(0, 1fr); block-size: clamp(680px, calc(100svh - var(--floating-header-height, 140px)), 960px); position: relative; }
+  html body.book-type #zapraszamy .booking-copy,
+  html body.book-type #zapraszamy .booking-photo,
+  html body.book-type #zapraszamy .booking-dog-foreground { grid-row: 1; min-block-size: 0; block-size: 100%; }
+  html body.book-type #zapraszamy .booking-copy { padding: var(--s6, 89px) var(--gutter, 56px) 140px; }
+  html body.book-type #zapraszamy .booking-pets { inset: 0; }
+  html body.book-type #zapraszamy .booking-logo { inset-block-start: 50%; }
+  html body.book-type #zapraszamy .booking-table {
+    position: absolute; inset: auto var(--gutter, 56px) var(--s5, 55px); grid-row: auto; grid-column: auto; z-index: 7; background: transparent;
+    min-block-size: 56px; block-size: 56px; border: 1px solid var(--ink);
+  }
+  html body.book-type #zapraszamy .booking-table > a { padding: 0 var(--s3, 21px); font-size: 20px; line-height: 24px; }
+  html body.book-type #zapraszamy .booking-table .phone-status { font-size: 20px; line-height: 24px; }
+}
+/* kropki nie wchodzą pod tabelkę z dołu */
+@media (min-width: 701px) { html body.book-type #zapraszamy .booking-pets:not(.booking-pets-front) .booking-pet:nth-child(n+3) { display: none; } }
+
+/* „O nas”: portret założycielek wycięty w kole (zdjęcie 2000×2000, głowy w górnej połowie koła, ramiona ucina brzeg koła) */
+html body.book-type #onas .portrait-circle { -webkit-mask: none; mask: none; clip-path: none; border-radius: 50%; overflow: hidden; }
+html body.book-type #onas .portrait-circle img { transform: none; object-fit: cover; object-position: 50% 50%; }
+
+/* tabelka 1×3 tylko w lewej połówce (od lewego marginesu do środka sekcji, z takim samym marginesem od linii podziału), tekst 16/24 */
+@media (min-width: 701px) {
+  html body.book-type #zapraszamy .booking-table { inset: auto calc(50% + var(--gutter, 56px)) var(--s5, 55px) var(--gutter, 56px); grid-template-columns: minmax(0, .95fr) minmax(0, 1.3fr) minmax(0, 1fr); block-size: auto; min-block-size: 56px; background: var(--surface); }
+  html body.book-type #zapraszamy .booking-table > a { padding: 8px var(--s2, 13px); font-size: 16px; line-height: 24px; gap: .4em; }
+  html body.book-type #zapraszamy .booking-table .phone-status { font-size: 16px; line-height: 24px; }
+  html body.book-type #zapraszamy .booking-table > a .ico { inline-size: 20px; block-size: 20px; }
+  html body.book-type #zapraszamy .booking-copy { padding-block-end: 150px; }
+}
+
+/* dwa przyciski (Wybierz termin online / Wolisz zadzwonić?) + status otwarcia jako zwykły tekst obok, po prawej; wszystko w lewej połówce, 16/24 */
+@media (min-width: 701px) {
+  html body.book-type #zapraszamy .booking-table { display: flex; align-items: center; gap: 8px; border: 0; background: transparent; block-size: auto; min-block-size: 0; }
+  html body.book-type #zapraszamy .booking-table > a.booking-cta,
+  html body.book-type #zapraszamy .booking-table > a.booking-phone { flex: 0 0 auto; block-size: 56px; padding: 0 var(--s2, 13px); border: 1px solid var(--ink); white-space: nowrap; margin: 0; }
+  html body.book-type #zapraszamy .booking-table > a.booking-cta { background: var(--ink); color: var(--surface); }
+  html body.book-type #zapraszamy .booking-table > a.booking-phone .ico { display: none; }
+  html body.book-type #zapraszamy .booking-table > a.booking-hours { flex: 1 1 0; min-inline-size: 0; justify-content: flex-start; text-align: start; border: 0; padding: 0 0 0 var(--s1, 8px); background: transparent; text-wrap: balance; }
+}
+@media (min-width: 701px) {
+  html body.book-type #zapraszamy .booking-table > a.booking-cta,
+  html body.book-type #zapraszamy .booking-table > a.booking-phone { flex: 0 1 auto; white-space: normal; text-wrap: balance; text-align: center; }
+  html body.book-type #zapraszamy .booking-table > a.booking-hours { flex: 1 0 150px; }
+}

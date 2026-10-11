@@ -1,0 +1,366 @@
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:200 900;font-display:swap;src:url("https://cdn.jsdelivr.net/gh/adobe-fonts/source-serif@4.005R/WOFF2/VAR/SourceSerif4Variable-Roman.ttf.woff2") format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:200 900;font-display:swap;src:url("https://cdn.jsdelivr.net/gh/adobe-fonts/source-serif@4.005R/WOFF2/VAR/SourceSerif4Variable-Italic.ttf.woff2") format("woff2")}
+
+@layer baza, reguly, narzedzia, panel;
+
+:root{
+  --paper:#faf7f0;--sheet:#fffdf8;--tint:#efe9db;--ink:#1c1a17;--soft:#4a453c;--accent:#8a1c1c;--mid:#f1dfa6;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --panel-w:296px;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#16150f;--sheet:#1d1b15;--tint:#26231b;--ink:#efeadc;--soft:#c3bca9;--accent:#f0a79a;--mid:#5a4a14}
+}
+
+/* ====================================================================================
+   BAZA: stan „wszystkie reguły wyłączone”. Kerning, ligatury i inne funkcje fontu są tu
+   jawnie wyłączone, żeby przełączniki były widoczne (przeglądarki włączają je domyślnie).
+   ==================================================================================== */
+@layer baza{
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif)}
+  .skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:8px 16px;z-index:100;font-family:var(--sans)}
+  .skip:focus{left:0}
+  .strona{padding:24px clamp(16px,4vw,48px) 96px;overflow-x:clip}
+  @media (min-width:1200px){.strona{padding-inline-end:calc(var(--panel-w) + 48px)}}
+
+  .dokument{
+    container-type:inline-size;container-name:dokument;position:relative;
+    max-inline-size:860px;margin-inline:auto;
+    font-size:16px;line-height:1.25;text-align:left;
+    font-kerning:none;font-variant-ligatures:none;text-rendering:optimizeSpeed;
+    font-variant-numeric:lining-nums proportional-nums;
+    hyphens:manual;text-wrap:wrap;
+  }
+  .pole{position:relative}
+  .dokument :is(h1,h2,h3,h4,p,ul,ol,table,figure,blockquote){margin-block:0}
+  .dokument p{margin-block-end:1em}
+  .dokument em{font-style:italic}
+  .dokument a{color:var(--accent)}
+
+  /* nagłówki: w stanie surowym każdy poziom ma inną formę i kilka sygnałów naraz */
+  .dokument h1{font-size:2em;font-weight:700;margin-block:.67em}
+  .dokument h2{font-size:1.5em;font-weight:700;margin-block:.83em;text-align:center;text-transform:uppercase}
+  .dokument h3{font-size:1.17em;font-weight:700;margin-block:1em;text-align:right;text-decoration:underline}
+  .dokument h4{font-size:1em;font-weight:700;margin-block:1.33em;font-style:italic;color:var(--accent)}
+  .dokument .etykieta{text-transform:uppercase;font-size:.8em}
+  .dokument .lead{font-size:1.25em}
+  .dokument .motto{font-size:2.25em;text-align:center;line-height:1.1;margin-block:.5em}
+
+  .dokument blockquote{margin:1em 2.5em;padding-inline-start:1em;border-inline-start:4px solid var(--accent);font-weight:700;font-style:italic;font-size:1.1em}
+  .dokument blockquote p{margin:0}
+  .dokument blockquote footer{font-size:.85em;font-weight:400;font-style:normal}
+  .dokument .wiersz{text-align:center;margin-block:1em}
+  .dokument .wiersz p{margin:0}
+  .dokument table{border:1px solid var(--soft);border-collapse:collapse;margin-block:1em}
+  .dokument th,.dokument td{border:1px solid var(--soft);padding:2px 8px;text-align:center}
+  .dokument th{font-weight:800;text-transform:uppercase;font-size:.9em}
+  .dokument ol{list-style-position:inside;padding:0;margin-block-end:1em}
+  .dokument figure.obr{margin:1em 0;border:1px solid var(--ink);background:var(--tint);display:grid;place-items:center;font-size:.85em}
+  .dokument .odsylacz{font-size:.75em;line-height:0;vertical-align:baseline;position:relative;inset-block-start:-.5em}   /* przesunięcie zamiast vertical-align: nie rozpycha wiersza */
+  .dokument .przypis{font-size:.85em;font-style:italic;line-height:0}   /* wstawka w mniejszym stopniu nie rozpycha wiersza */
+  .dokument .przypis::before{content:" [przypis: "}
+  .dokument .przypis::after{content:"]"}
+  .dokument .sub,.dokument .sup{font-size:.75em;line-height:0;vertical-align:baseline;position:relative;inset-block-start:-.4em}
+  .dokument .sub{inset-block-start:.25em}
+  .dokument .nb{background:var(--mid);outline:1px solid var(--soft);outline-offset:-1px}
+
+  .nakladki{position:absolute;inset:0;pointer-events:none;z-index:4}
+}
+
+/* ====================================================================================
+   REGUŁY KATEGORII 1: każda włączana tokenem w data-z na <html> (:root[data-z~="P1-nn"]).
+   Kolejność bloków = kolejność ID; przy wspólnych właściwościach wygrywa blok późniejszy.
+   ==================================================================================== */
+@layer reguly{
+
+/* P1-01 miara */
+:root[data-z~="P1-01"] .dokument :is(p,li,dd,blockquote){max-inline-size:min(64ch,100%)}
+
+/* P1-02 interlinia */
+:root[data-z~="P1-02"] .dokument{line-height:1.5}
+:root[data-z~="P1-02"] .dokument :is(h1,h2,h3,h4,.motto){line-height:1.2}
+
+/* P1-03 rytm pionowy na siatce 8 px */
+:root[data-z~="P1-03"] .dokument{--u:8px;line-height:calc(var(--u)*3)}
+:root[data-z~="P1-03"] .dokument :is(h1,.motto){line-height:calc(var(--u)*8)}
+:root[data-z~="P1-03"] .dokument :is(h2,h3){line-height:calc(var(--u)*5)}
+:root[data-z~="P1-03"] .dokument h4{line-height:calc(var(--u)*3)}
+:root[data-z~="P1-03"] .dokument .lead{line-height:calc(var(--u)*4)}
+@supports (line-height:round(up,1em,1px)){
+  :root[data-z~="P1-03"] .dokument :is(h1,.motto){line-height:round(up,1.15em,var(--u))}
+  :root[data-z~="P1-03"] .dokument :is(h2,h3){line-height:round(up,1.2em,var(--u))}
+  :root[data-z~="P1-03"] .dokument h4{line-height:round(up,1.5em,var(--u))}
+  :root[data-z~="P1-03"] .dokument .lead{line-height:round(up,1.3em,var(--u))}
+}
+:root[data-z~="P1-03"] .dokument :is(h1,h2,h3,h4){margin-block:calc(var(--u)*3) var(--u)}
+:root[data-z~="P1-03"] .dokument .motto{margin-block:calc(var(--u)*3)}
+:root[data-z~="P1-03"] .dokument :is(p,ol,table,.wiersz){margin-block:0 calc(var(--u)*3)}
+:root[data-z~="P1-03"] .dokument :is(blockquote,figure.obr){margin-block:calc(var(--u)*3)}
+:root[data-z~="P1-03"] .dokument :is(th,td){padding-block:4px}
+
+/* P1-04 skala rozmiarów 1 : 1,5 */
+:root[data-z~="P1-04"] .dokument{--r:1.5;--s0:1em;--s1:calc(var(--s0)*var(--r));--s2:calc(var(--s1)*var(--r))}
+:root[data-z~="P1-04"] .dokument h4{font-size:var(--s0)}
+:root[data-z~="P1-04"] .dokument h3{font-size:var(--s1)}
+:root[data-z~="P1-04"] .dokument h2{font-size:var(--s2)}
+:root[data-z~="P1-04"] .dokument h1{font-size:clamp(var(--s2),1.4em + 2.2vw,3.375em)}
+
+/* P1-05 jeden parametr na raz: duży = lekki, mały = cięższy */
+:root[data-z~="P1-05"] .dokument h1{font-weight:350}
+:root[data-z~="P1-05"] .dokument h2{font-weight:450}
+:root[data-z~="P1-05"] .dokument h3{font-weight:550}
+:root[data-z~="P1-05"] .dokument h4{font-weight:650}
+:root[data-z~="P1-05"] .dokument .motto{font-weight:350}
+:root[data-z~="P1-05"] .dokument blockquote{font-weight:400}
+:root[data-z~="P1-05"] .dokument th{font-weight:600}
+
+/* P1-06 prawdziwe kapitaliki i spacjowanie wersalików */
+:root[data-z~="P1-06"] .dokument .etykieta{
+  text-transform:none;font-size:1em;
+  font-variant-caps:all-small-caps;letter-spacing:.08em;
+  font-feature-settings:"case";font-synthesis-small-caps:none;
+}
+:root[data-z~="P1-06"] .dokument th{text-transform:none;font-variant-caps:all-small-caps;letter-spacing:.06em;font-size:1em}
+
+/* P1-07 ligatury */
+:root[data-z~="P1-07"] .dokument{font-variant-ligatures:common-ligatures}
+
+/* P1-08 cyfry tekstowe i tabelaryczne, ułamki, indeksy */
+:root[data-z~="P1-08"] .dokument{font-variant-numeric:oldstyle-nums proportional-nums}
+:root[data-z~="P1-08"] .dokument .u{font-variant-numeric:diagonal-fractions}   /* tylko na ułamkach: frac w tym foncie psuje przecinki i cyfry w całym tekście */
+:root[data-z~="P1-08"] .dokument :is(table,.motto){font-variant-numeric:lining-nums tabular-nums}
+:root[data-z~="P1-08"] .dokument .sup{font-size:inherit;position:static;line-height:inherit;font-variant-position:super}
+:root[data-z~="P1-08"] .dokument .sub{font-size:inherit;position:static;line-height:inherit;font-variant-position:sub}
+
+/* P1-09 kerning i odstęp międzywyrazowy */
+:root[data-z~="P1-09"] .dokument{font-kerning:normal;text-rendering:optimizeLegibility}
+:root[data-z~="P1-09"] .dokument :is(h1,.motto){letter-spacing:-.01em;word-spacing:-.05em}
+
+/* P1-10 text-wrap: balance */
+:root[data-z~="P1-10"] .dokument :is(h1,h2,h3,h4,.motto,.lead){text-wrap:balance}
+
+/* P1-11 text-wrap: pretty */
+:root[data-z~="P1-11"] .dokument p{text-wrap:pretty}
+
+/* P1-12 dzielenie wyrazów w przeglądarce */
+:root[data-z~="P1-12"] .dokument p{hyphens:auto;hyphenate-limit-chars:6 3 3}
+
+/* P1-13 justowanie tylko w szerokim kontenerze */
+@container dokument (min-width:36ch){
+  :root[data-z~="P1-13"] .dokument .glowny p{text-align:justify;text-justify:inter-word}
+}
+
+/* P1-14 wiszące znaki interpunkcyjne */
+:root[data-z~="P1-14"] .dokument p{hanging-punctuation:first}
+@supports not (hanging-punctuation:first){
+  :root[data-z~="P1-14"] .dokument .glowny p.zacyt{text-indent:-.42em}
+}
+
+/* P1-15 wcięcia akapitów zamiast odstępów */
+:root[data-z~="P1-15"] .dokument .glowny p{margin-block-end:0}
+:root[data-z~="P1-15"] .dokument .glowny p + p{text-indent:1em}
+:root[data-z~="P1-15"] .dokument .glowny :is(h2,h3,h4,figure,table,blockquote,.wiersz,ol) + p{text-indent:0}
+:root[data-z~="P1-15"] .dokument .glowny :is(h2,h3,h4) + p{margin-block-start:0}
+@supports not (hanging-punctuation:first){
+  :root[data-z~="P1-14"][data-z~="P1-15"] .dokument .glowny p + p.zacyt{text-indent:calc(1em - .42em)}
+}
+
+/* P1-16 cytaty blokowe i wierszowane */
+:root[data-z~="P1-16"] .dokument blockquote{margin:24px 0 24px 2em;padding:0;border:0;font-weight:400;font-size:1em;font-style:italic}
+:root[data-z~="P1-16"] .dokument blockquote footer{font-style:normal;font-size:.9em}
+:root[data-z~="P1-16"] .dokument .wiersz{width:fit-content;margin:24px auto;text-align:left}
+
+/* P1-17 inicjał i otwarcie akapitu */
+:root[data-z~="P1-17"] .dokument .glowny > section:first-of-type > p:first-of-type::first-letter{
+  -webkit-initial-letter:3;initial-letter:3;margin-inline-end:.12em;font-weight:600;
+}
+:root[data-z~="P1-17"] .dokument .glowny > section:first-of-type > p:first-of-type::first-line{font-variant-caps:all-small-caps;letter-spacing:.06em}
+@supports not ((initial-letter:3) or (-webkit-initial-letter:3)){
+  :root[data-z~="P1-17"] .dokument .glowny > section:first-of-type > p:first-of-type::first-letter{float:left;font-size:3.1em;line-height:.85;padding-inline-end:.1em}
+}
+
+/* P1-18 tabele i listy */
+:root[data-z~="P1-18"] .dokument table{border:0;inline-size:100%;font-variant-numeric:lining-nums tabular-nums}
+:root[data-z~="P1-18"] .dokument :is(th,td){border:0;padding:4px 8px 4px 0;text-align:left}
+:root[data-z~="P1-18"] .dokument th{font-weight:600;text-transform:none;font-size:1em;border-block-end:1px solid currentColor}
+:root[data-z~="P1-18"] .dokument :is(th,td).r{text-align:right}
+:root[data-z~="P1-18"] .dokument table.tytuly tbody tr:nth-child(even){background:var(--tint)}
+:root[data-z~="P1-18"] .dokument table.wartosci{inline-size:auto;min-inline-size:50%}
+:root[data-z~="P1-18"] .dokument ol{padding-inline-start:2em;list-style-position:outside}
+:root[data-z~="P1-18"] .dokument li::marker{font-variant-numeric:tabular-nums;color:var(--soft)}
+
+/* P1-19 kanon Villarda (strona 2:3, margines s : t : e : f = 2 : 3 : 4 : 6) */
+:root[data-z~="P1-19"] .dokument{aspect-ratio:2/3;background:var(--sheet);border:1px solid var(--ink)}
+:root[data-z~="P1-19"] .dokument .pole{margin:16.667% 22.222% 33.333% 11.111%}
+
+/* P1-20 strona ISO 1 : √2 z polem złotego podziału (s = t = w/9, e = f = 2s) */
+:root[data-z~="P1-20"] .dokument{aspect-ratio:1/1.4142;background:var(--sheet);border:1px solid var(--ink)}
+:root[data-z~="P1-20"] .dokument .pole{margin:11.111% 22.222% 22.222% 11.111%}
+
+/* P1-21 siatka 12 kolumn z podsiatką */
+:root[data-z~="P1-21"] .dokument .pole{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:16px}
+:root[data-z~="P1-21"] .dokument .nagl{grid-column:3/11}
+:root[data-z~="P1-21"] .dokument .glowny{grid-column:1/-1;display:grid;grid-template-columns:subgrid}
+:root[data-z~="P1-21"] .dokument .glowny > section{grid-column:1/-1;display:grid;grid-template-columns:subgrid;align-content:start}
+:root[data-z~="P1-21"] .dokument .glowny > nav{grid-column:3/11}
+:root[data-z~="P1-21"] .dokument .glowny > section > *{grid-column:3/11}
+:root[data-z~="P1-21"] .dokument .glowny > section > figure{grid-column:2/12}
+:root[data-z~="P1-21"] .dokument .zywa{grid-column:1/-1}
+@supports not (grid-template-columns:subgrid){
+  :root[data-z~="P1-21"] .dokument .glowny{grid-column:3/11;display:block}
+  :root[data-z~="P1-21"] .dokument .glowny > section{display:block}
+}
+@container dokument (max-width:640px){
+  :root[data-z~="P1-21"] .dokument .nagl,
+  :root[data-z~="P1-21"] .dokument .glowny > nav,
+  :root[data-z~="P1-21"] .dokument .glowny > section > *,
+  :root[data-z~="P1-21"] .dokument .glowny > section > figure{grid-column:1/-1}
+}
+
+/* P1-22 kolumny tekstu, przypisy boczne przy odsyłaczu */
+:root[data-z~="P1-22"] .dokument .pole{padding-inline-end:34%}
+:root[data-z~="P1-22"] .dokument .glowny{column-width:16em;column-gap:2em;column-rule:1px solid var(--ink);widows:2;orphans:2}
+:root[data-z~="P1-22"] .dokument .glowny :is(h2,h3){column-span:all}
+:root[data-z~="P1-22"] .dokument :is(blockquote,figure,table,.wiersz){break-inside:avoid}
+:root[data-z~="P1-22"] .dokument :is(h2,h3,h4){break-after:avoid}
+:root[data-z~="P1-22"] .dokument .odsylacz{font-size:.75em}
+:root[data-z~="P1-22"] .dokument .przypis{position:absolute;top:anchor(top);inset-inline-end:0;inline-size:30%;font-style:normal;font-size:.85em;line-height:24px}
+:root[data-z~="P1-22"] .dokument .przypis::before{content:attr(data-n) " ";font-weight:700}
+:root[data-z~="P1-22"] .dokument .przypis::after{content:none}
+@supports not (top:anchor(top)){
+  :root[data-z~="P1-22"] .dokument .przypis{position:static;inline-size:auto;display:block;margin-block:8px}
+}
+@container dokument (max-width:720px){
+  :root[data-z~="P1-22"] .dokument .pole{padding-inline-end:0}
+  :root[data-z~="P1-22"] .dokument .glowny{column-width:auto;column-count:1;column-rule:0}
+  :root[data-z~="P1-22"] .dokument .przypis{position:static;inline-size:auto;display:block;margin-block:8px}
+}
+
+/* P1-23 rozkładówka (przybliżenie): dwie strony obok siebie poniżej progu jedna */
+:root[data-z~="P1-23"] .dokument{aspect-ratio:4/3;background:var(--sheet);border:1px solid var(--ink)}
+:root[data-z~="P1-23"] .dokument .pole{margin:8% 11.111% 12%}
+@container dokument (min-width:640px){
+  :root[data-z~="P1-23"] .dokument .pole{margin:8cqw 11.111cqw 12cqw;column-count:2;column-gap:11.111cqw;column-rule:1px solid var(--ink)}
+  :root[data-z~="P1-23"] .dokument .glowny{display:contents}
+  :root[data-z~="P1-23"] .dokument :is(blockquote,figure,table,.wiersz){break-inside:avoid}
+  :root[data-z~="P1-23"] .dokument :is(h2,h3,h4){break-after:avoid}
+  :root[data-z~="P1-23"] .dokument .przypis{font-size:.85em}
+}
+
+/* P1-24 hierarchia nagłówków: jedna forma, do trzech sygnałów na poziom, warstwy @layer */
+@layer ogolne, naglowki;
+@layer ogolne{
+  :root[data-z~="P1-24"] .dokument :is(h1,h2,h3,h4){text-align:left;text-transform:none;text-decoration:none;font-style:normal;color:inherit}
+}
+@layer naglowki{
+  :root[data-z~="P1-24"] .dokument h4{font-variant-caps:all-small-caps;letter-spacing:.08em}
+}
+
+/* ===== reguły kategorii 2: CSS pomocniczy dla elementów tworzonych skryptami ===== */
+/* P2-10 */
+.dokument abbr.akr{font-variant-caps:all-small-caps;letter-spacing:.06em;text-decoration:none}
+/* P2-14 */
+:root[data-z~="P2-14"] .dokument .glowny p{text-align:justify}
+/* P2-18 */
+:root[data-z~="P2-18"] .dokument .pole{padding-inline-end:34%}
+:root[data-z~="P2-18"][data-z~="P1-21"] .dokument .pole{padding-inline-end:0}
+:root[data-z~="P2-18"][data-z~="P1-19"] .dokument .pole,
+:root[data-z~="P2-18"][data-z~="P1-20"] .dokument .pole{padding-inline-end:0}
+.dokument .nota{position:absolute;inset-inline-end:0;inline-size:30%;font-size:.85em;line-height:24px}
+/* przy kanonach strony przypisy stoją w zewnętrznym marginesie, poza polem składu */
+:root[data-z~="P1-19"] .dokument .nota,
+:root[data-z~="P1-20"] .dokument .nota{inset-inline-end:auto;inset-inline-start:calc(100% + 1.5rem);inline-size:calc(22.222cqw - 2.5rem)}
+/* przy siatce 12 kolumn: ostatnie dwie kolumny pola */
+:root[data-z~="P1-21"] .dokument .nota{inset-inline-start:calc(83.333% + 8px);inset-inline-end:auto;inline-size:max(16%,7.5rem)}
+@container dokument (max-width:640px){
+  :root[data-z~="P2-18"] .dokument .pole{padding-inline-end:0}
+  .dokument .nota,
+  :root[data-z~="P1-19"] .dokument .nota,
+  :root[data-z~="P1-20"] .dokument .nota,
+  :root[data-z~="P1-21"] .dokument .nota{position:static;inline-size:auto;inset:auto;margin-block:8px}
+}
+.dokument .nr{font-size:.75em;line-height:0}
+/* P2-19 */
+.dokument .liczba{text-align:right}
+.dokument .liczba .u{display:inline-block;min-inline-size:var(--u,0);text-align:left}
+/* P2-20 */
+.dokument .zywa{position:sticky;top:0;z-index:5;background:var(--paper);border-block-end:1px solid var(--ink);font-variant-caps:all-small-caps;letter-spacing:.08em;padding:4px 0;line-height:24px;font-size:1em}
+:root[data-z~="P1-19"] .dokument .zywa,:root[data-z~="P1-20"] .dokument .zywa,:root[data-z~="P1-23"] .dokument .zywa{background:var(--sheet)}
+/* P2-21 */
+.dokument nav.spis{margin-block-end:1em}
+.dokument nav.spis ol{margin:0;padding-inline-start:2em;list-style-position:outside}
+/* P2-16, P2-22 */
+.nakladki .cnt{position:absolute;inline-size:28px;text-align:right;font:600 11px/24px var(--mono);color:var(--accent)}
+.nakladki .kr{position:absolute;inline-size:6px;background:var(--accent)}
+}
+
+/* ====================================================================================
+   NARZĘDZIA: nakładki (nie są regułami typograficznymi)
+   ==================================================================================== */
+@layer narzedzia{
+  :root[data-n~="baza"] .dokument .pole::before{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:3;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M0 7.5h8' stroke='%23c0392b' stroke-opacity='.4' stroke-width='1'/%3E%3C/svg%3E");
+    background-size:8px 8px;
+  }
+  .nakladki .ov-kol{position:absolute;background:var(--accent);opacity:.14}
+  .nakladki svg.ov-kanon{position:absolute;fill:none;stroke:var(--accent);stroke-width:1px}
+  .nakladki svg.ov-kanon path{vector-effect:non-scaling-stroke}
+}
+
+/* ====================================================================================
+   PANEL: odrębne klasy .p-*, nie dotyka treści; płaski, bez cieni, zaokrągleń i gradientów
+   ==================================================================================== */
+@layer panel{
+  .p-toggle,.p-panel,.p-panel *{font-family:var(--sans)}
+  .p-toggle{
+    position:fixed;z-index:60;inset-block-end:16px;inset-inline-end:16px;min-block-size:48px;padding:0 16px;
+    font-size:14px;line-height:24px;background:var(--ink);color:var(--paper);border:1px solid var(--ink);cursor:pointer;
+  }
+  .p-toggle:hover{background:var(--soft)}
+  .p-panel{
+    position:fixed;z-index:50;background:var(--sheet);color:var(--ink);border:1px solid var(--ink);
+    font-size:14px;line-height:24px;overflow:auto;overscroll-behavior:contain;
+    inset-block:0;inset-inline-end:0;inline-size:var(--panel-w);max-inline-size:100vw;
+    transition:transform .2s ease;
+  }
+  .p-panel[hidden]{display:block;transform:translateX(100%);visibility:hidden;transition:transform .2s ease,visibility 0s .2s}
+  @media (max-width:1199px){
+    .p-panel{inset-block:auto 0;inset-inline:0;inline-size:auto;max-inline-size:none;block-size:min(72vh,560px);border-inline:0;border-block-end:0}
+    .p-panel[hidden]{transform:translateY(100%)}
+    .p-toggle{inset-block-end:16px}
+  }
+  @media (min-width:1200px){.p-toggle{inset-block-start:16px;inset-block-end:auto}
+    .p-toggle[aria-expanded="true"]{display:none}}
+  @media (prefers-reduced-motion:reduce){.p-panel,.p-panel[hidden]{transition:none}}
+  .p-panel h2{font-size:16px;line-height:24px;font-weight:700;margin:0}
+  .p-nagl{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 16px;border-block-end:1px solid var(--ink);position:sticky;top:0;background:var(--sheet);z-index:2}
+  .p-panel button{font:inherit;font-size:13px;line-height:24px;padding:4px 12px;min-block-size:40px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer}
+  .p-panel button:hover{background:var(--tint)}
+  .p-panel button:disabled{opacity:.5;cursor:not-allowed}
+  .p-akcje{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px 8px}
+  .p-url{padding:0 16px 8px;margin:0}
+  .p-url input{inline-size:100%;font:12px/24px var(--mono);padding:4px 8px;border:1px solid var(--ink);background:var(--paper);color:var(--ink)}
+  .p-status{margin:0;padding:4px 16px 8px;font-size:13px;color:var(--soft);min-block-size:32px}
+  .p-diag{list-style:none;margin:0;padding:0 16px 8px;font-size:12px;line-height:20px;color:var(--soft)}
+  .p-grupa{border:0;margin:0;padding:0 16px 8px;min-inline-size:0}
+  .p-grupa legend{float:left;inline-size:100%;box-sizing:border-box;border-block-start:1px solid var(--ink);padding:8px 0 0;margin-inline:-0px;font-weight:700;font-variant-caps:all-small-caps;letter-spacing:.08em}
+  .p-grupa ul{clear:both;list-style:none;margin:0;padding:0}
+  .p-grupa li{border-block-start:1px solid color-mix(in srgb,var(--ink) 18%,transparent);padding:2px 0}
+  .p-grupa li:first-child{border-block-start:0}
+  .p-regula{display:grid;grid-template-columns:24px 1fr auto;gap:0 8px;align-items:start}
+  .p-regula input{inline-size:20px;block-size:20px;margin:2px 0 0;accent-color:var(--accent)}
+  .p-regula label{cursor:pointer;display:block;padding:0}
+  .p-regula label .pid{font:600 11px/24px var(--mono);margin-inline-end:6px;color:var(--soft)}
+  .p-regula a{font-size:12px;color:var(--accent);padding:0 0 0 4px}
+  .p-regula .blok{grid-column:2/-1;font-size:12px;line-height:18px;color:var(--accent);margin:0 0 4px}
+  .p-regula input:disabled + label{opacity:.6;cursor:not-allowed}
+  .p-stopka{margin:0;padding:8px 16px 24px;font-size:12px;line-height:18px;color:var(--soft)}
+  .p-panel :focus-visible,.p-toggle:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .p-panel button:focus-visible{outline-offset:-3px}
+}
