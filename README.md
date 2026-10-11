@@ -59,8 +59,8 @@ Biblioteka (prywatne repozytorium `typografia-www`) składa się z reguł CSS (P
 - **Niesprawdzone:** wygląd w przeglądarce (łamanie wierszy po dodaniu spacji twardych, szerokości kart na 390 px); `pomiar.py` i `audit.py` wymagają Playwrighta z przeglądarką, której w środowisku, w którym wdrażałem zmiany, nie było.
 
 ## Inspektor uwag (do zbierania poprawek)
-- Klawisz **I** na dowolnej stronie (lokalnie: localhost, 127.0.0.1, file://) włącza inspektor; kliknięcie elementu otwiera okienko uwagi, **Kopiuj wszystko** daje Markdown
-  (selektor, wymiary i kolumna w siatce, styl, fragment HTML, szerokość okna) do wklejenia w rozmowie. Ponowne **I** wyłącza. Na stronie publicznej: `?uwagi=1`.
+- Klawisz **I** na dowolnej stronie (lokalnie: localhost, 127.0.0.1, file://, oraz makieta w GitHub Pages `*.github.io`; na innych domenach po jednorazowym wejściu z `?uwagi=1`, zapamiętywanym w localStorage, `?uwagi=0` wyłącza) włącza inspektor; kliknięcie elementu otwiera okienko uwagi, **Kopiuj wszystko** daje Markdown
+  (selektor, wymiary i kolumna w siatce, styl, fragment HTML, szerokość okna) do wklejenia w rozmowie. Ponowne **I** wyłącza.
 - Kod: `inspektor.js` (skrót, ładowany ze strony głównej i podstron) i `_generator/narzedzia/uwagi.js` (narzędzie).
 
 ## Zmienne palety sekcji
@@ -80,7 +80,7 @@ Definicje zestawów (komplet reguł palet sekcji + kolory marki: zieleń, pomara
 Wybór: nakładka K (u góry panelu) albo `?paleta=…` w adresie (`?paleta=szlachetna` wraca do domyślnego); wybór pamięta `localStorage` („psyjaciele-paleta”), a ustawia go skrypt w `<head>` (`nowa-readability.js`), więc kolory nie mrugają. Generator (`home.py::_set_surfaces`) czyta tła ról ze wszystkich zestawów i dba, żeby na podstronach sąsiednie sekcje nie miały tego samego tła w żadnym z nich.
 
 ## Nakładka palet (klawisz K)
-- **K** na dowolnej stronie (lokalnie albo z `?uwagi=1`) włącza nakładkę. U góry panelu jest **wybór zestawu palet** całej strony (podgląd siedmiu kolorów każdego zestawu); wybór zeruje ręczne zmiany sekcji.
+- **K** na dowolnej stronie (tam gdzie działa **I**, patrz wyżej) włącza nakładkę. U góry panelu jest **wybór zestawu palet** całej strony (podgląd siedmiu kolorów każdego zestawu); wybór zeruje ręczne zmiany sekcji.
 - Najedź na sekcję i kliknij — panel pokazuje palety sekcji aktywnego zestawu (czytane z CSS, więc zawsze zgodne z zestawem), 12 klasycznych zestawień z mody (szmaragd i szampan, granat i wielbłąd, burgund i róż, czerń i kość słoniowa…), cztery własne kolory (tło, tekst, tekst mały, akcent), „Odwróć”, „Przywróć sekcję/wszystko” i „Kopiuj zmiany” (Markdown do rozmowy, z nazwą zestawu). Ponowne **K** lub **Esc** zamyka nakładkę.
 - Zmiany sekcji to zmienne CSS ustawione inline (`--surface`, `--ink`, `--small-ink`, `--accent`, `--hover-ink`, `--hover-accent`); po odświeżeniu znikają (zestaw zostaje). Kod: `_generator/narzedzia/paleta.js`, ładowany z `inspektor.js`.
 

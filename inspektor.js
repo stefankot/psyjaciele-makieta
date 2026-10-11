@@ -1,16 +1,24 @@
 /* inspektor.js — skrót klawiszowy „I” włącza/wyłącza inspektor uwag (narzędzie do zaznaczania elementów i zbierania poprawek).
    Klik w element zapisuje uwagę z selektorem CSS, wymiarami w siatce, stylem i fragmentem HTML; „Kopiuj wszystko” daje Markdown
-   do wklejenia w rozmowie z Claude. Działa na localhost, 127.0.0.1 i file://; na stronie publicznej tylko po dopisaniu ?uwagi=1.
+   do wklejenia w rozmowie z Claude. Działa na localhost, 127.0.0.1, file:// i na makiecie w GitHub Pages (*.github.io); na innych domenach
+   po wejściu raz z ?uwagi=1 (przeglądarka zapamiętuje to w localStorage; ?uwagi=0 wyłącza).
    Ładuje _generator/narzedzia/uwagi.js dopiero przy pierwszym użyciu. */
 (function () {
   "use strict";
   var self = document.currentScript && document.currentScript.src;
   if (!self) return;
-  var LOCAL = /^(localhost|127\.0\.0\.1|\[::1\]|)$/.test(location.hostname) || location.protocol === "file:";
+  var LOCAL = /^(localhost|127\.0\.0\.1|\[::1\]|)$/.test(location.hostname) || location.protocol === "file:" || /\.github\.io$/.test(location.hostname);
   var flag = false;   // inspektor zawsze startuje zamknięty; otwiera go dopiero klawisz I (lub ?uwagi=1 w adresie)
   try { sessionStorage.removeItem("uwagi-on"); } catch (e) {}
   var q = /[?&]uwagi=([01])/.exec(location.search);
   flag = !!(q && q[1] === "1");
+  // ?uwagi=1 wystarczy wpisać raz: bez zapamiętania flaga ginęła po przejściu na inną stronę albo po otwarciu linku z innym adresem
+  var KEEP = "psyjaciele-narzedzia", kept = false;
+  try {
+    if (q) { q[1] === "1" ? localStorage.setItem(KEEP, "1") : localStorage.removeItem(KEEP); }
+    kept = localStorage.getItem(KEEP) === "1";
+  } catch (e) { kept = flag; }
+  var ENABLED = LOCAL || kept || flag;
   var loading = false;
 
   function load(done) {
@@ -43,14 +51,14 @@
   document.addEventListener("keydown", function (e) {
     if ((e.key === "k" || e.key === "K") && !e.metaKey && !e.ctrlKey && !e.altKey) {
       if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || "")) || e.target.isContentEditable) return;
-      if (!LOCAL && !flag) return;
+      if (!ENABLED) return;
       e.preventDefault();
       togglePalette();
       return;
     }
     if ((e.key !== "i" && e.key !== "I") || e.metaKey || e.ctrlKey || e.altKey) return;
     if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || "")) || e.target.isContentEditable) return;
-    if (!LOCAL && !flag) return;
+    if (!ENABLED) return;
     e.preventDefault();
     toggle();
   });
